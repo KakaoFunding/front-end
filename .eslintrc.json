@@ -1,0 +1,99 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "tsconfigRootDir": "./"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:storybook/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "react-refresh"],
+  "ignorePatterns": ["dist", ".eslintrc.json", "vite.config.ts"],
+  "rules": {
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "@/lib/**",
+            "group": "external"
+          },
+          {
+            "pattern": "{types/*,@/types*,./types}",
+            "group": "type"
+          },
+          {
+            "pattern": "{hooks,@/hooks/**/*,./hooks/**,./use**,../use**,../../use**,../../../use**,,../../hooks/**,./_hooks/**,../../../_hooks/**}",
+            "group": "internal"
+          },
+          {
+            "pattern": "{utils/**/*,./utils,../utils,../../utils,../../../utils}",
+            "group": "type"
+          },
+          {
+            "pattern": "{@/constants/*,./constants}",
+            "group": "type"
+          },
+          {
+            "pattern": "{states/**/*,./states*,./**/states*,../states*,../../states*,../../../states*,,../../../../states*,**/**/**/states*}",
+            "group": "type"
+          },
+          {
+            "pattern": "@/services/**",
+            "group": "type"
+          },
+          {
+            "pattern": "{./helpers,./data,./config,./defaults,../../../defaults}",
+            "group": "type"
+          },
+          {
+            "pattern": "{components,components/_common/**,@/components,@/components/**,svgs,@/assets/**/*,@/app/**,routes/**,public/**}",
+            "group": "index"
+          },
+          {
+            "pattern": "{styles,./*.scss,../*.scss,../*.module.scss}",
+            "group": "index"
+          }
+        ],
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "newlines-between": "always"
+      }
+    ]
+  }
+}
