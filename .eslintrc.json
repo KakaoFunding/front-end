@@ -94,6 +94,7 @@
         "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
         "newlines-between": "always"
       }
-    ]
+    ],
+    "arrow-body-style": "off"
   }
 }
