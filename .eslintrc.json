@@ -49,50 +49,59 @@
     "import/order": [
       "error",
       {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
         "pathGroups": [
           {
-            "pattern": "@/lib/**",
+            "pattern": "{react*}",
             "group": "external"
           },
+
           {
-            "pattern": "{types/*,@/types*,./types}",
-            "group": "type"
+            "pattern": "{@pages,@pages/*,@pages/**/*,@components,@components/*,@components/**/*,@stories,@stories/*,@stories/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{@states,@states/*,@states/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{@hooks,@hooks/*,@hooks/**/*,@services,@services/*,@services/**/*,@utils,@utils/*,@utils/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{@types,@types/*,@types/**/*,}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{@assets,@assets/*,@assets/**/*,}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{@styles,@styles/*,@styles/**/*,}",
+            "group": "internal",
+            "position": "before"
           },
           {
-            "pattern": "{hooks,@/hooks/**/*,./hooks/**,./use**,../use**,../../use**,../../../use**,,../../hooks/**,./_hooks/**,../../../_hooks/**}",
-            "group": "internal"
-          },
-          {
-            "pattern": "{utils/**/*,./utils,../utils,../../utils,../../../utils}",
-            "group": "type"
-          },
-          {
-            "pattern": "{@/constants/*,./constants}",
-            "group": "type"
-          },
-          {
-            "pattern": "{states/**/*,./states*,./**/states*,../states*,../../states*,../../../states*,,../../../../states*,**/**/**/states*}",
-            "group": "type"
-          },
-          {
-            "pattern": "@/services/**",
-            "group": "type"
-          },
-          {
-            "pattern": "{./helpers,./data,./config,./defaults,../../../defaults}",
-            "group": "type"
-          },
-          {
-            "pattern": "{components,components/_common/**,@/components,@/components/**,svgs,@/assets/**/*,@/app/**,routes/**,public/**}",
-            "group": "index"
-          },
-          {
-            "pattern": "{styles,./*.scss,../*.scss,../*.module.scss}",
-            "group": "index"
+            "pattern": "./*.module.scss",
+            "group": "sibling",
+            "position": "after"
           }
         ],
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
-        "newlines-between": "always"
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": [],
+        "alphabetize": {
+          "order": "asc"
+        }
       }
     ],
     "arrow-body-style": "off"
