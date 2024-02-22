@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import 'minireset.css';
 
 import App from './App';
+import { ProductList } from './pages';
 
 const router = createBrowserRouter([
   {
@@ -12,10 +13,10 @@ const router = createBrowserRouter([
     element: <App />,
     // errorElement: <NotFound />,
     children: [
-      // {
-      //   path: '/',
-      //   element: <Main />,
-      // },
+      {
+        path: '/productList',
+        element: <ProductList />,
+      },
     ],
   },
 ]);
