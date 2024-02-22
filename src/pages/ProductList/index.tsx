@@ -5,10 +5,10 @@ import CategoryList from './CategoryList';
 
 const ProductList: React.FC = () => {
   return (
-    <div>
+    <>
       <CategoryList />
       <SearchResult />
-    </div>
+    </>
   );
 };
 
