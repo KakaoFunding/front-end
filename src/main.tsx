@@ -4,8 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import 'minireset.css';
 
+import { ProductList } from '@pages';
+
 import App from './App';
-import ProductList from './pages/ProductList';
 
 const router = createBrowserRouter([
   {
