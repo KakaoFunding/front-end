@@ -46,6 +46,7 @@
         "tsx": "never"
       }
     ],
+
     "import/order": [
       "error",
       {
