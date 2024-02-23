@@ -1,7 +1,6 @@
 import React from 'react';
 
-import ProductBuyInfo from '@pages/Product/ProductBuyInfo';
-
+import ProductBuyInfo from './ProductBuyInfo';
 import ProductDetail from './ProductDetail';
 
 const Product: React.FC = () => {
