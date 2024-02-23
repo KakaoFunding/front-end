@@ -46,7 +46,7 @@
         "tsx": "never"
       }
     ],
-
+    "import/prefer-default-export": "off",
     "import/order": [
       "error",
       {
