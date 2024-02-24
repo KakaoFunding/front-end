@@ -1,5 +1,7 @@
 @import '@styles/_variable.module';
 
+$border-radius: 8px;
+
 .thumb_wrapper {
   position: relative;
 
@@ -11,6 +13,8 @@
     border-color: rgba(0, 0, 0, 2%);
     background-color: rgba(0, 0, 0, 2%);
     content: '';
+    border-radius: $border-radius;
+  }
 
   &.small {
     width: 85px;
@@ -28,5 +32,5 @@
 .thumb_img {
   display: block;
   width: 100%;
-  border-radius: 10px;
+  border-radius: $border-radius;
 }
