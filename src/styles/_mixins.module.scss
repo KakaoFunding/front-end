@@ -21,3 +21,14 @@
 @mixin shadow {
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 4%);
 }
+
+// 텍스트 줄임
+// $line-clamp: 텍스트의 줄 수
+@mixin text-ellipsis($line-clamp) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line-clamp;
+  line-clamp: $line-clamp;
+  -webkit-box-orient: vertical;
+}
