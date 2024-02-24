@@ -1,0 +1,9 @@
+@import '@styles/mixins.module';
+
+.brand_name {
+  @include text-ellipsis(1);
+
+  font-size: 15px;
+  color: #999;
+  word-break: break-all;
+}
