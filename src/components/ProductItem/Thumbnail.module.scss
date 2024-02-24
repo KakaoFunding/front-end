@@ -1,3 +1,5 @@
+@import '@styles/_variable.module';
+
 .thumb_wrapper {
   position: relative;
 
@@ -9,6 +11,17 @@
     border-color: rgba(0, 0, 0, 2%);
     background-color: rgba(0, 0, 0, 2%);
     content: '';
+
+  &.small {
+    width: 85px;
+  }
+
+  &.medium {
+    width: $product-item-column-small;
+  }
+
+  &.large {
+    width: $product-item-column-medium;
   }
 }
 
