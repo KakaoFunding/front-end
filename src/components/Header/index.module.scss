@@ -1,0 +1,144 @@
+.area_header {
+  margin: 0;
+  padding: 0;
+}
+
+.inner_header {
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  width: 1280px;
+  height: 80px;
+}
+
+// 타이틀
+
+.header_title {
+  font-size: 27px;
+  font-weight: bold;
+  padding: 25px 50px 25px 0;
+}
+
+// 네비게이션바
+
+.area_nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav_list {
+  display: flex;
+  font-size: 16px;
+  padding: 20px 20px 20px 0;
+}
+
+.nav_list_item {
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.nav_link {
+  padding: 11px 10px 7px;
+}
+
+// 카테고리
+
+.area_category {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.area_category::before {
+  width: 1px;
+  height: 14px;
+  margin-right: 20px;
+  background-color: #ddd;
+  content: '';
+}
+
+.category_btn {
+  display: inline-flex;
+  height: 40px;
+  padding: 7px 10px 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 27px;
+  color: #4684e9;
+}
+
+.ico_category {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('@assets/ico_nav.png');
+  background-size: 200px 170px; // 배경 이미지 전체 크기 설정
+  background-position: -160px -80px; // X, Y
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  margin: -2px 8px 0 0;
+}
+
+// bundleUtil
+
+.area_bundleutil {
+  margin-left: auto;
+  display: flex;
+  padding: 20px 0;
+}
+
+.ico_container {
+  display: flex;
+  align-items: center;
+}
+
+.link_search {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.ico_search {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('@assets/ico_nav.png');
+  background-size: 200px 170px; // 배경 이미지 전체 크기 설정
+  background-position: -60px -80px; // X, Y
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  margin: 8px;
+}
+
+.link_cart {
+  position: relative;
+  margin-left: 14px;
+}
+
+.ico_cart {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('@assets/ico_nav.png');
+  background-size: 200px 170px; // 배경 이미지 전체 크기 설정
+  background-position: -30px -80px; // X, Y
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  margin: 8px;
+}
+
+.login_container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 22px;
+}
+
+.link_login {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  height: 38px;
+  padding-top: 2px;
+  font-size: 14px;
+}
