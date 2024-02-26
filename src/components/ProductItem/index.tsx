@@ -1,38 +1,33 @@
 import clsx from 'clsx';
-import React from 'react';
 
-import BrandName from './BrandName';
-import Name from './Name';
 import Price from './Price';
 import Thumbnail from './Thumbnail';
 
 import styles from './index.module.scss';
 
-// 메인 컴포넌트
-interface ProductItemMainProps {
-  children: React.ReactNode;
-  direction: 'column' | 'row';
+interface ColumnProductItemProps {
   size: 'tiny' | 'small' | 'medium';
+  product: ProductItem;
 }
 
-const ProductItemMain = ({
-  children,
-  direction,
-  size,
-}: ProductItemMainProps) => {
+type ProductItem = {
+  thumbnailSrc: string;
+  brandName: string;
+  name: string;
+  price: number;
+  isWished: boolean;
+  wishCount: number;
+};
+
+const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
   return (
-    <div className={clsx(styles.base, styles[direction], styles[size])}>
-      {children}
-    </div>
+    <article className={clsx(styles.base, styles[size])}>
+      <Thumbnail src={product.thumbnailSrc} alt={product.name} size={size} />
+      <span className={styles.brand_name}>{product.brandName}</span>
+      <strong className={styles.name}>{product.name}</strong>
+      <Price>{product.price}</Price>
+    </article>
   );
 };
 
-// 서브 & 메인 컴포넌트를 객체로 묶음
-const ProductItem = Object.assign(ProductItemMain, {
-  Thumbnail,
-  BrandName,
-  Name,
-  Price,
-});
-
-export default ProductItem;
+export default ColumnProductItem;

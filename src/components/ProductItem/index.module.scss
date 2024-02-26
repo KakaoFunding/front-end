@@ -1,38 +1,36 @@
-@import '@styles/_variable.module';
+@import '@styles/mixins.module';
+@import '@styles/variable.module';
 
 .base {
   display: flex;
   width: 100%;
+  flex-direction: column;
 
-  &.column {
-    flex-direction: column;
-
-    &.tiny {
-      width: $prod-item-tiny;
-    }
-
-    &.small {
-      width: $prod-item-small;
-    }
-
-    &.medium {
-      width: $prod-item-medium;
-    }
+  &.tiny {
+    width: $prod-item-tiny;
   }
 
-  &.row {
-    flex-direction: row;
-
-    &.tiny {
-      height: $prod-item-tiny;
-    }
-
-    &.small {
-      height: $prod-item-small;
-    }
-
-    &.medium {
-      height: $prod-item-medium;
-    }
+  &.small {
+    width: $prod-item-small;
   }
+
+  &.medium {
+    width: $prod-item-medium;
+  }
+}
+
+.brand_name {
+  @include text-ellipsis(1);
+
+  font-size: 15px;
+  color: #999;
+  word-break: break-all;
+}
+
+.name {
+  @include text-ellipsis(2);
+
+  font-size: 15px;
+  font-weight: 400;
+  word-break: break-all;
 }
