@@ -1,7 +1,7 @@
 @import '@styles/mixins.module';
 @import '@styles/variable.module';
 
-.base {
+.area_prod_item {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -19,7 +19,7 @@
   }
 }
 
-.brand_name {
+.prod_brand_name {
   @include text-ellipsis(1);
 
   font-size: 15px;
@@ -27,7 +27,7 @@
   word-break: break-all;
 }
 
-.name {
+.prod_name {
   @include text-ellipsis(2);
 
   font-size: 15px;
