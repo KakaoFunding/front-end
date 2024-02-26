@@ -4,10 +4,6 @@
 $round: 8px;
 
 .thumb_wrapper {
-  &.tiny {
-    @include prod-img-wrapper($prod-item-tiny, $round);
-  }
-
   &.small {
     @include prod-img-wrapper($prod-item-small, $round);
   }

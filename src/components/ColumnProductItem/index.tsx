@@ -6,7 +6,7 @@ import Thumbnail from './Thumbnail';
 import styles from './index.module.scss';
 
 interface ColumnProductItemProps {
-  size: 'tiny' | 'small' | 'medium';
+  size: 'small' | 'medium';
   product: ProductItem;
 }
 

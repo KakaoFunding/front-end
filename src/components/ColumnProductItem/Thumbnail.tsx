@@ -5,7 +5,7 @@ import styles from './Thumbnail.module.scss';
 interface ThumbnailProps {
   src: string;
   alt: string;
-  size: 'tiny' | 'small' | 'medium';
+  size: 'small' | 'medium';
 }
 
 const Thumbnail = ({ src, alt, size }: ThumbnailProps) => {
