@@ -6,7 +6,7 @@ interface PriceProps {
 
 const Price = ({ price }: PriceProps) => {
   return (
-    <em className={styles.price_wrapper}>
+    <em className={styles.area_price}>
       {price}
       <span className={styles.unit}>원</span>
     </em>
