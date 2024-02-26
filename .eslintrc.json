@@ -22,6 +22,7 @@
   "plugins": ["@typescript-eslint", "react-refresh"],
   "ignorePatterns": ["dist", ".eslintrc.json", "vite.config.ts"],
   "rules": {
+    "react/require-default-props": "off",
     "react/function-component-definition": [
       "error",
       {
