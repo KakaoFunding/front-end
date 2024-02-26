@@ -12,13 +12,19 @@ import styles from './index.module.scss';
 interface ProductItemMainProps {
   children: React.ReactNode;
   direction: 'column' | 'row';
+  size: 'tiny' | 'small' | 'medium';
 }
 
 const ProductItemMain: React.FC<ProductItemMainProps> = ({
   children,
   direction,
+  size,
 }) => {
-  return <div className={clsx(styles.base, styles[direction])}>{children}</div>;
+  return (
+    <div className={clsx(styles.base, styles[direction], styles[size])}>
+      {children}
+    </div>
+  );
 };
 
 // 서브 & 메인 컴포넌트를 객체로 묶음

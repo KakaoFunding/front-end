@@ -1,12 +1,38 @@
+@import '@styles/_variable.module';
+
 .base {
   display: flex;
   width: 100%;
 
   &.column {
     flex-direction: column;
+
+    &.tiny {
+      width: $prod-item-tiny;
+    }
+
+    &.small {
+      width: $prod-item-small;
+    }
+
+    &.medium {
+      width: $prod-item-medium;
+    }
   }
 
   &.row {
     flex-direction: row;
+
+    &.tiny {
+      height: $prod-item-tiny;
+    }
+
+    &.small {
+      height: $prod-item-small;
+    }
+
+    &.medium {
+      height: $prod-item-medium;
+    }
   }
 }
