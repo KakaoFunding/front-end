@@ -15,11 +15,11 @@ interface ProductItemMainProps {
   size: 'tiny' | 'small' | 'medium';
 }
 
-const ProductItemMain: React.FC<ProductItemMainProps> = ({
+const ProductItemMain = ({
   children,
   direction,
   size,
-}) => {
+}: ProductItemMainProps) => {
   return (
     <div className={clsx(styles.base, styles[direction], styles[size])}>
       {children}

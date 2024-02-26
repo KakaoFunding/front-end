@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import React from 'react';
 
 import styles from './Thumbnail.module.scss';
 
@@ -9,7 +8,7 @@ interface ThumbnailProps {
   size: 'tiny' | 'small' | 'medium';
 }
 
-const Thumbnail: React.FC<ThumbnailProps> = ({ src, alt, size }) => {
+const Thumbnail = ({ src, alt, size }: ThumbnailProps) => {
   return (
     <div className={clsx(styles.thumb_wrapper, styles[size])}>
       <img src={src} alt={alt} />

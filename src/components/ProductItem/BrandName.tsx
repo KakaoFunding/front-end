@@ -6,7 +6,7 @@ interface BrandNameProps {
   children: React.ReactNode;
 }
 
-const BrandName: React.FC<BrandNameProps> = ({ children }) => {
+const BrandName = ({ children }: BrandNameProps) => {
   return <span className={styles.brand_name}>{children}</span>;
 };
 

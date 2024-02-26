@@ -8,7 +8,7 @@ interface PriceProps {
   size?: 'small' | 'medium' | 'large';
 }
 
-const Price: React.FC<PriceProps> = ({ children, size = 'medium' }) => {
+const Price = ({ children, size = 'medium' }: PriceProps) => {
   const price = children;
   return (
     <em className={clsx(styles.price_wrapper, styles[size])}>

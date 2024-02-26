@@ -8,7 +8,7 @@ interface NameProps {
   size?: 'small' | 'large';
 }
 
-const Name: React.FC<NameProps> = ({ children, size = 'small' }) => {
+const Name = ({ children, size = 'small' }: NameProps) => {
   return (
     <strong className={clsx(styles.name, styles[size])}>{children}</strong>
   );
