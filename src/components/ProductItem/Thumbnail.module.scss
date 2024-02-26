@@ -1,36 +1,18 @@
 @import '@styles/_variable.module';
+@import '@styles/_mixins.module';
 
-$border-radius: 8px;
+$round: 8px;
 
 .thumb_wrapper {
-  position: relative;
-
-  &::before {
-    position: absolute;
-    inset: 0;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 2%);
-    background-color: rgba(0, 0, 0, 2%);
-    content: '';
-    border-radius: $border-radius;
+  &.tiny {
+    @include prod-img-wrapper($prod-item-tiny, $round);
   }
 
   &.small {
-    width: 85px;
+    @include prod-img-wrapper($prod-item-small, $round);
   }
 
   &.medium {
-    width: $product-item-column-small;
+    @include prod-img-wrapper($prod-item-medium, $round);
   }
-
-  &.large {
-    width: $product-item-column-medium;
-  }
-}
-
-.thumb_img {
-  display: block;
-  width: 100%;
-  border-radius: $border-radius;
 }

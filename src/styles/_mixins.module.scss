@@ -32,3 +32,26 @@
   line-clamp: $line-clamp;
   -webkit-box-orient: vertical;
 }
+
+// 상품 이미지
+@mixin prod-img-wrapper($size, $round) {
+  position: relative;
+  width: $size;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 2%);
+    background-color: rgba(0, 0, 0, 2%);
+    content: '';
+    border-radius: $round;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    border-radius: $round;
+  }
+}

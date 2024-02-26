@@ -6,13 +6,13 @@ import styles from './Thumbnail.module.scss';
 interface ThumbnailProps {
   src: string;
   alt: string;
-  size: 'small' | 'medium' | 'large';
+  size: 'tiny' | 'small' | 'medium';
 }
 
 const Thumbnail: React.FC<ThumbnailProps> = ({ src, alt, size }) => {
   return (
     <div className={clsx(styles.thumb_wrapper, styles[size])}>
-      <img className={styles.thumb_img} src={src} alt={alt} />
+      <img src={src} alt={alt} />
     </div>
   );
 };
