@@ -16,7 +16,7 @@ interface ProductItemMainProps {
 
 const ProductItemMain: React.FC<ProductItemMainProps> = ({
   children,
-  direction = 'column',
+  direction,
 }) => {
   return <div className={clsx(styles.base, styles[direction])}>{children}</div>;
 };
