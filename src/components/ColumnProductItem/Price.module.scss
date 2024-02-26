@@ -2,28 +2,9 @@
   font-style: normal;
   font-weight: 700;
   word-break: break-all;
+  font-size: 20px;
 }
 
 .unit {
   font-weight: 400;
-}
-
-.small {
-  font-size: 15px;
-}
-
-.medium {
-  font-size: 20px;
-
-  .unit {
-    font-size: 18px;
-  }
-}
-
-.large {
-  font-size: 24px;
-
-  .unit {
-    font-size: 22px;
-  }
 }

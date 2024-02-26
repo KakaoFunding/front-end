@@ -25,7 +25,7 @@ const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
       <Thumbnail src={product.thumbnailSrc} alt={product.name} size={size} />
       <span className={styles.brand_name}>{product.brandName}</span>
       <strong className={styles.name}>{product.name}</strong>
-      <Price>{product.price}</Price>
+      <Price price={product.price} />
     </article>
   );
 };
