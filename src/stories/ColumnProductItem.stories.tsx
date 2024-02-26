@@ -1,4 +1,4 @@
-import ColumnProductItem from '.';
+import { ColumnProductItem } from '@components/index';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
