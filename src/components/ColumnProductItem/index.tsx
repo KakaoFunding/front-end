@@ -11,6 +11,7 @@ interface ColumnProductItemProps {
 }
 
 type ProductItem = {
+  id: number;
   thumbnailSrc: string;
   brandName: string;
   name: string;
