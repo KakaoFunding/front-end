@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SearchResult from '@components/SearchResult';
+import SearchResult from 'components/SearchResult';
 
 import CategoryList from './CategoryList';
 

@@ -4,8 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import 'minireset.css';
 
+import Product from 'pages/Product';
+import ProductList from 'pages/ProductList';
+
 import App from './App';
-import { Product, ProductList } from './pages';
 
 const router = createBrowserRouter([
   {
