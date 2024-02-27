@@ -1,14 +1,14 @@
 import BundleUtil from './BundleUtil';
 import CategoryButton from './CategoryButton';
 import HeaderNav from './HeaderNav';
-import Title from './Title';
+import Logo from './Logo';
 
 import styles from './index.module.scss';
 
 const InnerHeader = () => {
   return (
     <section className={styles.inner_header}>
-      <Title />
+      <Logo />
       <HeaderNav />
       <CategoryButton />
       <BundleUtil />
