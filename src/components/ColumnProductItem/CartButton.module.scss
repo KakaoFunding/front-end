@@ -1,0 +1,9 @@
+@import 'styles/mixins.module';
+
+.cart_btn {
+  padding-right: 20px;
+}
+
+.cart_icon {
+  @include ico-gift(-60px, -190px, 25px, 22px);
+}
