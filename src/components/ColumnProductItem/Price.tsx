@@ -1,4 +1,7 @@
+import { formatNumberWithComma } from 'utils/format';
+
 import { ProductItem } from 'types/productItem';
+
 import styles from './Price.module.scss';
 
 interface PriceProps {
@@ -6,9 +9,10 @@ interface PriceProps {
 }
 
 const Price = ({ price }: PriceProps) => {
+  const formattedPrice = formatNumberWithComma(price);
   return (
     <em className={styles.area_price}>
-      {price}
+      {formattedPrice}
       <span className={styles.unit}>원</span>
     </em>
   );

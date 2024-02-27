@@ -1,7 +1,9 @@
 import clsx from 'clsx';
 
-import styles from './WishButton.module.scss';
 import { ProductItem } from 'types/productItem';
+import { formatNumberWithComma } from 'utils/format';
+
+import styles from './WishButton.module.scss';
 
 interface WishButtonProps {
   id: ProductItem['id'];
@@ -12,12 +14,11 @@ interface WishButtonProps {
 const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
   const DIVIDER = 10000;
   const REMAINS = '만+';
-  const LOCALE = 'ko-KR';
 
   const formattedWishCount =
     wishCount >= DIVIDER
-      ? `${Math.floor(wishCount / DIVIDER)}${REMAINS}`
-      : wishCount.toLocaleString(LOCALE);
+      ? Math.floor(wishCount / DIVIDER).toString() + REMAINS
+      : formatNumberWithComma(wishCount);
 
   return (
     <button type="button">
