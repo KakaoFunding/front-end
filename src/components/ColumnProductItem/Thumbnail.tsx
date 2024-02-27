@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 
+import { ProductItem, ProductItemSize } from 'types/productItem';
+
 import styles from './Thumbnail.module.scss';
 
 interface ThumbnailProps {
-  src: string;
-  alt: string;
-  size: 'small' | 'medium';
+  src: ProductItem['thumbSrc'];
+  alt: ProductItem['name'];
+  size: ProductItemSize['size'];
 }
 
 const Thumbnail = ({ src, alt, size }: ThumbnailProps) => {

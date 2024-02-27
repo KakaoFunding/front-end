@@ -1,7 +1,8 @@
+import { ProductItem } from 'types/productItem';
 import styles from './Price.module.scss';
 
 interface PriceProps {
-  price: number;
+  price: ProductItem['price'];
 }
 
 const Price = ({ price }: PriceProps) => {
