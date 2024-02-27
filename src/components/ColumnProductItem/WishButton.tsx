@@ -27,7 +27,7 @@ const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
           [styles.on]: isWished,
         })}
       >
-        위시리스트 추가
+        {isWished ? '위시 해제' : '위시리스트 추가'}
       </span>
       <span className={styles.wish_cnt}>{formattedWishCount}</span>
     </button>
