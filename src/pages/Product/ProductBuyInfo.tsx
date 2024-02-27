@@ -1,7 +1,5 @@
-import React from 'react';
-
-const ProductBuyInfo: React.FC = () => {
-  return <aside>상품구매정보</aside>;
+const ProductBuyInfo = () => {
+  return <section>구매정보</section>;
 };
 
 export default ProductBuyInfo;
