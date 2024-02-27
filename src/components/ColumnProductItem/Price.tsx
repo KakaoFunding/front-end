@@ -11,9 +11,9 @@ interface PriceProps {
 const Price = ({ price }: PriceProps) => {
   const formattedPrice = formatNumberWithComma(price);
   return (
-    <em className={styles.area_price}>
+    <em className={styles.wrapper_price}>
       {formattedPrice}
-      <span className={styles.unit}>원</span>
+      <span className={styles.txt_unit}>원</span>
     </em>
   );
 };

@@ -1,14 +1,14 @@
 @import 'styles/mixins.module';
 @import 'styles/variable.module';
 
-$round: 8px;
+.wrapper_thumb {
+  $round: 8px;
 
-.thumb_wrapper {
   &.small {
-    @include prod-img-wrapper($prod-item-small, $round);
+    @include wrapper-prod-img($prod-item-small, $round);
   }
 
   &.medium {
-    @include prod-img-wrapper($prod-item-medium, $round);
+    @include wrapper-prod-img($prod-item-medium, $round);
   }
 }

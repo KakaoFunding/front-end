@@ -16,16 +16,16 @@ interface ColumnProductItemProps {
 
 const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
   return (
-    <article className={clsx(styles.area_prod_item, styles[size])}>
+    <article className={clsx(styles.wrapper_prod_item, styles[size])}>
       <a href={`/product/${product.id}`}>
         <Thumbnail src={product.thumbSrc} alt={product.name} size={size} />
-        <div className={clsx(styles.area_main_info, styles[size])}>
-          <span className={styles.prod_brand_name}>{product.brandName}</span>
-          <strong className={styles.prod_name}>{product.name}</strong>
+        <div className={clsx(styles.wrapper_main_info, styles[size])}>
+          <span className={styles.txt_brand_name}>{product.brandName}</span>
+          <strong className={styles.txt_prod_name}>{product.name}</strong>
           <Price price={product.price} />
         </div>
       </a>
-      <div className={styles.area_util_info}>
+      <div className={styles.wrapper_util_info}>
         <CartButton id={product.id} />
         <WishButton
           id={product.id}

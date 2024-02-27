@@ -1,6 +1,6 @@
 @import 'styles/mixins.module';
 
-.wish_icon {
+.ico_wish {
   @include ico-gift(-80px, -110px, 25px, 21px);
 
   &.on {
@@ -8,7 +8,7 @@
   }
 }
 
-.wish_cnt {
+.txt_wish_cnt {
   font-size: 14px;
   color: #999;
   position: relative;

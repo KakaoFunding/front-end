@@ -34,7 +34,7 @@
 }
 
 // 상품 이미지
-@mixin prod-img-wrapper($size, $round) {
+@mixin wrapper-prod-img($size, $round) {
   position: relative;
   width: $size;
 

@@ -23,13 +23,13 @@ const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
   return (
     <button type="button">
       <span
-        className={clsx(styles.wish_icon, {
+        className={clsx(styles.ico_wish, {
           [styles.on]: isWished,
         })}
       >
         {isWished ? '위시 해제' : '위시리스트 추가'}
       </span>
-      <span className={styles.wish_cnt}>{formattedWishCount}</span>
+      <span className={styles.txt_wish_cnt}>{formattedWishCount}</span>
     </button>
   );
 };
