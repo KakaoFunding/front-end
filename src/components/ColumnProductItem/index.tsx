@@ -2,8 +2,10 @@ import clsx from 'clsx';
 
 import { ProductItem, ProductItemSize } from 'types/productItem';
 
+import CartButton from './CartButton';
 import Price from './Price';
 import Thumbnail from './Thumbnail';
+import WishButton from './WishButton';
 
 import styles from './index.module.scss';
 
@@ -23,6 +25,14 @@ const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
           <Price price={product.price} />
         </div>
       </a>
+      <div className={styles.area_util_info}>
+        <CartButton id={product.id} />
+        <WishButton
+          id={product.id}
+          isWished={product.isWished}
+          wishCount={product.wishCount}
+        />
+      </div>
     </article>
   );
 };
