@@ -1,6 +1,6 @@
-import { ColumnProductItem } from '@components/index';
-
 import type { Meta, StoryObj } from '@storybook/react';
+
+import ColumnProductItem from 'components/ColumnProductItem';
 
 const meta: Meta<typeof ColumnProductItem> = {
   component: ColumnProductItem,
