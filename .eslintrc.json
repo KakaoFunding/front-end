@@ -66,8 +66,15 @@
         ],
         "pathGroups": [
           {
+            "pattern": "{@*,@**/*}",
+            "group": "external",
+            "position": "before"
+          },
+
+          {
             "pattern": "{react*}",
-            "group": "external"
+            "group": "external",
+            "position": "after"
           },
 
           {
