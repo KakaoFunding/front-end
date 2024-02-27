@@ -1,0 +1,17 @@
+@import 'styles/mixins.module';
+
+.wish_icon {
+  @include ico-gift(-80px, -110px, 25px, 21px);
+
+  &.on {
+    background-position: -80px -80px;
+  }
+}
+
+.wish_cnt {
+  font-size: 14px;
+  color: #999;
+  position: relative;
+  bottom: 5px;
+  padding-left: 4px;
+}

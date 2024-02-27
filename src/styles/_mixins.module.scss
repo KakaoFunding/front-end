@@ -55,3 +55,15 @@
     border-radius: $round;
   }
 }
+
+@mixin ico-gift($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('assets/ico_gift.png');
+  background-size: 110px 280px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+  overflow: hidden;
+}
