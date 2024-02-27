@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import 'minireset.css';
+import 'styles/hardreset.css';
 
 import Product from 'pages/Product';
 import ProductList from 'pages/ProductList';
