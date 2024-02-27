@@ -15,7 +15,7 @@
       "hooks/*": ["src/hooks/*"],
       "pages/*": ["src/pages/*"],
       "services/*": ["src/services/*"],
-      "states/*": ["src/states/*"],
+      "store/*": ["src/store/*"],
       "stories/*": ["src/stories/*"],
       "styles/*": ["src/styles/*"],
       "types/*": ["src/types/*"],

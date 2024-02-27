@@ -27,8 +27,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/services'),
       },
       {
-        find: 'states',
-        replacement: path.resolve(__dirname, 'src/states'),
+        find: 'store',
+        replacement: path.resolve(__dirname, 'src/store'),
       },
       {
         find: 'stories',

@@ -77,7 +77,7 @@
           },
 
           {
-            "pattern": "{states,states/*,states/**/*}",
+            "pattern": "{store,store/*,store/**/*}",
             "group": "internal",
             "position": "before"
           },
