@@ -36,7 +36,10 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
-    "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
+    "react-refresh/only-export-components": [
+      "warn",
+      { "allowConstantExport": true }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -51,7 +54,16 @@
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
         "pathGroups": [
           {
             "pattern": "{react*}",
@@ -59,42 +71,42 @@
           },
 
           {
-            "pattern": "{@pages,@pages/*,@pages/**/*,@components,@components/*,@components/**/*,@stories,@stories/*,@stories/**/*}",
+            "pattern": "{pages,pages/*,pages/**/*,components,components/*,components/**/*,stories,stories/*,stories/**/*}",
             "group": "internal",
             "position": "before"
           },
 
           {
-            "pattern": "{@states,@states/*,@states/**/*}",
+            "pattern": "{states,states/*,states/**/*}",
             "group": "internal",
             "position": "before"
           },
 
           {
-            "pattern": "{@hooks,@hooks/*,@hooks/**/*,@services,@services/*,@services/**/*,@utils,@utils/*,@utils/**/*}",
+            "pattern": "{hooks,hooks/*,hooks/**/*,services,services/*,services/**/*,utils,utils/*,utils/**/*}",
             "group": "internal",
             "position": "before"
           },
 
           {
-            "pattern": "{@types,@types/*,@types/**/*,}",
+            "pattern": "{types,types/*,types/**/*,}",
             "group": "internal",
             "position": "before"
           },
 
           {
-            "pattern": "{@assets,@assets/*,@assets/**/*,}",
+            "pattern": "{assets,assets/*,assets/**/*,}",
             "group": "internal",
             "position": "before"
           },
 
           {
-            "pattern": "{@styles,@styles/*,@styles/**/*,}",
+            "pattern": "{styles,styles/*,styles/**/*,}",
             "group": "internal",
             "position": "before"
           },
           {
-            "pattern": "./*.module.scss",
+            "pattern": "{./*.module,./*.module.scss,*.css,*.scss}",
             "group": "sibling",
             "position": "after"
           }
