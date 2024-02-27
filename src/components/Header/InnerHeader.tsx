@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 
 const InnerHeader = () => {
   return (
-    <section className={styles.inner_header}>
+    <section className={styles.wrapper_header}>
       <Logo />
       <HeaderNav />
       <CategoryButton />
