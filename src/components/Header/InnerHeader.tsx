@@ -3,7 +3,7 @@ import CategoryButton from './CategoryButton';
 import HeaderNav from './HeaderNav';
 import Logo from './Logo';
 
-import styles from './index.module.scss';
+import styles from './InnerHeader.module.scss';
 
 const InnerHeader = () => {
   return (

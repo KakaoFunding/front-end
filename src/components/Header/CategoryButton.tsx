@@ -1,4 +1,4 @@
-import styles from './index.module.scss';
+import styles from './CategoryButton.module.scss';
 
 const CategoryButton = () => {
   return (

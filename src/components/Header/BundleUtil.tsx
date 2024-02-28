@@ -1,4 +1,4 @@
-import styles from './index.module.scss';
+import styles from './BundleUtil.module.scss';
 
 const BundleUtil = () => {
   return (

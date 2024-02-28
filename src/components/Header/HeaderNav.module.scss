@@ -1,0 +1,20 @@
+.wrapper_nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .list {
+    display: flex;
+    font-size: 16px;
+    padding: 20px 20px 20px 0;
+  }
+
+  .list_item {
+    padding-right: 10px;
+    font-weight: bold;
+  }
+
+  .link {
+    padding: 11px 10px 7px;
+  }
+}
