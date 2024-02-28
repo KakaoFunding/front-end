@@ -15,7 +15,6 @@
     "clsx": "^2.1.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
-    "minireset.css": "^0.0.7",
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

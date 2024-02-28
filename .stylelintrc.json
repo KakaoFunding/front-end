@@ -3,7 +3,6 @@
   "rules": {
     "color-named": "never",
     "color-function-notation": "legacy",
-    "selector-max-type": 0,
     "selector-class-pattern": [
       "^([_a-z][a-z0-9]*)(_[a-z0-9]+)*$",
       {
