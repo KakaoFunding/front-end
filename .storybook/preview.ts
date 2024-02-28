@@ -1,6 +1,8 @@
 // 모든 스토리들에 글로벌하게 적용될 포멧 세팅
 import type { Preview } from '@storybook/react';
 
+import 'styles/hardreset.css';
+
 // npx sb init으로 설정된 기본 값
 const preview: Preview = {
   parameters: {
