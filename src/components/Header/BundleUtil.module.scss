@@ -1,4 +1,4 @@
-@import '../../styles/mixins.module';
+@import 'styles/mixins.module';
 
 .wrapper_bundle_util {
   margin-left: auto;
@@ -16,7 +16,7 @@
   }
 
   .ico_search {
-    @include header-ico(-60px, -80px, 24px, 24px);
+    @include nav-ico(-60px, -80px, 24px, 24px);
 
     margin: 8px;
   }
@@ -27,7 +27,7 @@
   }
 
   .ico_cart {
-    @include header-ico(-30px, -80px, 24px, 24px);
+    @include nav-ico(-30px, -80px, 24px, 24px);
 
     margin: 8px;
   }

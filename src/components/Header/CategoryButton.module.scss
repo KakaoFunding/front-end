@@ -1,4 +1,4 @@
-@import '../../styles/mixins.module';
+@import 'styles/mixins.module';
 
 .wrapper_category {
   display: flex;
@@ -24,7 +24,7 @@
   }
 
   .ico {
-    @include header-ico(-160px, -80px, 30px, 30px);
+    @include nav-ico(-160px, -80px, 30px, 30px);
 
     margin: -2px 8px 0 0;
   }

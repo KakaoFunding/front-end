@@ -1,7 +1,7 @@
+@import 'styles/mixins.module';
+
 .wrapper_nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include center(row);
 
   .list {
     display: flex;
