@@ -21,3 +21,14 @@
 @mixin shadow {
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 4%);
 }
+
+@mixin nav-ico($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('assets/ico_nav.png');
+  background-size: 200px 170px; // 배경 이미지 전체 크기 설정
+  background-position: $x $y; // X, Y
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+}
