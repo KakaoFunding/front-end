@@ -2,8 +2,6 @@
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  width: 80vw;
-  margin-top: 50px;
   height: 100vh;
   background-color: steelblue;
 
@@ -17,26 +15,5 @@
   .area_buy_info {
     width: 30%;
     background-color: antiquewhite;
-  }
-}
-
-.area_detail_main {
-  display: flex;
-  width: 100%;
-  background-color: red;
-
-  .area_thumb {
-    width: 50%;
-    background-color: blue;
-
-    .prod_img {
-      width: 100%;
-      height: 85%;
-    }
-  }
-
-  .area_info {
-    width: 50%;
-    background-color: aqua;
   }
 }
