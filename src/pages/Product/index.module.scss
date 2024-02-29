@@ -1,19 +1,15 @@
 .area_product {
   display: flex;
-  justify-content: center;
-  margin: 0 auto;
   height: 100vh;
-  background-color: steelblue;
 
   .area_detail_info {
     display: flex;
     width: 70%;
     flex-direction: column;
-    background-color: pink;
   }
 
   .area_buy_info {
     width: 30%;
-    background-color: antiquewhite;
+    // background-color: antiquewhite;
   }
 }
