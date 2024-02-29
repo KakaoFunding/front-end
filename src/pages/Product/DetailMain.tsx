@@ -13,10 +13,6 @@ const mockData = {
     'https://img1.kakaocdn.net/thumb/C50x50@2x.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fgift_brand%2F20240129113909_7058ef11b7d74b8b9bd643f4f0b1b881.png',
 };
 
-function makeStarToArr(startCnt: number) {
-  return Array.from({ length: 4 }, (_, idx) => idx < startCnt);
-}
-
 const DetailMain = () => {
   return (
     <section className={styles.section_detail_main}>
