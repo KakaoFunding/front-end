@@ -4,6 +4,8 @@ import ColumnProductItem from 'components/ColumnProductItem';
 
 const meta: Meta<typeof ColumnProductItem> = {
   component: ColumnProductItem,
+  title: 'ProductItem/Column',
+  tags: ['autodocs'],
 };
 
 export default meta;
@@ -21,14 +23,14 @@ const productData = {
   wishCount: 6008,
 };
 
-export const ColumnSmall: Story = {
+export const Small: Story = {
   args: {
     product: productData,
     size: 'small',
   },
 };
 
-export const ColumnMedium: Story = {
+export const Medium: Story = {
   args: {
     product: productData,
     size: 'medium',
