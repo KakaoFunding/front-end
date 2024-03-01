@@ -8,11 +8,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProductDetailsCarousel.module.scss';
 import './ProductDetailsCarousel.css';
 
-type ImgProps = {
+type ImgsProps = {
   imgs: string[];
 };
 
-const ProductDetailsCarousel = ({ imgs }: ImgProps) => {
+const ProductDetailsCarousel = ({ imgs }: ImgsProps) => {
   const [target, setTarget] = useState(0);
 
   const handlePaging = (idx: number) => {
@@ -29,6 +29,7 @@ const ProductDetailsCarousel = ({ imgs }: ImgProps) => {
   };
 
   const handleTarget = (_: number, next: number) => setTarget(() => next);
+
   return (
     <div className="slider_container">
       <Slider
