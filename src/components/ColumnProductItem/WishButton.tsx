@@ -1,17 +1,18 @@
 import clsx from 'clsx';
 
-import { ProductItem } from 'types/productItem';
 import { formatNumberWithComma } from 'utils/format';
+
+import { ProductItem } from 'types/productItem';
 
 import styles from './WishButton.module.scss';
 
-interface WishButtonProps {
+type WishButtonProps = {
   id: ProductItem['id'];
   isWished: ProductItem['isWished'];
   wishCount: ProductItem['wishCount'];
-}
+};
 
-const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
+const WishButton = ({ id, isWished, wishCount }: WishButtonProps) => {
   const DIVIDER = 10000;
   const REMAINS = '만+';
 

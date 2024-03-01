@@ -1,9 +1,10 @@
 import { ProductItem } from 'types/productItem';
+
 import styles from './CartButton.module.scss';
 
-interface CartButtonProps {
+type CartButtonProps = {
   id: ProductItem['id'];
-}
+};
 
 const CartButton = ({ id }: CartButtonProps) => {
   return (

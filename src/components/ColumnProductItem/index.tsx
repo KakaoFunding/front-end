@@ -9,10 +9,10 @@ import WishButton from './WishButton';
 
 import styles from './index.module.scss';
 
-interface ColumnProductItemProps {
+type ColumnProductItemProps = {
   product: ProductItem;
   size: ProductItemSize['size'];
-}
+};
 
 const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
   return (

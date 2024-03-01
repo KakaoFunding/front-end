@@ -4,11 +4,11 @@ import { ProductItem, ProductItemSize } from 'types/productItem';
 
 import styles from './Thumbnail.module.scss';
 
-interface ThumbnailProps {
+type ThumbnailProps = {
   src: ProductItem['thumbSrc'];
   alt: ProductItem['name'];
   size: ProductItemSize['size'];
-}
+};
 
 const Thumbnail = ({ src, alt, size }: ThumbnailProps) => {
   return (

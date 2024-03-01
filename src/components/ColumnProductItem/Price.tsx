@@ -4,9 +4,9 @@ import { ProductItem } from 'types/productItem';
 
 import styles from './Price.module.scss';
 
-interface PriceProps {
+type PriceProps = {
   price: ProductItem['price'];
-}
+};
 
 const Price = ({ price }: PriceProps) => {
   const formattedPrice = formatNumberWithComma(price);
