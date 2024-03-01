@@ -1,0 +1,27 @@
+.wrapper_list {
+  display: flex;
+  width: 100%;
+}
+
+.wrapper_tab {
+  margin-right: 33px;
+  padding: 14px 0;
+  line-height: 22px;
+  font-weight: 400;
+
+  &.on {
+    font-weight: 700;
+    border-bottom: 4px solid #000;
+  }
+}
+
+.txt_name {
+  font-size: 18px;
+}
+
+.txt_description {
+  margin-left: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #999;
+}

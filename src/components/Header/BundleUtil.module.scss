@@ -1,0 +1,50 @@
+@import 'styles/mixins.module';
+
+.wrapper_bundle_util {
+  margin-left: auto;
+  display: flex;
+  padding: 20px 0;
+
+  .link_search {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .wrapper_ico {
+    display: flex;
+    align-items: center;
+  }
+
+  .ico_search {
+    @include nav-ico(-60px, -80px, 24px, 24px);
+
+    margin: 8px;
+  }
+
+  .link_cart {
+    position: relative;
+    margin-left: 14px;
+  }
+
+  .ico_cart {
+    @include nav-ico(-30px, -80px, 24px, 24px);
+
+    margin: 8px;
+  }
+
+  .wrapper_login {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 22px;
+  }
+
+  .link_login {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    height: 38px;
+    padding-top: 2px;
+    font-size: 14px;
+  }
+}
