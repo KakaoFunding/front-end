@@ -1,7 +1,11 @@
+@import 'styles/variable.module';
+
 .area_footer {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
+  min-width: $fix-width;
+  height: 200px;
   background-color: #fafafc;
 }
