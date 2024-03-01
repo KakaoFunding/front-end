@@ -1,3 +1,5 @@
+import ProductDetailsCarousel from './ProductDetailsCarousel';
+
 import styles from './DetailMain.module.scss';
 
 const mockData = {
@@ -19,12 +21,7 @@ const DetailMain = () => {
   return (
     <section className={styles.section_detail_main}>
       <section className={styles.wrapper_thumb}>
-        <img
-          src={mockData.img[0]}
-          alt={`${mockData.title} 상품이미지`}
-          className={styles.img}
-        />
-        <div className={styles.wrapper_carousel}>캐러셀</div>
+        <ProductDetailsCarousel imgs={mockData.img} />
       </section>
       <section className={styles.wrapper_info}>
         <section className={styles.prod_desc}>
