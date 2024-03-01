@@ -1,4 +1,6 @@
+@import 'styles/variable.module';
+
 .wrapper_main {
-  width: 1280px;
+  width: $fix-width;
   margin: 0 auto;
 }
