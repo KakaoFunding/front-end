@@ -7,10 +7,9 @@ $list-parent-width: 165px;
 }
 
 @mixin item-style($font-size, $font-weight) {
-  display: block;
+  // display: block;
   font-size: $font-size;
   font-weight: $font-weight;
-  cursor: pointer;
   line-height: 1.4;
 
   &:hover {
@@ -34,6 +33,7 @@ $list-parent-width: 165px;
     .link_parent {
       display: block;
       padding: 10px 25px;
+      cursor: pointer;
     }
   }
 }
@@ -58,6 +58,7 @@ $list-parent-width: 165px;
     .link_sub {
       display: block;
       padding: 5px 25px;
+      cursor: pointer;
     }
   }
 }
