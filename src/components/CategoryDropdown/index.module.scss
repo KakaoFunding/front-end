@@ -6,10 +6,10 @@ $list-parent-width: 165px;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 3%);
 }
 
-@mixin item-style($font-size, $font-weight, $padding-vertical) {
+@mixin item-style($font-size, $font-weight) {
+  display: block;
   font-size: $font-size;
   font-weight: $font-weight;
-  padding: $padding-vertical 25px;
   cursor: pointer;
   line-height: 1.4;
 
@@ -29,7 +29,12 @@ $list-parent-width: 165px;
   @include list-decoration-style;
 
   .item_parent {
-    @include item-style(15px, 700, 10px);
+    @include item-style(15px, 700);
+
+    .link_parent {
+      display: block;
+      padding: 10px 25px;
+    }
   }
 }
 
@@ -45,10 +50,15 @@ $list-parent-width: 165px;
   @include list-decoration-style;
 
   .item_sub {
-    @include item-style(14px, 400, 5px);
+    @include item-style(14px, 400);
 
     overflow: hidden;
     white-space: nowrap;
+
+    .link_sub {
+      display: block;
+      padding: 5px 25px;
+    }
   }
 }
 

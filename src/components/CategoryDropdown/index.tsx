@@ -292,14 +292,27 @@ const CategoryDropdown = () => {
   ];
 
   return (
+    // 상위 카테고리 목록
     <ul className={styles.list_parent}>
       {categories.map((parent) => (
         <li key={parent.categoryId} className={styles.item_parent}>
-          {parent.categoryName}
+          <a
+            href={`/productList/${parent.categoryId}`}
+            className={styles.link_parent}
+          >
+            {parent.categoryName}
+          </a>
+
+          {/* 하위 카테고리 목록 */}
           <ul className={styles.list_sub}>
-            {parent.subCategories.map((sub: Category) => (
+            {parent.subCategories.map((sub) => (
               <li key={sub.categoryId} className={styles.item_sub}>
-                {sub.categoryName}
+                <a
+                  href={`/productList/${sub.categoryId}`}
+                  className={styles.link_sub}
+                >
+                  {sub.categoryName}
+                </a>
               </li>
             ))}
           </ul>
