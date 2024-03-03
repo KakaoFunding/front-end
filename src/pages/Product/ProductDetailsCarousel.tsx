@@ -8,11 +8,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProductDetailsCarousel.module.scss';
 import './ProductDetailsCarousel.css';
 
-type ImgsProps = {
+type ProductDetailsCarouselProps = {
   imgs: string[];
 };
 
-const ProductDetailsCarousel = ({ imgs }: ImgsProps) => {
+const ProductDetailsCarousel = ({ imgs }: ProductDetailsCarouselProps) => {
   const [target, setTarget] = useState(0);
 
   const handlePaging = (idx: number) => {
