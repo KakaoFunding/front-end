@@ -19,7 +19,7 @@ const ProductDetailsCarousel = ({ imgs }: ImgsProps) => {
     return (
       <img
         src={imgs[idx]}
-        className={clsx(styles.img, { [styles.none_target]: target === idx })}
+        className={clsx(styles.dots, { [styles.none_target]: target === idx })}
         alt={`${idx}번 상품 이미지`}
       />
     );
