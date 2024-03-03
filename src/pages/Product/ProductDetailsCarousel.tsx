@@ -20,7 +20,7 @@ const ProductDetailsCarousel = ({ imgs }: ImgsProps) => {
       <img
         src={imgs[idx]}
         className={clsx(styles.img, { [styles.none_target]: target === idx })}
-        alt={`${idx}번째 상품 캐러셀`}
+        alt={`${idx}번 상품 이미지`}
       />
     );
   };
@@ -41,7 +41,7 @@ const ProductDetailsCarousel = ({ imgs }: ImgsProps) => {
       >
         {imgs.map((img) => (
           <div key={img}>
-            <img src={img} alt="상품설명" className={styles.thumb} />
+            <img src={img} alt="상품 대표 이미지" className={styles.thumb} />
           </div>
         ))}
       </Slider>
