@@ -1,10 +1,8 @@
-import React from 'react';
-
 import SearchResult from 'components/SearchResult';
 
 import CategoryList from './CategoryList';
 
-const ProductList: React.FC = () => {
+const ProductList = () => {
   return (
     <>
       <CategoryList />
