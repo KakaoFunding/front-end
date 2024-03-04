@@ -1,0 +1,6 @@
+.slider_dots {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  margin: 10px !important;
+}

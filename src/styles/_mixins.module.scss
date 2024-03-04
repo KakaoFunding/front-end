@@ -67,6 +67,18 @@
   height: $height;
 }
 
+@mixin ico-pd-detail($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('assets/ico_pd_detail.png');
+  background-size: 250px 600px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+  overflow: hidden;
+}
+
 @mixin ico-gift($x, $y, $width, $height) {
   display: inline-block;
   font-size: 0;
