@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { formatNumberWithComma } from '../../utils/format';
 
 import ProductDetailsCarousel from './ProductDetailsCarousel';
@@ -35,7 +37,7 @@ const DetailMain = () => {
         </section>
         <section className={styles.brand_desc}>
           <div className={styles.wrapper_brand}>
-            <a href="brand/{brandId}" className={styles.link_brand}>
+            <Link to="../brand/{brandId}" className={styles.link_brand}>
               <img
                 className={styles.img_thmb}
                 src={mockData.brandImg}
@@ -43,7 +45,7 @@ const DetailMain = () => {
               />
               <span className={styles.txt_name}>{mockData.brandName}</span>
               <span className={styles.ico}>ss</span>
-            </a>
+            </Link>
           </div>
         </section>
       </section>
