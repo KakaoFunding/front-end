@@ -1,0 +1,70 @@
+$list-parent-width: 165px;
+
+@mixin list-decoration-style {
+  color: #333;
+  border: 1px solid #ededed;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 3%);
+}
+
+@mixin item-style($font-size, $font-weight) {
+  // display: block;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: 1.4;
+
+  &:hover {
+    color: #4684e9;
+    text-decoration: underline;
+  }
+}
+
+// 상위 카테고리 목록
+.list_parent {
+  position: absolute;
+  top: 79px;
+  padding: 15px 0;
+  width: $list-parent-width;
+  box-sizing: content-box;
+
+  @include list-decoration-style;
+
+  .item_parent {
+    @include item-style(15px, 700);
+
+    .link_parent {
+      display: block;
+      padding: 10px 25px;
+      cursor: pointer;
+    }
+  }
+}
+
+// 하위 카테고리 목록
+.list_sub {
+  display: none;
+  position: absolute;
+  top: -1px;
+  left: $list-parent-width;
+  padding: 20px 0;
+  min-height: calc(100% + 2px); // 부모 목록 높이 + 위아래 border
+
+  @include list-decoration-style;
+
+  .item_sub {
+    @include item-style(14px, 400);
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    .link_sub {
+      display: block;
+      padding: 5px 25px;
+      cursor: pointer;
+    }
+  }
+}
+
+// 상위 카테고리 목록 hover 시, 하위 카테고리 목록 보이기
+.item_parent:hover .list_sub {
+  display: block;
+}
