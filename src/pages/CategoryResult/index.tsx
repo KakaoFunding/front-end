@@ -2,7 +2,7 @@ import SearchResult from 'components/SearchResult';
 
 import CategoryList from './CategoryList';
 
-const ProductList = () => {
+const CategoryResult = () => {
   return (
     <>
       <CategoryList />
@@ -11,4 +11,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default CategoryResult;
