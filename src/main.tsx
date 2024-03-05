@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import 'styles/global.css';
 import 'styles/hardreset.css';
 
 import Product from 'pages/Product';
