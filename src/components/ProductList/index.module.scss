@@ -1,0 +1,23 @@
+.area_products {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px 20px;
+}
+
+.wrapper_item {
+  position: relative;
+}
+
+.wrapper_item::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 4px;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 12%);
+  visibility: hidden;
+}
+
+.wrapper_item:hover::before {
+  visibility: visible;
+}
