@@ -1,0 +1,28 @@
+@import 'styles/mixins.module';
+
+.wrapper_title {
+  @include center(row);
+
+  justify-content: space-between;
+  padding-top: 100px;
+
+  .txt {
+    font-size: 24px;
+    line-height: 29px;
+    color: #111;
+    font-weight: 700;
+  }
+
+  .button {
+    @include center(row);
+
+    font-size: 14px;
+    color: #888;
+  }
+
+  .ico {
+    @include ico-pd-detail(-170px, -360px, 8px, 12px);
+
+    margin-left: 5px;
+  }
+}
