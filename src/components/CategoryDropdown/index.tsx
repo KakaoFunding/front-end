@@ -297,7 +297,7 @@ const CategoryDropdown = () => {
       {categories.map((parent) => (
         <li key={parent.categoryId} className={styles.item_parent}>
           <a
-            href={`/productList/${parent.categoryId}`}
+            href={`/category/${parent.categoryId}`}
             className={styles.link_parent}
           >
             {parent.categoryName}
@@ -308,7 +308,7 @@ const CategoryDropdown = () => {
             {parent.subCategories.map((sub) => (
               <li key={sub.categoryId} className={styles.item_sub}>
                 <a
-                  href={`/productList/${sub.categoryId}`}
+                  href={`/category/${sub.categoryId}`}
                   className={styles.link_sub}
                 >
                   {sub.categoryName}

@@ -25,6 +25,7 @@ $list-parent-width: 165px;
   padding: 15px 0;
   width: $list-parent-width;
   box-sizing: content-box;
+  background-color: #fff;
 
   @include list-decoration-style;
 
@@ -47,6 +48,7 @@ $list-parent-width: 165px;
   left: $list-parent-width;
   padding: 20px 0;
   min-height: calc(100% + 2px); // 부모 목록 높이 + 위아래 border
+  background-color: #fff;
 
   @include list-decoration-style;
 

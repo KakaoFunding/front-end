@@ -1,10 +1,8 @@
-import React from 'react';
-
 import SearchResult from 'components/SearchResult';
 
 import CategoryList from './CategoryList';
 
-const ProductList: React.FC = () => {
+const CategoryResult = () => {
   return (
     <>
       <CategoryList />
@@ -13,4 +11,4 @@ const ProductList: React.FC = () => {
   );
 };
 
-export default ProductList;
+export default CategoryResult;
