@@ -8,7 +8,7 @@ type DetailContentDropDownProps = {
   description?: string;
   className: {
     title: string;
-    description: 'string';
+    description: string;
   };
 };
 
