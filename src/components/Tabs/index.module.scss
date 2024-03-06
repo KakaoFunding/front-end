@@ -1,12 +1,14 @@
-@import './../../styles/mixins.module';
+@import 'styles/mixins.module';
 
 .wrapper_list {
   display: flex;
   width: 100%;
+  padding: 0 30px;
+  border-bottom: 1px solid #e1e2e3;
   cursor: pointer;
 
   .txt_name {
-    font-size: 16px;
+    font-size: 18px;
     color: #999;
   }
 
@@ -18,12 +20,12 @@
   }
 }
 
-.product_list {
+.product_datail {
   .wrapper_tab {
-    margin-right: 33px;
-    padding: 14px 0;
-    line-height: 22px;
-    font-weight: 400;
+    @include center(row);
+
+    width: 160px;
+    padding: 30px 0;
 
     &.on {
       font-weight: 700;
@@ -36,12 +38,11 @@
   }
 }
 
-.product_datail {
+.product_list {
   .wrapper_tab {
-    @include center(row);
-
-    width: 160px;
-    padding: 15px 0;
+    margin-right: 33px;
+    padding: 14px 0;
+    line-height: 22px;
     font-weight: 400;
 
     &.on {

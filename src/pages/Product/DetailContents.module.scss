@@ -1,0 +1,34 @@
+@import 'styles/mixins.module';
+
+.section_detail_contents {
+  width: 100%;
+  margin-top: 40px;
+  border: 1px solid #e1e2e3;
+  box-sizing: border-box;
+}
+
+.wrapper_product_description {
+  margin-top: 20px;
+  width: 100%;
+  overflow: hidden;
+
+  .img {
+    width: 100%;
+  }
+}
+
+.wrapper_gift_review {
+  @include center(row);
+
+  height: 100vh;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.wrapper_detail_info {
+  @include center(row);
+
+  height: 100vh;
+  font-size: 40px;
+  font-weight: 700;
+}
