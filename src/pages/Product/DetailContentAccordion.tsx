@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 
-import styles from './DetailContentDropDown.module.scss';
+import styles from './DetailContentAccordion.module.scss';
 
-type DetailContentDropDownProps = {
+type DetailContentAccordionProps = {
   title?: string;
   description?: string;
   className: {
@@ -12,11 +12,11 @@ type DetailContentDropDownProps = {
   };
 };
 
-const DetailContentDropDown = ({
+const DetailContentAccordion = ({
   title,
   description,
   className,
-}: DetailContentDropDownProps) => {
+}: DetailContentAccordionProps) => {
   const [isToggled, setIsToggled] = useState<boolean>(false);
 
   const handleToggle = () => setIsToggled(!isToggled);
@@ -35,4 +35,4 @@ const DetailContentDropDown = ({
   );
 };
 
-export default DetailContentDropDown;
+export default DetailContentAccordion;
