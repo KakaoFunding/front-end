@@ -25,7 +25,10 @@
     @include center(row);
 
     width: 160px;
-    padding: 30px 0;
+
+    .button {
+      padding: 30px 0;
+    }
 
     &.on {
       font-weight: 700;

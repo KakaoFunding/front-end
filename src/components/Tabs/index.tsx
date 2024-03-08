@@ -18,16 +18,17 @@ const Tabs = ({ initialTabId = 0, tabs, mode }: TabProps) => {
     <>
       <ul className={clsx(styles.wrapper_list, styles[mode])}>
         {tabs.map((tab) => (
-          <button
+          <li
             key={tab.id}
-            type="button"
-            onClick={() => setCurrentTabId(tab.id)}
+            value={tab.name}
+            className={clsx(styles.wrapper_tab, {
+              [styles.on]: currentTabId === tab.id,
+            })}
           >
-            <li
-              value={tab.name}
-              className={clsx(styles.wrapper_tab, {
-                [styles.on]: currentTabId === tab.id,
-              })}
+            <button
+              type="button"
+              onClick={() => setCurrentTabId(tab.id)}
+              className={styles.button}
             >
               <span className={styles.txt_name}>{tab.name}</span>
               {tab.description && (
@@ -35,8 +36,8 @@ const Tabs = ({ initialTabId = 0, tabs, mode }: TabProps) => {
                   {tab.description}
                 </span>
               )}
-            </li>
-          </button>
+            </button>
+          </li>
         ))}
       </ul>
       {tabs[currentTabId].content}
