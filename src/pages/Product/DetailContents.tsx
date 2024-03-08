@@ -142,7 +142,7 @@ const tabProps: Tab[] = [
 
 const DetailContents = () => {
   return (
-    <section className={styles.section_detail_contents}>
+    <section className={styles.area_detail_contents}>
       <Tabs initialTabId={2} tabs={tabProps} mode="product_detail" />
     </section>
   );
