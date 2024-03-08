@@ -1,10 +1,14 @@
 @import 'styles/mixins.module';
 
+.area_detail_bottom {
+  width: 100%;
+}
+
 .wrapper_title {
   @include center(row);
 
   justify-content: space-between;
-  padding-top: 100px;
+  padding: 100px 0 25px;
 
   .txt {
     font-size: 24px;

@@ -8,7 +8,7 @@ type DetailBottomProps = {
 
 const DetailBottom = ({ brandId }: DetailBottomProps) => {
   return (
-    <section className={styles.section_detail_bottom}>
+    <section className={styles.area_detail_bottom}>
       <div className={styles.wrapper_title}>
         <div className={styles.txt}>이 브랜드의 인기선물</div>
         <Link to={`../brand/${brandId}`} className={styles.button}>
@@ -21,3 +21,46 @@ const DetailBottom = ({ brandId }: DetailBottomProps) => {
 };
 
 export default DetailBottom;
+
+const mockProducts = [
+  {
+    id: 218884,
+    thumbSrc:
+      'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20221126161646_d6181e333dd043069de813e0e2525f8d.jpg',
+    brandName: '샤넬',
+    name: '레 베쥬 립 밤',
+    price: 51000,
+    isWished: true,
+    wishCount: 3,
+  },
+  {
+    id: 218884,
+    thumbSrc:
+      'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20221126161646_d6181e333dd043069de813e0e2525f8d.jpg',
+    brandName: '샤넬',
+    name: '레 베쥬 립 밤',
+    price: 51000,
+    isWished: true,
+    wishCount: 3,
+  },
+  {
+    id: 218884,
+    thumbSrc:
+      'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20221126161646_d6181e333dd043069de813e0e2525f8d.jpg',
+    brandName: '샤넬',
+    name: '레 베쥬 립 밤',
+    price: 51000,
+    isWished: true,
+    wishCount: 3,
+  },
+  {
+    id: 218884,
+    thumbSrc:
+      'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20221126161646_d6181e333dd043069de813e0e2525f8d.jpg',
+    brandName: '샤넬',
+    name: '레 베쥬 립 밤',
+    price: 51000,
+    isWished: true,
+    wishCount: 3,
+  },
+];
