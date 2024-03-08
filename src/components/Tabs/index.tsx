@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 type TabProps = {
   initialTabId: Tab['id'];
   tabs: Tab[];
-  mode: string;
+  mode: 'product_list' | 'product_detail';
 };
 
 const Tabs = ({ initialTabId = 0, tabs, mode }: TabProps) => {
