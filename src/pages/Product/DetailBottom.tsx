@@ -1,26 +1,12 @@
 import { Link } from 'react-router-dom';
 
+import ProductItem from './ProductItem';
+
 import styles from './DetailBottom.module.scss';
 
 type DetailBottomProps = {
   brandId: number;
 };
-
-const DetailBottom = ({ brandId }: DetailBottomProps) => {
-  return (
-    <section className={styles.area_detail_bottom}>
-      <div className={styles.wrapper_title}>
-        <div className={styles.txt}>이 브랜드의 인기선물</div>
-        <Link to={`../brand/${brandId}`} className={styles.button}>
-          더보기<span className={styles.ico}>아이콘</span>
-        </Link>
-      </div>
-      <div>리스트</div>
-    </section>
-  );
-};
-
-export default DetailBottom;
 
 const mockProducts = [
   {
@@ -64,3 +50,28 @@ const mockProducts = [
     wishCount: 3,
   },
 ];
+
+const DetailBottom = ({ brandId }: DetailBottomProps) => {
+  return (
+    <section className={styles.area_detail_bottom}>
+      <div className={styles.wrapper_title}>
+        <div className={styles.txt}>이 브랜드의 인기선물</div>
+        <Link to={`../brand/${brandId}`} className={styles.button}>
+          더보기<span className={styles.ico}>아이콘</span>
+        </Link>
+      </div>
+      {/* 추후 컴포넌트 분리 예정 */}
+      <div className={styles.wrapper_contents}>
+        <ul className={styles.area_products}>
+          {mockProducts.map((product) => (
+            <li key={product.id} className={styles.wrapper_item}>
+              <ProductItem product={product} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+};
+
+export default DetailBottom;
