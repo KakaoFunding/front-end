@@ -2,7 +2,7 @@ import Tabs from 'components/Tabs';
 
 import { Tab } from 'types/tab';
 
-import DetailContentDropDown from './DetailContentDropDown';
+import DetailContentAccordion from './DetailContentAccordion';
 
 import styles from './DetailContents.module.scss';
 
@@ -109,12 +109,12 @@ const SectionDetailInfo = (
       </tbody>
     </div>
 
-    <DetailContentDropDown
+    <DetailContentAccordion
       title="교환/반품/환불 안내"
       description="교환/반품/환불/안내 본문"
       className={{ title: styles.title, description: styles.description }}
     />
-    <DetailContentDropDown
+    <DetailContentAccordion
       title="구매 시 주의 사항"
       description="구매 시 주의 사항 본문"
       className={{ title: styles.title, description: styles.description }}
