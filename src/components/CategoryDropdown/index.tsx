@@ -308,7 +308,7 @@ const CategoryDropdown = () => {
             {parent.subCategories.map((sub) => (
               <li key={sub.categoryId} className={styles.item_sub}>
                 <a
-                  href={`categories/${parent.categoryId}/subcategories/${sub.categoryId}`}
+                  href={`/categories/${parent.categoryId}/subcategories/${sub.categoryId}`}
                   className={styles.link_sub}
                 >
                   {sub.categoryName}
