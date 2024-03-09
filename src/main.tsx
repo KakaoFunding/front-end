@@ -5,8 +5,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import 'styles/global.css';
 import 'styles/hardreset.css';
 
+import CategoryResult from 'pages/CategoryResult';
 import Product from 'pages/Product';
-import ProductList from 'pages/ProductList';
 
 import App from './App';
 
@@ -21,8 +21,8 @@ const router = createBrowserRouter([
         element: <Product />,
       },
       {
-        path: '/productList',
-        element: <ProductList />,
+        path: '/categories/:parentId/subCategories/:subId',
+        element: <CategoryResult />,
       },
     ],
   },
