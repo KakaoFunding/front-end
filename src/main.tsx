@@ -10,6 +10,13 @@ import Product from 'pages/Product';
 
 import App from './App';
 
+if (process.env.NODE_ENV === 'development') {
+  (async () => {
+    const { worker } = await import('mocks/worker');
+    worker.start();
+  })();
+}
+
 const router = createBrowserRouter([
   {
     path: '/',

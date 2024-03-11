@@ -19,6 +19,10 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/hooks'),
       },
       {
+        find: 'mocks',
+        replacement: path.resolve(__dirname, 'src/mocks'),
+      },
+      {
         find: 'pages',
         replacement: path.resolve(__dirname, 'src/pages'),
       },

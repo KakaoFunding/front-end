@@ -90,6 +90,12 @@
           },
 
           {
+            "pattern": "{mocks,mocks/*,mocks/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
             "pattern": "{hooks,hooks/*,hooks/**/*,services,services/*,services/**/*,utils,utils/*,utils/**/*}",
             "group": "internal",
             "position": "before"
