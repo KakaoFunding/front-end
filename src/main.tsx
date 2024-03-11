@@ -10,12 +10,12 @@ import Product from 'pages/Product';
 
 import App from './App';
 
-if (process.env.NODE_ENV === 'development') {
-  (async () => {
+const enableMocking = async () => {
+  if (process.env.NODE_ENV === 'development') {
     const { worker } = await import('mocks/worker');
-    worker.start();
-  })();
-}
+    return worker.start();
+  }
+};
 
 const router = createBrowserRouter([
   {
@@ -35,8 +35,10 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-);
+enableMocking().then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>,
+  );
+});
