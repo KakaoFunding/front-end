@@ -31,7 +31,7 @@ const Auth = () => {
     });
   });
 
-  return <div>로그인중 입니다...</div>;
+  return <div>로그인 중입니다...</div>;
 };
 
 export default Auth;
