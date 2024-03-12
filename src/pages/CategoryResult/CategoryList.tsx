@@ -88,6 +88,7 @@ const CategoryList = ({ parentId, subId }: CategoryListProps) => {
   // 남는 칸 수만큼 빈 li 요소 반환하는 컴포넌트
   const EmptyListItems = ({ length }: { length: number }) => {
     return Array.from({ length }).map((_, index) => (
+      // eslint-disable-next-line react/no-array-index-key
       <li key={`empty-${index}`} className={styles.item_ctg} />
     ));
   };
