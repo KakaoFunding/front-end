@@ -8,7 +8,7 @@ import styles from './SocialKakaoLogin.module.scss';
 
 const SocialKakaoLogin = () => {
   const { pathname, search } = useLocation();
-  const userExists = useUserExists();
+  const isUserExists = useUserExists();
   const currentUrl = pathname + search;
   const REST_API_KEY = import.meta.env.VITE_REST_API_KEY;
   const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URL;
@@ -28,9 +28,9 @@ const SocialKakaoLogin = () => {
     clearUser();
   };
 
-  const handleAuthAction = userExists ? handleLogout : handleLogin;
+  const handleAuthAction = isUserExists ? handleLogout : handleLogin;
 
-  const buttonText = userExists ? '로그아웃' : '로그인';
+  const buttonText = isUserExists ? '로그아웃' : '로그인';
 
   return (
     <button
