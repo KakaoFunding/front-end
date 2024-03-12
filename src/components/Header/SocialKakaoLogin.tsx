@@ -4,7 +4,7 @@ import { useAuthStore, useUserExists, useUserStore } from 'store/index';
 
 import { logout } from 'services/api/v1/oauth';
 
-import styles from './SocialKakaoLogin.module.scss';
+import styles from './SocialKakaoLogin.module.scss';
 
 const SocialKakaoLogin = () => {
   const { pathname, search } = useLocation();
