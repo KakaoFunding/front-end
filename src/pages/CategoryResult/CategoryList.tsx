@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import { Category } from 'types/category';
 
@@ -97,14 +98,14 @@ const CategoryList = ({ parentId, subId }: CategoryListProps) => {
       <ul className={styles.list_ctg}>
         {subCategories.map((sub) => (
           <li key={sub.categoryId} className={styles.item_ctg}>
-            <a
-              href={`/categories/${categoryId}/subCategories/${sub.categoryId}`}
+            <Link
+              to={`/categories/${categoryId}/subCategories/${sub.categoryId}`}
               className={clsx(styles.link_ctg, {
                 [styles.selected]: subId === sub.categoryId,
               })}
             >
               {sub.categoryName}
-            </a>
+            </Link>
           </li>
         ))}
         <EmptyListItems length={subCategories.length % 6} />
