@@ -9,8 +9,8 @@ type AuthState = {
   clearAccessToken: () => void;
 };
 
-export const useAuthStore = create(
-  persist<AuthState>(
+export const useAuthStore = create<AuthState>()(
+  persist(
     (set) => ({
       accessToken: null,
       setAccessToken: (token) => set({ accessToken: token }),
@@ -27,8 +27,8 @@ type UserState = {
   clearUserInfo: () => void;
 } & User;
 
-export const useUserStore = create(
-  persist<UserState>(
+export const useUserStore = create<UserState>()(
+  persist(
     (set) => ({
       name: null,
       profileUrl: null,
