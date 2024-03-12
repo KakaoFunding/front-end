@@ -3,11 +3,11 @@ import { persist } from 'zustand/middleware';
 
 import { User } from 'types/user';
 
-interface AuthState {
+type AuthState = {
   accessToken: string | null;
   setAccessToken: (token: string) => void;
   clearAccessToken: () => void;
-}
+};
 
 export const useAuthStore = create(
   persist<AuthState>(
@@ -22,10 +22,10 @@ export const useAuthStore = create(
   ),
 );
 
-interface UserState extends User {
+type UserState = {
   setUserInfo: (user: User) => void;
   clearUserInfo: () => void;
-}
+} & User;
 
 export const useUserStore = create(
   persist<UserState>(
