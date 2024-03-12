@@ -4,19 +4,18 @@ import {
   RawAxiosResponseHeaders,
 } from 'axios';
 
+import { User } from 'types/user';
+
 import { apiV1 } from '.';
 
-interface LoginRequestProps {
+type LoginRequestProps = {
   code: string;
-}
+};
 
-interface LoginResponseProps {
+type LoginResponseProps = {
   accessToken: string;
-  member: {
-    name: string;
-    profileUrl: string;
-  };
-}
+  member: NonNullable<User>;
+};
 
 export const login = async ({
   code,
