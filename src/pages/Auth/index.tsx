@@ -21,9 +21,9 @@ const Auth = () => {
       return;
     }
 
-    const result = login({ code });
+    const loginResult = login({ code });
 
-    result.then((res) => {
+    loginResult.then((res) => {
       const { accessToken, member } = res.data;
       setAccessToken(accessToken);
       setUserInfo(member);
