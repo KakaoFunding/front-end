@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { Category } from 'types/category';
 
 import styles from './index.module.scss';
@@ -296,23 +298,23 @@ const CategoryDropdown = () => {
     <ul className={styles.list_parent}>
       {categories.map((parent) => (
         <li key={parent.categoryId} className={styles.item_parent}>
-          <a
-            href={`/category/${parent.categoryId}`}
+          <Link
+            to={`/categories/${parent.categoryId}`}
             className={styles.link_parent}
           >
             {parent.categoryName}
-          </a>
+          </Link>
 
           {/* 하위 카테고리 목록 */}
           <ul className={styles.list_sub}>
             {parent.subCategories.map((sub) => (
               <li key={sub.categoryId} className={styles.item_sub}>
-                <a
-                  href={`/category/${sub.categoryId}`}
+                <Link
+                  to={`/categories/${parent.categoryId}/subcategories/${sub.categoryId}`}
                   className={styles.link_sub}
                 >
                   {sub.categoryName}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
