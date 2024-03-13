@@ -7,6 +7,7 @@ import ProductBuyInfo from './ProductBuyInfo';
 
 import styles from './index.module.scss';
 
+// 상품 데이터 fetch 해오기
 const Product = () => {
   return (
     <MainWrapper>
@@ -16,9 +17,7 @@ const Product = () => {
           <DetailContents />
           <DetailBottom />
         </section>
-        <section className={styles.area_buy_info}>
-          <ProductBuyInfo />
-        </section>
+        <ProductBuyInfo />
       </article>
     </MainWrapper>
   );
