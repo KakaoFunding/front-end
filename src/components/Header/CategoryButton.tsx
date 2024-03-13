@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import CategoryDropdown from 'components/CategoryDropdown';
+
+import { useAxios } from 'hooks/useAxios';
+
+import { Category } from 'types/category';
 
 import styles from './CategoryButton.module.scss';
 
 const CategoryButton = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const { data, sendRequest } = useAxios<Category[]>({
+    method: 'get',
+    url: '/categories',
+  });
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
 
   return (
     <section
@@ -16,7 +28,7 @@ const CategoryButton = () => {
       <div className={styles.btn}>
         <span className={styles.ico}>카테고리 아이콘</span>
         카테고리
-        {isHovered && <CategoryDropdown />}
+        {isHovered && data && <CategoryDropdown categories={data} />}
       </div>
     </section>
   );
