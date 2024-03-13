@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <CategoryResult />,
       },
       {
-        path: '/categories/:parentId/subCategories/:subId',
+        path: '/categories/:parentId/subcategories/:subId',
         element: <CategoryResult />,
       },
     ],
