@@ -39,7 +39,7 @@ const DetailMain = () => {
         <section className={styles.brand_desc}>
           <div className={styles.wrapper_brand}>
             <Link
-              to={`../brand/${mockData.brandId}`}
+              to={`/brand/${mockData.brandId}`}
               className={styles.link_brand}
             >
               <img
@@ -48,7 +48,7 @@ const DetailMain = () => {
                 alt={`${mockData.brandName}브랜드 이미지`}
               />
               <span className={styles.txt_name}>{mockData.brandName}</span>
-              <span className={styles.ico}>ss</span>
+              <span className={styles.ico} />
             </Link>
           </div>
         </section>
