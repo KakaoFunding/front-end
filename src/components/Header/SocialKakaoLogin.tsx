@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import { useAuthStore, useUserStore } from 'store/index';
+import { useAuthStore, useUserStore } from 'store/authStore';
 
 import { useUserExists } from 'hooks/useUserExists';
 import { logout } from 'services/api/v1/oauth';

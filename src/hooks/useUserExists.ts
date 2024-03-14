@@ -1,4 +1,4 @@
-import { useAuthStore, useUserStore } from 'store/index';
+import { useAuthStore, useUserStore } from 'store/authStore';
 
 export const useUserExists = (): boolean => {
   const name = useUserStore((state) => state.name);

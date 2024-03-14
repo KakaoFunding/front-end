@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { useAuthStore, useUserStore } from 'store/index';
+import { useAuthStore, useUserStore } from 'store/authStore';
 
 import { refreshAccessToken } from './members';
 

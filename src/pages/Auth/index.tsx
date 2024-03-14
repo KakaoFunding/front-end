@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAuthStore, useUserStore } from 'store/index';
+import { useAuthStore, useUserStore } from 'store/authStore';
 
 import { login } from 'services/api/v1/oauth';
 
