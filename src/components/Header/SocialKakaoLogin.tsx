@@ -1,7 +1,8 @@
 import { useLocation } from 'react-router-dom';
 
-import { useAuthStore, useUserExists, useUserStore } from 'store/index';
+import { useAuthStore, useUserStore } from 'store/index';
 
+import { useUserExists } from 'hooks/useUserExists';
 import { logout } from 'services/api/v1/oauth';
 
 import styles from './SocialKakaoLogin.module.scss';
