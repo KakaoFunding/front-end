@@ -10,6 +10,7 @@ import Product from 'pages/Product';
 
 import App from './App';
 
+// eslint-disable-next-line consistent-return
 const enableMocking = async () => {
   if (process.env.NODE_ENV === 'development') {
     const { worker } = await import('mocks/worker');
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         element: <CategoryResult />,
       },
       {
-        path: '/categories/:parentId/subCategories/:subId',
+        path: '/categories/:parentId/subcategories/:subId',
         element: <CategoryResult />,
       },
     ],
