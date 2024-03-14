@@ -1,6 +1,6 @@
 @import 'styles/mixins.module';
 
-.section_detail_main {
+.area_detail_main {
   display: flex;
   padding-top: 30px;
 
@@ -10,9 +10,6 @@
     .img {
       @include size(450px, 450px, 0, 0);
     }
-
-    // .wrapper_carousel {
-    // }
   }
 
   .wrapper_info {
@@ -22,8 +19,6 @@
     width: 50%;
     padding: 0 10px 0 50px;
     height: 450px;
-
-    // padding-left: 50px;
 
     .prod_desc {
       .title {

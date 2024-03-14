@@ -24,7 +24,7 @@ const mockData = {
 
 const DetailMain = () => {
   return (
-    <section className={styles.section_detail_main}>
+    <section className={styles.area_detail_main}>
       <section className={styles.wrapper_thumb}>
         <ProductDetailsCarousel imgs={mockData.img} />
       </section>
