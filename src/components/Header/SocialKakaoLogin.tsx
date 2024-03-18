@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { useAuthStore, useUserStore } from 'store/authStore';
+import { useUserStore } from 'store/authStore';
 
 import { useUserExists } from 'hooks/useUserExists';
-import { logout } from 'services/api/v1/oauth';
+
+import LogoutModal from './LogoutModal';
 
 import styles from './SocialKakaoLogin.module.scss';
 
@@ -14,33 +16,42 @@ const SocialKakaoLogin = () => {
   const REST_API_KEY = import.meta.env.VITE_REST_API_KEY;
   const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URL;
   const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${currentUrl}`;
+  const userName = useUserStore().name;
 
-  const clearUser = useUserStore((state) => state.clearUserInfo);
-  const clearAuth = useAuthStore((state) => state.clearAccessToken);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogin = () => {
     window.location.href = KAKAO_URL;
   };
 
-  const handleLogout = async () => {
-    await logout();
-
-    clearAuth();
-    clearUser();
+  const handleAuthAction = () => {
+    if (isUserExists) {
+      setIsModalOpen(!isModalOpen);
+    } else {
+      handleLogin();
+    }
   };
 
-  const handleAuthAction = isUserExists ? handleLogout : handleLogin;
-
-  const buttonText = isUserExists ? '로그아웃' : '로그인';
+  const buttonText = isUserExists ? (
+    <>
+      <span>{userName}</span>
+      <span className={styles.ico_logout}>모달 버튼</span>
+    </>
+  ) : (
+    '로그인'
+  );
 
   return (
-    <button
-      className={styles.btn_login}
-      type="button"
-      onClick={handleAuthAction}
-    >
-      {buttonText}
-    </button>
+    <>
+      <button
+        className={styles.btn_login}
+        type="button"
+        onClick={handleAuthAction}
+      >
+        {buttonText}
+      </button>
+      <LogoutModal modalState={isModalOpen} userState={isUserExists} />
+    </>
   );
 };
 
