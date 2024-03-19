@@ -13,6 +13,7 @@ const CategoryResult = () => {
   return (
     <MainWrapper>
       <CategoryList parentId={parentId} subId={subId} />
+      <SearchResult categoryId={subId ?? parentId} />
     </MainWrapper>
   );
 };
