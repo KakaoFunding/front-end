@@ -1,14 +1,14 @@
-import { useState } from 'react';
-
 import ColumnProductItem from 'components/ColumnProductItem';
 
 import { ProductItem } from 'types/productItem';
 
 import styles from './index.module.scss';
 
-const ProductList = () => {
-  const [products, setProducts] = useState<ProductItem[]>([]);
+type ProductListProps = {
+  products: ProductItem[];
+};
 
+const ProductList = ({ products }: ProductListProps) => {
   return (
     <ul className={styles.area_products}>
       {products.map((product) => (
