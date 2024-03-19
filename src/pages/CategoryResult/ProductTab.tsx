@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import ProductList from 'components/ProductList';
 
 import { useAxios } from 'hooks/useAxios';
+import { useInfinityScroll } from 'hooks/useInfinityScroll';
 
 import { PaginationResponse } from 'types/PaginationResponse';
 import { Category } from 'types/category';
@@ -29,21 +30,15 @@ const ProductTab = ({ categoryId }: ProductTabProps) => {
     },
   });
 
+  const observingTarget = useInfinityScroll(
+    () => setPage((prev) => prev + 1),
+    hasNext,
+    isLoading,
+  );
+
   useEffect(() => {
     sendRequest();
   }, [page]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, offsetHeight } = document.documentElement;
-      if (window.innerHeight + scrollTop >= offsetHeight && hasNext) {
-        setPage((prev) => prev + 1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     if (data) {
@@ -60,6 +55,7 @@ const ProductTab = ({ categoryId }: ProductTabProps) => {
       {isLoading && (
         <div style={{ backgroundColor: 'red', height: 500 }}>로딩중...</div>
       )}
+      <div ref={observingTarget} />
     </>
   );
 };
