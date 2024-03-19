@@ -37,12 +37,7 @@ const ProductOption = ({
     }
   }, [selectedOption]);
 
-  const handleToggle = () => {
-    if (!selectedOption) {
-      return;
-    }
-    setIsToggled(!isToggled);
-  };
+  const handleToggle = () => selectedOption && setIsToggled(!isToggled);
 
   const handleOptionChange = (option: { id: number; name: string }) =>
     setSelectedOption(option);
