@@ -21,7 +21,7 @@ const SearchResult = ({ categoryId }: SearchResultProps) => {
 
   return (
     <section>
-      <Tabs initialTabId={2} tabs={tabs} mode="product_list" />
+      <Tabs key={categoryId} initialTabId={2} tabs={tabs} mode="product_list" />
     </section>
   );
 };
