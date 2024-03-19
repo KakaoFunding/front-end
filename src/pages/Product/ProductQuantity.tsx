@@ -51,7 +51,7 @@ const ProductQuantity = ({
 
   // button > span 스토리북으로 컴포넌트화 하기
   return (
-    <section className={clsx(!hasOption && styles.area_quantity)}>
+    <section className={clsx({ [styles.area_quantity]: !hasOption })}>
       <div className={styles.wrapper_option}>
         {optionName}
         {hasOption && (
