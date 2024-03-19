@@ -39,8 +39,7 @@ const ProductOption = ({
 
   const handleToggle = () => selectedOption && setIsToggled(!isToggled);
 
-  const handleOptionChange = (option: { id: number; name: string }) =>
-    setSelectedOption(option);
+  const handleOptionChange = (option: Option) => setSelectedOption(option);
 
   const handleOptionClear = () => setSelectedOption(false);
 
