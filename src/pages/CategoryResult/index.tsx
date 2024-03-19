@@ -6,15 +6,13 @@ import SearchResult from 'components/SearchResult';
 import CategoryList from './CategoryList';
 
 const CategoryResult = () => {
-  const { parentId, subId } = useParams();
+  const { parentId: parentIdParam, subId: subIdParam } = useParams();
+  const parentId = Number(parentIdParam);
+  const subId = subIdParam ? Number(subIdParam) : undefined;
 
   return (
     <MainWrapper>
-      <CategoryList
-        parentId={Number(parentId)}
-        subId={subId ? Number(subId) : undefined}
-      />
-      <SearchResult />
+      <CategoryList parentId={parentId} subId={subId} />
     </MainWrapper>
   );
 };
