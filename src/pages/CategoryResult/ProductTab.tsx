@@ -22,7 +22,7 @@ const ProductTab = ({ categoryId }: ProductTabProps) => {
     PaginationResponse<ProductItem>
   >({
     method: 'get',
-    url: `/products`,
+    url: '/products',
     params: {
       page,
       size: 20,
