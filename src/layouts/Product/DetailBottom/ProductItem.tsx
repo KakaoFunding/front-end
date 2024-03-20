@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 
-import CartButton from 'components/feature/ColumnProductItem/CartButton';
-import Price from 'components/feature/ColumnProductItem/Price';
-import Thumbnail from 'components/feature/ColumnProductItem/Thumbnail';
+import CartButton from 'components/feature/ProductItem/CartButton';
+import Price from 'components/feature/ProductItem/Price';
+import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 
 import styles from './ProductItem.module.scss';
 
