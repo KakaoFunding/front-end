@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { ProductItem } from 'types/productItem';
 
-import ColumnProductItem from '../ProductItem/Column';
+import ColumnProductItem from '../ProductItem/ColumnProductItem';
 
 import styles from './index.module.scss';
 
