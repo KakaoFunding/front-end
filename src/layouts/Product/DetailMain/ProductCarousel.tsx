@@ -5,17 +5,18 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import styles from './ProductDetailsCarousel.module.scss';
-import './ProductDetailsCarousel.css';
+import styles from './ProductCarousel.module.scss';
+import './ProductCarousel.css';
 
-type ProductDetailsCarouselProps = {
+type ProductCarouselProps = {
   // TODO : 타입
   // imgs : [{id : number; url : 'string'}]
   imgs: string[];
+  className: string;
 };
 
 // TODO : 타입
-const ProductDetailsCarousel = ({ imgs }: ProductDetailsCarouselProps) => {
+const ProductCarousel = ({ imgs, className }: ProductCarouselProps) => {
   const [target, setTarget] = useState(0);
 
   const handlePaging = (idx: number) => {
@@ -40,6 +41,7 @@ const ProductDetailsCarousel = ({ imgs }: ProductDetailsCarouselProps) => {
       slidesToShow={1}
       slidesToScroll={1}
       dotsClass="slider_dots"
+      className={className}
     >
       {imgs.map((img) => (
         <img
@@ -49,11 +51,10 @@ const ProductDetailsCarousel = ({ imgs }: ProductDetailsCarouselProps) => {
           // key : img.url
           src={img}
           alt="상품 대표 이미지"
-          className={styles.thumb}
         />
       ))}
     </Slider>
   );
 };
 
-export default ProductDetailsCarousel;
+export default ProductCarousel;
