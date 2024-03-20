@@ -6,7 +6,7 @@ import { useAxios } from 'hooks/useAxios';
 
 import { Category } from 'types/category';
 
-import styles from './CategoryButton.module.scss';
+import styles from './index.module.scss';
 
 const CategoryButton = () => {
   const [isHovered, setIsHovered] = useState(false);

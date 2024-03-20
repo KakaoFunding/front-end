@@ -1,7 +1,7 @@
 import BundleUtil from './BundleUtil';
 import CategoryButton from './CategoryButton';
 import HeaderNav from './HeaderNav';
-import Logo from './Logo';
+import Logo from './Logo/Logo';
 
 import styles from './InnerHeader.module.scss';
 

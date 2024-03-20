@@ -4,7 +4,7 @@ import { useAuthStore, useUserStore } from 'store/authStore';
 
 import { logout } from 'services/api/v1/oauth';
 
-import styles from './LogoutModal.module.scss';
+import styles from './index.module.scss';
 
 type LogoutModalProps = {
   modalState: boolean;

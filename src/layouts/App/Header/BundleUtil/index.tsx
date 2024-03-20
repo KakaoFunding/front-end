@@ -1,6 +1,6 @@
-import SocialKakaoLogin from './SocialKakaoLogin';
+import SocialKakaoLogin from '../SocialKakaoLogin';
 
-import styles from './BundleUtil.module.scss';
+import styles from './index.module.scss';
 
 const BundleUtil = () => {
   return (

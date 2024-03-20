@@ -5,9 +5,9 @@ import { useUserStore } from 'store/authStore';
 
 import { useUserExists } from 'hooks/useUserExists';
 
-import LogoutModal from './LogoutModal';
+import LogoutModal from '../LogoutModal';
 
-import styles from './SocialKakaoLogin.module.scss';
+import styles from './index.module.scss';
 
 const SocialKakaoLogin = () => {
   const { pathname, search } = useLocation();
