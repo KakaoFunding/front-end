@@ -14,7 +14,7 @@ const SearchResult = ({ categoryId }: SearchResultProps) => {
     {
       id: 1,
       name: '상품',
-      content: <ProductTab categoryId={categoryId} />,
+      content: <ProductTab tabName="상품" categoryId={categoryId} />,
     },
     { id: 2, name: '브랜드', content: '브랜드~' },
   ];
