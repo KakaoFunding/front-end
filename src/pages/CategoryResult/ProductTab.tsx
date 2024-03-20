@@ -68,7 +68,7 @@ const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
       {isLoading && (
         <div style={{ backgroundColor: 'red', height: 500 }}>로딩중...</div>
       )}
-      <div ref={observingTarget} />
+      {!isLoading && hasNext && <div ref={observingTarget} />}
     </>
   );
 };
