@@ -42,7 +42,7 @@ const CategoryList = ({ parentId, subId }: CategoryListProps) => {
   };
 
   return (
-    <section>
+    <section className={styles.area_ctg}>
       <h1 className={styles.title_ctg}>{categoryName}</h1>
       <ul className={styles.list_ctg}>
         {subCategories.map((sub) => (
