@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import CategoryDropdown from 'components/feature/CategoryDropdown';
-
 import { useAxios } from 'hooks/useAxios';
 
 import { Category } from 'types/category';
 
-import styles from './CategoryButton.module.scss';
+import CategoryDropdown from './CategoryDropdown';
+
+import styles from './index.module.scss';
 
 const CategoryButton = () => {
   const [isHovered, setIsHovered] = useState(false);

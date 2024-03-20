@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import ColumnProductItem from 'components/ColumnProductItem';
-
 import { ProductItem } from 'types/productItem';
+
+import ColumnProductItem from '../ProductItem/ColumnProductItem';
 
 import styles from './index.module.scss';
 

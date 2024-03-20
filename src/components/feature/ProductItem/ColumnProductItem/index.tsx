@@ -2,10 +2,10 @@ import clsx from 'clsx';
 
 import { ProductItem, ProductItemSize } from 'types/productItem';
 
-import CartButton from './CartButton';
-import Price from './Price';
-import Thumbnail from './Thumbnail';
-import WishButton from './WishButton';
+import CartButton from '../CartButton';
+import Price from '../Price';
+import Thumbnail from '../Thumbnail';
+import WishButton from '../WishButton';
 
 import styles from './index.module.scss';
 

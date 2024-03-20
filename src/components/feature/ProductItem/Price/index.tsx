@@ -2,7 +2,7 @@ import { formatNumberWithComma } from 'utils/format';
 
 import { ProductItem } from 'types/productItem';
 
-import styles from './Price.module.scss';
+import styles from './index.module.scss';
 
 type PriceProps = {
   price: ProductItem['price'];

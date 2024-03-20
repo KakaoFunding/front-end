@@ -4,7 +4,7 @@ import { formatNumberWithComma } from 'utils/format';
 
 import { ProductItem } from 'types/productItem';
 
-import styles from './WishButton.module.scss';
+import styles from './index.module.scss';
 
 type WishButtonProps = {
   id: ProductItem['id'];

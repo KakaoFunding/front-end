@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import { ProductItem, ProductItemSize } from 'types/productItem';
 
-import styles from './Thumbnail.module.scss';
+import styles from './index.module.scss';
 
 type ThumbnailProps = {
   src: ProductItem['thumbSrc'];

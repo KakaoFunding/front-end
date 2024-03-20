@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ColumnProductItem from 'components/ColumnProductItem';
+import ColumnProductItem from 'components/feature/ProductItem/ColumnProductItem';
 
 const meta: Meta<typeof ColumnProductItem> = {
   component: ColumnProductItem,

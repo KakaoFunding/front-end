@@ -10,3 +10,10 @@
   border-bottom: 1px solid #ededed;
   z-index: 999;
 }
+
+.wrapper_header {
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  width: $fix-width;
+}
