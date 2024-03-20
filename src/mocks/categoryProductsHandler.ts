@@ -18,7 +18,7 @@ const products = Array.from({ length: 201 }).map(
 
 export const categoryHandlers = [
   http.get('/products', async ({ request }) => {
-    await delay(1000);
+    await delay();
 
     const { searchParams } = new URL(request.url);
 
