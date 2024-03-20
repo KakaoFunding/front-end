@@ -31,30 +31,28 @@ const ProductDetailsCarousel = ({ imgs }: ProductDetailsCarouselProps) => {
   const handleTarget = (_: number, next: number) => setTarget(() => next);
 
   return (
-    <div className="slider_container">
-      <Slider
-        customPaging={handlePaging}
-        beforeChange={handleTarget}
-        dots
-        arrows={false}
-        speed={500}
-        slidesToShow={1}
-        slidesToScroll={1}
-        dotsClass="slider_dots"
-      >
-        {imgs.map((img) => (
-          <img
-            // TODO : 타입
-            // key : img.id
-            key={img}
-            // key : img.url
-            src={img}
-            alt="상품 대표 이미지"
-            className={styles.thumb}
-          />
-        ))}
-      </Slider>
-    </div>
+    <Slider
+      customPaging={handlePaging}
+      beforeChange={handleTarget}
+      dots
+      arrows={false}
+      speed={500}
+      slidesToShow={1}
+      slidesToScroll={1}
+      dotsClass="slider_dots"
+    >
+      {imgs.map((img) => (
+        <img
+          // TODO : 타입
+          // key : img.id
+          key={img}
+          // key : img.url
+          src={img}
+          alt="상품 대표 이미지"
+          className={styles.thumb}
+        />
+      ))}
+    </Slider>
   );
 };
 
