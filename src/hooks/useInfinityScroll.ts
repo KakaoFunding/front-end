@@ -5,29 +5,31 @@ import { useEffect, useRef } from 'react';
  *
  * @param onIntersect function for infinite scrolling
  * @param hasNextPage flag indicating the presence of a next page
- * @param isLoading flag indicating whether data is being loaded
  * @returns ref object for the target element
  */
 export const useInfinityScroll = (
   onIntersect: () => void,
   hasNextPage: boolean,
-  isLoading: boolean,
 ) => {
   const target = useRef<HTMLDivElement>(null);
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && hasNextPage && !isLoading) {
-        onIntersect();
-      }
-    });
-  });
-
-  if (target.current) observer.observe(target.current);
+  const handleObserver: IntersectionObserverCallback = (entries) => {
+    const entry = entries[0];
+    if (entry.isIntersecting && hasNextPage) {
+      onIntersect();
+    }
+  };
+  const observer = new IntersectionObserver(handleObserver);
 
   useEffect(() => {
-    return () => observer.disconnect();
-  }, [target]);
+    if (target.current) {
+      observer.observe(target.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [handleObserver]);
 
   return target;
 };

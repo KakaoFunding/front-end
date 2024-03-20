@@ -35,11 +35,9 @@ const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
     },
   });
 
-  const observingTarget = useInfinityScroll(
-    () => setPage((prev) => prev + 1),
-    hasNext,
-    isLoading,
-  );
+  const observingTarget = useInfinityScroll(() => {
+    if (data) setPage(data.pageable.pageNumber + 1);
+  }, hasNext);
 
   useEffect(() => {
     sendRequest();
