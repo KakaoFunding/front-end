@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import ProductList from 'components/ProductList';
+import Spinner from 'components/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
@@ -65,9 +66,7 @@ const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
       </div>
       {/* 가격 필터링 */}
       <ProductList products={products} />
-      {isLoading && (
-        <div style={{ backgroundColor: 'red', height: 500 }}>로딩중...</div>
-      )}
+      {isLoading && <Spinner />}
       {!isLoading && hasNext && <div ref={observingTarget} />}
     </>
   );
