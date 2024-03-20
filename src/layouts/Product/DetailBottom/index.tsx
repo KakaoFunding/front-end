@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import ProductItem from './ProductItem';
 
-import styles from './DetailBottom.module.scss';
+import styles from './index.module.scss';
 
 type DetailBottomProps = {
   brandId: number;

@@ -31,6 +31,10 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/services'),
       },
       {
+        find: 'layouts',
+        replacement: path.resolve(__dirname, 'src/layouts'),
+      },
+      {
         find: 'store',
         replacement: path.resolve(__dirname, 'src/store'),
       },

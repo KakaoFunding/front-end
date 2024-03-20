@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import MainWrapper from 'components/MainWrapper';
-import SearchResult from 'components/SearchResult';
+import SearchResult from 'components/feature/SearchResult';
+import MainWrapper from 'components/ui/MainWrapper';
 
 import CategoryList from './CategoryList';
 

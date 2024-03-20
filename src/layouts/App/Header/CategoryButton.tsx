@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import CategoryDropdown from 'components/CategoryDropdown';
+import CategoryDropdown from 'components/feature/CategoryDropdown';
 
 import { useAxios } from 'hooks/useAxios';
 

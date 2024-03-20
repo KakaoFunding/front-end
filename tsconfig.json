@@ -16,6 +16,7 @@
       "mocks/*": ["src/mocks/*"],
       "pages/*": ["src/pages/*"],
       "services/*": ["src/services/*"],
+      "layouts/*": ["src/layouts/*"],
       "store/*": ["src/store/*"],
       "stories/*": ["src/stories/*"],
       "styles/*": ["src/styles/*"],

@@ -1,10 +1,10 @@
-import Tabs from 'components/Tabs';
+import Tabs from 'components/ui/Tabs';
 
 import { Tab } from 'types/tab';
 
 import DetailContentAccordion from './DetailContentAccordion';
 
-import styles from './DetailContents.module.scss';
+import styles from './index.module.scss';
 
 const productDescriptionImgs = [
   {
