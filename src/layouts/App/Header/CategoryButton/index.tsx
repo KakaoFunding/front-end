@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import CategoryDropdown from 'components/feature/CategoryDropdown';
-
 import { useAxios } from 'hooks/useAxios';
 
 import { Category } from 'types/category';
+
+import CategoryDropdown from './CategoryDropdown';
 
 import styles from './index.module.scss';
 
