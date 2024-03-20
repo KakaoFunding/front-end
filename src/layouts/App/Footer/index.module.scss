@@ -9,3 +9,18 @@
   height: 200px;
   background-color: #fafafc;
 }
+
+.wrapper_footer {
+  overflow: hidden;
+  width: $fix-width;
+  height: 100%;
+  margin: 0 auto;
+  padding: 40px 0;
+
+  .logo {
+    font-weight: bold;
+    font-size: 20px;
+    width: 171px;
+    float: left;
+  }
+}
