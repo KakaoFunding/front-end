@@ -6,7 +6,7 @@ import { useAxios } from 'hooks/useAxios';
 
 import { Category } from 'types/category';
 
-import styles from './CategoryList.module.scss';
+import styles from './index.module.scss';
 
 type CategoryListProps = {
   parentId: Category['categoryId'];
