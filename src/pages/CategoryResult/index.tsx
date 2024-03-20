@@ -2,8 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import SearchResult from 'components/feature/SearchResult';
 import MainWrapper from 'components/ui/MainWrapper';
-
-import CategoryList from './CategoryList';
+import CategoryList from 'layouts/CategoryResult/CategoryList';
 
 const CategoryResult = () => {
   const { parentId, subId } = useParams();
