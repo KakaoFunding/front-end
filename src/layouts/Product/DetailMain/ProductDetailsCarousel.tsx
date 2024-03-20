@@ -9,9 +9,12 @@ import styles from './ProductDetailsCarousel.module.scss';
 import './ProductDetailsCarousel.css';
 
 type ProductDetailsCarouselProps = {
+  // TODO : 타입
+  // imgs : [{id : number; url : 'string'}]
   imgs: string[];
 };
 
+// TODO : 타입
 const ProductDetailsCarousel = ({ imgs }: ProductDetailsCarouselProps) => {
   const [target, setTarget] = useState(0);
 
@@ -40,9 +43,15 @@ const ProductDetailsCarousel = ({ imgs }: ProductDetailsCarouselProps) => {
         dotsClass="slider_dots"
       >
         {imgs.map((img) => (
-          <div key={img}>
-            <img src={img} alt="상품 대표 이미지" className={styles.thumb} />
-          </div>
+          <img
+            // TODO : 타입
+            // key : img.id
+            key={img}
+            // key : img.url
+            src={img}
+            alt="상품 대표 이미지"
+            className={styles.thumb}
+          />
         ))}
       </Slider>
     </div>
