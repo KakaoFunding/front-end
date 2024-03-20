@@ -1,4 +1,4 @@
-import MainWrapper from 'components/MainWrapper';
+import MainWrapper from 'components/ui/MainWrapper';
 
 import DetailBottom from './DetailBottom';
 import DetailContents from './DetailContents';
