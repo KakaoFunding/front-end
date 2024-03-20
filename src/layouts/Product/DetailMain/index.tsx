@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import { formatNumberWithComma } from '../../utils/format';
+import { formatNumberWithComma } from '../../../utils/format';
 
 import ProductDetailsCarousel from './ProductDetailsCarousel';
 
-import styles from './DetailMain.module.scss';
+import styles from './index.module.scss';
 
 const mockData = {
   img: [
@@ -24,7 +24,7 @@ const mockData = {
 
 const DetailMain = () => {
   return (
-    <section className={styles.section_detail_main}>
+    <section className={styles.area_detail_main}>
       <section className={styles.wrapper_thumb}>
         <ProductDetailsCarousel imgs={mockData.img} />
       </section>

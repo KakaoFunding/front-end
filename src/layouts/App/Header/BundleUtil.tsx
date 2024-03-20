@@ -1,3 +1,5 @@
+import SocialKakaoLogin from './SocialKakaoLogin';
+
 import styles from './BundleUtil.module.scss';
 
 const BundleUtil = () => {
@@ -14,9 +16,7 @@ const BundleUtil = () => {
         </div>
       </a>
       <div className={styles.wrapper_login}>
-        <a className={styles.link_login} href="/login">
-          로그인
-        </a>
+        <SocialKakaoLogin />
       </div>
     </section>
   );

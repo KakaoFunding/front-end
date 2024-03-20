@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ProductOption from './ProductOption';
 import ProductQuantity from './ProductQuantity';
 
-import styles from './ProductBuyInfo.module.scss';
+import styles from './index.module.scss';
 
 // 받아올 데이터
 const mockData = {

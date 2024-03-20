@@ -8,14 +8,15 @@ import styles from './index.module.scss';
 type TabProps = {
   initialTabId: Tab['id'];
   tabs: Tab[];
+  mode: 'product_list' | 'product_detail';
 };
 
-const Tabs = ({ initialTabId = 0, tabs }: TabProps) => {
+const Tabs = ({ initialTabId = 0, tabs, mode }: TabProps) => {
   const [currentTabId, setCurrentTabId] = useState<Tab['id']>(initialTabId);
 
   return (
     <>
-      <ul className={styles.wrapper_list}>
+      <ul className={clsx(styles.wrapper_list, styles[mode])}>
         {tabs.map((tab) => (
           <li
             key={tab.id}
@@ -24,7 +25,11 @@ const Tabs = ({ initialTabId = 0, tabs }: TabProps) => {
               [styles.on]: currentTabId === tab.id,
             })}
           >
-            <button type="button" onClick={() => setCurrentTabId(tab.id)}>
+            <button
+              type="button"
+              onClick={() => setCurrentTabId(tab.id)}
+              className={styles.button}
+            >
               <span className={styles.txt_name}>{tab.name}</span>
               {tab.description && (
                 <span className={styles.txt_description}>

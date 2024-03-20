@@ -1,0 +1,14 @@
+@import 'styles/mixins.module';
+
+.wrapper_title {
+  display: flex;
+  justify-content: space-between;
+
+  .ico_toggle {
+    @include ico-pd-detail(-200px, -180px, 16px, 10px);
+
+    &.on {
+      @include ico-pd-detail(-200px, -190px, 16px, 10px);
+    }
+  }
+}

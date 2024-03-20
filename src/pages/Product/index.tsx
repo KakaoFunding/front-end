@@ -1,9 +1,9 @@
-import MainWrapper from 'components/MainWrapper';
+import ProductBuyInfo from 'layouts/Product/Buyinfo';
+import DetailBottom from 'layouts/Product/DetailBottom';
+import DetailContents from 'layouts/Product/DetailContent';
+import DetailMain from 'layouts/Product/DetailMain';
 
-import DetailBottom from './DetailBottom';
-import DetailContents from './DetailContents';
-import DetailMain from './DetailMain';
-import ProductBuyInfo from './ProductBuyInfo';
+import MainWrapper from 'components/ui/MainWrapper';
 
 import styles from './index.module.scss';
 
@@ -12,7 +12,7 @@ const Product = () => {
   return (
     <MainWrapper>
       <article className={styles.area_product}>
-        <section className={styles.area_detail_info}>
+        <section className={styles.area_detail}>
           <DetailMain />
           <DetailContents />
           <DetailBottom />
