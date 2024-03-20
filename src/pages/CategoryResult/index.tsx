@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import MainWrapper from 'components/MainWrapper';
-import SearchResult from 'components/SearchResult';
+import SearchContents from 'components/SearchContents';
 
 import CategoryList from './CategoryList';
 
@@ -13,7 +13,7 @@ const CategoryResult = () => {
   return (
     <MainWrapper>
       <CategoryList parentId={parentId} subId={subId} />
-      <SearchResult categoryId={subId ?? parentId} />
+      <SearchContents categoryId={subId ?? parentId} />
     </MainWrapper>
   );
 };

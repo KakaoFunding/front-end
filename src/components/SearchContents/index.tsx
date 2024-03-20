@@ -8,7 +8,7 @@ type SearchResultProps = {
   categoryId: Category['categoryId'];
 };
 
-const SearchResult = ({ categoryId }: SearchResultProps) => {
+const SearchContents = ({ categoryId }: SearchResultProps) => {
   const tabs: Tab[] = [
     { id: 0, name: '전체', content: '전체~' },
     {
@@ -26,4 +26,4 @@ const SearchResult = ({ categoryId }: SearchResultProps) => {
   );
 };
 
-export default SearchResult;
+export default SearchContents;
