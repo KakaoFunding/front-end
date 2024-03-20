@@ -4,7 +4,7 @@ import { formatNumberWithComma } from '../../../utils/format';
 
 import ProductDetailsCarousel from './ProductDetailsCarousel';
 
-import styles from './DetailMain.module.scss';
+import styles from './index.module.scss';
 
 const mockData = {
   img: [
