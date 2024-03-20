@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 
-import ProductQuantity from './ProductQuantity';
+import ProductQuantity from '../QuantitySelector/ProductQuantity';
 
 import styles from './ProductOption.module.scss';
 

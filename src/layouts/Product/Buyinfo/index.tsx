@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import ProductOption from './ProductOption';
-import ProductQuantity from './ProductQuantity';
+import ProductOption from './OptionSelector/ProductOption';
+import ProductQuantity from './QuantitySelector/ProductQuantity';
 
 import styles from './index.module.scss';
 
-// 받아올 데이터
+// TODO : 받아올 데이터
 const mockData = {
   isOption: true,
   productTitle: '940 코쿤 [New & Limited]',
@@ -71,7 +71,7 @@ const mockData = {
 };
 
 // 수량 + 가격 계산 컴포넌트
-const ProductBuyInfo = () => {
+const BuyInfo = () => {
   const [quantity, setQuantity] = useState<number>(1);
 
   return (
@@ -96,4 +96,4 @@ const ProductBuyInfo = () => {
   );
 };
 
-export default ProductBuyInfo;
+export default BuyInfo;
