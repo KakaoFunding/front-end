@@ -11,12 +11,12 @@ const Product = () => {
   return (
     <MainWrapper>
       <article className={styles.area_product}>
-        <section className={styles.area_detail_info}>
+        <section className={styles.area_detail}>
           <DetailMain />
           <DetailContents />
           <DetailBottom />
         </section>
-        <section className={styles.area_buy_info}>
+        <section className={styles.area_buy}>
           <ProductBuyInfo />
         </section>
       </article>
