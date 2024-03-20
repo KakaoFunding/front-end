@@ -1,9 +1,9 @@
-import MainWrapper from 'components/ui/MainWrapper';
+import ProductBuyInfo from 'layouts/Product/Buyinfo';
+import DetailBottom from 'layouts/Product/DetailBottom';
+import DetailContents from 'layouts/Product/DetailContent';
+import DetailMain from 'layouts/Product/DetailMain';
 
-import DetailBottom from './DetailBottom';
-import DetailContents from './DetailContents';
-import DetailMain from './DetailMain';
-import ProductBuyInfo from './ProductBuyInfo';
+import MainWrapper from 'components/ui/MainWrapper';
 
 import styles from './index.module.scss';
 

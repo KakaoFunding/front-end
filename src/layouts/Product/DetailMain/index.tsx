@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { formatNumberWithComma } from '../../utils/format';
+import { formatNumberWithComma } from '../../../utils/format';
 
 import ProductDetailsCarousel from './ProductDetailsCarousel';
 
