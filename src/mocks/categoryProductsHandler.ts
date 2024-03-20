@@ -25,7 +25,7 @@ export const categoryHandlers = [
     const size = Number(searchParams.get('size'));
     const page = Number(searchParams.get('page'));
     const totalElements = products.length;
-    const totalPages = Math.round(totalElements / size);
+    const totalPages = Math.ceil(totalElements / size);
 
     // 실제 응답 시에는 categoryId에 따라 다른 데이터를 보내지만, 모킹 API이므로 products로 통일함
     return HttpResponse.json<PaginationResponse<ProductItem>>({
@@ -36,7 +36,7 @@ export const categoryHandlers = [
       },
       totalElements,
       first: page === 0,
-      last: totalPages >= page,
+      last: totalPages <= page + 1,
     });
   }),
 ];
