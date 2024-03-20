@@ -1,9 +1,8 @@
+import Footer from 'layouts/App/Footer';
+import Header from 'layouts/App/Header';
 import { Outlet } from 'react-router-dom';
 
-import Footer from 'src/layouts/App/Footer';
-import Header from 'src/layouts/App/Header';
-
-import styles from './App.module.scss';
+import styles from './index.module.scss';
 
 const App = () => (
   <>

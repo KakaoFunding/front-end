@@ -9,7 +9,7 @@ import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Product from 'pages/Product';
 
-import App from './pages/App/App';
+import App from './pages/App';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
