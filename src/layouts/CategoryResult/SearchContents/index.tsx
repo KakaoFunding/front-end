@@ -1,8 +1,9 @@
 import Tabs from 'components/ui/Tabs';
-import ProductTab from 'pages/CategoryResult/ProductTab';
 
 import { Category } from 'types/category';
 import { Tab } from 'types/tab';
+
+import ProductTab from './ProductTab';
 
 type SearchResultProps = {
   categoryId: Category['categoryId'];

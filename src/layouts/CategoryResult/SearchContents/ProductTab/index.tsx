@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import Spinner from 'components/Spinner';
 import ProductList from 'components/feature/ProductList';
+import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
@@ -11,7 +11,7 @@ import { PaginationResponse } from 'types/PaginationResponse';
 import { Category } from 'types/category';
 import { ProductItem } from 'types/productItem';
 
-import styles from './ProductTab.module.scss';
+import styles from './index.module.scss';
 
 type ProductTabProps = {
   categoryId: Category['categoryId'];
