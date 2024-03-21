@@ -3,7 +3,7 @@ import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 
 import { isValidQuantity } from 'utils/validation';
 
-import styles from './ProductQuantity.module.scss';
+import styles from './index.module.scss';
 
 type ProductQuantityProps = {
   hasOption: boolean;

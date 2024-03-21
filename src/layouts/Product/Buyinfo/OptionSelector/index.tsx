@@ -1,13 +1,9 @@
 import clsx from 'clsx';
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 
-import styles from './ProductOption.module.scss';
+import { Option } from 'types/product';
 
-// 나중에 타입정의해서 types 폴더로 갈 예정
-type Option = {
-  id: number;
-  name: string;
-};
+import styles from './index.module.scss';
 
 type ProductOptionProps = {
   optionTitle: string;
@@ -38,7 +34,7 @@ const ProductOption = ({
 
   return (
     <section>
-      <div className={clsx(styles.default, styles.notice)}>
+      <div className={clsx(styles.default, styles.txt_notice)}>
         선물 받은 친구가 직접 옵션 변경 가능하니 안심하세요!
       </div>
       <div className={clsx(styles.default, styles.txt_option)}>

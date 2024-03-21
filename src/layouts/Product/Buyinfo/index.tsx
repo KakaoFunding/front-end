@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import ProductOption from './OptionSelector/ProductOption';
-import ProductQuantity from './QuantitySelector/ProductQuantity';
+import { Option } from 'types/product';
+
+import ProductOption from './OptionSelector';
+import ProductQuantity from './QuantitySelector';
 
 import styles from './index.module.scss';
 
 // TODO : 받아올 데이터
 const mockData = {
-  isOption: true,
+  hasOption: true,
   productTitle: '940 코쿤 [New & Limited]',
   optionTitle: '색상',
   options: [
@@ -70,16 +72,11 @@ const mockData = {
   ],
 };
 
-type Option = {
-  id: number;
-  name: string;
-};
-
 // 수량 + 가격 계산 컴포넌트
 const BuyInfo = () => {
   const [quantity, setQuantity] = useState<number>(1);
-  const [selectedOption, setSelectedOption] = useState<Option | false>(false);
   const [optionName, setOptionName] = useState<string>(mockData.optionTitle);
+  const [selectedOption, setSelectedOption] = useState<Option | false>(false);
 
   useEffect(() => {
     if (selectedOption) {
@@ -94,7 +91,7 @@ const BuyInfo = () => {
   return (
     <section className={styles.area_buy_info}>
       <section className={styles.area_option}>
-        {mockData.isOption && (
+        {mockData.hasOption && (
           <ProductOption
             optionTitle={mockData.optionTitle}
             options={mockData.options}
@@ -102,9 +99,9 @@ const BuyInfo = () => {
             setSelectedOption={setSelectedOption}
           />
         )}
-        {(!mockData.isOption || selectedOption) && (
+        {(!mockData.hasOption || selectedOption) && (
           <ProductQuantity
-            hasOption={Boolean(selectedOption)}
+            hasOption={mockData.hasOption}
             optionName={optionName}
             handleOptionClear={handleOptionClear}
             quantity={quantity}

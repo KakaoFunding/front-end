@@ -23,11 +23,10 @@
   border: 1px solid #e1e2e3;
   height: 40px;
 
-  // 각 스타일 outline 전역에서 없애기
   .input_option {
+    width: 80%;
     text-align: center;
     border: none;
-    outline: none;
   }
 
   .ico_quantity {
