@@ -5,10 +5,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import 'styles/global.css';
 import 'styles/hardreset.css';
 
+import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Product from 'pages/Product';
 
-import App from './App';
+import App from './pages/App';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: '/auth', element: <Auth /> },
 ]);
 
 enableMocking().then(() => {

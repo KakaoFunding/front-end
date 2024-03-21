@@ -78,7 +78,7 @@
           },
 
           {
-            "pattern": "{pages,pages/*,pages/**/*,components,components/*,components/**/*,stories,stories/*,stories/**/*}",
+            "pattern": "{pages,pages/*,pages/**/*,layouts,layouts/*,layouts/**/*,components,components/*,components/**/*,stories,stories/*,stories/**/*}",
             "group": "internal",
             "position": "before"
           },

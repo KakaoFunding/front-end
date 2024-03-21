@@ -1,4 +1,4 @@
-import Tabs from 'components/Tabs';
+import Tabs from 'components/ui/Tabs';
 import ProductTab from 'pages/CategoryResult/ProductTab';
 
 import { Category } from 'types/category';

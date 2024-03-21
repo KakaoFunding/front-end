@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import MainWrapper from 'components/MainWrapper';
 import SearchContents from 'components/SearchContents';
-
-import CategoryList from './CategoryList';
+import MainWrapper from 'components/ui/MainWrapper';
+import CategoryList from 'layouts/CategoryResult/CategoryList';
 
 const CategoryResult = () => {
   const { parentId: parentIdParam, subId: subIdParam } = useParams();

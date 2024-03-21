@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import ProductList from 'components/ProductList';
 import Spinner from 'components/Spinner';
+import ProductList from 'components/feature/ProductList';
 
 import { useAxios } from 'hooks/useAxios';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
