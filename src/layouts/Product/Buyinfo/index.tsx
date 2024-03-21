@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ProductOption from './OptionSelector/ProductOption';
 import ProductQuantity from './QuantitySelector/ProductQuantity';
@@ -70,23 +70,42 @@ const mockData = {
   ],
 };
 
+type Option = {
+  id: number;
+  name: string;
+};
+
 // 수량 + 가격 계산 컴포넌트
 const BuyInfo = () => {
   const [quantity, setQuantity] = useState<number>(1);
+  const [selectedOption, setSelectedOption] = useState<Option | false>(false);
+  const [optionName, setOptionName] = useState<string>(mockData.optionTitle);
+
+  useEffect(() => {
+    if (selectedOption) {
+      setOptionName(selectedOption.name);
+    } else {
+      setOptionName(mockData.optionTitle);
+    }
+  }, [selectedOption]);
+
+  const handleOptionClear = () => setSelectedOption(false);
 
   return (
     <section className={styles.area_buy_info}>
-      {mockData.isOption ? (
+      {mockData.isOption && (
         <ProductOption
           optionTitle={mockData.optionTitle}
           options={mockData.options}
-          quantity={quantity}
-          setQuantity={setQuantity}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
         />
-      ) : (
+      )}
+      {(!mockData.isOption || selectedOption) && (
         <ProductQuantity
-          hasOption={false}
-          optionName={mockData.productTitle}
+          hasOption={Boolean(selectedOption)}
+          optionName={optionName}
+          handleOptionClear={handleOptionClear}
           quantity={quantity}
           setQuantity={setQuantity}
         />

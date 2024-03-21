@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 
-import ProductQuantity from '../QuantitySelector/ProductQuantity';
-
 import styles from './ProductOption.module.scss';
 
 // 나중에 타입정의해서 types 폴더로 갈 예정
@@ -14,20 +12,17 @@ type Option = {
 type ProductOptionProps = {
   optionTitle: string;
   options: Option[];
-  quantity: number;
-  setQuantity: Dispatch<SetStateAction<number>>;
+  selectedOption: Option | false;
+  setSelectedOption: Dispatch<SetStateAction<Option | false>>;
 };
 
 const ProductOption = ({
   optionTitle,
   options,
-  quantity,
-  setQuantity,
+  selectedOption,
+  setSelectedOption,
 }: ProductOptionProps) => {
   const [isToggled, setIsToggled] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<
-    false | { id: number; name: string }
-  >(false);
 
   useEffect(() => {
     if (selectedOption) {
@@ -40,8 +35,6 @@ const ProductOption = ({
   const handleToggle = () => selectedOption && setIsToggled(!isToggled);
 
   const handleOptionChange = (option: Option) => setSelectedOption(option);
-
-  const handleOptionClear = () => setSelectedOption(false);
 
   return (
     <section className={styles.area_option}>
@@ -69,15 +62,6 @@ const ProductOption = ({
           </li>
         ))}
       </ul>
-      {selectedOption && (
-        <ProductQuantity
-          hasOption
-          optionName={selectedOption.name}
-          handleOptionClear={handleOptionClear}
-          quantity={quantity}
-          setQuantity={setQuantity}
-        />
-      )}
     </section>
   );
 };
