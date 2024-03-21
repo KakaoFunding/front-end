@@ -93,23 +93,25 @@ const BuyInfo = () => {
 
   return (
     <section className={styles.area_buy_info}>
-      {mockData.isOption && (
-        <ProductOption
-          optionTitle={mockData.optionTitle}
-          options={mockData.options}
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-        />
-      )}
-      {(!mockData.isOption || selectedOption) && (
-        <ProductQuantity
-          hasOption={Boolean(selectedOption)}
-          optionName={optionName}
-          handleOptionClear={handleOptionClear}
-          quantity={quantity}
-          setQuantity={setQuantity}
-        />
-      )}
+      <section className={styles.area_option}>
+        {mockData.isOption && (
+          <ProductOption
+            optionTitle={mockData.optionTitle}
+            options={mockData.options}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+          />
+        )}
+        {(!mockData.isOption || selectedOption) && (
+          <ProductQuantity
+            hasOption={Boolean(selectedOption)}
+            optionName={optionName}
+            handleOptionClear={handleOptionClear}
+            quantity={quantity}
+            setQuantity={setQuantity}
+          />
+        )}
+      </section>
       {/* 계산 컴포넌트 */}
     </section>
   );

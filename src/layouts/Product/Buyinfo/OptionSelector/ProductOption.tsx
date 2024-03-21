@@ -37,7 +37,7 @@ const ProductOption = ({
   const handleOptionChange = (option: Option) => setSelectedOption(option);
 
   return (
-    <section className={styles.area_option}>
+    <section>
       <div className={clsx(styles.default, styles.notice)}>
         선물 받은 친구가 직접 옵션 변경 가능하니 안심하세요!
       </div>
