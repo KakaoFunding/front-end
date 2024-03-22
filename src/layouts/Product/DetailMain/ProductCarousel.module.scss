@@ -1,9 +1,5 @@
 @import 'styles/mixins.module';
 
-.thumb {
-  @include size(450px, 450px, 0, 0);
-}
-
 .dots {
   @include size(60px, 60px, 0, 0);
 

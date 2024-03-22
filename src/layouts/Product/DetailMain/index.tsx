@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import { formatNumberWithComma } from '../../../utils/format';
+import { formatNumberWidhUnit } from 'utils/format';
 
-import ProductDetailsCarousel from './ProductDetailsCarousel';
+import ProductCarousel from './ProductCarousel';
 
 import styles from './index.module.scss';
 
+// TODO : 타입
 const mockData = {
   img: [
     'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20221126161239_5038b9a02a4545918505695f3aa5061d.jpg',
@@ -24,33 +25,26 @@ const mockData = {
 
 const DetailMain = () => {
   return (
-    <section className={styles.area_detail_main}>
-      <section className={styles.wrapper_thumb}>
-        <ProductDetailsCarousel imgs={mockData.img} />
-      </section>
+    <section className={styles.area_main}>
+      <ProductCarousel imgs={mockData.img} className={styles.caruousel} />
       <section className={styles.wrapper_info}>
-        <section className={styles.prod_desc}>
+        <section className={styles.desc_prod}>
           <div className={styles.title}>{mockData.title}</div>
-          <div className={styles.origin}>{mockData.origin}</div>
-          <div
-            className={styles.price}
-          >{`${formatNumberWithComma(mockData.price)}원`}</div>
+          <div>{formatNumberWidhUnit(mockData.price)}</div>
         </section>
-        <section className={styles.brand_desc}>
-          <div className={styles.wrapper_brand}>
-            <Link
-              to={`../brand/${mockData.brandId}`}
-              className={styles.link_brand}
-            >
-              <img
-                className={styles.img_thmb}
-                src={mockData.brandImg}
-                alt={`${mockData.brandName}브랜드 이미지`}
-              />
-              <span className={styles.txt_name}>{mockData.brandName}</span>
-              <span className={styles.ico}>ss</span>
-            </Link>
-          </div>
+        <section className={styles.desc_brand}>
+          <Link
+            to={`/brand/${mockData.brandId}`}
+            className={styles.wrapper_brand}
+          >
+            <img
+              src={mockData.brandImg}
+              alt={`${mockData.brandName}브랜드 이미지`}
+              className={styles.img_brand}
+            />
+            <span className={styles.txt_name}>{mockData.brandName}</span>
+            <span className={styles.ico} />
+          </Link>
         </section>
       </section>
     </section>
