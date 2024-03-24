@@ -1,59 +1,6 @@
-@import 'styles/mixins.module';
-
 .area_detail_contents {
   width: 100%;
   margin-top: 40px;
   border: 1px solid #e1e2e3;
   box-sizing: border-box;
-}
-
-.wrapper_product_description {
-  margin-top: 20px;
-  width: 100%;
-  overflow: hidden;
-
-  .img {
-    width: 100%;
-  }
-}
-
-.wrapper_gift_review {
-  @include center(row);
-
-  height: 100vh;
-  font-size: 40px;
-  font-weight: 700;
-}
-
-.wrapper_detail_info {
-  .title {
-    padding: 29px 29px 24px;
-    border: 1px solid #e1e2e3;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    color: #111;
-  }
-
-  .description {
-    padding: 29px 29px 24px;
-    border: 1px solid #e1e2e3;
-    line-height: 22px;
-    color: #444;
-  }
-
-  .table {
-    .table_title {
-      background-color: #f3f4f5;
-      width: 33%;
-    }
-
-    .table_title,
-    .table_contents {
-      padding: 15px 27px 11px;
-      font-size: 14px;
-      color: #444;
-      border: 1px solid #e9e9ea;
-    }
-  }
 }
