@@ -1,0 +1,59 @@
+@import 'styles/mixins.module';
+
+.wrapper_bundle {
+  .ico_funding {
+    @include size(24px, 24px, 5px, 0);
+
+    background-image: url('assets/coin.png');
+    background-size: cover;
+  }
+
+  .ico_cart {
+    @include ico-pd-detail(-140px, -410px, 24px, 24px);
+
+    margin-right: 5px;
+  }
+}
+
+.wrapper_gift {
+  @include center(row);
+
+  justify-content: space-evenly;
+
+  .btn_wish {
+    @include center(column);
+    @include size(60px, 60px, 0, 0);
+
+    font-size: 11px;
+    font-weight: 100;
+    color: #fff;
+    background-color: #444;
+
+    .ico_wish {
+      @include ico-pd-detail(-110px, -420px, 26px, 22px);
+
+      margin-bottom: 5px;
+    }
+  }
+
+  .btn_gift {
+    @include size(40%, 60px, 0 0 0 5px, 0);
+
+    .img_profile {
+      @include size(32px, 32px, 0, 0);
+
+      position: relative;
+      background-image: url('assets/profile_noimg.png');
+      background-size: cover;
+      margin: 0 6px 0 0;
+    }
+
+    .ico_profile {
+      @include ico-pd-detail(-150px, -440px, 16px, 16px);
+
+      position: absolute;
+      bottom: 0;
+      right: -4px;
+    }
+  }
+}
