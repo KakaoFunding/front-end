@@ -1,30 +1,6 @@
-# React + TypeScript + Vite
+## 카카오톡 펀딩하기
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### [🛠️ 기술 스택](https://juicy-helicopter-abc.notion.site/8abb23b60b584ac2a52780a1623870cc?pvs=4)
+### [✨ Git 커밋 컨벤션](https://github.com/KakaoFunding/.github/wiki/Commit-%EC%BB%A8%EB%B2%A4%EC%85%98)
+### [👩‍💻 JS 및 React 코드 컨벤션 바로가기](https://github.com/KakaoFunding/.github/wiki/JS-%EB%B0%8F-React-%EC%BD%94%EB%93%9C-%EC%BB%A8%EB%B2%A4%EC%85%98)
+### [🎨 스타일 컨벤션 바로가기](https://github.com/KakaoFunding/.github/wiki/%EC%8A%A4%ED%83%80%EC%9D%BC-%EC%BB%A8%EB%B2%A4%EC%85%98)
