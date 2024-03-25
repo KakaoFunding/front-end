@@ -19,11 +19,21 @@ const mockData = {
 const ButtonBundles = () => {
   return (
     <section className={styles.wrapper_bundle}>
-      <Button color="white" onClick={handleClickFunding}>
+      {/* TODO : 로그인 되었을 때만 보이게 */}
+      <Button
+        color="white"
+        onClick={handleClickFunding}
+        className={styles.btn_funding}
+      >
         <span className={styles.ico_funding} />
         펀딩 아이템으로 등록하기
       </Button>
-      <Button color="white" onClick={handleClickCart}>
+      {/* TODO : 로그인 되었을 때만 보이게 */}
+      <Button
+        color="white"
+        onClick={handleClickCart}
+        className={styles.btn_cart}
+      >
         <span className={styles.ico_cart} />
         선물상자 담기
       </Button>
@@ -45,6 +55,7 @@ const ButtonBundles = () => {
           className={styles.btn_gift}
         >
           <span className={styles.img_profile}>
+            {/* TODO : 로그인 되었을 때만 보이게 */}
             <span className={styles.ico_profile} />
           </span>
           선물하기

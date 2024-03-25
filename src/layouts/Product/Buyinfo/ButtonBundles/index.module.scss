@@ -1,17 +1,25 @@
 @import 'styles/mixins.module';
 
 .wrapper_bundle {
-  .ico_funding {
-    @include size(24px, 24px, 5px, 0);
+  .btn_funding {
+    height: 49px;
 
-    background-image: url('assets/coin.png');
-    background-size: cover;
+    .ico_funding {
+      @include size(24px, 24px, 5px, 0);
+
+      background-image: url('assets/coin.png');
+      background-size: cover;
+    }
   }
 
-  .ico_cart {
-    @include ico-pd-detail(-140px, -410px, 24px, 24px);
+  .btn_cart {
+    height: 49px;
 
-    margin-right: 5px;
+    .ico_cart {
+      @include ico-pd-detail(-140px, -410px, 24px, 24px);
+
+      margin-right: 5px;
+    }
   }
 }
 

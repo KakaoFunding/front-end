@@ -1,16 +1,19 @@
+@import 'styles/mixins.module';
+
 .area_buy_info {
-  padding-top: 30px;
-  position: fixed;
-  right: 40px;
-  width: 30%;
-  height: 100%;
-  padding-left: 20px;
-  border-left: 1px solid #ededed;
+  @include center(column);
+
+  justify-content: space-between;
+  height: 80vh;
 }
 
-.area_option {
-  width: 350px;
-  max-height: 290px;
+.area_selector {
+  width: 100%;
+  max-height: 250px;
   overflow: auto;
   border: 1px solid #e1e2e3;
+}
+
+.area_bundles {
+  width: 100%;
 }

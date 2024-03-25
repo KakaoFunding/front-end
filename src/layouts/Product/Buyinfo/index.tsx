@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Option } from 'types/product';
 
+import ButtonBundles from './ButtonBundles';
 import ProductOption from './OptionSelector';
 import ProductQuantity from './QuantitySelector';
 
@@ -90,7 +91,7 @@ const BuyInfo = () => {
 
   return (
     <section className={styles.area_buy_info}>
-      <section className={styles.area_option}>
+      <section className={styles.area_selector}>
         {mockData.hasOption && (
           <ProductOption
             optionTitle={mockData.optionTitle}
@@ -109,7 +110,9 @@ const BuyInfo = () => {
           />
         )}
       </section>
-      {/* 계산 컴포넌트 */}
+      <section className={styles.area_bundles}>
+        <ButtonBundles />
+      </section>
     </section>
   );
 };
