@@ -16,4 +16,24 @@
 
 .area_bundles {
   width: 100%;
+
+  .wrapper_price {
+    @include size(100%, 66px, 20px 0, 20px);
+    @include center(row);
+
+    justify-content: space-between;
+    border-radius: 4px;
+    background-color: #fafafa;
+
+    .txt_total {
+      font-weight: bold;
+    }
+
+    .txt_price {
+      float: right;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+  }
 }

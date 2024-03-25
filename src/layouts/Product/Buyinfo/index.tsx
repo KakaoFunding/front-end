@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { formatNumberWidhUnit } from 'utils/format';
+
 import { Option } from 'types/product';
 
 import ButtonBundles from './ButtonBundles';
@@ -10,6 +12,7 @@ import styles from './index.module.scss';
 
 // TODO : 받아올 데이터
 const mockData = {
+  price: 51000,
   hasOption: true,
   productTitle: '940 코쿤 [New & Limited]',
   optionTitle: '색상',
@@ -111,6 +114,12 @@ const BuyInfo = () => {
         )}
       </section>
       <section className={styles.area_bundles}>
+        <div className={styles.wrapper_price}>
+          <strong className={styles.txt_total}>총 결제금액</strong>
+          <strong className={styles.txt_price}>
+            {formatNumberWidhUnit(mockData.price * quantity)}
+          </strong>
+        </div>
         <ButtonBundles />
       </section>
     </section>
