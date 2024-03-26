@@ -1,5 +1,7 @@
 import Slider from 'react-slick';
 
+import SliderArrowButton from 'components/ui/SliderArrowButton';
+
 import { formatNumberWithComma } from 'utils/format';
 
 import { Category } from 'types/category';
@@ -30,6 +32,8 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
         draggable={false}
         infinite={false}
         slidesToShow={1}
+        prevArrow={<SliderArrowButton arrowType="prev" />}
+        nextArrow={<SliderArrowButton arrowType="next" />}
       >
         <ul>
           <li>브랜드1</li>
