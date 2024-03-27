@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import SliderArrowButton from 'components/ui/SliderArrowButton';
+import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
 import { formatNumberWithComma } from 'utils/format';
@@ -18,7 +19,7 @@ type BrandTabProps = {
 };
 
 const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
-  const { data, sendRequest } = useAxios<Brand[]>({
+  const { data, isLoading, sendRequest } = useAxios<Brand[]>({
     method: 'get',
     url: '/brands',
     params: {
@@ -41,6 +42,7 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
         </div>
         <div>정렬 드롭다운</div>
       </div>
+      {isLoading && <Spinner />}
       <Slider
         arrows
         draggable
