@@ -23,7 +23,7 @@ const ButtonBundles = () => {
     <section className={styles.wrapper_bundle}>
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
-        color="white"
+        color="yellow"
         onClick={handleClickFunding}
         className={styles.btn_funding}
       >
