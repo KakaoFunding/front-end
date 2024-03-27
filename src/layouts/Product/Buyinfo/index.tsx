@@ -90,7 +90,10 @@ const BuyInfo = () => {
     }
   }, [selectedOption]);
 
-  const handleOptionClear = () => setSelectedOption(false);
+  const handleOptionClear = () => {
+    setSelectedOption(false);
+    setQuantity(1);
+  };
 
   return (
     <section className={styles.area_buy_info}>
