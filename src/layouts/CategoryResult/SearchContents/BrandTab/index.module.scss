@@ -1,3 +1,5 @@
+@import 'styles/mixins.module';
+
 $height: 33px;
 
 .wrapper_title {
@@ -25,4 +27,26 @@ $height: 33px;
   vertical-align: top;
   letter-spacing: -1px;
   margin-left: 8px;
+}
+
+.item_brand {
+  height: 160px;
+  padding: 30px 0;
+  border-top: 1px solid #ededed;
+  text-align: center;
+
+  .img_logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 29px 12px;
+    object-fit: cover;
+  }
+
+  .txt_name {
+    font-size: 14px;
+    color: #666;
+    padding: 0 8px;
+
+    @include text-ellipsis(1);
+  }
 }
