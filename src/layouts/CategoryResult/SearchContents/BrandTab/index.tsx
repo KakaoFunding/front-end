@@ -31,7 +31,7 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
   }, []);
 
   return (
-    <>
+    <section className={styles.area_brand_tab}>
       <div className={styles.wrapper_title}>
         <div>
           <h3 className={styles.text_title}>{tabName}</h3>
@@ -51,6 +51,7 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
         slidesPerRow={10}
         prevArrow={<SliderArrowButton arrowType="prev" />}
         nextArrow={<SliderArrowButton arrowType="next" />}
+        className={styles.wrapper_slider}
       >
         {data?.map((brand: Brand) => (
           <li key={brand.brandId} className={styles.item_brand}>
@@ -65,7 +66,7 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
           </li>
         ))}
       </Slider>
-    </>
+    </section>
   );
 };
 
