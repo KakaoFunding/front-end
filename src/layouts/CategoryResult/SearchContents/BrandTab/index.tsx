@@ -44,7 +44,7 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
       </div>
       {isLoading && <Spinner />}
       <Slider
-        arrows
+        arrows={data?.length > 40}
         draggable
         speed={300}
         infinite={false}
