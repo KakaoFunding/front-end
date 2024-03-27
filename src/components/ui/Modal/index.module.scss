@@ -11,9 +11,9 @@
   overflow: hidden;
 
   .modal {
+    @include size(500px, 500px, 0, 0);
+
     position: relative;
-    width: 500px;
-    height: 500px;
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 0 40px 0 rgba(0, 0, 0, 12%);
