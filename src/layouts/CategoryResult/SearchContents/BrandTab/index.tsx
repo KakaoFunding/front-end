@@ -43,7 +43,8 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
       </div>
       <Slider
         arrows
-        draggable={false}
+        draggable
+        speed={300}
         infinite={false}
         slidesToShow={1}
         slide="ul"
