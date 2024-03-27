@@ -1,5 +1,7 @@
 import { Button } from 'components/ui/Button';
 
+import { formatNumberWithPlus } from 'utils/format';
+
 import styles from './index.module.scss';
 
 const handleClickFunding = () => console.log('펀딩아이템으로 등록하기');
@@ -13,7 +15,7 @@ const handleClickGiftForMe = () => console.log('나에게 선물하기');
 const handleClickGiftForFriend = () => console.log('친구에게 선물하기');
 
 const mockData = {
-  wishCnt: '999,999+',
+  wishCnt: 999999,
 };
 
 const ButtonBundles = () => {
@@ -40,7 +42,7 @@ const ButtonBundles = () => {
       <section className={styles.wrapper_gift}>
         <Button className={styles.btn_wish} onClick={handleClickGiftWish}>
           <span className={styles.ico_wish} />
-          {mockData.wishCnt}
+          {formatNumberWithPlus(mockData.wishCnt, 100000)}
         </Button>
         <Button
           color="black"
