@@ -50,6 +50,7 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
         slide="ul"
         rows={4}
         slidesPerRow={10}
+        lazyLoad="progressive"
         prevArrow={<SliderArrowButton arrowType="prev" />}
         nextArrow={<SliderArrowButton arrowType="next" />}
         className={styles.wrapper_slider}
