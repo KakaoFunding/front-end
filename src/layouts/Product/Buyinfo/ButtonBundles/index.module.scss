@@ -51,9 +51,9 @@
       @include size(32px, 32px, 0, 0);
 
       position: relative;
+      margin-right: 6px;
       background-image: url('assets/profile_noimg.png');
       background-size: cover;
-      margin: 0 6px 0 0;
     }
 
     .ico_profile {
