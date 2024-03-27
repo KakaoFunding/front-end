@@ -8,6 +8,7 @@ import { Brand } from 'types/Brand';
 import { Category } from 'types/category';
 import { Tab } from 'types/tab';
 
+import BrandSummary from './BrandSummary';
 import BrandTab from './BrandTab';
 import ProductTab from './ProductTab';
 
@@ -33,7 +34,20 @@ const SearchContents = ({ categoryId }: SearchResultProps) => {
   }, [categoryId]);
 
   const tabs: Tab[] = [
-    { id: 0, name: '전체', content: '전체~' },
+    {
+      id: 0,
+      name: '전체',
+      content: (
+        <>
+          <BrandSummary
+            tabName="브랜드"
+            brands={brands?.slice(0, 9) ?? []}
+            isLoading={isBrandsFetching}
+          />
+          <ProductTab tabName="상품" categoryId={categoryId} />
+        </>
+      ),
+    },
     {
       id: 1,
       name: '상품',
