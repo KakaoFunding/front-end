@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { formatNumberWidhUnit } from 'utils/format';
+import { formatNumberWithUnit } from 'utils/format';
 
 import { Option } from 'types/product';
 
@@ -117,7 +117,7 @@ const BuyInfo = () => {
         <div className={styles.wrapper_price}>
           <strong className={styles.txt_total}>총 결제금액</strong>
           <strong className={styles.txt_price}>
-            {formatNumberWidhUnit(mockData.price * quantity)}
+            {formatNumberWithUnit(mockData.price * quantity)}
           </strong>
         </div>
         <ButtonBundles />
