@@ -40,3 +40,12 @@
 
   margin: 0 23px;
 }
+
+.btn_arrow:disabled {
+  pointer-events: none;
+
+  .ico_prev,
+  .ico_next {
+    opacity: 0.1;
+  }
+}
