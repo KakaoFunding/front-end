@@ -59,7 +59,7 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
       >
         {data?.map((brand: Brand) => (
           <li key={brand.brandId} className={styles.item_brand}>
-            <Link to={`/products/brands?brandId=${brand.brandId}`}>
+            <Link to={`/brand/${brand.brandId}`}>
               <img
                 src={brand.iconPhoto}
                 alt={brand.name}
