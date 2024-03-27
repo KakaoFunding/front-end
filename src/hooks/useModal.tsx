@@ -1,12 +1,9 @@
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import Modal from 'components/ui/Modal';
 
-type ModalComponentProps = {
-  children: ReactNode;
-  className: string;
-};
+import { ModalComponentProps } from 'types/modal';
 
 export const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);

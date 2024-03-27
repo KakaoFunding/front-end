@@ -1,13 +1,8 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+
+import { ModalProps } from 'types/modal';
 
 import styles from './index.module.scss';
-
-type ModalProps = {
-  onClose: () => void;
-  children: ReactNode;
-  className: string;
-};
 
 const Modal = ({ onClose, children, className }: ModalProps) => {
   return (
