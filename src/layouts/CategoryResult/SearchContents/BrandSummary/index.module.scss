@@ -1,21 +1,11 @@
-@import 'styles/mixins.module';
+@import '../index.module';
 
-$height: 33px;
-
-.wrapper_title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 0 20px;
+.wrapper_header {
+  @include wrapper-tab-head;
 }
 
-.text_title {
-  display: inline-block;
-  font-size: 24px;
-  color: #000;
-  font-weight: 700;
-  height: $height;
-  line-height: $height;
+.txt_title {
+  @include txt-tab-label;
 }
 
 .list_brand {
@@ -28,18 +18,12 @@ $height: 33px;
   text-align: center;
 
   .img_logo {
-    width: 70px;
-    height: 70px;
-    margin: 0 29px 12px;
-    object-fit: cover;
+    @include img-brand-logo;
+
     border-radius: 4px;
   }
 
   .txt_name {
-    font-size: 14px;
-    color: #666;
-    padding: 0 8px;
-
-    @include text-ellipsis(1);
+    @include txt-brand-name;
   }
 }

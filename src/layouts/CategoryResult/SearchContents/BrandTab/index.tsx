@@ -19,10 +19,10 @@ type BrandTabProps = {
 const BrandTab = ({ tabName, brands, isLoading }: BrandTabProps) => {
   return (
     <section className={styles.area_brand_tab}>
-      <div className={styles.wrapper_title}>
+      <div className={styles.wrapper_header}>
         <div>
-          <h3 className={styles.text_title}>{tabName}</h3>
-          <span className={styles.text_count}>
+          <h3 className={styles.txt_title}>{tabName}</h3>
+          <span className={styles.txt_count}>
             {formatNumberWithComma(brands.length)}
           </span>
         </div>

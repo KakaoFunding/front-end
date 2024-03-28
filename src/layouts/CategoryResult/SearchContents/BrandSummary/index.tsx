@@ -15,8 +15,8 @@ type BrandSummaryProps = {
 const BrandSummary = ({ tabName, brands, isLoading }: BrandSummaryProps) => {
   return (
     <section>
-      <div className={styles.wrapper_title}>
-        <h3 className={styles.text_title}>{tabName}</h3>
+      <div className={styles.wrapper_header}>
+        <h3 className={styles.txt_title}>{tabName}</h3>
         <div>전체보기</div>
       </div>
       {isLoading && <Spinner />}
