@@ -6,9 +6,19 @@
     display: flex;
     width: 70%;
     flex-direction: column;
+    padding-right: 30px;
+    border-right: 0.5px solid #ededed;
   }
 
   .area_buy {
-    width: 30%;
+    position: fixed;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 380px;
+    margin-left: 450px;
+    padding: 111px 0 30px 29px;
+    background-color: #fff;
+    transform: translate(-50%);
   }
 }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { formatNumberWidhUnit } from 'utils/format';
+import { formatNumberWithUnit } from 'utils/format';
 
 import ProductCarousel from './ProductCarousel';
 
@@ -30,7 +30,7 @@ const DetailMain = () => {
       <section className={styles.wrapper_info}>
         <section className={styles.desc_prod}>
           <div className={styles.title}>{mockData.title}</div>
-          <div>{formatNumberWidhUnit(mockData.price)}</div>
+          <div>{formatNumberWithUnit(mockData.price)}</div>
         </section>
         <section className={styles.desc_brand}>
           <Link
