@@ -11,8 +11,11 @@ import 'styles/hardreset.css';
 
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
+import Funding from 'pages/Funding';
 import GiftBox from 'pages/GiftBox';
+import Inbox from 'pages/Inbox';
 import Product from 'pages/Product';
+import Wish from 'pages/Wish';
 
 import App from './pages/App';
 
@@ -40,15 +43,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: 'wish',
-            element: <div>위시 컴포넌트</div>,
+            element: <Wish />,
           },
           {
             path: 'funding',
-            element: <div>펀딩 컴포넌트</div>,
+            element: <Funding />,
           },
           {
             path: 'inbox',
-            element: <div>선물함 컴포넌트</div>,
+            element: <Inbox />,
           },
         ],
       },

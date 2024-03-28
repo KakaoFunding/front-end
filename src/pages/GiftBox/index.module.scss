@@ -4,6 +4,8 @@
 }
 
 .area_side {
+  display: flex;
+  flex-direction: column;
   width: 346px;
   border-left: 1px solid #ededed;
   border-right: 1px solid #ededed;
