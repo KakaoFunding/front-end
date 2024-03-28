@@ -20,7 +20,7 @@ const HeaderNav = () => {
           </a>
         </li>
         <li className={styles.list_item}>
-          <a className={styles.link} href="/giftbox">
+          <a className={styles.link} href="/giftbox/inbox">
             선물함
           </a>
         </li>

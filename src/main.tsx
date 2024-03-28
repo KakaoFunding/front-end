@@ -33,6 +33,7 @@ const router = createBrowserRouter([
     element: <App />,
     // errorElement: <NotFound />,
     children: [
+      { path: 'home', element: <App /> },
       {
         path: '/giftbox',
         element: <Navigate to="/giftbox/inbox" />,
