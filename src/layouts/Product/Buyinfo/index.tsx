@@ -76,8 +76,10 @@ const mockData = {
   ],
 };
 
+type BuyInfoProps = { isVisibleSelector: boolean };
+
 // 수량 + 가격 계산 컴포넌트
-const BuyInfo = () => {
+const BuyInfo = ({ isVisibleSelector }: BuyInfoProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [optionName, setOptionName] = useState<string>(mockData.optionTitle);
   const [selectedOption, setSelectedOption] = useState<Option | false>(false);
@@ -96,36 +98,38 @@ const BuyInfo = () => {
   };
 
   return (
-    <section className={styles.area_buy_info}>
-      <section className={styles.area_selector}>
-        {mockData.hasOption && (
-          <ProductOption
-            optionTitle={mockData.optionTitle}
-            options={mockData.options}
-            selectedOption={selectedOption}
-            setSelectedOption={setSelectedOption}
-          />
-        )}
-        {(!mockData.hasOption || selectedOption) && (
-          <ProductQuantity
-            hasOption={mockData.hasOption}
-            optionName={optionName}
-            handleOptionClear={handleOptionClear}
-            quantity={quantity}
-            setQuantity={setQuantity}
-          />
-        )}
+    !isVisibleSelector && (
+      <section className={styles.area_buy_info}>
+        <section className={styles.area_selector}>
+          {mockData.hasOption && (
+            <ProductOption
+              optionTitle={mockData.optionTitle}
+              options={mockData.options}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
+          )}
+          {(!mockData.hasOption || selectedOption) && (
+            <ProductQuantity
+              hasOption={mockData.hasOption}
+              optionName={optionName}
+              handleOptionClear={handleOptionClear}
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
+          )}
+        </section>
+        <section className={styles.area_bundles}>
+          <div className={styles.wrapper_price}>
+            <strong className={styles.txt_total}>총 결제금액</strong>
+            <strong className={styles.txt_price}>
+              {formatNumberWithUnit(mockData.price * quantity)}
+            </strong>
+          </div>
+          <ButtonBundles />
+        </section>
       </section>
-      <section className={styles.area_bundles}>
-        <div className={styles.wrapper_price}>
-          <strong className={styles.txt_total}>총 결제금액</strong>
-          <strong className={styles.txt_price}>
-            {formatNumberWithUnit(mockData.price * quantity)}
-          </strong>
-        </div>
-        <ButtonBundles />
-      </section>
-    </section>
+    )
   );
 };
 
