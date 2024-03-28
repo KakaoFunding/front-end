@@ -1,28 +1,13 @@
-$height: 33px;
+@import '../index.module';
 
-.wrapper_title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 0 20px;
+.wrapper_header {
+  @include wrapper-tab-head;
 }
 
-.text_title {
-  display: inline-block;
-  font-size: 24px;
-  color: #000;
-  font-weight: 700;
-  height: $height;
-  line-height: $height;
+.txt_title {
+  @include txt-tab-label;
 }
 
-.text_count {
-  display: inline-block;
-  font-size: 18px;
-  color: #333;
-  font-weight: 400;
-  line-height: $height;
-  vertical-align: top;
-  letter-spacing: -1px;
-  margin-left: 8px;
+.txt_count {
+  @include txt-tab-count;
 }

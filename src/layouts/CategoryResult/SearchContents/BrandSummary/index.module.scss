@@ -8,26 +8,19 @@
   @include txt-tab-label;
 }
 
-.txt_count {
-  @include txt-tab-count;
-}
-
-.area_brand_tab {
-  padding-bottom: 120px;
-}
-
-.wrapper_slider {
-  margin-bottom: 60px;
-}
-
-.item_brand {
-  height: 160px;
-  padding: 30px 0;
-  border-top: 1px solid #ededed;
+.list_brand {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #ededed;
+  padding: 30px 27px 20px;
+  margin-bottom: 30px;
   text-align: center;
 
   .img_logo {
     @include img-brand-logo;
+
+    border-radius: 4px;
   }
 
   .txt_name {
