@@ -11,12 +11,9 @@
   overflow: hidden;
 
   .modal {
-    @include size(500px, 500px, 0, 0);
-
     position: relative;
     background-color: #fff;
     border-radius: 20px;
-    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 12%);
 
     .btn_close {
       position: absolute;
@@ -27,4 +24,8 @@
       @include ico-layer(-120px, -60px, 24px, 24px);
     }
   }
+}
+
+.on {
+  background-color: rgba(0, 0, 0, 40%);
 }

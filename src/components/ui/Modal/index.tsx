@@ -9,7 +9,10 @@ const Modal = ({ onClose, children, className, isOpen }: ModalProps) => {
   return createPortal(
     isOpen && (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-      <div className={styles.wrapper_modal} onClick={onClose}>
+      <div
+        className={clsx(styles.wrapper_modal, { [styles.on]: isOpen })}
+        onClick={onClose}
+      >
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(styles.modal, className)}
