@@ -7,4 +7,5 @@ export type ModalComponentProps = {
 
 export type ModalProps = ModalComponentProps & {
   onClose: () => void;
+  isOpen: boolean;
 };
