@@ -56,11 +56,22 @@
   }
 }
 
-@mixin nav-ico($x, $y, $width, $height) {
+@mixin ico-nav($x, $y, $width, $height) {
   display: inline-block;
   font-size: 0;
   background-image: url('assets/ico_nav.png');
   background-size: 200px 170px; // 배경 이미지 전체 크기 설정
+  background-position: $x $y; // X, Y
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+}
+
+@mixin ico-layer($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('assets/ico_layer.png');
+  background-size: 250px 170px;
   background-position: $x $y; // X, Y
   background-repeat: no-repeat;
   width: $width;

@@ -10,7 +10,7 @@
 }
 
 .ico_logout {
-  @include nav-ico(-130px, -80px, 10px, 6px);
+  @include ico-nav(-130px, -80px, 10px, 6px);
 
   margin-left: 7px;
 }
