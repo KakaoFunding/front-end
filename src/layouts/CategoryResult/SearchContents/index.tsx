@@ -3,6 +3,7 @@ import Tabs from 'components/ui/Tabs';
 import { Category } from 'types/category';
 import { Tab } from 'types/tab';
 
+import BrandTab from './BrandTab';
 import ProductTab from './ProductTab';
 
 type SearchResultProps = {
@@ -17,7 +18,11 @@ const SearchContents = ({ categoryId }: SearchResultProps) => {
       name: '상품',
       content: <ProductTab tabName="상품" categoryId={categoryId} />,
     },
-    { id: 2, name: '브랜드', content: '브랜드~' },
+    {
+      id: 2,
+      name: '브랜드',
+      content: <BrandTab tabName="브랜드" categoryId={categoryId} />,
+    },
   ];
 
   return (
