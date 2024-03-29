@@ -1,0 +1,9 @@
+@import 'styles/mixins.module';
+
+.wrapper_selector {
+  @include size(100%, 150px, 0, 40px 120px);
+  @include center(row);
+
+  justify-content: start;
+  background-color: #fafafa;
+}
