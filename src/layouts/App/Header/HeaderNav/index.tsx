@@ -10,17 +10,17 @@ const HeaderNav = () => {
           </a>
         </li>
         <li className={styles.list_item}>
-          <a className={styles.link} href="/giftbox/wish">
+          <a className={styles.link} href="/mypage/wish">
             위시
           </a>
         </li>
         <li className={styles.list_item}>
-          <a className={styles.link} href="/giftbox/funding">
+          <a className={styles.link} href="/mypage/funding">
             펀딩
           </a>
         </li>
         <li className={styles.list_item}>
-          <a className={styles.link} href="/giftbox/inbox">
+          <a className={styles.link} href="/mypage/giftbox">
             선물함
           </a>
         </li>

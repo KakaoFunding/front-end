@@ -12,8 +12,8 @@ import 'styles/hardreset.css';
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
-import GiftBox from 'pages/GiftBox';
-import Inbox from 'pages/Inbox';
+import Giftbox from 'pages/Giftbox';
+import MyPage from 'pages/MyPage';
 import Product from 'pages/Product';
 import Wish from 'pages/Wish';
 
@@ -35,12 +35,12 @@ const router = createBrowserRouter([
     children: [
       { path: 'home', element: <App /> },
       {
-        path: '/giftbox',
-        element: <Navigate to="/giftbox/inbox" />,
+        path: '/mypage',
+        element: <Navigate to="/mypage/giftbox" />,
       },
       {
-        path: '/giftbox',
-        element: <GiftBox />,
+        path: '/mypage',
+        element: <MyPage />,
         children: [
           {
             path: 'wish',
@@ -51,8 +51,8 @@ const router = createBrowserRouter([
             element: <Funding />,
           },
           {
-            path: 'inbox',
-            element: <Inbox />,
+            path: 'giftbox',
+            element: <Giftbox />,
           },
         ],
       },
