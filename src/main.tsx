@@ -9,15 +9,15 @@ import {
 import 'styles/global.css';
 import 'styles/hardreset.css';
 
+import App from 'pages/App';
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
 import Giftbox from 'pages/Giftbox';
 import MyPage from 'pages/MyPage';
 import Product from 'pages/Product';
+import SearchResult from 'pages/SearchResult';
 import Wish from 'pages/Wish';
-
-import App from './pages/App';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
@@ -67,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: '/categories/:parentId/subcategories/:subId',
         element: <CategoryResult />,
+      },
+      {
+        path: '/search/result',
+        element: <SearchResult />,
       },
     ],
   },
