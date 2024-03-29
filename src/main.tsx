@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from 'react-router-dom';
 
 import 'styles/global.css';
 import 'styles/hardreset.css';
 
+import App from 'pages/App';
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
+import Funding from 'pages/Funding';
+import Giftbox from 'pages/Giftbox';
+import MyPage from 'pages/MyPage';
 import Product from 'pages/Product';
 import SearchResult from 'pages/SearchResult';
-
-import App from './pages/App';
+import Wish from 'pages/Wish';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
@@ -26,6 +33,29 @@ const router = createBrowserRouter([
     element: <App />,
     // errorElement: <NotFound />,
     children: [
+      { path: 'home', element: <App /> },
+      {
+        path: '/mypage',
+        element: <Navigate to="/mypage/giftbox" />,
+      },
+      {
+        path: '/mypage',
+        element: <MyPage />,
+        children: [
+          {
+            path: 'wish',
+            element: <Wish />,
+          },
+          {
+            path: 'funding',
+            element: <Funding />,
+          },
+          {
+            path: 'giftbox',
+            element: <Giftbox />,
+          },
+        ],
+      },
       {
         path: '/product/:productId',
         element: <Product />,

@@ -1,0 +1,60 @@
+@import 'styles/mixins.module';
+
+$height: 33px;
+
+.wrapper_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0 20px;
+}
+
+.text_title {
+  display: inline-block;
+  font-size: 24px;
+  color: #000;
+  font-weight: 700;
+  height: $height;
+  line-height: $height;
+}
+
+.text_count {
+  display: inline-block;
+  font-size: 18px;
+  color: #333;
+  font-weight: 400;
+  line-height: $height;
+  vertical-align: top;
+  letter-spacing: -1px;
+  margin-left: 8px;
+}
+
+.area_brand_tab {
+  padding-bottom: 120px;
+}
+
+.wrapper_slider {
+  margin-bottom: 60px;
+}
+
+.item_brand {
+  height: 160px;
+  padding: 30px 0;
+  border-top: 1px solid #ededed;
+  text-align: center;
+
+  .img_logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 29px 12px;
+    object-fit: cover;
+  }
+
+  .txt_name {
+    font-size: 14px;
+    color: #666;
+    padding: 0 8px;
+
+    @include text-ellipsis(1);
+  }
+}
