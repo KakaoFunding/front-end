@@ -8,6 +8,7 @@ import 'styles/hardreset.css';
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Product from 'pages/Product';
+import Search from 'pages/Search';
 import SearchResult from 'pages/SearchResult';
 
 import App from './pages/App';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/categories/:parentId/subcategories/:subId',
         element: <CategoryResult />,
+      },
+      {
+        path: '/search',
+        element: <Search />,
       },
       {
         path: '/search/result',
