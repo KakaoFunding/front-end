@@ -16,6 +16,7 @@ import Funding from 'pages/Funding';
 import Giftbox from 'pages/Giftbox';
 import MyPage from 'pages/MyPage';
 import Product from 'pages/Product';
+import Search from 'pages/Search';
 import SearchResult from 'pages/SearchResult';
 import Wish from 'pages/Wish';
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: '/categories/:parentId/subcategories/:subId',
         element: <CategoryResult />,
+      },
+      {
+        path: '/search',
+        element: <Search />,
       },
       {
         path: '/search/result',
