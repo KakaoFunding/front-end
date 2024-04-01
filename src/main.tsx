@@ -13,7 +13,7 @@ import App from 'pages/App';
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
-import Giftbox from 'pages/Giftbox';
+import GiftBox from 'pages/GiftBox';
 import MyPage from 'pages/MyPage';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'giftbox',
-            element: <Giftbox />,
+            element: <GiftBox />,
           },
         ],
       },

@@ -1,5 +1,5 @@
-const Giftbox = () => {
+const GiftBox = () => {
   return <>선물함</>;
 };
 
-export default Giftbox;
+export default GiftBox;
