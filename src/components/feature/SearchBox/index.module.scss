@@ -2,6 +2,7 @@
 
 .area_search {
   min-height: 65px;
+  background-color: #fff;
 }
 
 .wrapper_input {
@@ -15,9 +16,10 @@
 }
 
 .input {
+  outline: none;
   width: 100%;
   padding: 12px;
-  padding-right: 70px;
+  padding-right: 80px;
   background-color: #f5f6f7;
   border-radius: 4px;
   font-size: 16px;
