@@ -35,11 +35,19 @@ const SearchBox = () => {
             className={styles.input}
           />
           {value && (
-            <button type="button" onClick={handleClear}>
-              clear
-            </button>
+            <div className={styles.wrapper_btn}>
+              <button
+                type="button"
+                onClick={handleClear}
+                className={styles.btn_clear}
+              >
+                <span className={styles.ico_clear}>검색어 지우기</span>
+              </button>
+              <button type="submit" className={styles.btn_submit}>
+                확인
+              </button>
+            </div>
           )}
-          {value && <button type="submit">확인</button>}
         </form>
       </div>
     </div>

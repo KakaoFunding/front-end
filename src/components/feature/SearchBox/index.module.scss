@@ -1,3 +1,5 @@
+@import 'styles/mixins.module';
+
 .area_search {
   min-height: 65px;
 }
@@ -9,13 +11,13 @@
   right: 0;
   background-color: #fff;
   width: 640px;
-  margin: 0 auto;
-  padding: 10px 0;
+  margin: 10px auto;
 }
 
 .input {
   width: 100%;
   padding: 12px;
+  padding-right: 70px;
   background-color: #f5f6f7;
   border-radius: 4px;
   font-size: 16px;
@@ -41,4 +43,30 @@
 .input::-webkit-search-results-button,
 .input::-webkit-search-results-decoration {
   display: none;
+}
+
+.wrapper_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .btn_clear {
+    height: 100%;
+    padding: 0 5px;
+
+    .ico_clear {
+      @include ico-gift2(-220px, -500px, 18px, 18px);
+    }
+  }
+
+  .btn_submit {
+    height: 100%;
+    padding: 0 10px;
+    color: #4684e9;
+    font-size: 16px;
+  }
 }
