@@ -1,0 +1,44 @@
+.area_search {
+  min-height: 65px;
+}
+
+.wrapper_input {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  width: 640px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  background-color: #f5f6f7;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #000;
+  font-weight: 700;
+
+  &::placeholder {
+    color: #c0c0c0;
+    font-weight: 400;
+  }
+}
+
+// input[type=search]의 clear button 스타일 삭제
+// ms
+.input::-ms-clear,
+.input::-ms-reveal {
+  display: none;
+}
+
+// webkit
+.input::-webkit-search-decoration,
+.input::-webkit-search-cancel-button,
+.input::-webkit-search-results-button,
+.input::-webkit-search-results-decoration {
+  display: none;
+}
