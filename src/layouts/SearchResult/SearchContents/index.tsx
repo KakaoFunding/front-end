@@ -1,11 +1,21 @@
+import { useParams } from 'react-router-dom';
+
 import Tabs from 'components/ui/Tabs';
 
 import { Tab } from 'types/tab';
 
+import ProductTab from './ProductTab';
+
 const SearchContents = () => {
+  const { keyword } = useParams();
+
   const tabs: Tab[] = [
     { id: 0, name: '전체', content: '' },
-    { id: 1, name: '상품', content: '' },
+    {
+      id: 1,
+      name: '상품',
+      content: <ProductTab tabName="상품" keyword={keyword ?? ''} />,
+    },
     { id: 2, name: '브랜드', content: '' },
   ];
 
