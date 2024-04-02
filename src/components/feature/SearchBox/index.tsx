@@ -22,11 +22,12 @@ const SearchBox = () => {
   };
 
   return (
-    <div className={styles.area_search}>
+    <section className={styles.area_search}>
       <div className={styles.wrapper_input}>
         <form role="search" onSubmit={handleSubmit}>
           <input
             type="search"
+            name="keyword"
             aria-label="검색어 입력"
             placeholder="검색어를 입력해주세요."
             autoComplete="off"
@@ -50,7 +51,7 @@ const SearchBox = () => {
           )}
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 
