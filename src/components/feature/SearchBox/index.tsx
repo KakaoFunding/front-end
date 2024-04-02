@@ -1,12 +1,20 @@
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useInput } from 'hooks/useInput';
 
 import styles from './index.module.scss';
 
 const SearchBox = () => {
-  const { value, handleInput, handleClear } = useInput('');
+  const { value, setValue, handleInput, handleClear } = useInput('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const keyword = params.get('keyword');
+    setValue(keyword ?? '');
+  }, [location.search]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
