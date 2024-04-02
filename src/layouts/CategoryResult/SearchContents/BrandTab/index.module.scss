@@ -1,17 +1,5 @@
 @import '../index.module';
 
-.wrapper_header {
-  @include wrapper-tab-head;
-}
-
-.txt_title {
-  @include txt-tab-label;
-}
-
-.txt_count {
-  @include txt-tab-count;
-}
-
 .area_brand_tab {
   padding-bottom: 120px;
 }

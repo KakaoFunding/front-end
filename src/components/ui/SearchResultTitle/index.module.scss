@@ -1,13 +1,13 @@
 $height: 33px;
 
-@mixin wrapper-tab-head {
+.wrapper_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 40px 0 20px;
 }
 
-@mixin txt-tab-label {
+.txt_title {
   display: inline-block;
   font-size: 24px;
   color: #000;
@@ -16,7 +16,7 @@ $height: 33px;
   line-height: $height;
 }
 
-@mixin txt-tab-count {
+.txt_count {
   display: inline-block;
   font-size: 18px;
   color: #333;

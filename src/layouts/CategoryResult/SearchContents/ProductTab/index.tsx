@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react';
 
 import ProductList from 'components/feature/ProductList';
+import SearchResultTitle from 'components/ui/SearchResultTitle';
 import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
-import { formatNumberWithComma } from 'utils/format';
 
 import { PaginationResponse } from 'types/PaginationResponse';
 import { Category } from 'types/category';
 import { ProductItem } from 'types/productItem';
-
-import styles from './index.module.scss';
 
 type ProductTabProps = {
   categoryId: Category['categoryId'];
@@ -54,16 +52,10 @@ const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
 
   return (
     <>
-      {/* 탭 이름(제목) + 아이템 개수(필터링에 따라 달라질 수 있음) + 정렬 드롭다운 */}
-      <div className={styles.wrapper_header}>
-        <div>
-          <h3 className={styles.txt_title}>{tabName}</h3>
-          <span className={styles.txt_count}>
-            {formatNumberWithComma(count)}
-          </span>
-        </div>
+      <SearchResultTitle tabName={tabName} count={count}>
         <div>정렬 드롭다운</div>
-      </div>
+      </SearchResultTitle>
+
       {/* 가격 필터링 */}
       <ProductList products={products} />
       {isLoading && <Spinner />}

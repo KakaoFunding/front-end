@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
+import SearchResultTitle from 'components/ui/SearchResultTitle';
 import SliderArrowButton from 'components/ui/SliderArrowButton';
 import Spinner from 'components/ui/Spinner';
-
-import { formatNumberWithComma } from 'utils/format';
 
 import { Brand } from 'types/Brand';
 
@@ -19,15 +18,10 @@ type BrandTabProps = {
 const BrandTab = ({ tabName, brands, isLoading }: BrandTabProps) => {
   return (
     <section className={styles.area_brand_tab}>
-      <div className={styles.wrapper_header}>
-        <div>
-          <h3 className={styles.txt_title}>{tabName}</h3>
-          <span className={styles.txt_count}>
-            {formatNumberWithComma(brands.length)}
-          </span>
-        </div>
+      <SearchResultTitle tabName={tabName} count={brands.length}>
         <div>정렬 드롭다운</div>
-      </div>
+      </SearchResultTitle>
+
       {isLoading && <Spinner />}
       <Slider
         arrows={brands.length > 40}

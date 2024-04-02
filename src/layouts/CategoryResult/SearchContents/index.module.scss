@@ -1,34 +1,5 @@
 @import 'styles/mixins.module';
 
-$height: 33px;
-
-@mixin wrapper-tab-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 0 20px;
-}
-
-@mixin txt-tab-label {
-  display: inline-block;
-  font-size: 24px;
-  color: #000;
-  font-weight: 700;
-  height: $height;
-  line-height: $height;
-}
-
-@mixin txt-tab-count {
-  display: inline-block;
-  font-size: 18px;
-  color: #333;
-  font-weight: 400;
-  line-height: $height;
-  vertical-align: top;
-  letter-spacing: -1px;
-  margin-left: 8px;
-}
-
 @mixin img-brand-logo {
   width: 70px;
   height: 70px;
