@@ -10,6 +10,8 @@ import { useInfinityScroll } from 'hooks/useInfinityScroll';
 import { PaginationResponse } from 'types/PaginationResponse';
 import { ProductItem } from 'types/productItem';
 
+import styles from './index.module.scss';
+
 type ProductTabProps = {
   keyword: string;
   tabName: string;
@@ -50,7 +52,7 @@ const ProductTab = ({ keyword, tabName }: ProductTabProps) => {
   }, [data]);
 
   return (
-    <>
+    <section className={styles.area_prod_tab}>
       <SearchResultTitle tabName={tabName} count={count}>
         <div>정렬 드롭다운</div>
       </SearchResultTitle>
@@ -59,7 +61,7 @@ const ProductTab = ({ keyword, tabName }: ProductTabProps) => {
       <ProductList products={products} />
       {isLoading && <Spinner />}
       {!isLoading && hasNext && <div ref={observingTarget} />}
-    </>
+    </section>
   );
 };
 

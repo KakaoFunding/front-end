@@ -11,6 +11,8 @@ import { PaginationResponse } from 'types/PaginationResponse';
 import { Category } from 'types/category';
 import { ProductItem } from 'types/productItem';
 
+import styles from './index.module.scss';
+
 type ProductTabProps = {
   categoryId: Category['categoryId'];
   tabName: string;
@@ -51,7 +53,7 @@ const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
   }, [data]);
 
   return (
-    <>
+    <section className={styles.area_prod_tab}>
       <SearchResultTitle tabName={tabName} count={count}>
         <div>정렬 드롭다운</div>
       </SearchResultTitle>
@@ -60,7 +62,7 @@ const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
       <ProductList products={products} />
       {isLoading && <Spinner />}
       {!isLoading && hasNext && <div ref={observingTarget} />}
-    </>
+    </section>
   );
 };
 
