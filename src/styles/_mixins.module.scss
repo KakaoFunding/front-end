@@ -101,3 +101,15 @@
   height: $height;
   overflow: hidden;
 }
+
+@mixin ico-gift3($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('assets/ico_gift3.png');
+  background-size: 205px 485px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+  overflow: hidden;
+}

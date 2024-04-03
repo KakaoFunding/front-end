@@ -53,14 +53,14 @@ const mockProducts = [
 
 const DetailBottom = ({ brandId }: DetailBottomProps) => {
   return (
-    <section className={styles.area_detail_bottom}>
+    <div>
       <div className={styles.wrapper_title}>
         <div className={styles.txt}>이 브랜드의 인기선물</div>
         <Link to={`../brand/${brandId}`} className={styles.button}>
           더보기<span className={styles.ico}>아이콘</span>
         </Link>
       </div>
-      {/* 추후 컴포넌트 분리 예정 */}
+      {/* TODO : 추후 컴포넌트 분리 예정 */}
       <div className={styles.wrapper_contents}>
         <ul className={styles.area_products}>
           {mockProducts.map((product) => (
@@ -70,7 +70,7 @@ const DetailBottom = ({ brandId }: DetailBottomProps) => {
           ))}
         </ul>
       </div>
-    </section>
+    </div>
   );
 };
 
