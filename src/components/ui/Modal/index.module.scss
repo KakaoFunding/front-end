@@ -4,12 +4,6 @@
   @include wh-full;
   @include center(row);
 
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  z-index: 9999;
-  overflow: hidden;
-
   .modal {
     position: relative;
     background-color: #fff;
@@ -17,6 +11,7 @@
 
     .btn_close {
       position: absolute;
+      top: 0;
       right: 14px;
     }
 
@@ -24,8 +19,4 @@
       @include ico-layer(-120px, -60px, 24px, 24px);
     }
   }
-}
-
-.on {
-  background-color: rgba(0, 0, 0, 40%);
 }

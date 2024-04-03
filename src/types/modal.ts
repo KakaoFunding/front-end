@@ -8,9 +8,11 @@ export type ModalComponentProps = {
 export type ModalProps = ModalComponentProps & {
   onClose: () => void;
   isOpen: boolean;
+  scrollPos: number;
 };
 
 export type FriendsSelectorModalProps = {
   close: () => void;
   isOpen: boolean;
+  scrollPos: number;
 };

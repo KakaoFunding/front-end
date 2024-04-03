@@ -1,18 +1,15 @@
 import { useState } from 'react';
 
 export const useModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [scrollPos, setScrollPos] = useState<number>(0);
 
-  // 배경 스크롤링 방지
-  // 필요시 훅으로 분리
-  if (isOpen) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = 'auto';
-  }
+  const open = () => {
+    setScrollPos(window.scrollY);
+    setIsOpen(true);
+  };
 
-  const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
 
-  return { isOpen, open, close };
+  return { isOpen, open, close, scrollPos };
 };
