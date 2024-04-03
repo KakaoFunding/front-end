@@ -14,6 +14,7 @@ import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
 import GiftBox from 'pages/GiftBox';
+import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
@@ -34,7 +35,8 @@ const router = createBrowserRouter([
     element: <App />,
     // errorElement: <NotFound />,
     children: [
-      { path: 'home', element: <App /> },
+      { path: '/', element: <Home /> },
+      { path: '/home', element: <Home /> },
       {
         path: '/mypage',
         element: <Navigate to="/mypage/giftbox" />,
