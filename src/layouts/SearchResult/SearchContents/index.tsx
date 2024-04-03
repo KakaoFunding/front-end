@@ -20,7 +20,9 @@ const SearchContents = () => {
     { id: 2, name: '브랜드', content: '' },
   ];
 
-  return <Tabs initialTabId={0} tabs={tabs} mode="product_list" />;
+  return (
+    <Tabs key={keyword} initialTabId={0} tabs={tabs} mode="product_list" />
+  );
 };
 
 export default SearchContents;
