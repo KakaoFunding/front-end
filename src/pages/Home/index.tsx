@@ -1,19 +1,19 @@
 import MainWrapper from 'components/ui/MainWrapper';
-import FriendsSelector from 'layouts/Home/FriendsSelector';
 import MainBrands from 'layouts/Home/MainBrands';
-import MainCategory from 'layouts/Home/MainCategory';
 import MainProducts from 'layouts/Home/MainProducts';
-import MainRanking from 'layouts/Home/MainRanking';
+import NowTrending from 'layouts/Home/NowTrending';
+import Receiver from 'layouts/Home/Receiver';
+import Thema from 'layouts/Home/Thema';
 
 import styles from './index.module.scss';
 
 const Home = () => {
   return (
     <section className={styles.area_home}>
-      <FriendsSelector />
+      <Receiver />
       <MainWrapper>
-        <MainCategory />
-        <MainRanking />
+        <Thema />
+        <NowTrending />
         <MainBrands />
         <MainProducts />
       </MainWrapper>
