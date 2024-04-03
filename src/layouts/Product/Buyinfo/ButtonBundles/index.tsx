@@ -19,13 +19,17 @@ const mockData = {
 };
 
 const ButtonBundles = () => {
-  const { isOpen, open, close } = useModal();
+  const { isOpen, open, close, scrollPos } = useModal();
 
   const handleClickGiftForFriend = open;
 
   return (
     <section className={styles.wrapper_bundle}>
-      <FriendsSelectorModal close={close} isOpen={isOpen} />
+      <FriendsSelectorModal
+        close={close}
+        isOpen={isOpen}
+        scrollPos={scrollPos}
+      />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
         color="yellow"
