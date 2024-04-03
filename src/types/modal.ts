@@ -9,3 +9,8 @@ export type ModalProps = ModalComponentProps & {
   onClose: () => void;
   isOpen: boolean;
 };
+
+export type FriendsSelectorModalProps = {
+  close: () => void;
+  isOpen: boolean;
+};
