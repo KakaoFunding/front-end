@@ -91,6 +91,18 @@
   overflow: hidden;
 }
 
+@mixin ico-gift2($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m640/ico_gift2_240108.png');
+  background-size: 300px 1265px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+  overflow: hidden;
+}
+
 @mixin ico-gift3($x, $y, $width, $height) {
   display: inline-block;
   font-size: 0;
@@ -101,4 +113,26 @@
   width: $width;
   height: $height;
   overflow: hidden;
+}
+
+@mixin ico-main($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m640/ico_pcmain_230922.png');
+  background-size: 450px 750px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+}
+
+@mixin ico-frndpck($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-size: 450px 750px;
+  background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m320/ico_frndpck_210128.png');
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
 }
