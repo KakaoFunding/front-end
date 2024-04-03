@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     // errorElement: <NotFound />,
     children: [
       { path: '/', element: <Home /> },
-      { path: 'home', element: <Home /> },
+      { path: '/home', element: <Home /> },
       {
         path: '/mypage',
         element: <Navigate to="/mypage/giftbox" />,
