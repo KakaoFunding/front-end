@@ -55,10 +55,10 @@ const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
   return (
     <>
       {/* 탭 이름(제목) + 아이템 개수(필터링에 따라 달라질 수 있음) + 정렬 드롭다운 */}
-      <div className={styles.wrapper_title}>
+      <div className={styles.wrapper_header}>
         <div>
-          <h3 className={styles.text_title}>{tabName}</h3>
-          <span className={styles.text_count}>
+          <h3 className={styles.txt_title}>{tabName}</h3>
+          <span className={styles.txt_count}>
             {formatNumberWithComma(count)}
           </span>
         </div>

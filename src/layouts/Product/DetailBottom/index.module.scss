@@ -1,9 +1,5 @@
 @import 'styles/mixins.module';
 
-.area_detail_bottom {
-  padding-bottom: 100px;
-}
-
 .wrapper_title {
   @include center(row);
 
