@@ -14,6 +14,7 @@ import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
 import GiftBox from 'pages/GiftBox';
+import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
