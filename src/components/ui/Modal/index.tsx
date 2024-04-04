@@ -27,9 +27,8 @@ const Modal = ({
       overflow-y: auto;
       position: fixed;
       overscroll-behavior-y: contain;
-      inset: 0px;
+      inset: 0;
       background: rgba(0, 0, 0, 0.4);
-
       `;
     }
     return () => {
