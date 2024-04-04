@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import BrandCard from 'components/feature/BrandCard';
+import BrandCard from 'layouts/SearchResult/SearchContents/BrandCard';
 
 import { Brand } from 'types/Brand';
 
