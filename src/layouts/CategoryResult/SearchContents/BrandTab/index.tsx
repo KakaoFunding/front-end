@@ -1,50 +1,30 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
+import ResultTabTitle from 'components/ui/ResultTabTitle';
 import SliderArrowButton from 'components/ui/SliderArrowButton';
 import Spinner from 'components/ui/Spinner';
 
-import { useAxios } from 'hooks/useAxios';
-import { formatNumberWithComma } from 'utils/format';
-
 import { Brand } from 'types/Brand';
-import { Category } from 'types/category';
 
 import styles from './index.module.scss';
 
 type BrandTabProps = {
   tabName: string;
-  categoryId: Category['categoryId'];
+  brands: Brand[];
+  isLoading: boolean;
 };
 
-const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
-  const { data, isLoading, sendRequest } = useAxios<Brand[]>({
-    method: 'get',
-    url: '/brands',
-    params: {
-      categoryId,
-    },
-  });
-
-  useEffect(() => {
-    sendRequest();
-  }, []);
-
+const BrandTab = ({ tabName, brands, isLoading }: BrandTabProps) => {
   return (
     <section className={styles.area_brand_tab}>
-      <div className={styles.wrapper_title}>
-        <div>
-          <h3 className={styles.text_title}>{tabName}</h3>
-          <span className={styles.text_count}>
-            {formatNumberWithComma(data?.length ?? 0)}
-          </span>
-        </div>
+      <ResultTabTitle tabName={tabName} count={brands.length}>
         <div>정렬 드롭다운</div>
-      </div>
+      </ResultTabTitle>
+
       {isLoading && <Spinner />}
       <Slider
-        arrows={data?.length > 40}
+        arrows={brands.length > 40}
         draggable
         speed={300}
         infinite={false}
@@ -57,7 +37,7 @@ const BrandTab = ({ tabName, categoryId }: BrandTabProps) => {
         nextArrow={<SliderArrowButton arrowType="next" />}
         className={styles.wrapper_slider}
       >
-        {data?.map((brand: Brand) => (
+        {brands.map((brand: Brand) => (
           <li key={brand.brandId} className={styles.item_brand}>
             <Link to={`/brand/${brand.brandId}`}>
               <img

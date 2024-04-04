@@ -16,7 +16,8 @@ const products = Array.from({ length: 201 }).map(
   }),
 );
 
-export const categoryHandlers = [
+export const productHandlers = [
+  // 카테고리 id를 통한 상품 목록 조회
   http.get('/products', async ({ request }) => {
     await delay();
 
@@ -27,9 +28,42 @@ export const categoryHandlers = [
     const totalElements = products.length;
     const totalPages = Math.ceil(totalElements / size);
 
-    // 실제 응답 시에는 categoryId에 따라 다른 데이터를 보내지만, 모킹 API이므로 products로 통일함
+    // 실제 응답 시에는 쿼리에 따라 다른 데이터를 보내지만,
+    // 모킹 API이므로 products로 통일함
     return HttpResponse.json<PaginationResponse<ProductItem>>({
       content: products.slice(page * size, (page + 1) * size),
+      pageable: {
+        pageNumber: page,
+        pageSize: size,
+      },
+      totalElements,
+      first: page === 0,
+      last: totalPages <= page + 1,
+    });
+  }),
+
+  // 검색을 통한 상품 목록 조회
+  http.get('/search/products', async ({ request }) => {
+    await delay();
+
+    const { searchParams } = new URL(request.url);
+
+    const keyword = searchParams.get('keyword');
+    const searchResults = keyword
+      ? products.filter(
+          (product) =>
+            product.name.includes(keyword) ||
+            product.brandName.includes(keyword),
+        )
+      : [];
+
+    const size = Number(searchParams.get('size'));
+    const page = Number(searchParams.get('page'));
+    const totalElements = searchResults.length;
+    const totalPages = Math.ceil(totalElements / size);
+
+    return HttpResponse.json<PaginationResponse<ProductItem>>({
+      content: searchResults.slice(page * size, (page + 1) * size),
       pageable: {
         pageNumber: page,
         pageSize: size,

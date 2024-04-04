@@ -9,15 +9,17 @@ import {
 import 'styles/global.css';
 import 'styles/hardreset.css';
 
+import App from 'pages/App';
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
-import Giftbox from 'pages/Giftbox';
+import GiftBox from 'pages/GiftBox';
+import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
 import Product from 'pages/Product';
+import Search from 'pages/Search';
+import SearchResult from 'pages/SearchResult';
 import Wish from 'pages/Wish';
-
-import App from './pages/App';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
@@ -33,7 +35,8 @@ const router = createBrowserRouter([
     element: <App />,
     // errorElement: <NotFound />,
     children: [
-      { path: 'home', element: <App /> },
+      { path: '/', element: <Home /> },
+      { path: '/home', element: <Home /> },
       {
         path: '/mypage',
         element: <Navigate to="/mypage/giftbox" />,
@@ -52,7 +55,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'giftbox',
-            element: <Giftbox />,
+            element: <GiftBox />,
           },
         ],
       },
@@ -67,6 +70,14 @@ const router = createBrowserRouter([
       {
         path: '/categories/:parentId/subcategories/:subId',
         element: <CategoryResult />,
+      },
+      {
+        path: '/search',
+        element: <Search />,
+      },
+      {
+        path: '/search/result',
+        element: <SearchResult />,
       },
     ],
   },

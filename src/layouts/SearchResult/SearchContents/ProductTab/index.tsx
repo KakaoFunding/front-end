@@ -8,17 +8,16 @@ import { useAxios } from 'hooks/useAxios';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
 
 import { PaginationResponse } from 'types/PaginationResponse';
-import { Category } from 'types/category';
 import { ProductItem } from 'types/productItem';
 
 import styles from './index.module.scss';
 
 type ProductTabProps = {
-  categoryId: Category['categoryId'];
+  keyword: string;
   tabName: string;
 };
 
-const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
+const ProductTab = ({ keyword, tabName }: ProductTabProps) => {
   const [page, setPage] = useState<number>(0);
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [products, setProducts] = useState<ProductItem[]>([]);
@@ -28,11 +27,11 @@ const ProductTab = ({ categoryId, tabName }: ProductTabProps) => {
     PaginationResponse<ProductItem>
   >({
     method: 'get',
-    url: '/products',
+    url: '/search/products',
     params: {
       page,
       size: 20,
-      categoryId,
+      keyword,
     },
   });
 

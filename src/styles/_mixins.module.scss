@@ -94,8 +94,8 @@
 @mixin ico-gift2($x, $y, $width, $height) {
   display: inline-block;
   font-size: 0;
-  background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m640/ico_gift2_240108.png');
-  background-size: 300px 1265px;
+  background-image: url('assets/ico_gift2.png');
+  background-size: 250px 680px;
   background-position: $x $y;
   background-repeat: no-repeat;
   width: $width;

@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import { formatNumberWithUnit } from 'utils/format';
+
 import { Option } from 'types/product';
 
+import ButtonBundles from './ButtonBundles';
 import ProductOption from './OptionSelector';
 import ProductQuantity from './QuantitySelector';
 
@@ -9,6 +12,7 @@ import styles from './index.module.scss';
 
 // TODO : 받아올 데이터
 const mockData = {
+  price: 51000,
   hasOption: true,
   productTitle: '940 코쿤 [New & Limited]',
   optionTitle: '색상',
@@ -72,8 +76,10 @@ const mockData = {
   ],
 };
 
+type BuyInfoProps = { isVisibleSelector: boolean };
+
 // 수량 + 가격 계산 컴포넌트
-const BuyInfo = () => {
+const BuyInfo = ({ isVisibleSelector }: BuyInfoProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [optionName, setOptionName] = useState<string>(mockData.optionTitle);
   const [selectedOption, setSelectedOption] = useState<Option | false>(false);
@@ -86,31 +92,44 @@ const BuyInfo = () => {
     }
   }, [selectedOption]);
 
-  const handleOptionClear = () => setSelectedOption(false);
+  const handleOptionClear = () => {
+    setSelectedOption(false);
+    setQuantity(1);
+  };
 
   return (
-    <section className={styles.area_buy_info}>
-      <section className={styles.area_option}>
-        {mockData.hasOption && (
-          <ProductOption
-            optionTitle={mockData.optionTitle}
-            options={mockData.options}
-            selectedOption={selectedOption}
-            setSelectedOption={setSelectedOption}
-          />
-        )}
-        {(!mockData.hasOption || selectedOption) && (
-          <ProductQuantity
-            hasOption={mockData.hasOption}
-            optionName={optionName}
-            handleOptionClear={handleOptionClear}
-            quantity={quantity}
-            setQuantity={setQuantity}
-          />
-        )}
+    !isVisibleSelector && (
+      <section className={styles.area_buy_info}>
+        <section className={styles.area_selector}>
+          {mockData.hasOption && (
+            <ProductOption
+              optionTitle={mockData.optionTitle}
+              options={mockData.options}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
+          )}
+          {(!mockData.hasOption || selectedOption) && (
+            <ProductQuantity
+              hasOption={mockData.hasOption}
+              optionName={optionName}
+              handleOptionClear={handleOptionClear}
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
+          )}
+        </section>
+        <section className={styles.area_bundles}>
+          <div className={styles.wrapper_price}>
+            <strong className={styles.txt_total}>총 결제금액</strong>
+            <strong className={styles.txt_price}>
+              {formatNumberWithUnit(mockData.price * quantity)}
+            </strong>
+          </div>
+          <ButtonBundles />
+        </section>
       </section>
-      {/* 계산 컴포넌트 */}
-    </section>
+    )
   );
 };
 
