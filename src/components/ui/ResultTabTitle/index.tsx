@@ -4,17 +4,13 @@ import { formatNumberWithComma } from 'utils/format';
 
 import styles from './index.module.scss';
 
-type SearchResultTitleProps = {
+type ResultTabTitleProps = {
   tabName: string;
   count?: number;
   children?: React.ReactNode;
 };
 
-const SearchResultTitle = ({
-  tabName,
-  count,
-  children,
-}: SearchResultTitleProps) => {
+const ResultTabTitle = ({ tabName, count, children }: ResultTabTitleProps) => {
   return (
     <div className={styles.wrapper_header}>
       <div>
@@ -30,4 +26,4 @@ const SearchResultTitle = ({
   );
 };
 
-export default SearchResultTitle;
+export default ResultTabTitle;

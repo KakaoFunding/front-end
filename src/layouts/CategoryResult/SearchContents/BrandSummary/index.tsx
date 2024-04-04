@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import SearchResultTitle from 'components/ui/SearchResultTitle';
+import ResultTabTitle from 'components/ui/ResultTabTitle';
 import Spinner from 'components/ui/Spinner';
 
 import { Brand } from 'types/Brand';
@@ -16,9 +16,9 @@ type BrandSummaryProps = {
 const BrandSummary = ({ tabName, brands, isLoading }: BrandSummaryProps) => {
   return (
     <section>
-      <SearchResultTitle tabName={tabName}>
+      <ResultTabTitle tabName={tabName}>
         <div>전체보기</div>
-      </SearchResultTitle>
+      </ResultTabTitle>
 
       {isLoading && <Spinner />}
       <ul className={styles.list_brand}>

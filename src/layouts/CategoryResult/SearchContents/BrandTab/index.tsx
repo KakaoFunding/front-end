@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
-import SearchResultTitle from 'components/ui/SearchResultTitle';
+import ResultTabTitle from 'components/ui/ResultTabTitle';
 import SliderArrowButton from 'components/ui/SliderArrowButton';
 import Spinner from 'components/ui/Spinner';
 
@@ -18,9 +18,9 @@ type BrandTabProps = {
 const BrandTab = ({ tabName, brands, isLoading }: BrandTabProps) => {
   return (
     <section className={styles.area_brand_tab}>
-      <SearchResultTitle tabName={tabName} count={brands.length}>
+      <ResultTabTitle tabName={tabName} count={brands.length}>
         <div>정렬 드롭다운</div>
-      </SearchResultTitle>
+      </ResultTabTitle>
 
       {isLoading && <Spinner />}
       <Slider

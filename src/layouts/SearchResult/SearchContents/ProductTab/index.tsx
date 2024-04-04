@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import ProductList from 'components/feature/ProductList';
-import SearchResultTitle from 'components/ui/SearchResultTitle';
+import ResultTabTitle from 'components/ui/ResultTabTitle';
 import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
@@ -53,9 +53,9 @@ const ProductTab = ({ keyword, tabName }: ProductTabProps) => {
 
   return (
     <section className={styles.area_prod_tab}>
-      <SearchResultTitle tabName={tabName} count={count}>
+      <ResultTabTitle tabName={tabName} count={count}>
         <div>정렬 드롭다운</div>
-      </SearchResultTitle>
+      </ResultTabTitle>
 
       {/* 가격 필터링 */}
       <ProductList products={products} />
