@@ -1,0 +1,28 @@
+$height: 33px;
+
+.wrapper_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0 20px;
+}
+
+.txt_title {
+  display: inline-block;
+  font-size: 24px;
+  color: #000;
+  font-weight: 700;
+  height: $height;
+  line-height: $height;
+}
+
+.txt_count {
+  display: inline-block;
+  font-size: 18px;
+  color: #333;
+  font-weight: 400;
+  line-height: $height;
+  vertical-align: top;
+  letter-spacing: -1px;
+  margin-left: 8px;
+}

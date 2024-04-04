@@ -1,13 +1,5 @@
 @import '../index.module';
 
-.wrapper_header {
-  @include wrapper-tab-head;
-}
-
-.txt_title {
-  @include txt-tab-label;
-}
-
 .list_brand {
   display: flex;
   justify-content: space-around;
