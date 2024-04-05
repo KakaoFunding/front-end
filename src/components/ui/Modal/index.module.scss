@@ -1,0 +1,22 @@
+@import 'styles/mixins.module';
+
+.wrapper_modal {
+  @include wh-full;
+  @include center(row);
+
+  .modal {
+    position: relative;
+    background-color: #fff;
+    border-radius: 20px;
+
+    .btn_close {
+      position: absolute;
+      top: 0;
+      right: 14px;
+    }
+
+    .ico_close {
+      @include ico-layer(-120px, -60px, 24px, 24px);
+    }
+  }
+}
