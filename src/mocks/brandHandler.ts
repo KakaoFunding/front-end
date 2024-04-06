@@ -11,7 +11,7 @@ const brands = Array.from({ length: 325 }).map((_, i) => {
   };
 });
 
-export const categoryBrandsHandlers = [
+export const brandHandlers = [
   http.get('/brands', async () => {
     await delay();
 
