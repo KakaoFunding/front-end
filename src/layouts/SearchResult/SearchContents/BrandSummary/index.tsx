@@ -45,6 +45,8 @@ const BrandSummary = ({ tabName, keyword }: BrandSummaryProps) => {
             </li>
           ))}
         </ul>
+
+        // TODO: 브랜드 전체보기 버튼
       )}
     </section>
   );
