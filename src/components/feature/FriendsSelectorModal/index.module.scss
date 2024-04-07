@@ -3,7 +3,7 @@
   height: 680px;
 }
 
-.wrapper_header {
+.area_header {
   padding: 20px 20px 0;
   font-size: 24px;
   font-weight: bold;
@@ -18,7 +18,7 @@
   }
 }
 
-.wrapper_footer {
+.area_footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;

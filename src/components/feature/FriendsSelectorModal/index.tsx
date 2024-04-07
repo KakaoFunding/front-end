@@ -28,12 +28,12 @@ const FriendsSelectorModal = ({
         isOpen={isOpen}
         className={styles.modal}
       >
-        <header className={styles.wrapper_header}>
+        <header className={styles.area_header}>
           친구 선택
           <span className={styles.txt_head}>{selectedHeadCount}</span>
         </header>
         <section>바디</section>
-        <footer className={styles.wrapper_footer}>
+        <footer className={styles.area_footer}>
           <Button color="gray" onClick={close}>
             취소
           </Button>
