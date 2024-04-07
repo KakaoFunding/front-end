@@ -11,11 +11,20 @@ const brands = Array.from({ length: 325 }).map((_, i) => {
   };
 });
 
-export const categoryBrandsHandlers = [
+export const brandHandlers = [
+  // 카테고리 id를 통한 브랜드 목록 조회
   http.get('/brands', async () => {
     await delay();
 
     // 실제 응답 시에는 categoryId에 따라 다른 데이터를 보내지만, 모킹 API이므로 brands로 통일함
     return HttpResponse.json<Brand[]>(brands);
+  }),
+
+  // 검색을 통한 브랜드 목록 조회
+  http.get('/search/brands', async () => {
+    await delay();
+
+    // 실제 응답 시에는 검색 키워드 따라 다른 데이터를 보내지만, 모킹 API이므로 brands로 통일함
+    return HttpResponse.json(brands.slice(0, 4));
   }),
 ];
