@@ -24,7 +24,7 @@
   }
 
   .ico {
-    @include nav-ico(-160px, -80px, 30px, 30px);
+    @include ico-nav(-160px, -80px, 30px, 30px);
 
     margin: -2px 8px 0 0;
   }

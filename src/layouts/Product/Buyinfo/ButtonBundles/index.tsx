@@ -1,5 +1,7 @@
+import FriendsSelectorModal from 'components/feature/FriendsSelectorModal';
 import { Button } from 'components/ui/Button';
 
+import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
 
 import styles from './index.module.scss';
@@ -12,15 +14,22 @@ const handleClickGiftWish = () => console.log('찜 !');
 
 const handleClickGiftForMe = () => console.log('나에게 선물하기');
 
-const handleClickGiftForFriend = () => console.log('친구에게 선물하기');
-
 const mockData = {
   wishCnt: 999999,
 };
 
 const ButtonBundles = () => {
+  const { isOpen, open, close, scrollPos } = useModal();
+
+  const handleClickGiftForFriend = open;
+
   return (
     <section className={styles.wrapper_bundle}>
+      <FriendsSelectorModal
+        close={close}
+        isOpen={isOpen}
+        scrollPos={scrollPos}
+      />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
         color="yellow"
