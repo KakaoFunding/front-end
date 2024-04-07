@@ -1,7 +1,10 @@
+import FriendsSelectorModal from 'components/feature/FriendsSelectorModal';
 import ProfileImg from 'components/feature/ProfileImg';
 import MainWrapper from 'components/ui/MainWrapper';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+
+import { useModal } from 'hooks/useModal';
 
 import styles from './index.module.scss';
 
@@ -12,23 +15,18 @@ const mockdata = {
 };
 
 const Receiver = () => {
-  const {
-    isSelected,
-    isSelfSelected,
-    getImgUrl,
-    getTitle,
-    setSelectedFriends,
-  } = useSelectedFriendsStore();
+  const { isOpen, open, close, scrollPos } = useModal();
 
-  // TODO : 개발용, 배포시 삭제
-  // useSelectedFriendsStore.persist.clearStorage();
-
-  // 임시 친구 선택
-  const handleSelectedFriends = () =>
-    setSelectedFriends([...prompt()!.toString()]);
+  const { isSelected, isSelfSelected, getImgUrl, getTitle } =
+    useSelectedFriendsStore();
 
   return (
     <section>
+      <FriendsSelectorModal
+        close={close}
+        isOpen={isOpen}
+        scrollPos={scrollPos}
+      />
       <div className={styles.wrapper_selector}>
         <ProfileImg
           size="l"
@@ -38,7 +36,7 @@ const Receiver = () => {
               : getImgUrl()
           }
           hasIcon="plus"
-          onClick={handleSelectedFriends}
+          onClick={open}
         />
         <strong className={styles.title_selector}>
           {mockdata.login && !isSelected && (
