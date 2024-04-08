@@ -5,6 +5,8 @@ import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
 import { FriendsSelectorModalProps } from 'types/modal';
 
+import Body from './Body';
+
 import styles from './index.module.scss';
 
 const FriendsSelectorModal = ({
@@ -32,7 +34,7 @@ const FriendsSelectorModal = ({
           친구 선택
           <span className={styles.txt_head}>{selectedHeadCount}</span>
         </header>
-        <section>바디</section>
+        <Body />
         <footer className={styles.area_footer}>
           <Button color="gray" onClick={close}>
             취소
