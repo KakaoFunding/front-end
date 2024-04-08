@@ -1,9 +1,12 @@
+import { useState } from 'react';
+
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
 import { FriendsSelectorModalProps } from 'types/modal';
+import { UserWithUserId } from 'types/user';
 
 import Body from './Body';
 
@@ -14,11 +17,13 @@ const FriendsSelectorModal = ({
   isOpen,
   scrollPos,
 }: FriendsSelectorModalProps) => {
-  const { selectedHeadCount, setSelectedFriends } = useSelectedFriendsStore();
+  const { selectedFriends, setSelectedFriends } = useSelectedFriendsStore();
+  const [currentSelectedFriends, setCurrentSelectedFriends] =
+    useState<UserWithUserId[]>(selectedFriends);
 
-  // 임시 친구 선택
+  // useSelectedFriendsStore.persist.clearStorage();
   const handleSelectedFriends = () => {
-    setSelectedFriends([...prompt()!.toString()]);
+    setSelectedFriends(currentSelectedFriends);
     close();
   };
 
@@ -32,9 +37,14 @@ const FriendsSelectorModal = ({
       >
         <header className={styles.area_header}>
           친구 선택
-          <span className={styles.txt_head}>{selectedHeadCount}</span>
+          <span className={styles.txt_head}>
+            {currentSelectedFriends.length}
+          </span>
         </header>
-        <Body />
+        <Body
+          currentSelectedFriends={currentSelectedFriends}
+          setCurrentSelectedFriends={setCurrentSelectedFriends}
+        />
         <footer className={styles.area_footer}>
           <Button color="gray" onClick={close}>
             취소

@@ -33,9 +33,18 @@ const mockData = {
   ],
 };
 
-const Body = () => {
+type BodyProps = {
+  currentSelectedFriends: UserWithUserId[];
+  setCurrentSelectedFriends: React.Dispatch<
+    React.SetStateAction<UserWithUserId[]>
+  >;
+};
+
+const Body = ({
+  currentSelectedFriends,
+  setCurrentSelectedFriends,
+}: BodyProps) => {
   const [input, setInput] = useState<string>('');
-  const [selectedFriends, setSelectedFriends] = useState<UserWithUserId[]>([]);
   const [friends, setFriends] = useState(mockData.friends);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,44 +61,50 @@ const Body = () => {
     setFriends(mockData.friends);
   };
 
+  const handleCancelSelect = (selectedId: number) => {
+    setCurrentSelectedFriends(
+      currentSelectedFriends.filter((friend) => friend.id !== selectedId),
+    );
+  };
+
   const handleSelect = (selectedId: number) => {
     if (selectedId === 0) {
-      const isSelected = selectedFriends.includes(mockData.user);
+      const isSelected = currentSelectedFriends.includes(mockData.user);
       if (!isSelected) {
-        setSelectedFriends((prev) => [...prev, mockData.user]);
+        setCurrentSelectedFriends((prev) => [...prev, mockData.user]);
         return;
       }
-      setSelectedFriends(
-        selectedFriends.filter((friend) => friend !== mockData.user),
-      );
+      handleCancelSelect(mockData.user.id);
       return;
     }
 
     const [filteredFriend] = mockData.friends.filter(
       (friend) => friend.id === selectedId,
     );
-    const isSelected = selectedFriends.includes(filteredFriend);
+    const isSelected = currentSelectedFriends.includes(filteredFriend);
     if (isSelected) {
-      setSelectedFriends(
-        selectedFriends.filter((friend) => friend !== filteredFriend),
-      );
+      handleCancelSelect(filteredFriend.id);
     } else {
-      setSelectedFriends((prev) => [...prev, filteredFriend]);
+      setCurrentSelectedFriends((prev) => [...prev, filteredFriend]);
     }
   };
 
   return (
     <>
       <ul className={clsx(styles.area_selected, styles.scroll_hori)}>
-        {selectedFriends.length === 0 && (
+        {currentSelectedFriends.length === 0 && (
           <div className={styles.wrapper_selected}>
             <span className={styles.ico_selected} />
             선물할 친구를 선택하세요.
           </div>
         )}
-        {selectedFriends.map((seletedFriend) => (
+        {currentSelectedFriends.map((seletedFriend) => (
           <li key={seletedFriend.id} className={styles.list_selected}>
-            <ProfileImg size="xs" hasIcon="cancel" />
+            <ProfileImg
+              size="xs"
+              hasIcon="cancel"
+              onClick={() => handleCancelSelect(seletedFriend.id)}
+            />
             <div className={styles.txt_selected}>{seletedFriend.name}</div>
           </li>
         ))}
@@ -132,7 +147,11 @@ const Body = () => {
             onClick={() => handleSelect(0)}
           >
             <input type="checkbox" className={styles.btn_input} />
-            <span className={clsx(styles.ico_input, { [styles.on]: false })} />
+            <span
+              className={clsx(styles.ico_input, {
+                [styles.on]: currentSelectedFriends.includes(mockData.user),
+              })}
+            />
             <ProfileImg size="xs" cursor />
             <p className={styles.txt_name}>{mockData.user.name}</p>
           </li>
@@ -153,7 +172,7 @@ const Body = () => {
                 <input type="checkbox" className={styles.btn_input} />
                 <span
                   className={clsx(styles.ico_input, {
-                    [styles.on]: selectedFriends.includes(friend),
+                    [styles.on]: currentSelectedFriends.includes(friend),
                   })}
                 />
                 <ProfileImg size="xs" imgUrl={friend.profileUrl} cursor />

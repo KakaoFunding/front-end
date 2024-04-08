@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand';
 import { persist, PersistOptions } from 'zustand/middleware';
 
-// import { User } from 'types/user';
+import { UserWithUserId } from 'types/user';
 
 const defaultImgUrl = 'src/assets/bg_profile_default.png';
 const peopleImgUrl = 'src/assets/profile_people.png';
@@ -11,12 +11,12 @@ type SelectedFriendsState = {
   isSelected: boolean;
   isSelfSelected: boolean;
   // TODO : 받아올 친구 정보에 따라 타입 변환
-  selectedFriends: string[];
+  selectedFriends: UserWithUserId[];
   selectedHeadCount: number;
 };
 
 type SelectedFriendsAction = {
-  setSelectedFriends: (state: string[]) => void;
+  setSelectedFriends: (state: UserWithUserId[]) => void;
   getImgUrl: () => string;
   getTitle: () => string;
 };
