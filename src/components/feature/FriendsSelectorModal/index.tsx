@@ -1,12 +1,9 @@
-import { useState } from 'react';
-
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
 import { FriendsSelectorModalProps } from 'types/modal';
-import { UserWithUserId } from 'types/user';
 
 import Body from './Body';
 
@@ -17,11 +14,9 @@ const FriendsSelectorModal = ({
   isOpen,
   scrollPos,
 }: FriendsSelectorModalProps) => {
-  const { selectedFriends, setSelectedFriends } = useSelectedFriendsStore();
-  const [currentSelectedFriends, setCurrentSelectedFriends] =
-    useState<UserWithUserId[]>(selectedFriends);
+  const { setSelectedFriends, currentSelectedFriends } =
+    useSelectedFriendsStore();
 
-  // useSelectedFriendsStore.persist.clearStorage();
   const handleSelectedFriends = () => {
     setSelectedFriends(currentSelectedFriends);
     close();
@@ -41,10 +36,7 @@ const FriendsSelectorModal = ({
             {currentSelectedFriends.length}
           </span>
         </header>
-        <Body
-          currentSelectedFriends={currentSelectedFriends}
-          setCurrentSelectedFriends={setCurrentSelectedFriends}
-        />
+        <Body />
         <footer className={styles.area_footer}>
           <Button color="gray" onClick={close}>
             취소

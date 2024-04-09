@@ -3,6 +3,8 @@ import { useState, ChangeEvent } from 'react';
 
 import ProfileImg from 'components/feature/ProfileImg';
 
+import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+
 import { UserWithUserId } from 'types/user';
 
 import styles from './index.module.scss';
@@ -32,22 +34,22 @@ const mockData = {
     { id: 20, name: '친구 20', profileUrl: '' },
   ],
 };
-
-type BodyProps = {
-  currentSelectedFriends: UserWithUserId[];
-  setCurrentSelectedFriends: React.Dispatch<
-    React.SetStateAction<UserWithUserId[]>
-  >;
-};
-
-const Body = ({
-  currentSelectedFriends,
-  setCurrentSelectedFriends,
-}: BodyProps) => {
+const Body = () => {
   const [input, setInput] = useState<string>('');
   const [friends, setFriends] = useState(mockData.friends);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const { currentSelectedFriends, setCurrentSelectedFriends } =
+    useSelectedFriendsStore();
+
+  const isSelected = (targetFriend: UserWithUserId) =>
+    currentSelectedFriends.some(
+      (friend) =>
+        friend.id === targetFriend.id &&
+        friend.name === targetFriend.name &&
+        friend.profileUrl === targetFriend.profileUrl,
+    );
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const searchText = e.target.value;
     setInput(searchText);
     const filteredFriends = mockData.friends.filter((friend) =>
@@ -56,12 +58,12 @@ const Body = ({
     setFriends(filteredFriends);
   };
 
-  const handleReset = () => {
+  const handleInputReset = () => {
     setInput('');
     setFriends(mockData.friends);
   };
 
-  const handleCancelSelect = (selectedId: number) => {
+  const handleDeselect = (selectedId: number) => {
     setCurrentSelectedFriends(
       currentSelectedFriends.filter((friend) => friend.id !== selectedId),
     );
@@ -69,23 +71,21 @@ const Body = ({
 
   const handleSelect = (selectedId: number) => {
     if (selectedId === 0) {
-      const isSelected = currentSelectedFriends.includes(mockData.user);
-      if (!isSelected) {
-        setCurrentSelectedFriends((prev) => [...prev, mockData.user]);
+      if (!isSelected(mockData.user)) {
+        setCurrentSelectedFriends([...currentSelectedFriends, mockData.user]);
         return;
       }
-      handleCancelSelect(mockData.user.id);
+      handleDeselect(mockData.user.id);
       return;
     }
 
     const [filteredFriend] = mockData.friends.filter(
       (friend) => friend.id === selectedId,
     );
-    const isSelected = currentSelectedFriends.includes(filteredFriend);
-    if (isSelected) {
-      handleCancelSelect(filteredFriend.id);
+    if (isSelected(filteredFriend)) {
+      handleDeselect(filteredFriend.id);
     } else {
-      setCurrentSelectedFriends((prev) => [...prev, filteredFriend]);
+      setCurrentSelectedFriends([...currentSelectedFriends, filteredFriend]);
     }
   };
 
@@ -103,7 +103,7 @@ const Body = ({
             <ProfileImg
               size="xs"
               hasIcon="cancel"
-              onClick={() => handleCancelSelect(seletedFriend.id)}
+              onClick={() => handleDeselect(seletedFriend.id)}
             />
             <div className={styles.txt_selected}>{seletedFriend.name}</div>
           </li>
@@ -116,14 +116,14 @@ const Body = ({
             type="search"
             className={styles.input_search}
             value={input}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           {input && (
             <button
               aria-label="reset"
               className={clsx(styles.btn_default, styles.btn_reset)}
               type="button"
-              onClick={handleReset}
+              onClick={handleInputReset}
             >
               <span className={styles.ico_reset} />
             </button>
@@ -149,7 +149,7 @@ const Body = ({
             <input type="checkbox" className={styles.btn_input} />
             <span
               className={clsx(styles.ico_input, {
-                [styles.on]: currentSelectedFriends.includes(mockData.user),
+                [styles.on]: isSelected(mockData.user),
               })}
             />
             <ProfileImg size="xs" cursor />
@@ -172,7 +172,7 @@ const Body = ({
                 <input type="checkbox" className={styles.btn_input} />
                 <span
                   className={clsx(styles.ico_input, {
-                    [styles.on]: currentSelectedFriends.includes(friend),
+                    [styles.on]: isSelected(friend),
                   })}
                 />
                 <ProfileImg size="xs" imgUrl={friend.profileUrl} cursor />
