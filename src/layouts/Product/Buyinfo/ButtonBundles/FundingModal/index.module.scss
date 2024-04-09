@@ -1,0 +1,79 @@
+@import 'styles/mixins.module';
+
+$gray: #777;
+$default-width: 350px;
+
+.modal {
+  @include center(column);
+
+  width: 480px;
+  height: 585px;
+
+  .modal_title {
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 20px;
+  }
+}
+
+.wrapper_info {
+  width: 80%;
+
+  .prod_title {
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .prod_option {
+    font-size: 13px;
+    padding-top: 10px;
+
+    .ico_option {
+      margin-right: 6px;
+      padding: 1px 4px;
+      font-size: 12px;
+      border: 1px solid $gray;
+      border-radius: 4px;
+      color: $gray;
+    }
+  }
+}
+
+.prod_thumb {
+  @include size(200px, 200px, 16px 0 28px, 0);
+}
+
+.ico_price {
+  margin: 2px 0 0 6px;
+  cursor: pointer;
+
+  @include ico-detail(-60px, -70px, 15px, 15px);
+}
+
+.wrapper_price {
+  @include center(row);
+
+  justify-content: space-between;
+  width: $default-width;
+  padding: 6px;
+
+  .txt_price {
+    @include center(row);
+
+    font-weight: 700;
+  }
+}
+
+.wrapper_input {
+  .input {
+    @include size(120px, auto, 4px, 3px);
+
+    border: 1px solid #e1e2e3;
+    outline: none;
+    text-align: right;
+  }
+}
+
+.btn_add {
+  @include size($default-width, 50px, 10px, 0);
+}
