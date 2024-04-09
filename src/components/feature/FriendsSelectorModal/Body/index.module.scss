@@ -26,15 +26,12 @@
     position: relative;
 
     .txt_selected {
-      display: block;
-      overflow: hidden;
       width: 100%;
-      padding-left: 1px;
       font-size: 11px;
       color: #111;
       text-overflow: ellipsis;
       white-space: nowrap;
-      margin: 0 auto;
+      text-align: center;
     }
   }
 }
