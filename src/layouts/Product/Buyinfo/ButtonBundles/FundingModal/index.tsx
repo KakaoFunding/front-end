@@ -1,5 +1,7 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 
+import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
@@ -42,19 +44,27 @@ const FundingModal = ({
             {mockData.option}
           </div>
         </section>
-        <img
-          src={mockData.thumbImgUrl}
-          alt="등록삼품썸네일"
-          className={styles.prod_thumb}
-        />
+        <div className={styles.wrapper_thumb}>
+          <Thumbnail
+            src={mockData.thumbImgUrl}
+            alt="등록삼품썸네일"
+            size="small"
+          />
+        </div>
         <section className={styles.wrapper_price}>
           <div className={styles.txt_price}>상품 금액</div>
           {formatNumberWithUnit(mockData.price)}
         </section>
         <section className={styles.wrapper_price}>
-          <div className={styles.txt_price}>
+          <div className={clsx(styles.txt_price, styles.wrapper_tooltip)}>
             잔여 금액
-            <span className={styles.ico_price}>아이콘</span>
+            <span className={styles.ico_price}>
+              <div className={clsx(styles.tooltip, styles.tooltip_hover)}>
+                <p className={styles.title}>잔여 금액 </p>
+                상품 금액에서 펀딩 목표 금액을 차감한 금액입니다. 목표 금액 달성
+                시 본인이 결제해야 합니다.
+              </div>
+            </span>
           </div>
           {formatNumberWithUnit(mockData.price)}
         </section>

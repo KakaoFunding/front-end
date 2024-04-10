@@ -39,15 +39,8 @@ $default-width: 350px;
   }
 }
 
-.prod_thumb {
+.wrapper_thumb {
   @include size(200px, 200px, 16px 0 28px, 0);
-}
-
-.ico_price {
-  margin: 2px 0 0 6px;
-  cursor: pointer;
-
-  @include ico-detail(-60px, -70px, 15px, 15px);
 }
 
 .wrapper_price {
@@ -55,7 +48,7 @@ $default-width: 350px;
 
   justify-content: space-between;
   width: $default-width;
-  padding: 6px;
+  height: 32px;
 
   .txt_price {
     @include center(row);
@@ -64,9 +57,44 @@ $default-width: 350px;
   }
 }
 
+.wrapper_tooltip {
+  position: relative;
+
+  .ico_price {
+    @include ico-detail(-60px, -70px, 15px, 15px);
+
+    margin: 2px 0 0 6px;
+    cursor: pointer;
+
+    .tooltip {
+      @include size(312px, 80px, 0, 12px);
+
+      position: absolute;
+      top: 20px;
+      left: 12px;
+      border: 1px solid #e1e2e3;
+      background-color: #fff;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 100;
+      line-height: 18px;
+      display: none;
+
+      .title {
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+
+    &:hover .tooltip {
+      display: block;
+    }
+  }
+}
+
 .wrapper_input {
   .input {
-    @include size(120px, auto, 4px, 3px);
+    @include size(120px, auto, 0, 3px);
 
     border: 1px solid #e1e2e3;
     outline: none;
