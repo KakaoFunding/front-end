@@ -1,0 +1,14 @@
+.txt_title {
+  display: block;
+  padding: 30px 20px 12px;
+  // @include font(18px, 700)
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  color: #000;
+  border-top: 1px solid #ededed;
+}
+
+.wrapper_sidebar {
+  height: 100%;
+}
