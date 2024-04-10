@@ -5,7 +5,8 @@ import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
-import { formatNumberWithUnit } from 'utils/format';
+import { formatNumberWithUnit, formatNumberWithComma } from 'utils/format';
+import { isValidQuantity } from 'utils/validation';
 
 import { FriendsSelectorModalProps } from 'types/modal';
 
@@ -24,6 +25,19 @@ const FundingModal = ({
   scrollPos,
 }: FriendsSelectorModalProps) => {
   const [input, setInput] = useState<string>('');
+  const [change, setChange] = useState<number>(mockData.price);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value.split(',').join('');
+    if (!isValidQuantity(inputValue)) {
+      return;
+    }
+    const newChange = Number(inputValue);
+    if (newChange > mockData.price) return;
+    setInput(formatNumberWithComma(newChange));
+    setChange(mockData.price - newChange);
+  };
+
   const handleAddFunding = close;
 
   return (
@@ -66,14 +80,14 @@ const FundingModal = ({
               </div>
             </span>
           </div>
-          {formatNumberWithUnit(mockData.price)}
+          {formatNumberWithUnit(change)}
         </section>
         <section className={styles.wrapper_price}>
           <div className={styles.txt_price}>펀딩 목표 금액</div>
           <div className={styles.wrapper_input}>
             <input
               className={styles.input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={handleChange}
               value={input}
               placeholder="0"
             />
