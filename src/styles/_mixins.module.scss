@@ -10,6 +10,11 @@
   height: 100%;
 }
 
+@mixin font($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
 @mixin size($width, $height, $margin, $padding) {
   width: $width;
   height: $height;
