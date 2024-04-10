@@ -4,9 +4,9 @@ import { Button } from 'components/ui/Button';
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
 
-import styles from './index.module.scss';
+import FundingModal from './FundingModal';
 
-const handleClickFunding = () => console.log('펀딩아이템으로 등록하기');
+import styles from './index.module.scss';
 
 const handleClickCart = () => console.log('선물상자 담기');
 
@@ -19,16 +19,33 @@ const mockData = {
 };
 
 const ButtonBundles = () => {
-  const { isOpen, open, close, scrollPos } = useModal();
+  const {
+    isOpen: isFriendsPikerOpen,
+    open: openFriendsPikerModal,
+    close: closeFriendsPikerModal,
+    scrollPos: scrollFriendsPikerPos,
+  } = useModal();
+  const {
+    isOpen: isFundingOpen,
+    open: openFundingModal,
+    close: closeFundingModal,
+    scrollPos: scrollFundingPos,
+  } = useModal();
 
-  const handleClickGiftForFriend = open;
+  const handleClickGiftForFriend = openFriendsPikerModal;
+  const handleClickFunding = openFundingModal;
 
   return (
     <section className={styles.wrapper_bundle}>
       <FriendsSelectorModal
-        close={close}
-        isOpen={isOpen}
-        scrollPos={scrollPos}
+        close={closeFriendsPikerModal}
+        isOpen={isFriendsPikerOpen}
+        scrollPos={scrollFriendsPikerPos}
+      />
+      <FundingModal
+        close={closeFundingModal}
+        isOpen={isFundingOpen}
+        scrollPos={scrollFundingPos}
       />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
