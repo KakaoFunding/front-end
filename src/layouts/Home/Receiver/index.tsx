@@ -1,5 +1,16 @@
+import MainWrapper from 'components/ui/MainWrapper';
+
+import FriendsFunding from './FriendsFunding';
+
 const Receiver = () => {
-  return <>친구선택</>;
+  return (
+    <section>
+      <MainWrapper>
+        <FriendsFunding />
+        <div>위시</div>
+      </MainWrapper>
+    </section>
+  );
 };
 
 export default Receiver;

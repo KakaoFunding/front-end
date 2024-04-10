@@ -1,0 +1,70 @@
+@import 'styles/mixins.module';
+
+.title_funding {
+  @include font(24px, 700);
+
+  display: block;
+  margin-bottom: 20px;
+}
+
+.wrapper_funding {
+  @include center(row);
+
+  height: 400px;
+  padding: 50px;
+  border: 1px solid #ededed;
+  border-radius: 16px;
+}
+
+.wrapper_info {
+  @include center(column);
+
+  flex-grow: 1;
+  height: 100%;
+  padding-left: 50px;
+  justify-content: space-between;
+
+  .wrapper_title {
+    width: 100%;
+
+    .txt_brand {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #999;
+    }
+
+    .txt_name {
+      @include font(28px, 400);
+    }
+  }
+
+  .wrapper_progress {
+    width: 100%;
+
+    .txt_progress {
+      @include font(24px, 700);
+
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      .txt_default {
+        display: flex;
+        align-items: baseline;
+      }
+
+      .txt_point {
+        color: #4684e9;
+      }
+
+      .txt_percent {
+        font-size: 40px;
+      }
+    }
+
+    .btn_funding {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+}
