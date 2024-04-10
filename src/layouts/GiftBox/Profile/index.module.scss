@@ -1,0 +1,29 @@
+@import 'styles/mixins.module';
+
+.wrapper_profile {
+  @include center(row);
+
+  height: 140px;
+}
+
+.img {
+  width: 80px;
+  height: 80px;
+}
+
+// @include font(24px, 800);
+.txt_name {
+  width: 200px;
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+// @include font(14px, 400);
+.txt_brith {
+  padding-top: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #666;
+}
