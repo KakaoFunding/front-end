@@ -1,0 +1,16 @@
+$border: 1px solid #ededed;
+
+.wrapper_item {
+  height: 53px;
+  padding-left: 34px;
+  font-size: 15px;
+  line-height: 54px;
+  border-bottom: $border;
+}
+
+.ico {
+  padding-right: 16px;
+}
+.on {
+  font-weight: 800;
+}
