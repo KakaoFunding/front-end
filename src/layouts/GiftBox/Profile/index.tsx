@@ -16,7 +16,7 @@ const Profile = () => {
       <div className={styles.txt_name}>
         {mockdata.userName}
         <div
-          className={styles.txt_brith}
+          className={styles.txt_birth}
         >{`내 생일은 ${mockdata.month}월 ${mockdata.day}일`}</div>
       </div>
     </section>
