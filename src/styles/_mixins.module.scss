@@ -22,6 +22,11 @@
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 4%);
 }
 
+// 테두리 모양 만들기
+@mixin masking {
+  border-radius: 39%;
+}
+
 // 텍스트 줄임
 // $line-clamp: 텍스트의 줄 수
 @mixin text-ellipsis($line-clamp) {

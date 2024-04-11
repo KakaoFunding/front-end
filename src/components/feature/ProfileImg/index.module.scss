@@ -1,5 +1,4 @@
 @import 'styles/mixins.module';
-@import 'styles/variable.module';
 
 .btn {
   cursor: auto;
@@ -11,8 +10,9 @@
 }
 
 .img {
+  @include masking;
+
   margin: 6px 0;
-  border-radius: $masking-shape;
 
   &.xxs {
     @include size(32px, 32px, 0, 0);
