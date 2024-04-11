@@ -1,3 +1,5 @@
+import ProfileImg from 'components/feature/ProfileImg';
+
 import styles from './index.module.scss';
 
 const mockdata = {
@@ -8,10 +10,9 @@ const mockdata = {
   day: 7,
 };
 const Profile = () => {
-  // <ProfileImg size='xl' />
   return (
     <section className={styles.wrapper_profile}>
-      <img alt="프로필" src={mockdata.imgUrl} className={styles.img} />
+      <ProfileImg size="xl" imgUrl={mockdata.imgUrl} />
       <div className={styles.txt_name}>
         {mockdata.userName}
         <div

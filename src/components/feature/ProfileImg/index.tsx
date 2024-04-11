@@ -9,7 +9,7 @@ type ProfileImgProps = {
   onClick?: () => void;
 };
 
-const defaultProfileImg = 'src/assets/profile_default.png';
+const defaultProfileImg = '/src/assets/profile_default.png';
 
 const ProfileImg = ({ size, hasIcon, onClick, imgUrl }: ProfileImgProps) => {
   return (
