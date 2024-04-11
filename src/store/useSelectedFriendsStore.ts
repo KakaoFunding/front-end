@@ -1,5 +1,5 @@
-import { create, StateCreator } from 'zustand';
-import { persist, PersistOptions } from 'zustand/middleware';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 import { UserWithUserId } from 'types/user';
 
@@ -21,15 +21,10 @@ type SelectedFriendsAction = {
   getTitle: () => string;
 };
 
-type PersistType = (
-  config: StateCreator<SelectedFriendsState & SelectedFriendsAction>,
-  options: PersistOptions<SelectedFriendsState & SelectedFriendsAction>,
-) => StateCreator<SelectedFriendsState & SelectedFriendsAction>;
-
 export const useSelectedFriendsStore = create<
   SelectedFriendsState & SelectedFriendsAction
->(
-  (persist as PersistType)(
+>()(
+  persist(
     (set, get) => ({
       isSelected: false,
       isSelfSelected: false,

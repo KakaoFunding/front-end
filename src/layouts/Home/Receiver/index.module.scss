@@ -2,9 +2,10 @@
 
 .wrapper_selector {
   @include size(100%, 150px, 0, 40px 120px);
-  @include center(row);
 
+  display: flex;
   justify-content: start;
+  align-items: center;
   background-color: #fafafa;
 
   .title_selector {
