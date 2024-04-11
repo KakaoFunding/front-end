@@ -10,6 +10,16 @@
   height: 100%;
 }
 
+// 테두리 모양 만들기
+@mixin masking {
+  border-radius: 39%;
+}
+
+@mixin font($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
 @mixin size($width, $height, $margin, $padding) {
   width: $width;
   height: $height;
@@ -129,4 +139,26 @@
   width: $width;
   height: $height;
   overflow: hidden;
+}
+
+@mixin ico-main($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m640/ico_pcmain_230922.png');
+  background-size: 450px 750px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+}
+
+@mixin ico-frndpck($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-size: 450px 750px;
+  background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m320/ico_frndpck_210128.png');
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
 }

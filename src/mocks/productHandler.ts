@@ -31,13 +31,12 @@ export const productHandlers = [
     // 실제 응답 시에는 쿼리에 따라 다른 데이터를 보내지만,
     // 모킹 API이므로 products로 통일함
     return HttpResponse.json<PaginationResponse<ProductItem>>({
-      content: products.slice(page * size, (page + 1) * size),
-      pageable: {
-        pageNumber: page,
-        pageSize: size,
-      },
+      hasNext: totalPages > page + 1,
+      items: products.slice(page * size, (page + 1) * size),
+      pageNumber: page,
+      pageSize: size,
+      totalPages,
       totalElements,
-      first: page === 0,
       last: totalPages <= page + 1,
     });
   }),
@@ -63,13 +62,12 @@ export const productHandlers = [
     const totalPages = Math.ceil(totalElements / size);
 
     return HttpResponse.json<PaginationResponse<ProductItem>>({
-      content: searchResults.slice(page * size, (page + 1) * size),
-      pageable: {
-        pageNumber: page,
-        pageSize: size,
-      },
+      hasNext: totalPages > page + 1,
+      items: searchResults.slice(page * size, (page + 1) * size),
+      pageNumber: page,
+      pageSize: size,
+      totalPages,
       totalElements,
-      first: page === 0,
       last: totalPages <= page + 1,
     });
   }),

@@ -1,0 +1,78 @@
+@import 'styles/mixins.module';
+
+.btn {
+  cursor: auto;
+  position: relative;
+
+  &.on {
+    cursor: pointer;
+  }
+}
+
+.img {
+  @include masking;
+
+  margin: 6px 0;
+
+  &.xxs {
+    @include size(32px, 32px, 0, 0);
+  }
+
+  &.xs {
+    @include size(40px, 40px, 0, 0);
+  }
+
+  &.s {
+    @include size(45px, 45px, 0, 0);
+  }
+
+  &.m {
+    @include size(50px, 50px, 0, 0);
+  }
+
+  &.l {
+    @include size(70px, 70px, 0, 0);
+  }
+
+  &.xl {
+    @include size(80px, 80px, 0, 0);
+  }
+}
+
+.ico_profile {
+  position: absolute;
+
+  &.plus {
+    &.xxs {
+      @include ico-pd-detail(-150px, -440px, 16px, 16px);
+
+      bottom: 0;
+      right: -4px;
+    }
+
+    &.l {
+      @include ico-main(-70px, -360px, 25px, 25px);
+
+      bottom: 0;
+      right: -5px;
+    }
+  }
+
+  &.cancel {
+    &.xs {
+      @include ico-frndpck(-90px, -80px, 20px, 20px);
+
+      top: 0;
+      right: -5px;
+    }
+  }
+
+  &.me {
+    &.s {
+      @include ico-gift2(-145px, -865px, 18px, 18px);
+
+      bottom: 0;
+      right: -5px;
+    }
+  }
+}

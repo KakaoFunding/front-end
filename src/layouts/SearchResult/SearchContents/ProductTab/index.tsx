@@ -36,7 +36,7 @@ const ProductTab = ({ keyword, tabName }: ProductTabProps) => {
   });
 
   const observingTarget = useInfinityScroll(() => {
-    if (data) setPage(data.pageable.pageNumber + 1);
+    if (data) setPage(data.pageNumber + 1);
   }, hasNext);
 
   useEffect(() => {
@@ -45,8 +45,8 @@ const ProductTab = ({ keyword, tabName }: ProductTabProps) => {
 
   useEffect(() => {
     if (data) {
-      setProducts((prev) => [...prev, ...data.content]);
-      setHasNext(!data.last);
+      setProducts((prev) => [...prev, ...data.items]);
+      setHasNext(data.hasNext);
       setCount(data.totalElements); // 추후 삭제하고, 필터링 했을 때만 setCount하도록 변경
     }
   }, [data]);
