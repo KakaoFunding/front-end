@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 
+import { formatNumberWithComma, formatNumberToPercent } from 'utils/format';
+
 import styles from './index.module.scss';
 
 const mockdata = {
@@ -10,6 +12,8 @@ const mockdata = {
     'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20240318095141_80a46f7dfcee4aecae72311ac9c52e7d.jpg',
   brand: '스타벅스',
   name: '스타벅스 딸기 라떼 T + 피스타치오 핑크 롤',
+  productPrice: 1000000,
+  fundingPrice: 98000,
 };
 
 const FriendsFunding = () => {
@@ -32,13 +36,15 @@ const FriendsFunding = () => {
             <div className={styles.txt_progress}>
               <p className={styles.txt_default}>
                 목표 달성까지
-                <p className={styles.txt_point}>{`\u00A0${'100,000'}`}</p>원
-                남았어요
+                <p
+                  className={styles.txt_point}
+                >{`\u00A0${formatNumberWithComma(mockdata.productPrice - mockdata.fundingPrice)}`}</p>
+                원 남았어요
               </p>
               <p className={styles.txt_default}>
                 완료까지
                 <strong className={clsx(styles.txt_point, styles.txt_percent)}>
-                  {`\u00A0${'41.6%'}`}
+                  {`\u00A0${formatNumberToPercent(mockdata.fundingPrice, mockdata.productPrice)}`}
                 </strong>
               </p>
             </div>
