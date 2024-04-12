@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 
+import { useModal } from 'hooks/useModal';
 import { formatNumberWithUnit } from 'utils/format';
+
+import FundingCancelModal from './FundingCancelModal';
 
 import styles from './index.module.scss';
 
@@ -27,10 +30,11 @@ const FundingItem = ({
   brandId,
   brandThumbnail,
 }: FundingItemProps) => {
-  const handleFundingClick = () => {};
-  const handleCancelFundingClick = () => {};
+  const { open, isOpen, close, scrollPos } = useModal();
+
   return (
     <section className={styles.area_funding_item}>
+      <FundingCancelModal isOpen={isOpen} close={close} scrollPos={scrollPos} />
       <Link to={`/product/${productId}`}>
         {/* 이미지 size 변경 예정  260x260 */}
         <Thumbnail
@@ -62,11 +66,7 @@ const FundingItem = ({
           </p>
         </div>
         <div className={styles.wrapper_button}>
-          <Button
-            color="black"
-            onClick={handleCancelFundingClick}
-            className={styles.btn_default}
-          >
+          <Button color="black" onClick={open} className={styles.btn_default}>
             펀딩취소하기
           </Button>
           {/* TODO : 결제페이지 props에 맞게 필요한 데이터 전달 */}
