@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 
 import { useModal } from 'hooks/useModal';
@@ -36,9 +35,9 @@ const FundingItem = ({
     <section className={styles.area_funding_item}>
       <FundingCancelModal isOpen={isOpen} close={close} scrollPos={scrollPos} />
       <Link to={`/product/${productId}`}>
-        {/* 이미지 size 변경 예정  260x260 */}
-        <Thumbnail
-          size="medium"
+        {/* TODO : Thumbnail 리팩토링시 교체 */}
+        <img
+          className={styles.img_product}
           src={imgUrl}
           alt={`${productName}상품이미지`}
         />

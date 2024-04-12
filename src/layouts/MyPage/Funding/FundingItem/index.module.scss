@@ -4,6 +4,12 @@
   @include size(900px, 260px, 0, 0);
 
   display: flex;
+
+  .img_product {
+    @include size(260px, 260px, 0 30px 0 0, 0);
+
+    border-radius: 8px;
+  }
 }
 
 .area_info {
@@ -11,7 +17,6 @@
   flex-direction: column;
   justify-content: space-between;
   width: 80%;
-  padding-left: 30px;
 
   .wrapper_info {
     .txt_product {
