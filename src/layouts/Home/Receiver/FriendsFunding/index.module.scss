@@ -7,7 +7,7 @@
   margin: 40px 0 20px;
 }
 
-.wrapper_funding {
+.area_funding {
   @include center(row);
 
   height: 400px;
@@ -16,7 +16,7 @@
   border-radius: 16px;
 }
 
-.wrapper_info {
+.wrapper_funding {
   @include center(column);
 
   flex-grow: 1;
@@ -38,10 +38,10 @@
     }
   }
 
-  .wrapper_progress {
+  .wrapper_info {
     width: 100%;
 
-    .txt_progress {
+    .txt_info {
       @include font(24px, 700);
 
       display: flex;

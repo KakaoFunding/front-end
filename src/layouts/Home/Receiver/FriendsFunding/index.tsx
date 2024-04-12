@@ -21,19 +21,19 @@ const FriendsFunding = () => {
   return (
     <>
       <strong className={styles.title_funding}>친구의 펀딩 아이템</strong>
-      <section className={styles.wrapper_funding}>
+      <section className={styles.area_funding}>
         <Thumbnail
           src={mockdata.thumbname}
           size="medium"
           alt={`${'친구이름'}가 선택한 펀딩 아이템 썸네일`}
         />
-        <section className={styles.wrapper_info}>
+        <section className={styles.wrapper_funding}>
           <div className={styles.wrapper_title}>
             <p className={styles.txt_brand}>{mockdata.brand}</p>
             <p className={styles.txt_name}>{mockdata.name}</p>
           </div>
-          <div className={styles.wrapper_progress}>
-            <div className={styles.txt_progress}>
+          <div className={styles.wrapper_info}>
+            <div className={styles.txt_info}>
               <p className={styles.txt_default}>
                 목표 달성까지
                 <p
