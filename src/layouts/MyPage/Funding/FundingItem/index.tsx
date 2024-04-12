@@ -69,13 +69,12 @@ const FundingItem = ({
           >
             펀딩취소하기
           </Button>
-          <Button
-            color="yellow"
-            onClick={handleFundingClick}
-            className={styles.btn_default}
-          >
-            펀딩하기
-          </Button>
+          {/* TODO : 결제페이지 props에 맞게 필요한 데이터 전달 */}
+          <Link to="/bill" state={{ productId, self: true }}>
+            <Button color="yellow" className={styles.btn_default}>
+              펀딩하기
+            </Button>
+          </Link>
         </div>
       </section>
     </section>
