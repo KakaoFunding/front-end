@@ -13,7 +13,7 @@ const SidebarItem = ({ type, titleName }: SidebarItemProps) => {
   const isActive = location.pathname === `/mypage/${type}`;
 
   return (
-    <Link to={`${type}`}>
+    <Link to={`/mypage/${type}`}>
       <li className={clsx(styles.wrapper_item, { [styles.on]: isActive })}>
         <span
           className={clsx(styles.ico, styles[type], { [styles.on]: isActive })}
