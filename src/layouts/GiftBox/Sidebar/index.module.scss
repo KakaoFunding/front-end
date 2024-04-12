@@ -1,9 +1,10 @@
+@import 'styles/mixins.module';
+
 .txt_title {
+  @include font(18px, 700);
+
   display: block;
-  padding: 30px 20px 12px;
-  // @include font(18px, 700)
-  font-size: 18px;
-  font-weight: 700;
+  padding: 30px 24px 12px;
   line-height: 21px;
   color: #000;
   border-top: 1px solid #ededed;
