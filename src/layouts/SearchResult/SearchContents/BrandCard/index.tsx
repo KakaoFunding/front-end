@@ -18,7 +18,7 @@ const BrandCard = ({
   size,
 }: BrandCardProps) => {
   return (
-    <Link to={`brand/${brandId}`}>
+    <Link to={`/brand/${brandId}`}>
       <span className={clsx(styles.wrapper_logo, styles[size])}>
         <img src={iconPhoto} alt={name} />
       </span>

@@ -1,12 +1,9 @@
-type Pageable = {
+export type PaginationResponse<T> = {
+  hasNext: boolean;
+  items: T[];
   pageNumber: number;
   pageSize: number;
-};
-
-export type PaginationResponse<T> = {
-  content: T[];
-  pageable: Pageable;
+  totalPages: number;
   totalElements: number;
-  first: boolean;
   last: boolean;
 };

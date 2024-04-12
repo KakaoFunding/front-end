@@ -4,6 +4,7 @@ import Tabs from 'components/ui/Tabs';
 
 import { Tab } from 'types/tab';
 
+import BrandSummary from './BrandSummary';
 import ProductTab from './ProductTab';
 
 const SearchContents = () => {
@@ -11,7 +12,16 @@ const SearchContents = () => {
   const keyword = searchParams.get('keyword') ?? '';
 
   const tabs: Tab[] = [
-    { id: 0, name: '전체', content: '' },
+    {
+      id: 0,
+      name: '전체',
+      content: (
+        <>
+          <BrandSummary tabName="브랜드" keyword={keyword} />
+          <ProductTab tabName="상품" keyword={keyword} />
+        </>
+      ),
+    },
     {
       id: 1,
       name: '상품',
