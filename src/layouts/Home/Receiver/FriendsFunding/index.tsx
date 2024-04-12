@@ -8,6 +8,8 @@ import { formatNumberWithComma, formatNumberToPercent } from 'utils/format';
 
 import styles from './index.module.scss';
 
+// TODO : 데이터 페칭시 변수명 수정
+// 펀딩아이템의 총금액이 아닌 펀딩목표금액
 const data = {
   thumbnail:
     'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20240318095141_80a46f7dfcee4aecae72311ac9c52e7d.jpg',
@@ -21,7 +23,6 @@ const data = {
 const WHITE_SPACE = `\u00A0`;
 
 const FriendsFunding = () => {
-  const handleFunding = () => {};
   return (
     <>
       <strong className={styles.title_funding}>친구의 펀딩 아이템</strong>
