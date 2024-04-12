@@ -16,6 +16,8 @@ const data = {
   fundingPrice: 98000,
 };
 
+const WHITE_SPACE = `\u00A0`;
+
 const FriendsFunding = () => {
   const handleFunding = () => {};
   return (
@@ -38,13 +40,13 @@ const FriendsFunding = () => {
                 목표 달성까지
                 <p
                   className={styles.txt_point}
-                >{`\u00A0${formatNumberWithComma(data.productPrice - data.fundingPrice)}`}</p>
+                >{`${WHITE_SPACE}${formatNumberWithComma(data.productPrice - data.fundingPrice)}`}</p>
                 원 남았어요
               </p>
               <p className={styles.txt_default}>
                 완료까지
                 <strong className={clsx(styles.txt_point, styles.txt_percent)}>
-                  {`\u00A0${formatNumberToPercent(data.fundingPrice, data.productPrice)}`}
+                  {`${WHITE_SPACE}${formatNumberToPercent(data.fundingPrice, data.productPrice)}`}
                 </strong>
               </p>
             </div>
