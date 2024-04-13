@@ -88,18 +88,27 @@ const BrandTab = ({ tabName, keyword }: BrandTabProps) => {
               nextArrow={<SliderArrowButton arrowType="next" />}
               className={styles.wrapper_slider}
             >
-              {products.map((product) => (
-                <li key={product.id}>
-                  <ColumnProductItem size="medium" product={product} />
-                </li>
-              ))}
-              {products.length < SLOTS_PER_SLIDE &&
-                Array.from({ length: SLOTS_PER_SLIDE - products.length }).map(
-                  (_, i) => <li key={`empty_slot_${i + 1}`} aria-hidden />,
-                )}
-              {products.length === MAX_SLOTS && (
-                <BrandMoreSlot size="medium" brandId={brand.brandId} />
-              )}
+              {
+                // 브랜드 별 상품 목록 생성
+                products.map((product) => (
+                  <li key={product.id}>
+                    <ColumnProductItem size="medium" product={product} />
+                  </li>
+                ))
+              }
+              {
+                // 한 슬라이드를 다 채우지 못하면, 그만큼 빈 슬롯 생성
+                products.length < SLOTS_PER_SLIDE &&
+                  Array.from({ length: SLOTS_PER_SLIDE - products.length }).map(
+                    (_, i) => <li key={`empty_slot_${i + 1}`} aria-hidden />,
+                  )
+              }
+              {
+                // 상품이 더 있으면, 브랜드 더보기 슬롯 생성
+                products.length === MAX_SLOTS && (
+                  <BrandMoreSlot size="medium" brandId={brand.brandId} />
+                )
+              }
             </Slider>
           </li>
         ))}
