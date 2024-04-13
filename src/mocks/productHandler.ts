@@ -1,5 +1,6 @@
 import { http, delay, HttpResponse } from 'msw';
 
+import { Brand } from 'types/Brand';
 import { PaginationResponse } from 'types/PaginationResponse';
 import { ProductItem } from 'types/productItem';
 
@@ -64,6 +65,52 @@ export const productHandlers = [
     return HttpResponse.json<PaginationResponse<ProductItem>>({
       hasNext: totalPages > page + 1,
       items: searchResults.slice(page * size, (page + 1) * size),
+      pageNumber: page,
+      pageSize: size,
+      totalPages,
+      totalElements,
+      last: totalPages <= page + 1,
+    });
+  }),
+
+  // 검색을 통한 브랜드 별 상품 목록 조회
+  http.get('/search/products/all', async ({ request }) => {
+    await delay();
+
+    type Item = {
+      brand: Brand;
+      products: ProductItem[];
+    };
+
+    const mockData: Item[] = Array.from({ length: 30 }).map((_, i) => ({
+      brand: {
+        brandId: i,
+        name: `브랜드 ${i}`,
+        iconPhoto:
+          'https://st.kakaocdn.net/product/gift/gift_brand/20200331040444_99ac946c80764be4943227536638f9c2',
+      },
+      products: Array.from({ length: 9 }).map((__, j) => ({
+        id: Number(`${i}${j}`),
+        name: `브랜드 ${i} - 상품 ${j}`,
+        thumbSrc:
+          'https://st.kakaocdn.net/product/gift/product/20200403153820_ceea3bd561f34cc6b276fbc8cbaac690',
+        price: 29800,
+        brandName: `브랜드 ${i}`,
+        wishCount: 12420,
+        isWished: false,
+      })),
+    }));
+
+    const { searchParams } = new URL(request.url);
+
+    const size = Number(searchParams.get('size'));
+    const page = Number(searchParams.get('page'));
+    const totalElements = mockData.length;
+    const totalPages = Math.ceil(totalElements / size);
+
+    return HttpResponse.json<PaginationResponse<Item>>({
+      hasNext: totalPages > page + 1,
+      items: mockData.slice(page * size, (page + 1) * size),
       pageNumber: page,
       pageSize: size,
       totalPages,
