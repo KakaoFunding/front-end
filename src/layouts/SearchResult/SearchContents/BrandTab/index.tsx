@@ -15,6 +15,8 @@ import { ProductItem } from 'types/productItem';
 
 import BrandCard from '../BrandCard';
 
+import BrandMoreSlot from './BrandMoreSlot';
+
 import styles from './index.module.scss';
 
 type BrandTabProps = {
@@ -93,7 +95,7 @@ const BrandTab = ({ tabName, keyword }: BrandTabProps) => {
                   <li key={`empty_slot_${i + 1}`} aria-hidden />
                 ))}
               {products.length === 9 && (
-                <li key={brand.brandId}>브랜드 더보기</li>
+                <BrandMoreSlot size="medium" brandId={brand.brandId} />
               )}
             </Slider>
           </li>
