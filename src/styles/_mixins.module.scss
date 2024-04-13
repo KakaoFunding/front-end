@@ -141,6 +141,18 @@
   overflow: hidden;
 }
 
+@mixin ico-gift4($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('assets/ico_gift4.png');
+  background-size: 300px 1265px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+  overflow: hidden;
+}
+
 @mixin ico-main($x, $y, $width, $height) {
   display: inline-block;
   font-size: 0;
