@@ -21,6 +21,7 @@ const ProductCarousel = ({ brandId, products }: ProductCarouselProps) => {
   return (
     <Slider
       arrows={products.length > SLOTS_PER_SLIDE}
+      draggable={false}
       slidesToShow={SLOTS_PER_SLIDE}
       slidesToScroll={SLOTS_PER_SLIDE}
       slide="ul"
