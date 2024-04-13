@@ -1,5 +1,7 @@
 import { http, delay, HttpResponse } from 'msw';
 
+import { getRandomNumber } from 'utils/generate';
+
 import { Brand } from 'types/Brand';
 import { PaginationResponse } from 'types/PaginationResponse';
 import { ProductItem } from 'types/productItem';
@@ -89,7 +91,7 @@ export const productHandlers = [
         iconPhoto:
           'https://st.kakaocdn.net/product/gift/gift_brand/20200331040444_99ac946c80764be4943227536638f9c2',
       },
-      products: Array.from({ length: 9 }).map((__, j) => ({
+      products: Array.from({ length: getRandomNumber(1, 9) }).map((__, j) => ({
         id: Number(`${i}${j}`),
         name: `브랜드 ${i} - 상품 ${j}`,
         thumbSrc:
