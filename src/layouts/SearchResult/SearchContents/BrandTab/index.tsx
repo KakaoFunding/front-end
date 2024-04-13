@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
-import Slider from 'react-slick';
 
-import ColumnProductItem from 'components/feature/ProductItem/ColumnProductItem';
 import ResultTabTitle from 'components/ui/ResultTabTitle';
-import SliderArrowButton from 'components/ui/SliderArrowButton';
 import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
@@ -15,7 +12,7 @@ import { ProductItem } from 'types/productItem';
 
 import BrandCard from '../BrandCard';
 
-import BrandMoreSlot from './BrandMoreSlot';
+import ProductCarousel from './ProductCarousel';
 
 import styles from './index.module.scss';
 
@@ -30,9 +27,6 @@ type Item = {
 };
 
 const BrandTab = ({ tabName, keyword }: BrandTabProps) => {
-  const SLOTS_PER_SLIDE = 4;
-  const MAX_SLOTS = 9;
-
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
   const [items, setItems] = useState<Item[]>([]);
@@ -77,38 +71,7 @@ const BrandTab = ({ tabName, keyword }: BrandTabProps) => {
             category=""
             size="large"
           />
-          <Slider
-            arrows={products.length > SLOTS_PER_SLIDE}
-            slidesToShow={SLOTS_PER_SLIDE}
-            slidesToScroll={SLOTS_PER_SLIDE}
-            slide="ul"
-            infinite={false}
-            prevArrow={<SliderArrowButton arrowType="prev" />}
-            nextArrow={<SliderArrowButton arrowType="next" />}
-            className={styles.wrapper_slider}
-          >
-            {
-              // 브랜드 별 상품 목록 생성
-              products.map((product) => (
-                <li key={product.id}>
-                  <ColumnProductItem size="medium" product={product} />
-                </li>
-              ))
-            }
-            {
-              // 한 슬라이드를 다 채우지 못하면, 그만큼 빈 슬롯 생성
-              products.length < SLOTS_PER_SLIDE &&
-                Array.from({ length: SLOTS_PER_SLIDE - products.length }).map(
-                  (_, i) => <li key={`empty_slot_${i + 1}`} aria-hidden />,
-                )
-            }
-            {
-              // 상품이 더 있으면, 브랜드 더보기 슬롯 생성
-              products.length === MAX_SLOTS && (
-                <BrandMoreSlot size="medium" brandId={brand.brandId} />
-              )
-            }
-          </Slider>
+          <ProductCarousel brandId={brand.brandId} products={products} />
         </article>
       ))}
       {isLoading && <Spinner />}
