@@ -30,6 +30,9 @@ type Item = {
 };
 
 const BrandTab = ({ tabName, keyword }: BrandTabProps) => {
+  const SLOTS_PER_SLIDE = 4;
+  const MAX_SLOTS = 9;
+
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
   const [items, setItems] = useState<Item[]>([]);
@@ -76,9 +79,9 @@ const BrandTab = ({ tabName, keyword }: BrandTabProps) => {
               size="large"
             />
             <Slider
-              arrows={products.length > 4}
-              slidesToShow={4}
-              slidesToScroll={4}
+              arrows={products.length > SLOTS_PER_SLIDE}
+              slidesToShow={SLOTS_PER_SLIDE}
+              slidesToScroll={SLOTS_PER_SLIDE}
               slide="ul"
               infinite={false}
               prevArrow={<SliderArrowButton arrowType="prev" />}
@@ -90,11 +93,11 @@ const BrandTab = ({ tabName, keyword }: BrandTabProps) => {
                   <ColumnProductItem size="medium" product={product} />
                 </li>
               ))}
-              {products.length < 4 &&
-                Array.from({ length: 4 - products.length }).map((_, i) => (
-                  <li key={`empty_slot_${i + 1}`} aria-hidden />
-                ))}
-              {products.length === 9 && (
+              {products.length < SLOTS_PER_SLIDE &&
+                Array.from({ length: SLOTS_PER_SLIDE - products.length }).map(
+                  (_, i) => <li key={`empty_slot_${i + 1}`} aria-hidden />,
+                )}
+              {products.length === MAX_SLOTS && (
                 <BrandMoreSlot size="medium" brandId={brand.brandId} />
               )}
             </Slider>
