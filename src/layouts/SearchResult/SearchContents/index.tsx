@@ -5,6 +5,7 @@ import Tabs from 'components/ui/Tabs';
 import { Tab } from 'types/tab';
 
 import BrandSummary from './BrandSummary';
+import BrandTab from './BrandTab';
 import ProductTab from './ProductTab';
 
 const SearchContents = () => {
@@ -27,7 +28,11 @@ const SearchContents = () => {
       name: '상품',
       content: <ProductTab tabName="상품" keyword={keyword} />,
     },
-    { id: 2, name: '브랜드', content: '' },
+    {
+      id: 2,
+      name: '브랜드',
+      content: <BrandTab tabName="브랜드" keyword={keyword} />,
+    },
   ];
 
   return (
