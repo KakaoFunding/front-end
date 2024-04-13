@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import Slider from 'react-slick';
 
+import ColumnProductItem from 'components/feature/ProductItem/ColumnProductItem';
 import ResultTabTitle from 'components/ui/ResultTabTitle';
+import SliderArrowButton from 'components/ui/SliderArrowButton';
 import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
@@ -70,6 +73,29 @@ const BrandTab = ({ tabName, keyword }: BrandTabProps) => {
               category=""
               size="large"
             />
+            <Slider
+              arrows={products.length > 4}
+              slidesToShow={4}
+              slidesToScroll={4}
+              slide="ul"
+              infinite={false}
+              prevArrow={<SliderArrowButton arrowType="prev" />}
+              nextArrow={<SliderArrowButton arrowType="next" />}
+              className={styles.wrapper_slider}
+            >
+              {products.map((product) => (
+                <li key={product.id}>
+                  <ColumnProductItem size="medium" product={product} />
+                </li>
+              ))}
+              {products.length < 4 &&
+                Array.from({ length: 4 - products.length }).map((_, i) => (
+                  <li key={`empty_slot_${i + 1}`} aria-hidden />
+                ))}
+              {products.length === 9 && (
+                <li key={brand.brandId}>브랜드 더보기</li>
+              )}
+            </Slider>
           </li>
         ))}
         {isLoading && <Spinner />}
