@@ -28,10 +28,6 @@
   box-sizing: border-box;
 }
 
-@mixin shadow {
-  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 4%);
-}
-
 // 텍스트 줄임
 @mixin text-ellipsis($line-clamp) {
   overflow: hidden;
