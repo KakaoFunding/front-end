@@ -1,0 +1,38 @@
+.main {
+  padding-top: 80px; // header height
+  min-height: 100vh;
+  background-color: #ededed;
+}
+
+.area_error {
+  text-align: center;
+  padding: 80px 20px;
+  line-height: 1.5;
+}
+
+.img_error {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
+}
+
+.txt_title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.txt_desc {
+  font-size: 15px;
+  color: #4684e9;
+}
+
+.btn_home {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 10px 30px;
+  border-radius: 3px;
+  background-color: #fde515;
+  font-size: 16px;
+  color: #000;
+}
