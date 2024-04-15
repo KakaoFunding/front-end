@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { useAuthStore, useUserStore } from 'store/authStore';
+import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
 import { logout } from 'services/api/v1/oauth';
 
