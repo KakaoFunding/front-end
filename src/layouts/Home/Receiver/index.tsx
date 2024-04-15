@@ -3,6 +3,8 @@ import MainWrapper from 'components/ui/MainWrapper';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
+import FriendsFunding from './FriendsFunding';
+
 import styles from './index.module.scss';
 
 const mockdata = {
@@ -51,7 +53,7 @@ const Receiver = () => {
         </strong>
       </div>
       <MainWrapper>
-        <div>펀딩</div>
+        <FriendsFunding />
         <div>위시</div>
       </MainWrapper>
     </section>
