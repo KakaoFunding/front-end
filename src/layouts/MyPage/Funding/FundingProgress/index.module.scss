@@ -1,0 +1,37 @@
+@import 'styles/mixins.module';
+
+.area_progress {
+  @include size(900px, 260px, 30px 0, 40px);
+
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d6e5fd;
+  border-radius: 16px;
+  background-color: #fff;
+}
+
+.txt_title {
+  @include font(24px, 700);
+}
+
+.txt_sub_title {
+  @include font(20px, 700);
+
+  padding-top: 10px;
+}
+
+.txt_point {
+  color: #4684e9;
+}
+
+.txt_dec {
+  position: relative;
+  padding-top: 12px;
+  color: #4c4c4c;
+
+  .txt_price {
+    position: absolute;
+    right: 0;
+    color: #4c4c4c;
+  }
+}

@@ -11,11 +11,13 @@ import 'styles/hardreset.css';
 
 import App from 'pages/App';
 import Auth from 'pages/Auth';
+import Bill from 'pages/Bill';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
 import GiftBox from 'pages/GiftBox';
 import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
+import NotFound from 'pages/NotFound';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
 import SearchResult from 'pages/SearchResult';
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    // errorElement: <NotFound />,
+    errorElement: <NotFound />,
     children: [
       { path: '/', element: <Home /> },
       { path: '/home', element: <Home /> },
@@ -78,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: '/search/result',
         element: <SearchResult />,
+      },
+      {
+        path: '/bill/:type',
+        element: <Bill />,
       },
     ],
   },

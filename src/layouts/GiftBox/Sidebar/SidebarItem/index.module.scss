@@ -1,0 +1,60 @@
+@import 'styles/mixins.module';
+
+.wrapper_item {
+  display: flex;
+  align-items: center;
+  height: 54px;
+  padding-left: 32px;
+  font-size: 15px;
+  line-height: 54px;
+  border-bottom: 1px solid #ededed;
+
+  &.on {
+    font-weight: 800;
+  }
+}
+
+.ico {
+  padding-right: 16px;
+  margin-right: 16px;
+
+  &.giftbox {
+    @include ico-gift4(-255px, -255px, 18px, 18px);
+
+    &.on {
+      @include ico-gift4(-275px, -255px, 18px, 18px);
+    }
+  }
+
+  &.wish {
+    @include ico-gift4(-255px, -275px, 18px, 18px);
+
+    &.on {
+      @include ico-gift4(-275px, -275px, 18px, 18px);
+    }
+  }
+
+  &.funding {
+    @include ico-gift4(-255px, -355px, 18px, 18px);
+
+    &.on {
+      @include ico-gift4(-275px, -355px, 18px, 18px);
+    }
+  }
+
+  &.order_history {
+    @include ico-gift4(-255px, -295px, 18px, 18px);
+
+    &.on {
+      @include ico-gift4(-275px, -295px, 18px, 18px);
+    }
+  }
+
+  &.funding_history {
+    @include ico-gift4(-255px, -335px, 18px, 18px);
+
+    &.on {
+      @include ico-gift4(-275px, -335px, 18px, 18px);
+    }
+  }
+}
