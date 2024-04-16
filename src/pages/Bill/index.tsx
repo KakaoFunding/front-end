@@ -16,13 +16,15 @@ const Bill = () => {
   }
 
   return (
-    <MainWrapper className={styles.wrapper_main}>
-      <div className={styles.area_field}>
-        <MessageCard />
-        {type === 'gift' && <GiftDetail />}
-        {type === 'funding' && <FundingDetail />}
-      </div>
-      <PaymentDetail />
+    <MainWrapper>
+      <form className={styles.wrapper_form}>
+        <div className={styles.area_field}>
+          <MessageCard />
+          {type === 'gift' && <GiftDetail />}
+          {type === 'funding' && <FundingDetail />}
+        </div>
+        <PaymentDetail />
+      </form>
     </MainWrapper>
   );
 };
