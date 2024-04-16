@@ -11,6 +11,7 @@ import 'styles/hardreset.css';
 
 import App from 'pages/App';
 import Auth from 'pages/Auth';
+import Bill from 'pages/Bill';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
 import GiftBox from 'pages/GiftBox';
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: '/search/result',
         element: <SearchResult />,
+      },
+      {
+        path: '/bill/:type',
+        element: <Bill />,
       },
     ],
   },
