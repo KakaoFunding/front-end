@@ -10,8 +10,8 @@ const Sidebar = () => {
         <SidebarItem type="giftbox" titleName="선물함" />
         <SidebarItem type="wish" titleName="위시리스트" />
         <SidebarItem type="funding" titleName="펀딩아이템" />
-        <SidebarItem type="order_history" titleName="주문내역" />
-        <SidebarItem type="funding_history" titleName="펀딩내역" />
+        <SidebarItem type="order-history" titleName="주문내역" />
+        <SidebarItem type="funding-history" titleName="펀딩내역" />
       </ul>
     </>
   );

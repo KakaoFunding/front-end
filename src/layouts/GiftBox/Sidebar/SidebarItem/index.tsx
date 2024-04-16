@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './index.module.scss';
 
 type SidebarItemProps = {
-  type: 'wish' | 'funding' | 'giftbox' | 'order_history' | 'funding_history';
+  type: 'wish' | 'funding' | 'giftbox' | 'order-history' | 'funding-history';
   titleName: string;
 };
 
