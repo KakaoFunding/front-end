@@ -62,11 +62,11 @@ const router = createBrowserRouter([
             element: <Funding />,
           },
           {
-            path: 'order-history',
+            path: 'orderHistory',
             element: <OrderHistory />,
           },
           {
-            path: 'funding-history',
+            path: 'fundingHistory',
             element: <FundingHistory />,
           },
         ],
