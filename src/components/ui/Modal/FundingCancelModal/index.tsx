@@ -38,13 +38,12 @@ const FundingCancelModal = ({
           {`등록한 펀딩을 취소하면 펀딩한 친구들에게 환불돼요. 취소한 펀딩은
           복구할 수 없어요. \n\n정말로 펀딩을 취소하시겠어요?`}
         </p>
-        <span className={styles.wrapper_cancel}>
+        <span className={styles.wrapper_cancel} onClick={handleCheck}>
           <span
             className={clsx({
               [styles.ico_cancel_active]: checked,
               [styles.ico_cancel]: !checked,
             })}
-            onClick={handleCheck}
           />
           펀딩을 취소합니다.
         </span>
