@@ -42,7 +42,7 @@
     }
   }
 
-  &.order_history {
+  &.order-history {
     @include ico-gift4(-255px, -295px, 18px, 18px);
 
     &.on {
@@ -50,7 +50,7 @@
     }
   }
 
-  &.funding_history {
+  &.funding-history {
     @include ico-gift4(-255px, -335px, 18px, 18px);
 
     &.on {
