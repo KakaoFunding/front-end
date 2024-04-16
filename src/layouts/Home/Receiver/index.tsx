@@ -1,10 +1,7 @@
-import FriendsSelectorModal from 'components/feature/FriendsSelectorModal';
 import ProfileImg from 'components/feature/ProfileImg';
 import MainWrapper from 'components/ui/MainWrapper';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
-
-import { useModal } from 'hooks/useModal';
 
 import FriendsFunding from './FriendsFunding';
 
@@ -17,18 +14,12 @@ const mockdata = {
 };
 
 const Receiver = () => {
-  const { isOpen, open, close, scrollPos } = useModal();
-
   const { isSelected, isSelfSelected, getImgUrl, getTitle } =
     useSelectedFriendsStore();
 
+  const handleClick = () => console.log('피커연동');
   return (
     <section>
-      <FriendsSelectorModal
-        close={close}
-        isOpen={isOpen}
-        scrollPos={scrollPos}
-      />
       <div className={styles.wrapper_selector}>
         <ProfileImg
           size="l"
@@ -38,7 +29,7 @@ const Receiver = () => {
               : getImgUrl()
           }
           hasIcon="plus"
-          onClick={open}
+          onClick={handleClick}
         />
         <strong className={styles.title_selector}>
           {mockdata.login && !isSelected && (
