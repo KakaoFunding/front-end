@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Spinner from 'components/ui/Spinner';
+
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
 import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
@@ -41,7 +43,7 @@ const Auth = () => {
     fetchData();
   }, [code]);
 
-  return <div>로그인 중입니다...</div>;
+  return <Spinner />;
 };
 
 export default Auth;
