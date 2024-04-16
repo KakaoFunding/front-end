@@ -1,5 +1,7 @@
+import styles from './index.module.scss';
+
 const PaymentDetail = () => {
-  return <div>PaymentDetail</div>;
+  return <section className={styles.area_payment}>PaymentDetail</section>;
 };
 
 export default PaymentDetail;

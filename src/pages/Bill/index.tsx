@@ -22,9 +22,7 @@ const Bill = () => {
         {type === 'gift' && <GiftDetail />}
         {type === 'funding' && <FundingDetail />}
       </div>
-      <div className={styles.area_payment}>
-        <PaymentDetail />
-      </div>
+      <PaymentDetail />
     </MainWrapper>
   );
 };
