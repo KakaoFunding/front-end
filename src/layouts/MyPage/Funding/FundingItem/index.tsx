@@ -45,19 +45,19 @@ const FundingItem = ({
         <div className={styles.wrapper_info}>
           <Link to={`/product/${productId}`}>
             <p className={styles.txt_product}>{productName}</p>
-            <Link to={`/brand/${brandId}`}>
-              <div className={styles.wrapper_brand}>
-                <span className={styles.txt_brand}>
-                  <img
-                    src={brandThumbnail}
-                    alt={`${brandName}로고이미지`}
-                    className={styles.img_brand}
-                  />
-                  {brandName}
-                </span>
-                <span className={styles.ico} />
-              </div>
-            </Link>
+          </Link>
+          <Link to={`/brand/${brandId}`}>
+            <div className={styles.wrapper_brand}>
+              <span className={styles.txt_brand}>
+                <img
+                  src={brandThumbnail}
+                  alt={`${brandName}로고이미지`}
+                  className={styles.img_brand}
+                />
+                {brandName}
+              </span>
+              <span className={styles.ico} />
+            </div>
           </Link>
           <p className={styles.txt_price}>
             목표금액<span>{formatNumberWithUnit(price)}</span>
