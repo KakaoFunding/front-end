@@ -21,5 +21,5 @@ export const formatNumberToPercent = (
   denominator: number,
 ): string => {
   const percent = (numerator / denominator) * 100;
-  return `${percent.toFixed(1)}%`;
+  return `${percent.toFixed(2)}%`;
 };
