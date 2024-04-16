@@ -1,5 +1,7 @@
+@import 'styles/variable.module';
+
 .main {
-  padding-top: 80px; // header height
+  padding-top: $header-height;
   min-height: 100vh;
   background-color: #ededed;
 }
