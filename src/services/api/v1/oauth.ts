@@ -1,8 +1,4 @@
-import axios, {
-  AxiosRequestHeaders,
-  AxiosResponse,
-  // RawAxiosResponseHeaders,
-} from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { User } from 'types/user';
 
@@ -21,6 +17,10 @@ type LoginRequestProps = {
 type LoginResponseProps = {
   accessToken: string;
   member: NonNullable<User>;
+};
+
+type LogoutRequestProps = {
+  accessToken: string | null;
 };
 
 // 로그인: 토큰 발급
@@ -63,24 +63,15 @@ export const login = async ({
   });
 };
 
-export const logout = async (): Promise<AxiosResponse<LoginResponseProps>> => {
-  return new Promise((res) => {
-    const fakeApiResponse: AxiosResponse<LoginResponseProps> = {
-      data: {
-        accessToken: 'fakeAccessToken',
-        member: {
-          name: 'fake guy',
-          profileUrl: 'fakeUrl',
-        },
-      },
-      status: 200,
-      statusText: 'OK',
-      headers: {} as Record<string, string>,
-      config: { headers: {} as AxiosRequestHeaders },
-    };
-
-    setTimeout(() => res(fakeApiResponse), 200);
+// 로그아웃 요청
+export const logout = async ({
+  accessToken,
+}: LogoutRequestProps): Promise<AxiosResponse<LogoutRequestProps>> => {
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+  };
+  const response = await apiV1.get('/oauth/logout', {
+    headers,
   });
-  // const response = await apiV1.get('/oauth/logout');
-  // return response;
+  return response;
 };
