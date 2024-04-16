@@ -1,3 +1,5 @@
+import FundingRanking from 'layouts/MyPage/Funding/FundingRanking';
+
 import styles from './index.module.scss';
 
 const mockdata = {
@@ -11,6 +13,7 @@ const Funding = () => {
       </div>
 
       <div>펀딩영역</div>
+      <FundingRanking />
       <div>펀딩 아이템 추천 영역</div>
     </>
   );

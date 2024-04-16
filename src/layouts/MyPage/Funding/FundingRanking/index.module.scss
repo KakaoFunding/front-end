@@ -1,0 +1,11 @@
+@import 'styles/mixins.module';
+
+.area_ranking {
+  margin: 30px 0;
+}
+
+.txt_title {
+  @include font(20px, 700);
+
+  line-height: 27px;
+}
