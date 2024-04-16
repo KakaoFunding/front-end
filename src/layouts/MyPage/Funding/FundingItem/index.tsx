@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
 
 import { Button } from 'components/ui/Button';
+import FundingCancelModal from 'components/ui/Modal/FundingCancelModal';
 
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithUnit } from 'utils/format';
-
-import FundingCancelModal from './FundingCancelModal';
 
 import styles from './index.module.scss';
 
