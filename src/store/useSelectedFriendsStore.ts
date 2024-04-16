@@ -1,22 +1,22 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-// import { User } from 'types/user';
+import { UserWithUserId } from 'types/user';
 
 const defaultImgUrl = 'src/assets/bg_profile_default.png';
 const peopleImgUrl = 'src/assets/profile_people.png';
-const profileImgUrl = 'src/assets/profile.png';
 
 type SelectedFriendsState = {
   isSelected: boolean;
   isSelfSelected: boolean;
-  // TODO : 받아올 친구 정보에 따라 타입 변환
-  selectedFriends: string[];
+  selectedFriends: UserWithUserId[];
   selectedHeadCount: number;
+  currentSelectedFriends: UserWithUserId[];
 };
 
 type SelectedFriendsAction = {
-  setSelectedFriends: (state: string[]) => void;
+  setSelectedFriends: (state: UserWithUserId[]) => void;
+  setCurrentSelectedFriends: (state: UserWithUserId[]) => void;
   getImgUrl: () => string;
   getTitle: () => string;
 };
@@ -30,19 +30,25 @@ export const useSelectedFriendsStore = create<
       isSelfSelected: false,
       selectedFriends: [],
       selectedHeadCount: 0,
+      currentSelectedFriends: [],
 
       setSelectedFriends: (state) =>
         set(() => ({
           isSelected: !(state.length === 0),
+          isSelfSelected: state.length === 1 && state[0].id === 0,
           selectedFriends: state,
           selectedHeadCount: state.length,
         })),
 
+      setCurrentSelectedFriends: (state) =>
+        set(() => ({
+          currentSelectedFriends: state,
+        })),
+
       getImgUrl: () => {
-        // 여러명일 경우
         if (get().selectedHeadCount > 1) return peopleImgUrl;
-        if (get().selectedHeadCount === 1) return profileImgUrl;
-        // 친구의 정보 이미지 넣기
+        if (get().selectedHeadCount === 1)
+          return get().selectedFriends[0].profileUrl!;
         return defaultImgUrl;
       },
 
@@ -51,7 +57,7 @@ export const useSelectedFriendsStore = create<
         if (get().selectedHeadCount > 1)
           return `${get().selectedHeadCount}명의 친구에게 선물하기`;
         if (get().isSelfSelected) return '나를 위한 선물하기';
-        return `${get().selectedFriends}에게 선물하기`;
+        return `${get().selectedFriends[0].name}에게 선물하기`;
       },
     }),
     {

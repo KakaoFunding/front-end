@@ -19,7 +19,7 @@
   }
 
   &.xs {
-    @include size(40px, 40px, 0, 0);
+    @include size(40px, 40px, 4px 8px, 0);
   }
 
   &.s {

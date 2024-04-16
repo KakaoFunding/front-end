@@ -14,21 +14,10 @@ const mockdata = {
 };
 
 const Receiver = () => {
-  const {
-    isSelected,
-    isSelfSelected,
-    getImgUrl,
-    getTitle,
-    setSelectedFriends,
-  } = useSelectedFriendsStore();
+  const { isSelected, isSelfSelected, getImgUrl, getTitle } =
+    useSelectedFriendsStore();
 
-  // TODO : 개발용, 배포시 삭제
-  // useSelectedFriendsStore.persist.clearStorage();
-
-  // 임시 친구 선택
-  const handleSelectedFriends = () =>
-    setSelectedFriends([...prompt()!.toString()]);
-
+  const handleClick = () => console.log('피커연동');
   return (
     <section>
       <div className={styles.wrapper_selector}>
@@ -40,7 +29,7 @@ const Receiver = () => {
               : getImgUrl()
           }
           hasIcon="plus"
-          onClick={handleSelectedFriends}
+          onClick={handleClick}
         />
         <strong className={styles.title_selector}>
           {mockdata.login && !isSelected && (

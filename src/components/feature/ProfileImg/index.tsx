@@ -4,6 +4,7 @@ import styles from './index.module.scss';
 
 type ProfileImgProps = {
   size: 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
+  cursor?: boolean;
   hasIcon?: 'plus' | 'cancel' | 'me';
   imgUrl?: string;
   onClick?: () => void;
@@ -11,15 +12,22 @@ type ProfileImgProps = {
 
 const defaultProfileImg = '/src/assets/profile_default.png';
 
-const ProfileImg = ({ size, hasIcon, onClick, imgUrl }: ProfileImgProps) => {
+const ProfileImg = ({
+  size,
+  cursor,
+  hasIcon,
+  onClick,
+  imgUrl,
+}: ProfileImgProps) => {
   return (
     <button
       type="button"
       onClick={onClick || undefined}
       aria-label="text"
-      className={clsx(styles.btn, { [styles.on]: hasIcon })}
+      className={clsx(styles.btn, { [styles.on]: cursor || hasIcon })}
     >
       <img
+        //TODO  api 연결하면 이미지 수정
         src={imgUrl || defaultProfileImg}
         alt="프로필 사진"
         className={clsx(styles.img, styles[size])}
