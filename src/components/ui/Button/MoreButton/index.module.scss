@@ -1,0 +1,28 @@
+@import 'styles/mixins.module';
+
+.btn_more {
+  @include center(row);
+
+  line-height: 63px;
+  color: #000;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+
+  &.small {
+    @include size(280px, 52px, 0 auto, 0);
+
+    font-size: 16px;
+  }
+
+  &.medium {
+    @include size(492px, 60px, 0 auto, 0);
+
+    font-size: 20px;
+  }
+}
+
+.ico_more {
+  @include ico-main(-320px, -280px, 20px, 20px);
+
+  margin-left: 10px;
+}
