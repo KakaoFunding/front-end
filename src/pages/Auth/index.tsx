@@ -3,33 +3,43 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
-import { login } from 'services/api/v1/oauth';
+import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
 
 const Auth = () => {
   const navigate = useNavigate();
   const setAccessToken = useAuthStore((state) => state.setAccessToken);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
+  const setSocialAccessToken = useAuthStore((state) => state.setSocialToken);
+  const urlString = new URL(window.location.href);
+  const code = urlString.searchParams.get('code');
+  const loginState = urlString.searchParams.get('state');
 
   useEffect(() => {
-    const urlString = new URL(window.location.href);
-    const code = urlString.searchParams.get('code');
-    const loginState = urlString.searchParams.get('state');
+    const fetchData = async () => {
+      try {
+        if (!code || !loginState) {
+          // Todo: 예외처리
+          navigate('/');
+          return;
+        }
 
-    if (!code || !loginState) {
-      // Todo: 예외처리
-      navigate('/');
-      return;
-    }
+        const socialAccessToken = await getKakaoOauthToken({ code });
+        setSocialAccessToken(socialAccessToken);
 
-    const loginResult = login({ code });
+        const res = await login({ socialAccessToken });
+        const { accessToken, member } = res.data;
 
-    loginResult.then((res) => {
-      const { accessToken, member } = res.data;
-      setAccessToken(accessToken);
-      setUserInfo(member);
-      navigate(loginState);
-    });
-  });
+        setAccessToken(accessToken);
+        setUserInfo(member);
+        navigate(loginState);
+      } catch (error) {
+        console.warn(error);
+        // Todo: 에러 처리
+      }
+    };
+
+    fetchData();
+  }, [code]);
 
   return <div>로그인 중입니다...</div>;
 };
