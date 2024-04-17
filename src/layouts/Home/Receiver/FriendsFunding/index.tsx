@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
+import ProgressBar from 'components/ui/ProgressBar';
 
 import { formatNumberWithComma, formatNumberToPercent } from 'utils/format';
 
@@ -54,9 +55,13 @@ const FriendsFunding = () => {
               </p>
             </div>
             {/* TODO : 프로그레스바 삽입 예정 */}
-            <div style={{ backgroundColor: `blue`, margin: '20px 0' }}>
+            {/* <div style={{ backgroundColor: `blue`, margin: '20px 0' }}>
               프로그레스바
-            </div>
+            </div> */}
+            <ProgressBar
+              fundingGoal={data.productPrice}
+              raisedAmount={data.fundingPrice}
+            />
             {/* TODO : 결제페이지 props에 맞게 필요한 데이터 전달 */}
             <Link to="/bill" state={{ productId: data.productId, self: false }}>
               <Button color="yellow" className={styles.btn_funding}>
