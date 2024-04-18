@@ -1,6 +1,12 @@
+import { formatNumberWithUnit } from 'utils/format';
+
 import styles from './index.module.scss';
 
-const PaymentDetail = () => {
+type PaymentDetailProps = {
+  totalPrice: number;
+};
+
+const PaymentDetail = ({ totalPrice }: PaymentDetailProps) => {
   const PAY_METHOD = 'pay_method';
   const PAY_ID = {
     KAKAO_MONEY: 'kakao_pay_money',
@@ -53,10 +59,7 @@ const PaymentDetail = () => {
           <h4 className={styles.txt_subtitle}>결제정보</h4>
           <div className={styles.wrapper_final_price}>
             <strong className={styles.txt_price_title}>최종 결제금액</strong>
-            <span>
-              19,900원
-              {/* amount */}
-            </span>
+            <span>{formatNumberWithUnit(totalPrice)}</span>
           </div>
         </div>
 
@@ -67,7 +70,7 @@ const PaymentDetail = () => {
         </div>
 
         <button type="submit" className={styles.btn_pay}>
-          {/* amount */}결제하기
+          {formatNumberWithUnit(totalPrice)} 결제하기
         </button>
       </fieldset>
     </section>

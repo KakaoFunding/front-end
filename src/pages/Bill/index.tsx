@@ -48,7 +48,7 @@ const Bill = () => {
           {type === 'gift' && <GiftDetail />}
           {type === 'funding' && <FundingDetail />}
         </div>
-        <PaymentDetail />
+        <PaymentDetail totalPrice={data?.totalProductAmount ?? 0} />
       </form>
     </MainWrapper>
   );
