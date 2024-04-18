@@ -2,15 +2,13 @@ import { formatNumberToPercent, formatNumberWithComma } from 'utils/format';
 
 import styles from './index.module.scss';
 
-type ProgressProps = {
-  fundingGoal: number;
-  raisedAmount: number;
+type ProgressBarProps = {
+  denominator: number;
+  numerator: number;
 };
 
-const WHITE_SPACE = `\u00A0`;
-
-const ProgressBar = ({ fundingGoal, raisedAmount }: ProgressProps) => {
-  const percent = formatNumberToPercent(raisedAmount, fundingGoal);
+const ProgressBar = ({ denominator, numerator }: ProgressBarProps) => {
+  const percent = formatNumberToPercent(numerator, denominator);
   return (
     <div className={styles.area_progressbar}>
       <div
@@ -18,8 +16,7 @@ const ProgressBar = ({ fundingGoal, raisedAmount }: ProgressProps) => {
         style={{ width: `${percent}` }}
       />
       <span className={styles.txt_progressbar}>
-        {formatNumberWithComma(raisedAmount)} /{WHITE_SPACE}
-        {formatNumberWithComma(fundingGoal)}
+        {`${formatNumberWithComma(numerator)} / ${formatNumberWithComma(denominator)}`}
       </span>
     </div>
   );

@@ -54,13 +54,9 @@ const FriendsFunding = () => {
                 </strong>
               </p>
             </div>
-            {/* TODO : 프로그레스바 삽입 예정 */}
-            {/* <div style={{ backgroundColor: `blue`, margin: '20px 0' }}>
-              프로그레스바
-            </div> */}
             <ProgressBar
-              fundingGoal={data.productPrice}
-              raisedAmount={data.fundingPrice}
+              denominator={data.productPrice}
+              numerator={data.fundingPrice}
             />
             {/* TODO : 결제페이지 props에 맞게 필요한 데이터 전달 */}
             <Link to="/bill" state={{ productId: data.productId, self: false }}>
