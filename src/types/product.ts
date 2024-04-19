@@ -3,7 +3,7 @@ export type Option = {
   name: string;
 };
 
-export type Product = {
+export type ProductResponse = {
   productId: number;
   name: string;
   price: number;
