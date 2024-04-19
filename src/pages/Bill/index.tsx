@@ -40,9 +40,13 @@ const Bill = () => {
     return <Navigate to="/NotFound" />;
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <MainWrapper>
-      <form className={styles.wrapper_form}>
+      <form className={styles.wrapper_form} onSubmit={handleSubmit}>
         <div className={styles.area_field}>
           <MessageCard />
           {type === 'gift' && <GiftDetail />}
