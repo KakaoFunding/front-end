@@ -2,18 +2,19 @@
 @import 'styles/variable.module';
 
 .area_search {
+  position: sticky;
+  top: $header-height;
+  padding: 10px 0;
+  z-index: 30;
   min-height: 65px;
   background-color: #fff;
 }
 
 .wrapper_input {
-  position: fixed;
-  top: $header-height;
-  left: 0;
-  right: 0;
+  position: relative;
   background-color: #fff;
   width: 640px;
-  margin: 10px auto;
+  margin: auto;
 }
 
 .input {
