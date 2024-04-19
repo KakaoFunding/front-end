@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
 
+import MessageCard from 'components/feature/MessageCard';
+import PaymentDetail from 'components/feature/PaymentDetail';
 import MainWrapper from 'components/ui/MainWrapper';
-import FundingDetail from 'layouts/Bill/FundingDetail';
-import GiftDetail from 'layouts/Bill/GiftDetail';
-import MessageCard from 'layouts/Bill/MessageCard';
-import PaymentDetail from 'layouts/Bill/PaymentDetail';
+import GiftDetail from 'layouts/GiftPayment/GiftDetail';
 
 import { useAxios } from 'hooks/useAxios';
 
@@ -13,9 +11,7 @@ import { ResponseExpectedPaymentAmount } from 'types/payment';
 
 import styles from './index.module.scss';
 
-const Bill = () => {
-  const { type } = useParams();
-
+const GiftPayment = () => {
   const { data, sendRequest } = useAxios<ResponseExpectedPaymentAmount>({
     method: 'post',
     url: '/payments/preview',
@@ -36,10 +32,6 @@ const Bill = () => {
     sendRequest();
   }, []);
 
-  if (type !== 'gift' && type !== 'funding') {
-    return <Navigate to="/NotFound" />;
-  }
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -49,8 +41,7 @@ const Bill = () => {
       <form className={styles.wrapper_form} onSubmit={handleSubmit}>
         <div className={styles.area_field}>
           <MessageCard />
-          {type === 'gift' && <GiftDetail />}
-          {type === 'funding' && <FundingDetail />}
+          <GiftDetail />
         </div>
         <PaymentDetail totalPrice={data?.totalProductAmount ?? 0} />
       </form>
@@ -58,4 +49,4 @@ const Bill = () => {
   );
 };
 
-export default Bill;
+export default GiftPayment;
