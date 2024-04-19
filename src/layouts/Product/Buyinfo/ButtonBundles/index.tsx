@@ -6,13 +6,21 @@ import { formatNumberWithPlus } from 'utils/format';
 
 import styles from './index.module.scss';
 
-const handleClickFunding = () => console.log('펀딩아이템으로 등록하기');
+const handleClickFunding = () => {
+  // console.log('펀딩아이템으로 등록하기');
+};
 
-const handleClickCart = () => console.log('선물상자 담기');
+const handleClickCart = () => {
+  // console.log('선물상자 담기');
+};
 
-const handleClickGiftWish = () => console.log('찜 !');
+const handleClickGiftWish = () => {
+  // console.log('찜 !');
+};
 
-const handleClickGiftForMe = () => console.log('나에게 선물하기');
+const handleClickGiftForMe = () => {
+  // console.log('나에게 선물하기');
+};
 
 const mockData = {
   wishCnt: 999999,
