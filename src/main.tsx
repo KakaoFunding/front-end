@@ -13,6 +13,7 @@ import App from 'pages/App';
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
 import Funding from 'pages/Funding';
+import FundingPayment from 'pages/FundingPayment';
 import GiftBox from 'pages/GiftBox';
 import GiftPayment from 'pages/GiftPayment';
 import Home from 'pages/Home';
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: '/bill/gift',
         element: <GiftPayment />,
+      },
+      {
+        path: '/bill/funding',
+        element: <FundingPayment />,
       },
     ],
   },

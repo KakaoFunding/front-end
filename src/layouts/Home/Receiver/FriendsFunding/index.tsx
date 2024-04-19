@@ -58,7 +58,10 @@ const FriendsFunding = () => {
               프로그레스바
             </div>
             {/* TODO : 결제페이지 props에 맞게 필요한 데이터 전달 */}
-            <Link to="/bill" state={{ productId: data.productId, self: false }}>
+            <Link
+              to="/bill/funding"
+              state={{ productId: data.productId, self: false }}
+            >
               <Button color="yellow" className={styles.btn_funding}>
                 펀딩하기
               </Button>
