@@ -5,7 +5,10 @@ import { User } from 'types/user';
 
 type AuthState = {
   accessToken: string | null;
+  socialToken: string | null;
+  setSocialToken: (token: string) => void;
   setAccessToken: (token: string) => void;
+  clearSocialToken: () => void;
   clearAccessToken: () => void;
 };
 
@@ -13,11 +16,14 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       accessToken: null,
+      socialToken: null,
+      setSocialToken: (token) => set({ socialToken: token }),
       setAccessToken: (token) => set({ accessToken: token }),
+      clearSocialToken: () => set({ socialToken: null }),
       clearAccessToken: () => set({ accessToken: null }),
     }),
     {
-      name: 'funding/auth',
+      name: 'auth',
     },
   ),
 );
@@ -40,7 +46,7 @@ export const useUserStore = create<UserState>()(
       clearUserInfo: () => set({ name: null, profileUrl: null }),
     }),
     {
-      name: 'funding/user',
+      name: 'user',
     },
   ),
 );
