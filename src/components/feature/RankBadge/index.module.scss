@@ -1,0 +1,18 @@
+@import 'styles/mixins.module';
+
+.wrapper_rank {
+  @include center(row);
+  @include size(30px, 30px, 0, 0);
+  @include font(14px, 700);
+
+  // TODO font 믹스인 변경 머지시 수정예정
+  color: #fff;
+  position: absolute;
+  inset: 4px 0 0 4px;
+  border-radius: 4px;
+  background-color: #bbb;
+
+  &.on {
+    background-color: #ff7368;
+  }
+}
