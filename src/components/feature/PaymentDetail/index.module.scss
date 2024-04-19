@@ -36,7 +36,50 @@
 
   label {
     display: inline-block;
+    position: relative;
     width: 100%;
+  }
+
+  [type='radio'],
+  .txt_method {
+    vertical-align: middle;
+    appearance: none; // 라디오 버튼 숨김
+  }
+}
+
+.wrapper_kakao {
+  background-color: #ffeb00;
+  border-radius: 5px;
+  padding: 20px 16px 24px;
+
+  .ico_kakao {
+    margin-bottom: 20px;
+
+    @include ico-gift4(-75px, -420px, 52px, 16px);
+  }
+
+  [type='radio'] {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  [type='radio']:checked::after {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    background-color: #1f1f1f;
+    border-radius: 50%;
+    content: '';
+  }
+
+  .txt_method {
+    margin-left: 6px;
+    color: #000;
   }
 }
 

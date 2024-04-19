@@ -7,11 +7,7 @@ type PaymentDetailProps = {
 };
 
 const PaymentDetail = ({ totalPrice }: PaymentDetailProps) => {
-  const PAY_METHOD = 'pay_method';
-  const PAY_ID = {
-    KAKAO_MONEY: 'kakao_pay_money',
-    KAKAO_CARD: 'kakao_pay_card',
-  };
+  const PAY_METHOD = 'PAY_METHOD';
 
   return (
     <section className={styles.area_payment}>
@@ -21,14 +17,13 @@ const PaymentDetail = ({ totalPrice }: PaymentDetailProps) => {
 
         <div className={styles.wrapper_box}>
           <h4 className={styles.txt_subtitle}>카카오페이 결제</h4>
-          <label htmlFor={PAY_ID.KAKAO_MONEY}>
-            <input type="radio" id={PAY_ID.KAKAO_MONEY} name={PAY_METHOD} />
-            카카오페이머니
-          </label>
-          <label htmlFor={PAY_ID.KAKAO_CARD}>
-            <input type="radio" id={PAY_ID.KAKAO_CARD} name={PAY_METHOD} />
-            카카오페이카드
-          </label>
+          <div className={styles.wrapper_kakao}>
+            <span className={styles.ico_kakao}>카카오페이 아이콘</span>
+            <label htmlFor="KAKAO_PAY">
+              <input type="radio" id="KAKAO_PAY" name={PAY_METHOD} checked />
+              <span className={styles.txt_method}>카카오페이</span>
+            </label>
+          </div>
         </div>
 
         <div className={styles.wrapper_box}>
