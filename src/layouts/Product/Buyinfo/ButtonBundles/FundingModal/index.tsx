@@ -29,9 +29,8 @@ const FundingModal = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.split(',').join('');
-    if (!isValidQuantity(inputValue)) {
-      return;
-    }
+    if (!isValidQuantity(inputValue)) return;
+
     const newChange = Number(inputValue);
     if (newChange > mockData.price) return;
     setInput(formatNumberWithComma(newChange));
