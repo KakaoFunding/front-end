@@ -1,0 +1,33 @@
+@import 'styles/mixins.module';
+
+.wrapper_item {
+  display: flex;
+  font-size: 13px;
+
+  .thumb_item {
+    @include size(86px, 86px, 0 8px 0 0, 0);
+  }
+
+  .txt_brand {
+    color: #888;
+  }
+
+  .txt_title {
+    font-size: 14px;
+    margin: 6px 0;
+    color: #222;
+  }
+
+  .txt_option {
+    display: flex;
+    align-items: center;
+    color: #888;
+    letter-spacing: -0.015em;
+  }
+
+  .ico_option {
+    @include ico-gift4(-175px, -740px, 28px, 18px);
+
+    margin-right: 4px;
+  }
+}
