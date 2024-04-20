@@ -12,17 +12,19 @@ import 'styles/hardreset.css';
 import App from 'pages/App';
 import Auth from 'pages/Auth';
 import CategoryResult from 'pages/CategoryResult';
-import Funding from 'pages/Funding';
 import FundingPayment from 'pages/FundingPayment';
-import GiftBox from 'pages/GiftBox';
 import GiftPayment from 'pages/GiftPayment';
 import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
+import Funding from 'pages/MyPage/Funding';
+import FundingHistory from 'pages/MyPage/FundingHistory';
+import GiftBox from 'pages/MyPage/GiftBox';
+import OrderHistory from 'pages/MyPage/OrderHistory';
+import Wish from 'pages/MyPage/Wish';
 import NotFound from 'pages/NotFound';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
 import SearchResult from 'pages/SearchResult';
-import Wish from 'pages/Wish';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
         element: <MyPage />,
         children: [
           {
+            path: 'giftbox',
+            element: <GiftBox />,
+          },
+          {
             path: 'wish',
             element: <Wish />,
           },
@@ -57,8 +63,12 @@ const router = createBrowserRouter([
             element: <Funding />,
           },
           {
-            path: 'giftbox',
-            element: <GiftBox />,
+            path: 'orderHistory',
+            element: <OrderHistory />,
+          },
+          {
+            path: 'fundingHistory',
+            element: <FundingHistory />,
           },
         ],
       },
