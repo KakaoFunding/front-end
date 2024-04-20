@@ -63,7 +63,7 @@ const FundingModal = ({
         <div className={styles.wrapper_thumb}>
           <Thumbnail
             src={mockData.thumbImgUrl}
-            alt="등록삼품썸네일"
+            alt={`${mockData.title}상품대표이미지`}
             size="small"
           />
         </div>
