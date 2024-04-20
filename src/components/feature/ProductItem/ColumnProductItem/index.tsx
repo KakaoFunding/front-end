@@ -26,12 +26,12 @@ const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
         </div>
       </a>
       <div className={styles.wrapper_util_info}>
-        <CartButton id={product.id} />
         <WishButton
           id={product.id}
           isWished={product.isWished}
           wishCount={product.wishCount}
         />
+        <CartButton />
       </div>
     </article>
   );
