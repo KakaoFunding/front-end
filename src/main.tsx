@@ -11,8 +11,9 @@ import 'styles/hardreset.css';
 
 import App from 'pages/App';
 import Auth from 'pages/Auth';
-import Bill from 'pages/Bill';
 import CategoryResult from 'pages/CategoryResult';
+import FundingPayment from 'pages/FundingPayment';
+import GiftPayment from 'pages/GiftPayment';
 import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
 import Funding from 'pages/MyPage/Funding';
@@ -92,8 +93,12 @@ const router = createBrowserRouter([
         element: <SearchResult />,
       },
       {
-        path: '/bill/:type',
-        element: <Bill />,
+        path: '/bill/gift',
+        element: <GiftPayment />,
+      },
+      {
+        path: '/bill/funding',
+        element: <FundingPayment />,
       },
     ],
   },

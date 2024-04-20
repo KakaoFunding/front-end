@@ -4,7 +4,7 @@ type EmptyItemProps = {
   type: 'wish' | 'funding';
 };
 
-const choonsikImgUrl = 'src/assets/bg_choonsik.png';
+const choonsikImgUrl = '/src/assets/bg_choonsik.png';
 
 const EMPTY_ITEM_TEXT = {
   wish: {

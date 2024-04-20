@@ -1,8 +1,9 @@
 import clsx from 'clsx';
 
-import { useAuthStore, useUserStore } from 'store/authStore';
+import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
 import { logout } from 'services/api/v1/oauth';
+import { Data } from 'services/api/v1/service';
 
 import styles from './index.module.scss';
 
@@ -12,14 +13,18 @@ type LogoutModalProps = {
 };
 
 const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
+  const accessToken = useAuthStore((state) => state.accessToken);
   const clearUser = useUserStore((state) => state.clearUserInfo);
-  const clearAuth = useAuthStore((state) => state.clearAccessToken);
+  const clearAccessToken = useAuthStore((state) => state.clearAccessToken);
+  const clearSocialToken = useAuthStore((state) => state.clearSocialToken);
 
   const handleLogout = async () => {
-    await logout();
+    await logout({ accessToken });
 
-    clearAuth();
+    clearAccessToken();
+    clearSocialToken();
     clearUser();
+    Data.clear();
   };
 
   return (
