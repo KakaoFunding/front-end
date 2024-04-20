@@ -53,10 +53,12 @@ const FundingModal = ({
         </strong>
         <section className={styles.wrapper_info}>
           <div className={styles.prod_title}>{mockData.title}</div>
-          <div className={styles.prod_option}>
-            <span className={styles.ico_option}>옵션</span>
-            {mockData.option}
-          </div>
+          {mockData.option && (
+            <div className={styles.prod_option}>
+              <span className={styles.ico_option}>옵션</span>
+              {mockData.option}
+            </div>
+          )}
         </section>
         <div className={styles.wrapper_thumb}>
           <Thumbnail
