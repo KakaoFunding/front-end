@@ -6,7 +6,7 @@ import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
 import { formatNumberWithUnit, formatNumberWithComma } from 'utils/format';
-import { isValidQuantity } from 'utils/validation';
+import { isValidPrice } from 'utils/validation';
 
 import { FriendsSelectorModalProps } from 'types/modal';
 
@@ -29,7 +29,7 @@ const FundingModal = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.split(',').join('');
-    if (!isValidQuantity(inputValue)) return;
+    if (!isValidPrice(inputValue)) return;
 
     const newChange = Number(inputValue);
     if (newChange > mockData.price) return;

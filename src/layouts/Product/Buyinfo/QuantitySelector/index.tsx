@@ -41,15 +41,17 @@ const ProductQuantity = ({
     setInput('1');
   };
 
+  // TODO : 상품 최대 주문값, 최소 주문값을 상수로 분리하여 예외 처리하기
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
   };
+  // TODO : 상품 최대 주문값, 최소 주문값을 상수로 분리하여 예외 처리하기
   const handleMinusClick = () => {
     if (quantity === 1) return;
     setQuantity(quantity - 1);
   };
 
-  // button > span 스토리북으로 컴포넌트화 하기
+  // TODO : button > span 스토리북으로 컴포넌트화 하기
   return (
     <section className={clsx({ [styles.area_quantity]: !hasOption })}>
       <div className={styles.wrapper_option}>
