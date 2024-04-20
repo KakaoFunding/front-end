@@ -15,9 +15,10 @@
   border-radius: 39%;
 }
 
-@mixin font($size, $weight) {
+@mixin font($size, $weight, $color: inherit) {
   font-size: $size;
   font-weight: $weight;
+  color: $color;
 }
 
 @mixin size($width, $height, $margin, $padding) {
