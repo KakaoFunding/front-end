@@ -1,0 +1,54 @@
+@import 'styles/mixins.module';
+@import 'styles/variable.module';
+
+.modal {
+  @include size(300px, 320px, 0, 30px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  letter-spacing: -1px;
+
+  .txt_title {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .txt_desc {
+    margin: 16px 0;
+    line-height: 22px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+
+  .wrapper_cancel {
+    display: flex;
+
+    .ico_cancel_active {
+      @include ico-layer(-195px, -20px, 18px, 18px);
+
+      margin-right: 4px;
+    }
+
+    .ico_cancel {
+      @include ico-layer(-195px, 0, 18px, 18px);
+
+      margin-right: 4px;
+    }
+  }
+
+  .btn_cancel {
+    margin: 20px 0 0;
+    height: 40px;
+    color: #999;
+    background-color: #e5e5e5;
+    cursor: auto;
+
+    &.on {
+      color: #000;
+      background-color: $point-yellow;
+      cursor: pointer;
+    }
+  }
+}
