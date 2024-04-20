@@ -1,9 +1,21 @@
-export const isValidQuantity = (inputValue: string): boolean => {
-  const quantity = Number(inputValue);
+const isZero = (target: number): boolean => target === 0;
 
-  if (Number.isNaN(quantity) || !Number.isInteger(quantity) || quantity < 1) {
-    return false;
-  }
+const isPositiveInteger = (target: number): boolean => {
+  return !Number.isInteger(target) || target > 0;
+};
 
-  return true;
+export const isValidQuantity = (target: string): boolean => {
+  const quantity = Number(target);
+
+  if (Number.isNaN(quantity)) return false;
+
+  return isPositiveInteger(quantity);
+};
+
+export const isValidPrice = (target: string): boolean => {
+  const price = Number(target);
+
+  if (Number.isNaN(price)) return false;
+
+  return isPositiveInteger(price) || isZero(price);
 };
