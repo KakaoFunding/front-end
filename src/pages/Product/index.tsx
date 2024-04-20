@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
 import MainWrapper from 'components/ui/MainWrapper';
-import ProductBuyInfo from 'layouts/Product/Buyinfo';
+import ProductBuyInfo from 'layouts/Product/BuyInfo';
 import DetailBottom from 'layouts/Product/DetailBottom';
 import DetailContents from 'layouts/Product/DetailContent';
 import DetailMain from 'layouts/Product/DetailMain';
