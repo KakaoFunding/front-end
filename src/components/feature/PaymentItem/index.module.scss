@@ -3,6 +3,7 @@
 .wrapper_item {
   display: flex;
   font-size: 13px;
+  padding-bottom: 12px;
 
   .thumb_item {
     @include size(86px, 86px, 0 8px 0 0, 0);

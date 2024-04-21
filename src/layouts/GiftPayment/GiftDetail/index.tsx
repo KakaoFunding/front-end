@@ -1,3 +1,5 @@
+import GiftItem from './GiftItem';
+
 import styles from './index.module.scss';
 
 const data = {
@@ -18,8 +20,9 @@ const GiftDetail = () => {
           </div>
         )}
         <ul>
+          {/* TODO : key 값 올바르게 넘겨주기 */}
           {data.item.map((it) => (
-            <li key={it} />
+            <GiftItem key={it} />
           ))}
         </ul>
       </div>
