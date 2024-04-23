@@ -39,9 +39,7 @@ const Modal = ({
   }, []);
 
   return createPortal(
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div className={clsx(styles.wrapper_modal)} onClick={onClose}>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div
         className={clsx(styles.modal, className)}
         onClick={(e) => e.stopPropagation()}

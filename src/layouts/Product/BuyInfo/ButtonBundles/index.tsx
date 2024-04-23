@@ -4,48 +4,39 @@ import { Button } from 'components/ui/Button';
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
 
-import FundingModal from './FundingModal';
-
 import styles from './index.module.scss';
 
-const handleClickCart = () => console.log('선물상자 담기');
+const handleClickFunding = () => {
+  // console.log('펀딩아이템으로 등록하기');
+};
 
-const handleClickGiftWish = () => console.log('찜 !');
+const handleClickCart = () => {
+  // console.log('선물상자 담기');
+};
 
-const handleClickGiftForMe = () => console.log('나에게 선물하기');
+const handleClickGiftWish = () => {
+  // console.log('찜 !');
+};
+
+const handleClickGiftForMe = () => {
+  // console.log('나에게 선물하기');
+};
 
 const mockData = {
   wishCnt: 999999,
 };
 
 const ButtonBundles = () => {
-  const {
-    isOpen: isFriendsPikerOpen,
-    open: openFriendsPikerModal,
-    close: closeFriendsPikerModal,
-    scrollPos: scrollFriendsPikerPos,
-  } = useModal();
-  const {
-    isOpen: isFundingOpen,
-    open: openFundingModal,
-    close: closeFundingModal,
-    scrollPos: scrollFundingPos,
-  } = useModal();
+  const { isOpen, open, close, scrollPos } = useModal();
 
-  const handleClickGiftForFriend = openFriendsPikerModal;
-  const handleClickFunding = openFundingModal;
+  const handleClickGiftForFriend = open;
 
   return (
     <section className={styles.wrapper_bundle}>
       <FriendsSelectorModal
-        close={closeFriendsPikerModal}
-        isOpen={isFriendsPikerOpen}
-        scrollPos={scrollFriendsPikerPos}
-      />
-      <FundingModal
-        close={closeFundingModal}
-        isOpen={isFundingOpen}
-        scrollPos={scrollFundingPos}
+        close={close}
+        isOpen={isOpen}
+        scrollPos={scrollPos}
       />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
