@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
 
 import MainWrapper from 'components/ui/MainWrapper';
-import ProductBuyInfo from 'layouts/Product/Buyinfo';
+import ProductBuyInfo from 'layouts/Product/BuyInfo';
 import DetailBottom from 'layouts/Product/DetailBottom';
 import DetailContents from 'layouts/Product/DetailContent';
 import DetailMain from 'layouts/Product/DetailMain';
@@ -10,6 +10,8 @@ import DetailMain from 'layouts/Product/DetailMain';
 import styles from './index.module.scss';
 
 // 상품 데이터 fetch 해오기
+const mockBrandId = 1;
+
 const Product = () => {
   const [isVisibleSelector, setIsVisibleSelector] = useState(false);
   const target = useRef<HTMLDivElement>(null);
@@ -36,7 +38,7 @@ const Product = () => {
         <section className={styles.area_detail}>
           <DetailMain />
           <DetailContents />
-          <DetailBottom />
+          <DetailBottom brandId={mockBrandId} />
           <div ref={target} className={styles.observer} />
         </section>
         <section

@@ -17,7 +17,10 @@ const Receiver = () => {
   const { isSelected, isSelfSelected, getImgUrl, getTitle } =
     useSelectedFriendsStore();
 
-  const handleClick = () => console.log('피커연동');
+  const handleClick = () => {
+    // console.log('피커연동')
+  };
+
   return (
     <section>
       <div className={styles.wrapper_selector}>

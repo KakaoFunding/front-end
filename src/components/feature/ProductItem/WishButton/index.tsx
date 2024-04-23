@@ -12,7 +12,7 @@ type WishButtonProps = {
   wishCount: ProductItem['wishCount'];
 };
 
-const WishButton = ({ id, isWished, wishCount }: WishButtonProps) => {
+const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
   const DIVIDER = 10000;
   const REMAINS = '만+';
 
