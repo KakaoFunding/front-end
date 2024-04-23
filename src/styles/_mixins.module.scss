@@ -15,9 +15,10 @@
   border-radius: 39%;
 }
 
-@mixin font($size, $weight) {
+@mixin font($size, $weight, $color: inherit) {
   font-size: $size;
   font-weight: $weight;
+  color: $color;
 }
 
 @mixin size($width, $height, $margin, $padding) {
@@ -94,6 +95,18 @@
 
   background-image: url('assets/ico_pd_detail.png');
   background-size: 250px 600px;
+}
+
+@mixin ico-detail($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('assets/ico_detail.png');
+  background-size: 200px 800px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+  overflow: hidden;
 }
 
 @mixin ico-gift($x, $y, $width, $height) {

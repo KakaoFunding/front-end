@@ -1,5 +1,5 @@
 const GiftBox = () => {
-  return <>선물함</>;
+  return <> </>;
 };
 
 export default GiftBox;
