@@ -1,9 +1,0 @@
-@import 'styles/mixins.module';
-
-.wrapper_gift_review {
-  @include center(row);
-
-  height: 100vh;
-  font-size: 40px;
-  font-weight: 700;
-}
