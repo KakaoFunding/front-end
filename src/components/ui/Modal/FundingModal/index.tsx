@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
@@ -37,7 +37,13 @@ const FundingModal = ({
     setChange(mockData.price - newChange);
   };
 
+  // TODO : 펀딩등록로직추가
   const handleAddFunding = close;
+
+  useEffect(() => {
+    setInput('');
+    setChange(mockData.price);
+  }, [isOpen]);
 
   return (
     isOpen && (
