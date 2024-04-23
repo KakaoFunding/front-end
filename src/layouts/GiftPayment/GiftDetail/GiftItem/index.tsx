@@ -14,7 +14,7 @@ const data = {
 };
 
 const GiftItem = () => {
-  const [isToggle, handleToggle] = useReducer((prev) => !prev, false);
+  const [isToggled, handleToggle] = useReducer((prev) => !prev, false);
 
   return (
     <li className={styles.wrapper_item}>
@@ -29,11 +29,11 @@ const GiftItem = () => {
           {formatNumberWithComma(data.price)}
         </span>
         원
-        <span className={clsx(styles.ico_toggle, { [styles.on]: isToggle })}>
+        <span className={clsx(styles.ico_toggle, { [styles.on]: isToggled })}>
           아이콘
         </span>
       </button>
-      {isToggle && (
+      {isToggled && (
         <div className={styles.wrapper_payment}>
           <p className={styles.txt_desc}>
             상품금액
