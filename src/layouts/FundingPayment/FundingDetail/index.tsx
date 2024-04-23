@@ -1,7 +1,6 @@
-import { useState } from 'react';
-
 import PaymentItem from 'components/feature/PaymentItem';
 
+import useRemainingFunding from 'hooks/useRemainingFunding';
 import { formatNumberWithComma } from 'utils/format';
 
 import styles from './index.module.scss';
@@ -11,9 +10,10 @@ const data = {
 };
 
 const FundingDetail = () => {
-  const [input, setInput] = useState();
+  const { input, change, handleChange } = useRemainingFunding(
+    data.fundingGoalPrice,
+  );
 
-  const handleChange = () => {};
   return (
     <section className={styles.area_detail}>
       <strong className={styles.txt_title}>펀딩내역</strong>
@@ -29,7 +29,7 @@ const FundingDetail = () => {
         <p className={styles.wrapper_desc}>
           <span className={styles.txt_price}>잔여 금액</span>
           <span className={styles.num_price}>
-            {formatNumberWithComma(data.fundingGoalPrice)}
+            {formatNumberWithComma(change)}
           </span>
           원
         </p>

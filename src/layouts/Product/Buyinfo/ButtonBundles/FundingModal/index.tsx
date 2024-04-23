@@ -1,12 +1,11 @@
 import clsx from 'clsx';
-import { useState } from 'react';
 
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
-import { formatNumberWithUnit, formatNumberWithComma } from 'utils/format';
-import { isValidPrice } from 'utils/validation';
+import useRemainingFunding from 'hooks/useRemainingFunding';
+import { formatNumberWithUnit } from 'utils/format';
 
 import { FriendsSelectorModalProps } from 'types/modal';
 
@@ -24,19 +23,7 @@ const FundingModal = ({
   isOpen,
   scrollPos,
 }: FriendsSelectorModalProps) => {
-  const [input, setInput] = useState<string>('');
-  const [change, setChange] = useState<number>(mockData.price);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value.split(',').join('');
-    if (!isValidPrice(inputValue)) return;
-
-    const newChange = Number(inputValue);
-    if (newChange > mockData.price) return;
-    setInput(formatNumberWithComma(newChange));
-    setChange(mockData.price - newChange);
-  };
-
+  const { change, input, handleChange } = useRemainingFunding(mockData.price);
   const handleAddFunding = close;
 
   return (
