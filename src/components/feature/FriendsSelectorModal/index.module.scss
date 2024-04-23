@@ -1,0 +1,26 @@
+.modal {
+  width: 500px;
+  height: 680px;
+}
+
+.area_header {
+  padding: 20px 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 30px;
+  color: #111;
+  background-color: #f7f8f9;
+  border-radius: 8px 8px 0 0;
+
+  .txt_head {
+    padding-left: 4px;
+    color: #ff6b00;
+  }
+}
+
+.area_footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 15px 13px 2px;
+}

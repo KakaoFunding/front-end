@@ -1,0 +1,139 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "tsconfigRootDir": "./"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:storybook/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "react-refresh"],
+  "ignorePatterns": ["dist", ".eslintrc.json", "vite.config.ts"],
+  "rules": {
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/require-default-props": "off",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react-refresh/only-export-components": [
+      "warn",
+      { "allowConstantExport": true }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "{@*,@**/*}",
+            "group": "external",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{react*}",
+            "group": "external",
+            "position": "after"
+          },
+
+          {
+            "pattern": "{pages,pages/*,pages/**/*,layouts,layouts/*,layouts/**/*,components,components/*,components/**/*,stories,stories/*,stories/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{store,store/*,store/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{mocks,mocks/*,mocks/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{hooks,hooks/*,hooks/**/*,services,services/*,services/**/*,utils,utils/*,utils/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{types,types/*,types/**/*,}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{assets,assets/*,assets/**/*,}",
+            "group": "internal",
+            "position": "before"
+          },
+
+          {
+            "pattern": "{styles,styles/*,styles/**/*,}",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "{./*.module,./*.module.scss,*.css,*.scss}",
+            "group": "sibling",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": [],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "arrow-body-style": "off"
+  }
+}

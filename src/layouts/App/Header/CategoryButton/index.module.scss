@@ -1,0 +1,31 @@
+@import 'styles/mixins.module';
+
+.wrapper_category {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+
+  &::before {
+    width: 1px;
+    height: 14px;
+    margin-right: 20px;
+    background-color: #ddd;
+    content: '';
+  }
+
+  .btn {
+    display: inline-flex;
+    height: 40px;
+    padding: 7px 10px 0;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 27px;
+    color: #4684e9;
+  }
+
+  .ico {
+    @include ico-nav(-160px, -80px, 30px, 30px);
+
+    margin: -2px 8px 0 0;
+  }
+}

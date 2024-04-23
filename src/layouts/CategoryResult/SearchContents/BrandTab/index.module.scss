@@ -1,0 +1,24 @@
+@import '../index.module';
+
+.area_brand_tab {
+  padding-bottom: 120px;
+}
+
+.wrapper_slider {
+  margin-bottom: 60px;
+}
+
+.item_brand {
+  height: 160px;
+  padding: 30px 0;
+  border-top: 1px solid #ededed;
+  text-align: center;
+
+  .img_logo {
+    @include img-brand-logo;
+  }
+
+  .txt_name {
+    @include txt-brand-name;
+  }
+}

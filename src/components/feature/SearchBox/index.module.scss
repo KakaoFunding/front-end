@@ -1,0 +1,61 @@
+@import 'styles/mixins.module';
+@import 'styles/variable.module';
+
+.area_search {
+  position: sticky;
+  top: $header-height;
+  padding: 10px 0;
+  z-index: 30;
+  min-height: 65px;
+  background-color: #fff;
+}
+
+.wrapper_input {
+  position: relative;
+  background-color: #fff;
+  width: 640px;
+  margin: auto;
+}
+
+.input {
+  outline: none;
+  width: 100%;
+  padding: 12px;
+  padding-right: 80px;
+  background-color: #f5f6f7;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #000;
+  font-weight: 700;
+
+  &::placeholder {
+    color: #c0c0c0;
+    font-weight: 400;
+  }
+}
+
+.wrapper_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .btn_clear {
+    height: 100%;
+    padding: 0 5px;
+
+    .ico_clear {
+      @include ico-gift2(-220px, -500px, 18px, 18px);
+    }
+  }
+
+  .btn_submit {
+    height: 100%;
+    padding: 0 10px;
+    color: #4684e9;
+    font-size: 16px;
+  }
+}
