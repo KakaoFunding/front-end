@@ -17,7 +17,7 @@ const GiftItem = () => {
   const [isToggled, handleToggle] = useReducer((prev) => !prev, false);
 
   return (
-    <li className={styles.wrapper_item}>
+    <div className={styles.wrapper_item}>
       <PaymentItem />
       <button
         className={styles.btn_payment}
@@ -30,7 +30,7 @@ const GiftItem = () => {
         </span>
         원
         <span className={clsx(styles.ico_toggle, { [styles.on]: isToggled })}>
-          아이콘
+          금액 상세정보
         </span>
       </button>
       {isToggled && (
@@ -51,7 +51,7 @@ const GiftItem = () => {
           </p>
         </div>
       )}
-    </li>
+    </div>
   );
 };
 

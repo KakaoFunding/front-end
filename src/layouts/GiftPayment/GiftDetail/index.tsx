@@ -3,7 +3,7 @@ import GiftItem from './GiftItem';
 import styles from './index.module.scss';
 
 const data = {
-  item: [1, 2],
+  items: [1, 2],
   count: 2,
 };
 
@@ -21,8 +21,10 @@ const GiftDetail = () => {
         )}
         <ul>
           {/* TODO : key 값 올바르게 넘겨주기 */}
-          {data.item.map((it) => (
-            <GiftItem key={it} />
+          {data.items.map((item) => (
+            <li key={item}>
+              <GiftItem />
+            </li>
           ))}
         </ul>
       </div>
