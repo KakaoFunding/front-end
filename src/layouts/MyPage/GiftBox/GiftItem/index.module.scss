@@ -1,9 +1,31 @@
 @import 'styles/mixins.module';
 
-$width: 196px;
+@mixin img-badge($x, $y, $width, $height) {
+  @include img-sprite($x, $y, $width, $height);
+
+  background-image: url('assets/badge_state.png');
+  background-size: 325px 105px;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  &.finish {
+    @include img-badge(0, -55px, 50px, 50px);
+  }
+
+  &.cancel {
+    @include img-badge(-55px, -55px, 50px, 50px);
+  }
+}
 
 .wrapper_gift {
+  $width: 196px;
+
   width: $width;
+  position: relative;
 
   .wrapper_thumb {
     @include wrapper-prod-img($width, 0);

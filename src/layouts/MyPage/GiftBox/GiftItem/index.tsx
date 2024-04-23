@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 
 import styles from './index.module.scss';
@@ -9,6 +10,12 @@ type GiftItemProps = {
   photo: string;
   senderName: string;
   receivedDate: string;
+  status?: 'finish' | 'cancel';
+};
+
+const BADGE_TEXT = {
+  finish: '사용완료',
+  cancel: '취소환불',
 };
 
 const GiftItem = ({
@@ -18,6 +25,7 @@ const GiftItem = ({
   productId,
   receivedDate,
   senderName,
+  status,
 }: GiftItemProps) => {
   return (
     <div className={styles.wrapper_gift}>
@@ -35,6 +43,11 @@ const GiftItem = ({
         </span>
         <span className={styles.txt_date}>{receivedDate}</span>
       </div>
+      {status && (
+        <span className={clsx(styles.badge, styles[status])}>
+          {BADGE_TEXT[status]}
+        </span>
+      )}
     </div>
   );
 };
