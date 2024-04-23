@@ -27,7 +27,7 @@ const ProductItem = ({ product }: ProductItemType) => {
         <Price price={product.price} />
       </a>
       <div className={styles.wrapper_util_info}>
-        <CartButton id={product.id} />
+        <CartButton />
       </div>
     </article>
   );
