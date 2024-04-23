@@ -10,10 +10,11 @@ type GiftItemProps = {
   photo: string;
   senderName: string;
   receivedDate: string;
-  status?: 'finish' | 'cancel';
+  status?: 'unused' | 'finish' | 'cancel';
 };
 
 const BADGE_TEXT = {
+  unused: '미사용',
   finish: '사용완료',
   cancel: '취소환불',
 };
