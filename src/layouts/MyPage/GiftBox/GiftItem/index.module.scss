@@ -1,0 +1,50 @@
+@import 'styles/mixins.module';
+
+$width: 196px;
+
+.wrapper_gift {
+  width: $width;
+
+  .wrapper_thumb {
+    @include wrapper-prod-img($width, 0);
+  }
+
+  .txt_brand {
+    display: block;
+    padding-top: 9px;
+    font-size: 13px;
+    color: #5990c7;
+
+    @include text-ellipsis(1);
+  }
+
+  .txt_prod {
+    display: block;
+    padding-top: 4px;
+    font-size: 15px;
+    color: #666;
+
+    @include text-ellipsis(1);
+  }
+}
+
+.wrapper_receive_info {
+  margin-top: 8px;
+
+  .txt_sender {
+    display: block;
+
+    @include font(15px, 700, #222);
+    @include text-ellipsis(1);
+
+    .txt_from {
+      letter-spacing: -0.04em;
+    }
+  }
+
+  .txt_date {
+    font-size: 12px;
+    color: #a0a0a0;
+    letter-spacing: -0.028em;
+  }
+}
