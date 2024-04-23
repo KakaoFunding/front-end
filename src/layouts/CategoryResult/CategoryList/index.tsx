@@ -26,7 +26,7 @@ const CategoryList = ({ parentId, subId }: CategoryListProps) => {
   // 예외 처리 추가 구현 필요 (아래는 임시)
   if (!data) {
     const ERROR_MSG = error?.message ?? '알 수 없는 에러';
-    console.log('응답 메시지:', error?.response?.data);
+    // console.log('응답 메시지:', error?.response?.data);
     return <p>{ERROR_MSG}</p>;
   }
 
