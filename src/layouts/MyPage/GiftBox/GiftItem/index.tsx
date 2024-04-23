@@ -36,6 +36,7 @@ const GiftItem = ({
         <span className={styles.txt_brand}>{brandName}</span>
         <strong className={styles.txt_prod}>{name}</strong>
       </Link>
+
       <div className={styles.wrapper_receive_info}>
         <span className={styles.txt_sender}>
           <span className={styles.txt_from}>from. </span>
@@ -43,6 +44,7 @@ const GiftItem = ({
         </span>
         <span className={styles.txt_date}>{receivedDate}</span>
       </div>
+
       {status && (
         <span className={clsx(styles.badge, styles[status])}>
           {BADGE_TEXT[status]}
