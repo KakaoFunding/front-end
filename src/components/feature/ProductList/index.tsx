@@ -12,7 +12,7 @@ const ProductList = ({ products }: ProductListProps) => {
   return (
     <ul className={styles.area_products}>
       {products.map((product) => (
-        <li key={product.id} className={styles.wrapper_item}>
+        <li key={product.productId} className={styles.wrapper_item}>
           <ColumnProductItem size="medium" product={product} />
         </li>
       ))}

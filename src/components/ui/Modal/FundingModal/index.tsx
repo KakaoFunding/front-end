@@ -26,6 +26,11 @@ const FundingModal = ({
   const { change, input, handleChange } = useRemainingFunding(mockData.price);
   const handleAddFunding = close;
 
+  useEffect(() => {
+    setInput('');
+    setChange(mockData.price);
+  }, [isOpen]);
+
   return (
     isOpen && (
       <Modal

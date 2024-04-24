@@ -33,7 +33,7 @@ const ProductCarousel = ({ brandId, products }: ProductCarouselProps) => {
       {
         // 브랜드 별 상품 목록 생성
         products.map((product) => (
-          <li key={product.id}>
+          <li key={product.productId}>
             <ColumnProductItem size="medium" product={product} />
           </li>
         ))
