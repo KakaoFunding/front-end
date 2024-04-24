@@ -8,13 +8,13 @@ import { ProductItem } from 'types/productItem';
 
 const products = Array.from({ length: 201 }).map(
   (_, i): ProductItem => ({
-    id: i,
+    productId: i,
     name: `뚱냥이 캣 쿠션 ${i}`,
-    thumbSrc:
+    photo:
       'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20231129220126_89630bdb59ea4ce885cd0fea7b043df7.png',
     price: 14800,
     brandName: '미뇽맨션',
-    isWished: false,
+    wished: false,
     wishCount: 0,
   }),
 );
@@ -92,14 +92,14 @@ export const productHandlers = [
           'https://st.kakaocdn.net/product/gift/gift_brand/20200331040444_99ac946c80764be4943227536638f9c2',
       },
       products: Array.from({ length: getRandomNumber(1, 9) }).map((__, j) => ({
-        id: Number(`${i}${j}`),
+        productId: Number(`${i}${j}`),
         name: `브랜드 ${i} - 상품 ${j}`,
-        thumbSrc:
+        photo:
           'https://st.kakaocdn.net/product/gift/product/20200403153820_ceea3bd561f34cc6b276fbc8cbaac690',
         price: 29800,
         brandName: `브랜드 ${i}`,
         wishCount: 12420,
-        isWished: false,
+        wished: false,
       })),
     }));
 

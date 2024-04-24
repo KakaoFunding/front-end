@@ -7,7 +7,7 @@ import { ProductItem } from 'types/productItem';
 import styles from './index.module.scss';
 
 type WishButtonProps = {
-  isWished: ProductItem['isWished'];
+  isWished: ProductItem['wished'];
   wishCount: ProductItem['wishCount'];
 };
 

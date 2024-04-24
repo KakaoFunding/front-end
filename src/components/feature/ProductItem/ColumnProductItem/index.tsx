@@ -17,8 +17,8 @@ type ColumnProductItemProps = {
 const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
   return (
     <article className={clsx(styles.wrapper_prod_item, styles[size])}>
-      <a href={`/product/${product.id}`}>
-        <Thumbnail src={product.thumbSrc} alt={product.name} size={size} />
+      <a href={`/product/${product.productId}`}>
+        <Thumbnail src={product.photo} alt={product.name} size={size} />
         <div className={clsx(styles.wrapper_main_info, styles[size])}>
           <span className={styles.txt_brand_name}>{product.brandName}</span>
           <strong className={styles.txt_prod_name}>{product.name}</strong>
@@ -26,8 +26,12 @@ const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
         </div>
       </a>
       <div className={styles.wrapper_util_info}>
-        <CartButton />
-        <WishButton isWished={product.isWished} wishCount={product.wishCount} />
+        <CartButton id={product.productId} />
+        <WishButton
+          id={product.productId}
+          isWished={product.wished}
+          wishCount={product.wishCount}
+        />
       </div>
     </article>
   );
