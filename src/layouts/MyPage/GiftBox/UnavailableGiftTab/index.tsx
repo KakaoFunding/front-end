@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 import { useAxios } from 'hooks/useAxios';
@@ -6,6 +7,8 @@ import { Gift } from 'types/Gift';
 import { PaginationResponse } from 'types/PaginationResponse';
 
 import GiftItem from '../GiftItem';
+
+import styles from './index.module.scss';
 
 const UnavailableGiftTab = () => {
   const [gifts, setGifts] = useState<Gift[]>([]);
@@ -29,7 +32,7 @@ const UnavailableGiftTab = () => {
   }, [data]);
 
   return (
-    <ul>
+    <ul className={clsx(styles.list_gift, styles.list_use)}>
       {gifts.map((gift) => (
         <li key={gift.giftId}>
           <GiftItem
