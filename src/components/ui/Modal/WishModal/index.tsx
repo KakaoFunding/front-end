@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
@@ -22,6 +22,10 @@ const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
     // TODO : radioStatus 사용해서 위시 등록
     close();
   };
+
+  useEffect(() => {
+    setRadioStatus('friend');
+  }, [isOpen]);
 
   return (
     isOpen && (
