@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
+import EmptyItem from 'components/feature/EmptyItem';
 import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
@@ -41,6 +42,10 @@ const UnavailableGiftTab = () => {
       setHasNext(data.hasNext);
     }
   }, [data]);
+
+  if (!hasNext && gifts.length === 0) {
+    return <EmptyItem type="unavailable_gift" />;
+  }
 
   return (
     <>
