@@ -1,15 +1,8 @@
 /* eslint-disable no-nested-ternary */
 // session storage
 export const Data = {
-  set: ($name: string, $value: boolean | string | object) => {
-    const value: string =
-      typeof $value === 'object'
-        ? JSON.stringify($value)
-        : typeof $value === 'boolean'
-          ? $value.toString()
-          : $value;
-
-    window.sessionStorage.setItem($name, value);
+  set: ($name: string, $value: string) => {
+    window.sessionStorage.setItem($name, $value);
   },
 
   get: ($name: string) => {
