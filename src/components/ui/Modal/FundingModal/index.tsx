@@ -24,9 +24,8 @@ const FundingModal = ({
   isOpen,
   scrollPos,
 }: FriendsSelectorModalProps) => {
-  const { input, clearInput, change, handleChange } = useFundingInput(
-    mockData.price,
-  );
+  const { fundingAmount, clearInput, remainingAmount, handleChange } =
+    useFundingInput(mockData.price);
 
   // TODO : 펀딩등록로직추가
   const handleAddFunding = close;
@@ -77,7 +76,7 @@ const FundingModal = ({
               </div>
             </span>
           </div>
-          {formatNumberWithUnit(change)}
+          {formatNumberWithUnit(remainingAmount)}
         </section>
         <section className={styles.wrapper_price}>
           <div className={styles.txt_price}>펀딩 목표 금액</div>
@@ -85,7 +84,7 @@ const FundingModal = ({
             <input
               className={styles.input}
               onChange={handleChange}
-              value={input}
+              value={fundingAmount}
               placeholder="0"
             />
             원

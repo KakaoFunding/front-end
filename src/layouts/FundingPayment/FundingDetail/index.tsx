@@ -1,6 +1,6 @@
 import PaymentItem from 'components/feature/PaymentItem';
 
-import useRemainingFunding from 'hooks/useFundingInput';
+import useFundingInput from 'hooks/useFundingInput';
 import { formatNumberWithComma } from 'utils/format';
 
 import styles from './index.module.scss';
@@ -10,7 +10,7 @@ const data = {
 };
 
 const FundingDetail = () => {
-  const { input, change, handleChange } = useRemainingFunding(
+  const { fundingAmount, remainingAmount, handleChange } = useFundingInput(
     data.fundingGoalPrice,
   );
 
@@ -29,7 +29,7 @@ const FundingDetail = () => {
         <p className={styles.wrapper_desc}>
           <span className={styles.txt_price}>잔여 금액</span>
           <span className={styles.num_price}>
-            {formatNumberWithComma(change)}
+            {formatNumberWithComma(remainingAmount)}
           </span>
           원
         </p>
@@ -38,7 +38,7 @@ const FundingDetail = () => {
           <input
             className={styles.input}
             onChange={handleChange}
-            value={input}
+            value={fundingAmount}
             placeholder="0"
           />
           원

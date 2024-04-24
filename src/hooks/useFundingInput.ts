@@ -4,25 +4,26 @@ import { formatNumberWithComma } from 'utils/format';
 import { isValidPrice } from 'utils/validation';
 
 const useFundingInput = (goalFundingPrice: number) => {
-  const [input, setInput] = useState<string>('');
-  const [change, setChange] = useState<number>(goalFundingPrice);
+  const [fundingAmount, setFundingAmount] = useState<string>('');
+  const [remainingAmount, setRemainingAmount] =
+    useState<number>(goalFundingPrice);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.split(',').join('');
     if (!isValidPrice(inputValue)) return;
 
-    const newChange = Number(inputValue);
-    if (newChange > goalFundingPrice) return;
-    setInput(formatNumberWithComma(newChange));
-    setChange(goalFundingPrice - newChange);
+    const newRemainingAmount = Number(inputValue);
+    if (newRemainingAmount > goalFundingPrice) return;
+    setFundingAmount(formatNumberWithComma(newRemainingAmount));
+    setRemainingAmount(goalFundingPrice - newRemainingAmount);
   };
 
   const clearInput = (price: number) => {
-    setInput('');
-    setChange(price);
+    setFundingAmount('');
+    setRemainingAmount(price);
   };
 
-  return { input, change, clearInput, handleChange };
+  return { fundingAmount, remainingAmount, clearInput, handleChange };
 };
 
 export default useFundingInput;
