@@ -15,7 +15,7 @@ const FundingDetail = () => {
   );
 
   return (
-    <section className={styles.area_detail}>
+    <section className={styles.area_funding_detail}>
       <strong className={styles.txt_title}>펀딩내역</strong>
       <div className={styles.wrapper_funding_item}>
         <PaymentItem />
