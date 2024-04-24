@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 
 import styles from './index.module.scss';
@@ -28,7 +29,7 @@ type ToastProps = {
 };
 
 const Toast = ({ isLinked, message, linkTo }: ToastProps) => {
-  return (
+  return createPortal(
     <section className={styles.wrapper_toast}>
       <div className={styles.toast}>
         {TOAST_MESSAGE[message]}
@@ -38,7 +39,8 @@ const Toast = ({ isLinked, message, linkTo }: ToastProps) => {
           </Link>
         )}
       </div>
-    </section>
+    </section>,
+    document.getElementById('toast') as HTMLElement,
   );
 };
 
