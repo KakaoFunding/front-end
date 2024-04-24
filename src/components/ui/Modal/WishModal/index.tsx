@@ -1,3 +1,5 @@
+import { useState, ChangeEvent } from 'react';
+
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
@@ -5,9 +7,21 @@ import { FriendsSelectorModalProps } from 'types/modal';
 
 import styles from './index.module.scss';
 
+type RadioType = 'friend' | 'me';
+
 const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
+  const [radioStatus, setRadioStatus] = useState<RadioType>('friend');
+
+  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedRadio = e.target.value as RadioType;
+    setRadioStatus(selectedRadio);
+  };
+
   // TODO : 위시로직추가
-  const handleAddWish = close;
+  const handleAddWish = () => {
+    // TODO : radioStatus 사용해서 위시 등록
+    close();
+  };
 
   return (
     isOpen && (
@@ -22,7 +36,14 @@ const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
         </strong>
         <section className={styles.wrapper_radio}>
           <div className={styles.radio_default}>
-            <input type="radio" name="wishRadio" className={styles.btn_radio} />
+            <input
+              type="radio"
+              name="wishRadio"
+              value="friend"
+              className={styles.btn_radio}
+              onChange={handleRadioChange}
+              checked={radioStatus === 'friend'}
+            />
             <div className={styles.wrapper_txt}>
               <strong className={styles.txt_title}>
                 친구공개! 내 취향은 이거야♡
@@ -34,7 +55,14 @@ const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
           </div>
           <hr className={styles.line} />
           <div className={styles.radio_default}>
-            <input type="radio" name="wishRadio" className={styles.btn_radio} />
+            <input
+              type="radio"
+              name="wishRadio"
+              value="me"
+              className={styles.btn_radio}
+              onChange={handleRadioChange}
+              checked={radioStatus === 'me'}
+            />
             <div className={styles.wrapper_txt}>
               <strong className={styles.txt_title}>
                 비밀! 나만 볼 수 있어요
