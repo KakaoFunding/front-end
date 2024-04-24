@@ -14,7 +14,7 @@ export const Data = {
 
   get: ($name: string) => {
     try {
-      const data: string | null = window.sessionStorage.getItem($name);
+      const data = window.sessionStorage.getItem($name);
 
       return data !== 'undefined' && data !== null ? JSON.parse(data) : data;
     } catch (error) {
