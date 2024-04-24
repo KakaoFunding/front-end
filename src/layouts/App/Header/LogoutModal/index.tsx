@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
 import { logout } from 'services/api/v1/oauth';
-import { Data } from 'services/api/v1/service';
+import { clearSessionStorageItem } from 'services/api/v1/sessionStorage';
 
 import styles from './index.module.scss';
 
@@ -24,7 +24,7 @@ const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
     clearAccessToken();
     clearSocialToken();
     clearUser();
-    Data.clear();
+    clearSessionStorageItem();
   };
 
   return (
