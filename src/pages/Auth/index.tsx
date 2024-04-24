@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import Spinner from 'components/ui/Spinner';
 
@@ -10,12 +10,12 @@ import { setSessionStorageItem } from 'services/api/v1/sessionStorage';
 
 const Auth = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const setAccessToken = useAuthStore((state) => state.setAccessToken);
   const setUserInfo = useUserStore((state) => state.setUserInfo);
   const setSocialAccessToken = useAuthStore((state) => state.setSocialToken);
-  const urlString = new URL(window.location.href);
-  const code = urlString.searchParams.get('code');
-  const loginState = urlString.searchParams.get('state');
+  const code = searchParams.get('code');
+  const loginState = searchParams.get('state');
 
   useEffect(() => {
     const fetchData = async () => {
