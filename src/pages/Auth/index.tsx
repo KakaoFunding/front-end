@@ -6,7 +6,7 @@ import Spinner from 'components/ui/Spinner';
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
 import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
-import { Data } from 'services/api/v1/sessionStorage';
+import { setSessionStorageItem } from 'services/api/v1/sessionStorage';
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Auth = () => {
         const res = await login({ socialAccessToken });
         const { accessToken, member } = res.data;
 
-        Data.set('accessToken', accessToken);
+        setSessionStorageItem('accessToken', accessToken);
         setAccessToken(accessToken);
         setUserInfo(member);
         navigate(loginState);
