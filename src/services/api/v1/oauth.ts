@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 
 import { User } from 'types/user';
 
-import { Data } from './service';
+import { setSessionStorageItem } from './sessionStorage';
 
 import { apiV1 } from '.';
 
@@ -46,7 +46,7 @@ export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
       },
     });
 
-    Data.set('socialToken', res.data.access_token);
+    setSessionStorageItem('socialToken', res.data.access_token);
     const token = res.data.access_token;
     return token;
   } catch (error) {
