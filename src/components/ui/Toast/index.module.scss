@@ -1,0 +1,28 @@
+@import 'styles/mixins.module';
+@import 'styles/variable.module';
+
+.wrapper_toast {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  position: fixed;
+  width: $fix-width;
+  height: 90vh;
+
+  .toast {
+    @include size(350px, 48px, 0, 16px);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    border-radius: 4px;
+    background-color: #333;
+    z-index: 300;
+
+    .txt_link {
+      font-weight: 700;
+      color: $point-yellow;
+    }
+  }
+}
