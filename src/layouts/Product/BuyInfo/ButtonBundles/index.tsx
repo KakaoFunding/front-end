@@ -1,5 +1,6 @@
 import { Button } from 'components/ui/Button';
 import FundingModal from 'components/ui/Modal/FundingModal';
+import WishModal from 'components/ui/Modal/WishModal';
 
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
@@ -12,10 +13,6 @@ const handleClickGiftForFriend = () => {
 
 const handleClickCart = () => {
   // console.log('선물상자 담기');
-};
-
-const handleClickGiftWish = () => {
-  // console.log('찜 !');
 };
 
 const handleClickGiftForMe = () => {
@@ -34,7 +31,16 @@ const ButtonBundles = () => {
     scrollPos: scrollFundingPos,
   } = useModal();
 
+  const {
+    isOpen: isWishOpen,
+    open: openWishModal,
+    close: closeWishModal,
+    scrollPos: scrollWishPos,
+  } = useModal();
+
   const handleClickFunding = openFundingModal;
+
+  const handleClickWish = openWishModal;
 
   return (
     <section className={styles.wrapper_bundle}>
@@ -42,6 +48,11 @@ const ButtonBundles = () => {
         close={closeFundingModal}
         isOpen={isFundingOpen}
         scrollPos={scrollFundingPos}
+      />
+      <WishModal
+        close={closeWishModal}
+        isOpen={isWishOpen}
+        scrollPos={scrollWishPos}
       />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
@@ -62,7 +73,7 @@ const ButtonBundles = () => {
         선물상자 담기
       </Button>
       <section className={styles.wrapper_gift}>
-        <Button className={styles.btn_wish} onClick={handleClickGiftWish}>
+        <Button className={styles.btn_wish} onClick={handleClickWish}>
           <span className={styles.ico_wish} />
           {formatNumberWithPlus(mockData.wishCnt, 100000)}
         </Button>
