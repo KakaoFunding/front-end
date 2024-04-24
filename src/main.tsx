@@ -100,9 +100,9 @@ const router = createBrowserRouter([
         path: '/bill/funding',
         element: <FundingPayment />,
       },
+      { path: '/auth', element: <Auth /> },
     ],
   },
-  { path: '/auth', element: <Auth /> },
 ]);
 
 enableMocking().then(() => {
