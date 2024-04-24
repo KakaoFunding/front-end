@@ -1,6 +1,6 @@
 import PaymentItem from 'components/feature/PaymentItem';
 
-import useRemainingFunding from 'hooks/useRemainingFunding';
+import useRemainingFunding from 'hooks/useFundingInput';
 import { formatNumberWithComma } from 'utils/format';
 
 import styles from './index.module.scss';

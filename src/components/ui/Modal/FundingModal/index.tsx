@@ -1,10 +1,11 @@
 import clsx from 'clsx';
+import { useEffect } from 'react';
 
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
-import useRemainingFunding from 'hooks/useRemainingFunding';
+import useFundingInput from 'hooks/useFundingInput';
 import { formatNumberWithUnit } from 'utils/format';
 
 import { FriendsSelectorModalProps } from 'types/modal';
@@ -23,12 +24,15 @@ const FundingModal = ({
   isOpen,
   scrollPos,
 }: FriendsSelectorModalProps) => {
-  const { change, input, handleChange } = useRemainingFunding(mockData.price);
+  const { input, clearInput, change, handleChange } = useFundingInput(
+    mockData.price,
+  );
+
+  // TODO : 펀딩등록로직추가
   const handleAddFunding = close;
 
   useEffect(() => {
-    setInput('');
-    setChange(mockData.price);
+    clearInput(mockData.price);
   }, [isOpen]);
 
   return (

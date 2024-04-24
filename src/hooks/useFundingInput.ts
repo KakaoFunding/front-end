@@ -3,7 +3,7 @@ import { useState, ChangeEvent } from 'react';
 import { formatNumberWithComma } from 'utils/format';
 import { isValidPrice } from 'utils/validation';
 
-const useRemainingFunding = (goalFundingPrice: number) => {
+const useFundingInput = (goalFundingPrice: number) => {
   const [input, setInput] = useState<string>('');
   const [change, setChange] = useState<number>(goalFundingPrice);
 
@@ -17,7 +17,12 @@ const useRemainingFunding = (goalFundingPrice: number) => {
     setChange(goalFundingPrice - newChange);
   };
 
-  return { input, change, handleChange };
+  const clearInput = (price: number) => {
+    setInput('');
+    setChange(price);
+  };
+
+  return { input, change, clearInput, handleChange };
 };
 
-export default useRemainingFunding;
+export default useFundingInput;
