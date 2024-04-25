@@ -17,6 +17,8 @@ const GiftItem = ({
   senderName,
   status,
 }: GiftItemProps) => {
+  const remainingDays = '365'; // (expiredDate - now)로 계산 필요
+
   return (
     <div className={styles.wrapper_gift}>
       <Link to={`/product/${productId}`}>
@@ -25,6 +27,14 @@ const GiftItem = ({
         </div>
         <span className={styles.txt_brand}>{brandName}</span>
         <strong className={styles.txt_prod}>{name}</strong>
+
+        {status === 'unused' ? (
+          <span className={styles.d_day}>D-{remainingDays}</span>
+        ) : (
+          <span className={clsx(styles.badge, styles[status])}>
+            {BADGE_TEXT[status]}
+          </span>
+        )}
       </Link>
 
       <div className={styles.wrapper_receive_info}>
@@ -34,12 +44,6 @@ const GiftItem = ({
         </span>
         <span className={styles.txt_date}>{receivedDate}</span>
       </div>
-
-      {status && (
-        <span className={clsx(styles.badge, styles[status])}>
-          {BADGE_TEXT[status]}
-        </span>
-      )}
     </div>
   );
 };
