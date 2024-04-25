@@ -1,13 +1,13 @@
-import FriendsSelectorModal from 'components/feature/FriendsSelectorModal';
 import { Button } from 'components/ui/Button';
+import FundingModal from 'components/ui/Modal/FundingModal';
 
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
 
 import styles from './index.module.scss';
 
-const handleClickFunding = () => {
-  // console.log('펀딩아이템으로 등록하기');
+const handleClickGiftForFriend = () => {
+  // console.log('피커오픈');
 };
 
 const handleClickCart = () => {
@@ -27,16 +27,21 @@ const mockData = {
 };
 
 const ButtonBundles = () => {
-  const { isOpen, open, close, scrollPos } = useModal();
+  const {
+    isOpen: isFundingOpen,
+    open: openFundingModal,
+    close: closeFundingModal,
+    scrollPos: scrollFundingPos,
+  } = useModal();
 
-  const handleClickGiftForFriend = open;
+  const handleClickFunding = openFundingModal;
 
   return (
     <section className={styles.wrapper_bundle}>
-      <FriendsSelectorModal
-        close={close}
-        isOpen={isOpen}
-        scrollPos={scrollPos}
+      <FundingModal
+        close={closeFundingModal}
+        isOpen={isFundingOpen}
+        scrollPos={scrollFundingPos}
       />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button

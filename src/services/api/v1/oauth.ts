@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 
 import { User } from 'types/user';
 
-import { Data } from './service';
+import { setSessionStorageItem } from './sessionStorage';
 
 import { apiV1 } from '.';
 
@@ -24,7 +24,6 @@ type LogoutRequestProps = {
 };
 
 // 로그인: 토큰 발급
-// eslint-disable-next-line consistent-return
 export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
   const API_KEY = import.meta.env.VITE_REST_API_KEY;
   const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URL;
@@ -46,11 +45,12 @@ export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
       },
     });
 
-    Data.set('socialToken', res.data.access_token);
+    setSessionStorageItem('socialToken', res.data.access_token);
     const token = res.data.access_token;
     return token;
   } catch (error) {
     console.warn(error);
+    return undefined;
   }
 };
 

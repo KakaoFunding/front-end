@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
-import { formatNumberWithUnit, formatNumberWithComma } from 'utils/format';
-import { isValidPrice } from 'utils/validation';
+import useFundingInput from 'hooks/useFundingInput';
+import { formatNumberWithUnit } from 'utils/format';
 
 import { FriendsSelectorModalProps } from 'types/modal';
 
@@ -24,25 +24,14 @@ const FundingModal = ({
   isOpen,
   scrollPos,
 }: FriendsSelectorModalProps) => {
-  const [input, setInput] = useState<string>('');
-  const [change, setChange] = useState<number>(mockData.price);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value.split(',').join('');
-    if (!isValidPrice(inputValue)) return;
-
-    const newChange = Number(inputValue);
-    if (newChange > mockData.price) return;
-    setInput(formatNumberWithComma(newChange));
-    setChange(mockData.price - newChange);
-  };
+  const { fundingAmount, clearInput, remainingAmount, handleChange } =
+    useFundingInput(mockData.price);
 
   // TODO : 펀딩등록로직추가
   const handleAddFunding = close;
 
   useEffect(() => {
-    setInput('');
-    setChange(mockData.price);
+    clearInput(mockData.price);
   }, [isOpen]);
 
   return (
@@ -87,7 +76,7 @@ const FundingModal = ({
               </div>
             </span>
           </div>
-          {formatNumberWithUnit(change)}
+          {formatNumberWithUnit(remainingAmount)}
         </section>
         <section className={styles.wrapper_price}>
           <div className={styles.txt_price}>펀딩 목표 금액</div>
@@ -95,7 +84,7 @@ const FundingModal = ({
             <input
               className={styles.input}
               onChange={handleChange}
-              value={input}
+              value={fundingAmount}
               placeholder="0"
             />
             원

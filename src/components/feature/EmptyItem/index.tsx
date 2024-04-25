@@ -1,7 +1,7 @@
 import styles from './index.module.scss';
 
 type EmptyItemProps = {
-  type: 'wish' | 'funding';
+  type: 'wish' | 'funding' | 'unavailable_gift';
 };
 
 const choonsikImgUrl = '/src/assets/bg_choonsik.png';
@@ -14,6 +14,10 @@ const EMPTY_ITEM_TEXT = {
   funding: {
     title: `등록된 펀딩 아이템이 없어요`,
     description: `펀딩받고 싶은 선물🎁이 있나요?\n내 취향에 맞는 선물을 등록해보세요~!`,
+  },
+  unavailable_gift: {
+    title: `사용한 선물이 없어요`,
+    description: `받은 선물🎁을 사용하고, 친구에게 고마운 마음을 표현해보세요~!`,
   },
 };
 
