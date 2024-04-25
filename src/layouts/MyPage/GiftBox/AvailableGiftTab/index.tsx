@@ -58,6 +58,7 @@ const AvailableGiftTab = () => {
               photo={gift.photo}
               senderName={gift.senderName}
               receivedDate={gift.receivedDate}
+              expiredDate={gift.expiredDate}
               status={gift.status}
             />
           </li>
