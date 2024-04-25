@@ -1,7 +1,7 @@
 import styles from './index.module.scss';
 
 type EmptyItemProps = {
-  type: 'wish' | 'funding' | 'unavailable_gift';
+  type: keyof typeof EMPTY_ITEM_TEXT;
 };
 
 const choonsikImgUrl = '/src/assets/bg_choonsik.png';
@@ -23,7 +23,7 @@ const EMPTY_ITEM_TEXT = {
     title: `사용한 선물이 없어요`,
     description: `받은 선물🎁을 사용하고, 친구에게 고마운 마음을 표현해보세요~!`,
   },
-};
+} as const;
 
 const EmptyItem = ({ type }: EmptyItemProps) => {
   return (
