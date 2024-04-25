@@ -51,7 +51,6 @@ export const giftHandlers = [
     const totalElements = usedGifts.length;
     const totalPages = Math.ceil(totalElements / size);
 
-    // httpResponse 반환
     return HttpResponse.json<PaginationResponse<Gift>>({
       items: usedGifts.slice(page * size, (page + 1) * size),
       hasNext: totalPages > page + 1,
