@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 
 import styles from './index.module.scss';
 
+const BADGE_TEXT = {
+  unused: '미사용',
+  finish: '사용완료',
+  cancel: '취소환불',
+} as const;
+
+type BadgeType = keyof typeof BADGE_TEXT;
+
 type GiftItemProps = {
   productId: number;
   name: string;
@@ -10,12 +18,7 @@ type GiftItemProps = {
   photo: string;
   senderName: string;
   receivedDate: string;
-  status?: 'finish' | 'cancel';
-};
-
-const BADGE_TEXT = {
-  finish: '사용완료',
-  cancel: '취소환불',
+  status?: BadgeType;
 };
 
 const GiftItem = ({
