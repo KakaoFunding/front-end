@@ -1,0 +1,8 @@
+@import 'styles/mixins.module';
+
+.title_wish {
+  @include font(24px, 700);
+
+  display: block;
+  margin: 40px 0 20px;
+}
