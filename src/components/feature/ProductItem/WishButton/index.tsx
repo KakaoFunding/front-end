@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { MouseEvent } from 'react';
 
 import { formatNumberWithComma } from 'utils/format';
 
@@ -7,13 +8,19 @@ import { ProductItem } from 'types/productItem';
 import styles from './index.module.scss';
 
 type WishButtonProps = {
+  id: ProductItem['productId'];
   isWished: ProductItem['wished'];
   wishCount: ProductItem['wishCount'];
 };
 
-const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
+const WishButton = ({ id, isWished, wishCount }: WishButtonProps) => {
   const DIVIDER = 10000;
   const REMAINS = '만+';
+
+  // TODO : API 요청
+  const handleAddWish = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+  };
 
   const formattedWishCount =
     wishCount >= DIVIDER
@@ -21,7 +28,7 @@ const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
       : formatNumberWithComma(wishCount);
 
   return (
-    <button type="button">
+    <button type="button" onClick={handleAddWish}>
       <span
         className={clsx(styles.ico_wish, {
           [styles.on]: isWished,
