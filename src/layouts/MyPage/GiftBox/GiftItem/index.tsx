@@ -1,25 +1,11 @@
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 
+import { BADGE_TEXT, Gift } from 'types/Gift';
+
 import styles from './index.module.scss';
 
-const BADGE_TEXT = {
-  unused: '미사용',
-  finish: '사용완료',
-  cancel: '취소환불',
-} as const;
-
-type BadgeType = keyof typeof BADGE_TEXT;
-
-type GiftItemProps = {
-  productId: number;
-  name: string;
-  brandName: string;
-  photo: string;
-  senderName: string;
-  receivedDate: string;
-  status?: BadgeType;
-};
+type GiftItemProps = Omit<Gift, 'giftId'>; // 선물 상세 조회 페이지 구현 시 Gift로 변경
 
 const GiftItem = ({
   brandName,
@@ -27,9 +13,12 @@ const GiftItem = ({
   photo,
   productId,
   receivedDate,
+  // expiredDate,
   senderName,
   status,
 }: GiftItemProps) => {
+  const remainingDays = '365'; // (expiredDate - now)로 계산 필요
+
   return (
     <div className={styles.wrapper_gift}>
       <Link to={`/product/${productId}`}>
@@ -38,6 +27,14 @@ const GiftItem = ({
         </div>
         <span className={styles.txt_brand}>{brandName}</span>
         <strong className={styles.txt_prod}>{name}</strong>
+
+        {status === 'unused' ? (
+          <span className={styles.d_day}>D-{remainingDays}</span>
+        ) : (
+          <span className={clsx(styles.badge, styles[status])}>
+            {BADGE_TEXT[status]}
+          </span>
+        )}
       </Link>
 
       <div className={styles.wrapper_receive_info}>
@@ -47,12 +44,6 @@ const GiftItem = ({
         </span>
         <span className={styles.txt_date}>{receivedDate}</span>
       </div>
-
-      {status && (
-        <span className={clsx(styles.badge, styles[status])}>
-          {BADGE_TEXT[status]}
-        </span>
-      )}
     </div>
   );
 };
