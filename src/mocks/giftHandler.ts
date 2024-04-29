@@ -22,6 +22,26 @@ const usedGifts: Gift[] = unusedGifts.map((gift) => ({
 }));
 
 export const giftHandlers = [
+  http.get('/gifts/unused', ({ request }) => {
+    const { searchParams } = new URL(request.url);
+
+    const page = Number(searchParams.get('page'));
+    const size = Number(searchParams.get('size'));
+
+    const totalElements = unusedGifts.length;
+    const totalPages = Math.ceil(totalElements / size);
+
+    return HttpResponse.json<PaginationResponse<Gift>>({
+      items: unusedGifts.slice(page * size, (page + 1) * size),
+      hasNext: totalPages > page + 1,
+      last: totalPages <= page + 1,
+      pageNumber: page,
+      pageSize: size,
+      totalElements,
+      totalPages,
+    });
+  }),
+
   http.get('/gifts/finish', ({ request }) => {
     const { searchParams } = new URL(request.url);
 
@@ -31,7 +51,6 @@ export const giftHandlers = [
     const totalElements = usedGifts.length;
     const totalPages = Math.ceil(totalElements / size);
 
-    // httpResponse 반환
     return HttpResponse.json<PaginationResponse<Gift>>({
       items: usedGifts.slice(page * size, (page + 1) * size),
       hasNext: totalPages > page + 1,

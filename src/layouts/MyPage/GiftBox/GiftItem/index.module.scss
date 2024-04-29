@@ -21,6 +21,18 @@
   }
 }
 
+.d_day {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #888;
+  color: #fff;
+  font-size: 14px;
+  padding: 5px 8px;
+  letter-spacing: -0.03em;
+}
+
 .wrapper_gift {
   $width: 196px;
 

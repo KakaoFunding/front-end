@@ -1,0 +1,13 @@
+@import 'styles/mixins.module';
+
+.wrapper_item {
+  width: 305px;
+}
+
+.txt_name {
+  @include text-ellipsis(2);
+  @include font(14px, 400, #333);
+
+  margin: 12px 0;
+  line-height: 22px;
+}
