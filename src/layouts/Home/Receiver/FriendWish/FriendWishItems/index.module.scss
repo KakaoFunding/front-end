@@ -1,0 +1,36 @@
+@import 'styles/mixins.module';
+
+.item_prod {
+  display: flex;
+  width: 50%;
+  padding: 24px 16px;
+
+  .info_prod {
+    margin-left: 20px;
+    line-height: 22px;
+
+    .txt_brand {
+      @include font(15px, auto, #999);
+    }
+
+    .txt_title {
+      font-size: 15px;
+    }
+
+    .txt_price {
+      @include font(20px, 700);
+
+      padding: 10px 0 13px;
+
+      .txt_unit {
+        @include font(18px, 400);
+      }
+    }
+
+    .wrapper_btn {
+      display: flex;
+      align-items: flex-end;
+      height: 26px;
+    }
+  }
+}
