@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import SocialKakaoLogin from '../SocialKakaoLogin';
 
 import styles from './index.module.scss';
@@ -5,16 +7,16 @@ import styles from './index.module.scss';
 const BundleUtil = () => {
   return (
     <section className={styles.wrapper_bundle_util}>
-      <a className={styles.link_search} href="/search">
+      <Link className={styles.link_search} to="/search">
         <div className={styles.wrapper_ico} aria-hidden="true">
           <span className={styles.ico_search}>검색</span>
         </div>
-      </a>
-      <a className={styles.link_cart} href="/cart">
+      </Link>
+      <Link className={styles.link_cart} to="/cart">
         <div className={styles.wrapper_ico} aria-hidden="true">
           <span className={styles.ico_cart}>장바구니</span>
         </div>
-      </a>
+      </Link>
       <div className={styles.wrapper_login}>
         <SocialKakaoLogin />
       </div>

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './index.module.scss';
 
 const HeaderNav = () => {
@@ -5,24 +7,24 @@ const HeaderNav = () => {
     <nav className={styles.wrapper_nav}>
       <ul className={styles.list}>
         <li className={styles.list_item}>
-          <a className={styles.link} href="/home">
+          <Link className={styles.link} to="/home">
             홈
-          </a>
+          </Link>
         </li>
         <li className={styles.list_item}>
-          <a className={styles.link} href="/mypage/wish">
+          <Link className={styles.link} to="/mypage/wish">
             위시
-          </a>
+          </Link>
         </li>
         <li className={styles.list_item}>
-          <a className={styles.link} href="/mypage/funding">
+          <Link className={styles.link} to="/mypage/funding">
             펀딩
-          </a>
+          </Link>
         </li>
         <li className={styles.list_item}>
-          <a className={styles.link} href="/mypage/giftbox">
+          <Link className={styles.link} to="/mypage/giftbox">
             선물함
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
