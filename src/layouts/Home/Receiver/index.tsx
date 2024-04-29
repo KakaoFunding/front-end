@@ -14,6 +14,10 @@ const mockdata = {
   myProfileImgUrl: '',
 };
 
+const FriendsData = {
+  hasWish: true,
+  hasFunding: true,
+};
 const Receiver = () => {
   const { isSelected, isSelfSelected, getImgUrl, getTitle } =
     useSelectedFriendsStore();
@@ -46,8 +50,8 @@ const Receiver = () => {
         </strong>
       </div>
       <MainWrapper>
-        <FriendFunding />
-        <FriendWish />
+        {FriendsData.hasFunding && <FriendFunding />}
+        {FriendsData.hasWish && <FriendWish />}
       </MainWrapper>
     </section>
   );
