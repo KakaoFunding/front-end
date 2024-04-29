@@ -3,7 +3,7 @@ import MainWrapper from 'components/ui/MainWrapper';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
-import FriendsFunding from './FriendsFunding';
+import FriendFunding from './FriendFunding';
 
 import styles from './index.module.scss';
 
@@ -45,7 +45,7 @@ const Receiver = () => {
         </strong>
       </div>
       <MainWrapper>
-        <FriendsFunding />
+        <FriendFunding />
         <div>위시</div>
       </MainWrapper>
     </section>
