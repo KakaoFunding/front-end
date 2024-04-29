@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
@@ -29,8 +29,7 @@ const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
     WISH_RADIO_STATUS.PUBLIC as WishRadioType,
   );
 
-  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedRadio = e.target.value as WishRadioType;
+  const handleRadioChange = (selectedRadio: WishRadioType) => {
     setRadioStatus(selectedRadio);
   };
 
@@ -63,10 +62,15 @@ const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
                 name="WISH_RADIO"
                 value={radio.type}
                 className={styles.btn_radio}
-                onChange={handleRadioChange}
+                onChange={(e) =>
+                  handleRadioChange(e.target.value as WishRadioType)
+                }
                 checked={radioStatus === radio.type}
               />
-              <div className={styles.wrapper_txt}>
+              <div
+                className={styles.wrapper_txt}
+                onClick={() => handleRadioChange(radio.type)}
+              >
                 <strong className={styles.txt_title}>{radio.title}</strong>
                 <p className={styles.txt_subtitle}>{radio.subTitle}</p>
               </div>
