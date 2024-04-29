@@ -1,6 +1,7 @@
 import ProfileImg from 'components/feature/ProfileImg';
 import MainWrapper from 'components/ui/MainWrapper';
 
+import { useAuthStore } from 'store/useAuthStore';
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
 import FriendsFunding from './FriendsFunding';
@@ -16,9 +17,23 @@ const mockdata = {
 const Receiver = () => {
   const { isSelected, isSelfSelected, getImgUrl, getTitle } =
     useSelectedFriendsStore();
+  const socialAccessToken = useAuthStore((state) => state.socialToken);
+
+  window.Kakao.Auth.setAccessToken(socialAccessToken);
 
   const handleClick = () => {
-    // console.log('피커연동')
+    window.Kakao.Picker.selectFriends({
+      title: '친구 선택',
+      showMyProfile: true,
+      maxPickableCount: 10,
+      minPickableCount: 1,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
