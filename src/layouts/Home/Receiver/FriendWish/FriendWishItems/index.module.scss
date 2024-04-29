@@ -2,10 +2,11 @@
 
 .item_prod {
   display: flex;
-  width: 50%;
+  width: 100%;
   padding: 24px 16px;
 
   .info_prod {
+    max-width: 370px;
     margin-left: 20px;
     line-height: 22px;
 
