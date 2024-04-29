@@ -21,11 +21,16 @@
 .wrapper_radio {
   flex-grow: 1;
 
-  .radio_default {
+  .default_radio {
     display: flex;
-    align-items: center;
     width: 440px;
     height: 45%;
+
+    .label_radio {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
 
     &:first-child {
       border-bottom: 1px solid rgba(231, 232, 233, 40%);

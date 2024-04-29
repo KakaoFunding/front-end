@@ -56,24 +56,24 @@ const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
         </strong>
         <ul className={styles.wrapper_radio}>
           {WISH_RADIO_INFO.map((radio) => (
-            <li className={styles.radio_default} key={radio.type}>
-              <input
-                type="radio"
-                name="WISH_RADIO"
-                value={radio.type}
-                className={styles.btn_radio}
-                onChange={(e) =>
-                  handleRadioChange(e.target.value as WishRadioType)
-                }
-                checked={radioStatus === radio.type}
-              />
-              <div
-                className={styles.wrapper_txt}
+            <li className={styles.default_radio} key={radio.type}>
+              <label
+                className={styles.label_radio}
+                htmlFor="WISH_RADIO"
                 onClick={() => handleRadioChange(radio.type)}
               >
-                <strong className={styles.txt_title}>{radio.title}</strong>
-                <p className={styles.txt_subtitle}>{radio.subTitle}</p>
-              </div>
+                <input
+                  type="radio"
+                  name="WISH_RADIO"
+                  value={radio.type}
+                  className={styles.btn_radio}
+                  checked={radioStatus === radio.type}
+                />
+                <div className={styles.wrapper_txt}>
+                  <strong className={styles.txt_title}>{radio.title}</strong>
+                  <p className={styles.txt_subtitle}>{radio.subTitle}</p>
+                </div>
+              </label>
             </li>
           ))}
         </ul>
