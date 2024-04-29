@@ -7,13 +7,30 @@ import { FriendsSelectorModalProps } from 'types/modal';
 
 import styles from './index.module.scss';
 
-type RadioType = 'friend' | 'me';
+const WISH_RADIO_STATUS = { PUBLIC: 'PUBLIC', PRIVATE: 'PRIVATE' } as const;
+
+const WISH_RADIO_INFO = [
+  {
+    type: WISH_RADIO_STATUS.PUBLIC,
+    title: '친구공개! 내 취향은 이거야♡',
+    subTitle: '내 선물을 고민하는 친구를 위해 힌트 주기',
+  },
+  {
+    type: WISH_RADIO_STATUS.PRIVATE,
+    title: '비밀! 나만 볼 수 있어요',
+    subTitle: '나만 알고 싶은 상품, 몰래 찜해두기',
+  },
+];
+
+type WishRadioType = (typeof WISH_RADIO_STATUS)[keyof typeof WISH_RADIO_STATUS];
 
 const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
-  const [radioStatus, setRadioStatus] = useState<RadioType>('friend');
+  const [radioStatus, setRadioStatus] = useState<WishRadioType>(
+    WISH_RADIO_STATUS.PUBLIC as WishRadioType,
+  );
 
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedRadio = e.target.value as RadioType;
+    const selectedRadio = e.target.value as WishRadioType;
     setRadioStatus(selectedRadio);
   };
 
@@ -24,7 +41,7 @@ const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
   };
 
   useEffect(() => {
-    setRadioStatus('friend');
+    setRadioStatus(WISH_RADIO_STATUS.PUBLIC as WishRadioType);
   }, [isOpen]);
 
   return (
@@ -38,45 +55,24 @@ const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
         <strong className={styles.modal_title}>
           위시의 공개범위를 선택해주세요
         </strong>
-        <section className={styles.wrapper_radio}>
-          <div className={styles.radio_default}>
-            <input
-              type="radio"
-              name="wishRadio"
-              value="friend"
-              className={styles.btn_radio}
-              onChange={handleRadioChange}
-              checked={radioStatus === 'friend'}
-            />
-            <div className={styles.wrapper_txt}>
-              <strong className={styles.txt_title}>
-                친구공개! 내 취향은 이거야♡
-              </strong>
-              <p className={styles.txt_subtitle}>
-                내 선물을 고민하는 친구를 위해 힌트 주기
-              </p>
-            </div>
-          </div>
-          <hr className={styles.line} />
-          <div className={styles.radio_default}>
-            <input
-              type="radio"
-              name="wishRadio"
-              value="me"
-              className={styles.btn_radio}
-              onChange={handleRadioChange}
-              checked={radioStatus === 'me'}
-            />
-            <div className={styles.wrapper_txt}>
-              <strong className={styles.txt_title}>
-                비밀! 나만 볼 수 있어요
-              </strong>
-              <p className={styles.txt_subtitle}>
-                나만 알고 싶은 상품, 몰래 찜해두기
-              </p>
-            </div>
-          </div>
-        </section>
+        <ul className={styles.wrapper_radio}>
+          {WISH_RADIO_INFO.map((radio) => (
+            <li className={styles.radio_default} key={radio.type}>
+              <input
+                type="radio"
+                name="WISH_RADIO"
+                value={radio.type}
+                className={styles.btn_radio}
+                onChange={handleRadioChange}
+                checked={radioStatus === radio.type}
+              />
+              <div className={styles.wrapper_txt}>
+                <strong className={styles.txt_title}>{radio.title}</strong>
+                <p className={styles.txt_subtitle}>{radio.subTitle}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
         <Button
           color="yellow"
           onClick={handleAddWish}

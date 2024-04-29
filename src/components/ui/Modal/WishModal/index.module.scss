@@ -16,11 +16,6 @@
 
     margin: 0;
   }
-
-  .line {
-    background-color: #e7e8e9;
-    opacity: 0.2;
-  }
 }
 
 .wrapper_radio {
@@ -31,6 +26,10 @@
     align-items: center;
     width: 440px;
     height: 45%;
+
+    &:first-child {
+      border-bottom: 1px solid rgba(231, 232, 233, 40%);
+    }
 
     .btn_radio {
       width: 28px;
