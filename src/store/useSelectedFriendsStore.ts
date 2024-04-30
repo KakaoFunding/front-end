@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { UserWithUserId } from 'types/user';
+import { PickerResponseData, User } from 'types/user';
 
 const defaultImgUrl = 'src/assets/bg_profile_default.png';
 const peopleImgUrl = 'src/assets/profile_people.png';
@@ -9,14 +9,14 @@ const peopleImgUrl = 'src/assets/profile_people.png';
 type SelectedFriendsState = {
   isSelected: boolean;
   isSelfSelected: boolean;
-  selectedFriends: UserWithUserId[];
+  selectedFriends: PickerResponseData[];
   selectedHeadCount: number;
-  currentSelectedFriends: UserWithUserId[];
+  currentSelectedFriends: PickerResponseData[];
 };
 
 type SelectedFriendsAction = {
-  setSelectedFriends: (state: UserWithUserId[]) => void;
-  setCurrentSelectedFriends: (state: UserWithUserId[]) => void;
+  setSelectedFriends: (state: PickerResponseData[], name: User['name']) => void;
+  setCurrentSelectedFriends: (state: PickerResponseData[]) => void;
   getImgUrl: () => string;
   getTitle: () => string;
 };
@@ -32,10 +32,11 @@ export const useSelectedFriendsStore = create<
       selectedHeadCount: 0,
       currentSelectedFriends: [],
 
-      setSelectedFriends: (state) =>
+      setSelectedFriends: (state, name) =>
         set(() => ({
           isSelected: !(state.length === 0),
-          isSelfSelected: state.length === 1 && state[0].id === 0,
+          isSelfSelected:
+            state.length === 1 && state[0].profile_nickname === name,
           selectedFriends: state,
           selectedHeadCount: state.length,
         })),
@@ -48,7 +49,7 @@ export const useSelectedFriendsStore = create<
       getImgUrl: () => {
         if (get().selectedHeadCount > 1) return peopleImgUrl;
         if (get().selectedHeadCount === 1)
-          return get().selectedFriends[0].profileUrl!;
+          return get().selectedFriends[0].profile_thumbnail_image!;
         return defaultImgUrl;
       },
 
@@ -57,7 +58,7 @@ export const useSelectedFriendsStore = create<
         if (get().selectedHeadCount > 1)
           return `${get().selectedHeadCount}명의 친구에게 선물하기`;
         if (get().isSelfSelected) return '나를 위한 선물하기';
-        return `${get().selectedFriends[0].name}에게 선물하기`;
+        return `${get().selectedFriends[0].profile_nickname}에게 선물하기`;
       },
     }),
     {
