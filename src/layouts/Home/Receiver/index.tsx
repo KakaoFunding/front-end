@@ -1,7 +1,7 @@
 import ProfileImg from 'components/feature/ProfileImg';
 import MainWrapper from 'components/ui/MainWrapper';
 
-import { useAuthStore } from 'store/useAuthStore';
+import { useAuthStore, useUserStore } from 'store/useAuthStore';
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
 import FriendsFunding from './FriendsFunding';
@@ -15,9 +15,15 @@ const mockdata = {
 };
 
 const Receiver = () => {
-  const { isSelected, isSelfSelected, getImgUrl, getTitle } =
-    useSelectedFriendsStore();
+  const {
+    isSelected,
+    isSelfSelected,
+    setSelectedFriends,
+    getImgUrl,
+    getTitle,
+  } = useSelectedFriendsStore();
   const socialAccessToken = useAuthStore((state) => state.socialToken);
+  const userName = useUserStore((state) => state.name);
 
   window.Kakao.Auth.setAccessToken(socialAccessToken);
 
@@ -29,7 +35,7 @@ const Receiver = () => {
       minPickableCount: 1,
     })
       .then((response) => {
-        console.log(response);
+        setSelectedFriends(response.users, userName);
       })
       .catch((error) => {
         console.error(error);
