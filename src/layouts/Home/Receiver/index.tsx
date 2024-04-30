@@ -46,6 +46,9 @@ const Receiver = () => {
       })
       .catch((error: object) => {
         console.error(error);
+      })
+      .finally(() => {
+        Kakao.Picker.cleanup();
       });
   };
 
