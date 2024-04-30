@@ -1,14 +1,14 @@
-const isZero = (target: string) => {
+export const isZero = (target: string) => {
   const pattern = /^0+$/;
   return pattern.test(target);
 };
 
-const isUnsignedInteger = (target: string) => {
+export const isUnsignedInteger = (target: string) => {
   const pattern = /^\d+$/;
   return pattern.test(target);
 };
 
-const isPositiveInteger = (target: string) => {
+export const isPositiveInteger = (target: string) => {
   return isUnsignedInteger(target) && !isZero(target);
 };
 
