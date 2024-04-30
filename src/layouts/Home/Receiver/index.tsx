@@ -30,7 +30,10 @@ const Receiver = () => {
   const handleClick = () => {
     window.Kakao.Picker.selectFriends({
       title: '친구 선택',
+      enableSearch: true,
       showMyProfile: true,
+      showFavorite: true,
+      showPickedFriend: true,
       maxPickableCount: 10,
       minPickableCount: 1,
     })
