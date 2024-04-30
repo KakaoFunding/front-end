@@ -14,6 +14,10 @@ const mockdata = {
   myProfileImgUrl: '',
 };
 
+type PickerResponseProps = {
+  users: [];
+};
+
 const Receiver = () => {
   const {
     isSelected,
@@ -37,10 +41,10 @@ const Receiver = () => {
       maxPickableCount: 10,
       minPickableCount: 1,
     })
-      .then((response) => {
+      .then((response: PickerResponseProps) => {
         setSelectedFriends(response.users, userName);
       })
-      .catch((error) => {
+      .catch((error: object) => {
         console.error(error);
       });
   };
