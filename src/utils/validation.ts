@@ -1,4 +1,4 @@
-const isZero = (target: string): boolean => {
+const isZero = (target: string) => {
   const pattern = /^0+$/;
   return pattern.test(target);
 };
@@ -8,14 +8,14 @@ const isUnsignedInteger = (target: string) => {
   return pattern.test(target);
 };
 
-const isPositiveInteger = (target: string): boolean => {
+const isPositiveInteger = (target: string) => {
   return isUnsignedInteger(target) && !isZero(target);
 };
 
-export const isValidQuantity = (quantity: string): boolean => {
+export const isValidQuantity = (quantity: string) => {
   return isPositiveInteger(quantity);
 };
 
-export const isValidPrice = (price: string): boolean => {
+export const isValidPrice = (price: string) => {
   return isPositiveInteger(price) || isZero(price);
 };
