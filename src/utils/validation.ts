@@ -1,21 +1,21 @@
-const isZero = (target: number): boolean => target === 0;
-
-const isPositiveInteger = (target: number): boolean => {
-  return !Number.isInteger(target) || target > 0;
+const isZero = (target: string): boolean => {
+  const pattern = /^0+$/;
+  return pattern.test(target);
 };
 
-export const isValidQuantity = (target: string): boolean => {
-  const quantity = Number(target);
+const isUnsignedInteger = (target: string) => {
+  const pattern = /^\d+$/;
+  return pattern.test(target);
+};
 
-  if (Number.isNaN(quantity)) return false;
+const isPositiveInteger = (target: string): boolean => {
+  return isUnsignedInteger(target) && !isZero(target);
+};
 
+export const isValidQuantity = (quantity: string): boolean => {
   return isPositiveInteger(quantity);
 };
 
-export const isValidPrice = (target: string): boolean => {
-  const price = Number(target);
-
-  if (Number.isNaN(price)) return false;
-
+export const isValidPrice = (price: string): boolean => {
   return isPositiveInteger(price) || isZero(price);
 };
