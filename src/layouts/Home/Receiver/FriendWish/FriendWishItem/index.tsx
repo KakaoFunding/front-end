@@ -10,7 +10,7 @@ import { ProductItem } from 'types/productItem';
 
 import styles from './index.module.scss';
 
-const FriendWishItems = ({ product }: { product: ProductItem }) => {
+const FriendWishItem = ({ product }: { product: ProductItem }) => {
   return (
     <Link to={`/product/${product.productId}`}>
       <div className={styles.item_prod}>
@@ -36,4 +36,4 @@ const FriendWishItems = ({ product }: { product: ProductItem }) => {
   );
 };
 
-export default FriendWishItems;
+export default FriendWishItem;
