@@ -1,9 +1,12 @@
 @import 'styles/mixins.module';
 
+.wrapper_wish_item {
+  margin: 24px 16px;
+}
+
 .item_prod {
   display: flex;
   width: 100%;
-  padding: 24px 16px;
 
   .info_prod {
     max-width: 370px;
