@@ -16,8 +16,8 @@ const data = {
 };
 
 const WishItem = () => {
-  const [isWish, setIsWish] = useState(true);
-  const [isSecret, setIsSecret] = useState(true);
+  const [isWish, setIsWish] = useState<boolean>(true);
+  const [isPrivate, setIsPrivate] = useState<boolean>(true);
 
   // TODO : API 요청
   const handleWishClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -27,7 +27,7 @@ const WishItem = () => {
 
   const handleChangeVisibility = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setIsSecret(!isSecret);
+    setIsPrivate(!isPrivate);
   };
 
   return (
@@ -48,7 +48,7 @@ const WishItem = () => {
           <p className={styles.txt_price}>{formatNumberWithUnit(data.price)}</p>
           <button type="button" onClick={handleChangeVisibility}>
             <span
-              className={clsx(styles.ico_secret, { [styles.on]: !isSecret })}
+              className={clsx(styles.ico_secret, { [styles.on]: !isPrivate })}
             >
               비밀/나만공개
             </span>
