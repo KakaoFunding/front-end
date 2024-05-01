@@ -150,3 +150,10 @@
   background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m320/ico_frndpck_210128.png');
   background-size: 450px 750px;
 }
+
+@mixin ico-wishes($x, $y, $width, $height) {
+  @include ico-template($x, $y, $width, $height);
+
+  background-image: url('assets/ico_wishes.png');
+  background-size: 175px 210px;
+}
