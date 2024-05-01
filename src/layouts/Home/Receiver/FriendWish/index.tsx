@@ -4,7 +4,7 @@ import SliderArrowButton from 'components/ui/SliderArrowButton';
 
 import { ProductItem } from 'types/productItem';
 
-import FriendWishItems from './FriendWishItems';
+import FriendWishItem from './FriendWishItem';
 
 import styles from './index.module.scss';
 
@@ -78,7 +78,7 @@ const FriendWish = () => {
       >
         {items.map((item: ProductItem) => (
           <li key={item.productId}>
-            <FriendWishItems product={item} />
+            <FriendWishItem product={item} />
           </li>
         ))}
       </Slider>
