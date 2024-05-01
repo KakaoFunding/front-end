@@ -61,7 +61,8 @@ const items = [
   },
 ];
 
-const SLIDE_DISPLAY_COUNT = 2;
+const SLIDE_DISPLAY_COUNT = items.length === 1 ? 1 : 2;
+const SLIDE_DRAGGABLE = items.length > 2;
 
 const FriendWish = () => {
   return (
@@ -69,6 +70,7 @@ const FriendWish = () => {
       <strong className={styles.title_wish}>친구의 위시리스트</strong>
       <Slider
         arrows={items.length > SLIDE_DISPLAY_COUNT}
+        draggable={SLIDE_DRAGGABLE}
         slidesToShow={SLIDE_DISPLAY_COUNT}
         prevArrow={<SliderArrowButton arrowType="prev" />}
         nextArrow={<SliderArrowButton arrowType="next" />}
