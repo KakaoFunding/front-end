@@ -19,6 +19,7 @@ type SelectedFriendsAction = {
   setCurrentSelectedFriends: (state: PickerResponseData[]) => void;
   getImgUrl: () => string;
   getTitle: () => string;
+  clearSelectedFriends: () => void;
 };
 
 export const useSelectedFriendsStore = create<
@@ -45,6 +46,14 @@ export const useSelectedFriendsStore = create<
         set(() => ({
           currentSelectedFriends: state,
         })),
+
+      clearSelectedFriends: () =>
+        set({
+          selectedFriends: [],
+          isSelected: false,
+          isSelfSelected: false,
+          selectedHeadCount: 0,
+        }),
 
       getImgUrl: () => {
         if (get().selectedHeadCount > 1) return peopleImgUrl;
