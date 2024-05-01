@@ -48,7 +48,9 @@ const WishItem = () => {
           <p className={styles.txt_price}>{formatNumberWithUnit(data.price)}</p>
           <button type="button" onClick={handleChangeVisibility}>
             <span
-              className={clsx(styles.ico_secret, { [styles.on]: !isPrivate })}
+              className={clsx(styles.ico_public, {
+                [styles.ico_private]: isPrivate,
+              })}
             >
               비밀/나만공개
             </span>

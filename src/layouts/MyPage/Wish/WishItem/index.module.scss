@@ -33,7 +33,7 @@
     }
   }
 
-  .ico_secret {
+  .ico_public {
     @include ico-wishes(-55px, -25px, 52px, 24px);
 
     position: absolute;
@@ -41,7 +41,7 @@
     left: 107px;
     top: 73px;
 
-    &.on {
+    &.ico_private {
       @include ico-wishes(-55px, 0, 52px, 24px);
     }
   }
