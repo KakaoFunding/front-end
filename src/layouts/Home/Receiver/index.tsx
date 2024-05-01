@@ -54,26 +54,30 @@ const Receiver = () => {
 
   return (
     <section>
-      <div className={styles.wrapper_selector}>
-        <ProfileImg
-          size="l"
-          imgUrl={
-            mockdata.login && isSelfSelected
-              ? mockdata.myProfileImgUrl
-              : getImgUrl()
-          }
-          hasIcon="plus"
-          onClick={handleClick}
-        />
-        <strong className={styles.title_selector}>
-          {mockdata.login && !isSelected && (
-            <>
-              {`${mockdata.name}님`}
-              <br />
-            </>
-          )}
-          {getTitle()}
-        </strong>
+      <div className={styles.area_selector}>
+        <MainWrapper>
+          <div className={styles.wrapper_selector}>
+            <ProfileImg
+              size="l"
+              imgUrl={
+                mockdata.login && isSelfSelected
+                  ? mockdata.myProfileImgUrl
+                  : getImgUrl()
+              }
+              hasIcon="plus"
+              onClick={handleClick}
+            />
+            <strong className={styles.title_selector}>
+              {mockdata.login && !isSelected && (
+                <>
+                  {`${mockdata.name}님`}
+                  <br />
+                </>
+              )}
+              {getTitle()}
+            </strong>
+          </div>
+        </MainWrapper>
       </div>
       <MainWrapper>
         <FriendsFunding />
