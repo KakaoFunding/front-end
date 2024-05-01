@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import CartButton from 'components/feature/ProductItem/CartButton';
-import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import WishButton from 'components/feature/ProductItem/WishButton';
 
 import { formatNumberWithComma } from 'utils/format';
@@ -15,7 +14,12 @@ const FriendWishItem = ({ product }: { product: ProductItem }) => {
     <div className={styles.wrapper_wish_item}>
       <Link to={`/product/${product.productId}`}>
         <div className={styles.item_prod}>
-          <Thumbnail alt={product.name} src={product.photo} size="small" />
+          <img
+            alt={product.name}
+            src={product.photo}
+            className={styles.item_thumb}
+          />
+
           <div className={styles.info_prod}>
             <p className={styles.txt_brand}>{product.brandName}</p>
             <strong className={styles.txt_title}>{product.name}</strong>
