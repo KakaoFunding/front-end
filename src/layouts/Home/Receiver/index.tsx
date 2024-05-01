@@ -28,6 +28,9 @@ const Receiver = () => {
   } = useSelectedFriendsStore();
   const socialAccessToken = useAuthStore((state) => state.socialToken);
   const userName = useUserStore((state) => state.name);
+  const clearFriendsList = useSelectedFriendsStore(
+    (state) => state.clearSelectedFriends,
+  );
 
   window.Kakao.Auth.setAccessToken(socialAccessToken);
 
@@ -50,6 +53,10 @@ const Receiver = () => {
       .finally(() => {
         Kakao.Picker.cleanup();
       });
+  };
+
+  const handleCancel = () => {
+    clearFriendsList();
   };
 
   return (
@@ -76,6 +83,15 @@ const Receiver = () => {
               )}
               {getTitle()}
             </strong>
+            {isSelected && (
+              <button
+                className={styles.btn_cancel}
+                type="button"
+                onClick={handleCancel}
+              >
+                <span className={styles.ico_cancel}>선택 취소</span>
+              </button>
+            )}
           </div>
         </MainWrapper>
       </div>

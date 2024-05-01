@@ -20,4 +20,14 @@
     line-height: 35px;
     color: #333;
   }
+
+  .btn_cancel {
+    margin-left: auto;
+
+    .ico_cancel {
+      @include ico-frndpck(-103px, -90px, 30px, 30px);
+
+      background-size: 200px, 150px;
+    }
+  }
 }
