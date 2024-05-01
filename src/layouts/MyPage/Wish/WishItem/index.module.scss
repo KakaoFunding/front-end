@@ -1,0 +1,48 @@
+@import 'styles/mixins.module';
+
+.wrapper_wish {
+  position: relative;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 13px 14px;
+  border: 1px solid #ededed;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 6%);
+  line-height: 18px;
+  font-size: 14px;
+  color: #444;
+
+  .thumb_item {
+    @include size(83px, 83px, 0 10px 0 0, 0);
+  }
+
+  .txt_price {
+    @include font(15px, 700, #222);
+  }
+
+  .ico_heart {
+    @include ico-wishes(-35px, -70px, 18px, 17px);
+
+    position: absolute;
+    margin: 16px 14px;
+    right: 0;
+    top: 0;
+
+    &.on {
+      @include ico-wishes(-70px, -135px, 18px, 17px);
+    }
+  }
+
+  .ico_public {
+    @include ico-wishes(-55px, -25px, 52px, 24px);
+
+    position: absolute;
+    padding: 3px 5px;
+    left: 107px;
+    top: 73px;
+
+    &.ico_private {
+      @include ico-wishes(-55px, 0, 52px, 24px);
+    }
+  }
+}
