@@ -12,9 +12,12 @@
 
     .txt_brand {
       @include font(15px, auto, #999);
+      @include text-ellipsis(1);
     }
 
     .txt_title {
+      @include text-ellipsis(2);
+
       font-size: 15px;
     }
 
