@@ -8,10 +8,10 @@ import styles from './index.module.scss';
 
 // TODO : 필요 데이터
 const data = {
-  src: 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20240325111042_0f205969299a4645af4ea873a7400f69.jpg',
+  productId: 4603825,
   title: '로지텍코리아 LIFT 컴팩트 인체공학 무선 블루투스 버티컬 마우스',
   price: 79000,
-  productId: 4603825,
+  src: 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20240325111042_0f205969299a4645af4ea873a7400f69.jpg',
   wishForMe: true,
 };
 
@@ -25,7 +25,7 @@ const WishItem = () => {
     setIsWish(!isWish);
   };
 
-  const handleSecretClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleChangeVisibility = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsSecret(!isSecret);
   };
@@ -46,7 +46,7 @@ const WishItem = () => {
             </span>
           </button>
           <p className={styles.txt_price}>{formatNumberWithUnit(data.price)}</p>
-          <button type="button" onClick={handleSecretClick}>
+          <button type="button" onClick={handleChangeVisibility}>
             <span
               className={clsx(styles.ico_secret, { [styles.on]: !isSecret })}
             >
