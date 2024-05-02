@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import CartButton from 'components/feature/ProductItem/CartButton';
 import Price from 'components/feature/ProductItem/Price';
@@ -21,13 +22,13 @@ type ProductItemType = {
 const ProductItem = ({ product }: ProductItemType) => {
   return (
     <article className={clsx(styles.wrapper_prod_item)}>
-      <a href={`/product/${product.id}`} className={styles.wrapper_main_info}>
+      <Link to={`/product/${product.id}`} className={styles.wrapper_main_info}>
         <Thumbnail src={product.thumbSrc} alt={product.name} size="small" />
         <strong className={styles.txt_prod_name}>{product.name}</strong>
         <Price price={product.price} />
-      </a>
+      </Link>
       <div className={styles.wrapper_util_info}>
-        <CartButton id={product.id} />
+        <CartButton />
       </div>
     </article>
   );

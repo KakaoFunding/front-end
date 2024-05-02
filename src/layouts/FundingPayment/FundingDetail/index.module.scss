@@ -1,0 +1,47 @@
+@import 'styles/mixins.module';
+
+.area_funding_detail {
+  padding: 16px;
+
+  .txt_title {
+    @include font(15px, 700);
+
+    display: block;
+    padding: 16px 0;
+  }
+}
+
+.wrapper_funding_item {
+  padding: 19px 15px 16px;
+  border: 1px solid #ededed;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2%);
+}
+
+.wrapper_desc {
+  padding: 13px 0;
+  border-top: 1px solid #f5f5f5;
+  text-align: right;
+
+  .txt_price {
+    @include font(13px, 400, #222);
+
+    float: left;
+  }
+
+  .num_price {
+    @include font(15px, 700, #000);
+
+    letter-spacing: -0.02em;
+    padding-right: 2px;
+  }
+
+  .input {
+    @include size(120px, auto, 0, 3px);
+
+    border: 1px solid #e1e2e3;
+    outline: none;
+    text-align: right;
+    font-size: 16px;
+  }
+}

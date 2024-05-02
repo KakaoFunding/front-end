@@ -1,0 +1,84 @@
+@import 'styles/mixins.module';
+
+@mixin img-badge($x, $y, $width, $height) {
+  @include img-sprite($x, $y, $width, $height);
+
+  background-image: url('assets/badge_state.png');
+  background-size: 325px 105px;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  &.finish {
+    @include img-badge(0, -55px, 50px, 50px);
+  }
+
+  &.cancel {
+    @include img-badge(-55px, -55px, 50px, 50px);
+  }
+}
+
+.d_day {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #888;
+  color: #fff;
+  font-size: 14px;
+  padding: 5px 8px;
+  letter-spacing: -0.03em;
+}
+
+.wrapper_gift {
+  $width: 196px;
+
+  width: $width;
+  position: relative;
+
+  .wrapper_thumb {
+    @include wrapper-prod-img($width, 0);
+  }
+
+  .txt_brand {
+    display: block;
+    padding-top: 9px;
+    font-size: 13px;
+    color: #5990c7;
+
+    @include text-ellipsis(1);
+  }
+
+  .txt_prod {
+    display: block;
+    padding-top: 4px;
+    font-size: 15px;
+    color: #666;
+
+    @include text-ellipsis(1);
+  }
+}
+
+.wrapper_receive_info {
+  margin-top: 8px;
+
+  .txt_sender {
+    display: block;
+
+    @include font(15px, 700, #222);
+    @include text-ellipsis(1);
+
+    .txt_from {
+      letter-spacing: -0.04em;
+    }
+  }
+
+  .txt_date {
+    font-size: 12px;
+    color: #a0a0a0;
+    letter-spacing: -0.028em;
+  }
+}

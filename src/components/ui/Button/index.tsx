@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 
 type ButtonProps = {
   color?: 'white' | 'gray' | 'black' | 'yellow';
-  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   children: React.ReactNode;
 };

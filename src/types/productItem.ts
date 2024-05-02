@@ -1,10 +1,10 @@
 export type ProductItem = {
-  id: number;
-  thumbSrc: string;
+  productId: number;
+  photo: string;
   brandName: string;
   name: string;
   price: number;
-  isWished: boolean;
+  wished: boolean;
   wishCount: number;
 };
 

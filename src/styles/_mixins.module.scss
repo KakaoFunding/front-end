@@ -15,9 +15,10 @@
   border-radius: 39%;
 }
 
-@mixin font($size, $weight) {
+@mixin font($size, $weight, $color: inherit) {
   font-size: $size;
   font-weight: $weight;
+  color: $color;
 }
 
 @mixin size($width, $height, $margin, $padding) {
@@ -42,6 +43,7 @@
 @mixin wrapper-prod-img($size, $round) {
   position: relative;
   width: $size;
+  height: $size;
 
   &::before {
     position: absolute;
@@ -57,12 +59,14 @@
   img {
     display: block;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: $round;
   }
 }
 
-// 아이콘 스프라이트 사용을 위한 템플릿 믹스인
-@mixin ico-template($x, $y, $width, $height) {
+// 이미지 스프라이트 사용을 위한 템플릿 믹스인
+@mixin img-sprite($x, $y, $width, $height) {
   display: inline-block;
   font-size: 0;
   background-position: $x $y;
@@ -73,64 +77,83 @@
 }
 
 @mixin ico-nav($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('assets/ico_nav.png');
   background-size: 200px 170px;
 }
 
 @mixin ico-layer($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('assets/ico_layer.png');
   background-size: 250px 170px;
 }
 
 @mixin ico-pd-detail($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('assets/ico_pd_detail.png');
   background-size: 250px 600px;
 }
 
+@mixin ico-detail($x, $y, $width, $height) {
+  display: inline-block;
+  font-size: 0;
+  background-image: url('assets/ico_detail.png');
+  background-size: 200px 800px;
+  background-position: $x $y;
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+  overflow: hidden;
+}
+
 @mixin ico-gift($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('assets/ico_gift.png');
   background-size: 110px 280px;
 }
 
 @mixin ico-gift2($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('assets/ico_gift2.png');
   background-size: 250px 680px;
 }
 
 @mixin ico-gift3($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('assets/ico_gift3.png');
   background-size: 205px 485px;
 }
 
 @mixin ico-gift4($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('assets/ico_gift4.png');
   background-size: 300px 1265px;
 }
 
 @mixin ico-main($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m640/ico_pcmain_230922.png');
   background-size: 450px 750px;
 }
 
 @mixin ico-frndpck($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m320/ico_frndpck_210128.png');
   background-size: 450px 750px;
+}
+
+@mixin ico-wishes($x, $y, $width, $height) {
+  @include ico-template($x, $y, $width, $height);
+
+  background-image: url('assets/ico_wishes.png');
+  background-size: 175px 210px;
 }

@@ -140,7 +140,6 @@ const Body = () => {
       <section className={styles.area_friends}>
         <strong className={styles.txt_title}>나</strong>
         <ul>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
           <li
             key="나"
             className={clsx(styles.item_friend, styles.me)}
@@ -163,7 +162,6 @@ const Body = () => {
         <ul>
           {friends.map((friend) => {
             return (
-              // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
               <li
                 key={friend.id}
                 className={clsx(styles.item_friend)}
