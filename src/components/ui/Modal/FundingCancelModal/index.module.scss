@@ -25,16 +25,15 @@
   .wrapper_cancel {
     display: flex;
 
-    .ico_cancel_active {
-      @include ico-layer(-195px, -20px, 18px, 18px);
+    .checkbox_cancel {
+      margin: 0 4px 0 0;
+      appearance: none;
 
-      margin-right: 4px;
-    }
-
-    .ico_cancel {
       @include ico-layer(-195px, 0, 18px, 18px);
 
-      margin-right: 4px;
+      &:checked {
+        @include ico-layer(-195px, -20px, 18px, 18px);
+      }
     }
   }
 

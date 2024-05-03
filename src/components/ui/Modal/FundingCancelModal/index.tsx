@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 import { Button } from 'components/ui/Button';
@@ -36,15 +35,19 @@ const FundingCancelModal = ({
         <p className={styles.txt_desc}>
           {`펀딩을 취소하면 모든 펀딩 금액이 펀딩에 참여한 친구들에게 환불돼요. 취소한 펀딩은 복구할 수 없어요.\n\n정말로 펀딩을 취소하시겠어요?`}
         </p>
-        <span className={styles.wrapper_cancel} onClick={handleCheck}>
-          <span
-            className={clsx({
-              [styles.ico_cancel_active]: checked,
-              [styles.ico_cancel]: !checked,
-            })}
+        <label
+          htmlFor="cancelFundingConfirmation"
+          className={styles.wrapper_cancel}
+        >
+          <input
+            type="checkbox"
+            id="cancelFundingConfirmation"
+            className={styles.checkbox_cancel}
+            checked={checked}
+            onChange={handleCheck}
           />
           펀딩을 취소합니다.
-        </span>
+        </label>
         <Button
           onClick={handleCancel}
           className={styles.btn_cancel}
