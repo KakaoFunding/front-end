@@ -41,14 +41,13 @@
   .btn_cancel {
     margin: 20px 0 0;
     height: 40px;
-    color: #999;
-    background-color: #e5e5e5;
-    cursor: auto;
+    color: #000;
+    background-color: $point-yellow;
 
-    &.on {
-      color: #000;
-      background-color: $point-yellow;
-      cursor: pointer;
+    &:disabled {
+      color: #999;
+      background-color: #e5e5e5;
+      cursor: default;
     }
   }
 }

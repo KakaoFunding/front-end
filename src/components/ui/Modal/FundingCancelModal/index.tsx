@@ -17,7 +17,6 @@ const FundingCancelModal = ({
 
   const handleCheck = () => setChecked(!checked);
   const handleCancel = () => {
-    if (!checked) return;
     // 펀딩 취소 로직
     close();
   };
@@ -48,7 +47,8 @@ const FundingCancelModal = ({
         </span>
         <Button
           onClick={handleCancel}
-          className={clsx(styles.btn_cancel, { [styles.on]: checked })}
+          className={styles.btn_cancel}
+          disabled={!checked}
         >
           펀딩 취소하기
         </Button>
