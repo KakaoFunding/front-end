@@ -3,20 +3,30 @@ import { useEffect, useState } from 'react';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
+import { useAxios } from 'hooks/useAxios';
+
 import { FriendsSelectorModalProps } from 'types/modal';
 
 import styles from './index.module.scss';
 
 const FundingCancelModal = ({
+  fundingId,
   close,
   isOpen,
   scrollPos,
-}: FriendsSelectorModalProps) => {
+}: { fundingId: number } & FriendsSelectorModalProps) => {
   const [checked, setChecked] = useState(false);
+  const { sendRequest } = useAxios({
+    method: 'post',
+    url: '/funding/payments/cancel',
+    data: {
+      fundingId,
+    },
+  });
 
   const handleCheck = () => setChecked(!checked);
-  const handleCancel = () => {
-    // 펀딩 취소 로직
+  const handleCancel = async () => {
+    await sendRequest();
     close();
   };
 
