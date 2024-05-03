@@ -35,8 +35,7 @@ const FundingCancelModal = ({
       >
         <strong className={styles.txt_title}>펀딩 취소</strong>
         <p className={styles.txt_desc}>
-          {`펀딩을 취소하면 모든 펀딩 금액이 펀딩에 참여한 친구들에게 환불돼요. 취소한 펀딩은
-          복구할 수 없어요. \n\n정말로 펀딩을 취소하시겠어요?`}
+          {`펀딩을 취소하면 모든 펀딩 금액이 펀딩에 참여한 친구들에게 환불돼요. 취소한 펀딩은 복구할 수 없어요.\n\n정말로 펀딩을 취소하시겠어요?`}
         </p>
         <span className={styles.wrapper_cancel} onClick={handleCheck}>
           <span
