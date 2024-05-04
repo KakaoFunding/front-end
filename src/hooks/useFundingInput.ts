@@ -28,7 +28,6 @@ const useFundingInput = (maxFundingAmount: number) => {
   return {
     input,
     remainingAmount,
-    setRemainingAmount,
     clearInput,
     handleChange,
   };
