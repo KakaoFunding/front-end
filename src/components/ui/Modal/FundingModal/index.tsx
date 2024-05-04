@@ -5,30 +5,49 @@ import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
+import { useAxios } from 'hooks/useAxios';
 import useFundingInput from 'hooks/useFundingInput';
-import { formatNumberWithUnit } from 'utils/format';
+import { formatDate, formatNumberWithUnit } from 'utils/format';
+import { getOneYearLaterDate } from 'utils/generate';
 
 import { FriendsSelectorModalProps } from 'types/modal';
 
 import styles from './index.module.scss';
 
 const mockData = {
+  productId: 1,
   title: '[각인+포장] 리브르 헤어 미스트 30ml 세트(+향수 미니어처 7.5ml)',
   option: '940 코쿤 [New & Limited]',
   thumbImgUrl:
     'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220111185052_b92447cb764d470ead70b2d0fe75fe5c.jpg',
   price: 3940000,
 };
+
 const FundingModal = ({
   close,
   isOpen,
   scrollPos,
 }: FriendsSelectorModalProps) => {
-  const { fundingAmount, clearInput, remainingAmount, handleChange } =
-    useFundingInput(mockData.price);
+  const {
+    fundingAmount: goalAmount,
+    remainingAmount,
+    clearInput,
+    handleChange,
+  } = useFundingInput(mockData.price);
 
-  // TODO : 펀딩등록로직추가
-  const handleAddFunding = close;
+  const { sendRequest } = useAxios<{ id: number }>({
+    method: 'post',
+    url: `/funding/${mockData.productId}`,
+    data: {
+      goalAmount,
+      expiredAt: formatDate(getOneYearLaterDate()),
+    },
+  });
+
+  const handleAddFunding = async () => {
+    await sendRequest();
+    close();
+  };
 
   useEffect(() => {
     clearInput(mockData.price);
@@ -84,7 +103,7 @@ const FundingModal = ({
             <input
               className={styles.input}
               onChange={handleChange}
-              value={fundingAmount}
+              value={goalAmount}
               placeholder="0"
             />
             원
