@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 
-import { isValidQuantity } from 'utils/validation';
+import { isValidQuantity } from 'utils/validate';
 
 import styles from './index.module.scss';
 
