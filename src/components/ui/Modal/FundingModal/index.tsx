@@ -29,7 +29,7 @@ const FundingModal = ({
   scrollPos,
 }: FriendsSelectorModalProps) => {
   const {
-    fundingAmount: goalAmount,
+    input: goalAmount,
     remainingAmount,
     clearInput,
     handleChange,
@@ -50,7 +50,7 @@ const FundingModal = ({
   };
 
   useEffect(() => {
-    clearInput(mockData.price);
+    clearInput();
   }, [isOpen]);
 
   return (

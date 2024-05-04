@@ -3,27 +3,35 @@ import { useState, ChangeEvent } from 'react';
 import { formatNumberWithComma } from 'utils/format';
 import { isValidPrice } from 'utils/validation';
 
-const useFundingInput = (goalFundingPrice: number) => {
-  const [fundingAmount, setFundingAmount] = useState<string>('');
+const useFundingInput = (maxFundingAmount: number) => {
+  const [input, setInput] = useState<string>('0');
   const [remainingAmount, setRemainingAmount] =
-    useState<number>(goalFundingPrice);
+    useState<number>(maxFundingAmount);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.split(',').join('');
     if (!isValidPrice(inputValue)) return;
 
-    const newRemainingAmount = Number(inputValue);
-    if (newRemainingAmount > goalFundingPrice) return;
-    setFundingAmount(formatNumberWithComma(newRemainingAmount));
-    setRemainingAmount(goalFundingPrice - newRemainingAmount);
+    let newInputValue = Number(inputValue);
+    if (newInputValue > maxFundingAmount) {
+      newInputValue = maxFundingAmount;
+    }
+    setInput(formatNumberWithComma(newInputValue));
+    setRemainingAmount(maxFundingAmount - newInputValue);
   };
 
-  const clearInput = (price: number) => {
-    setFundingAmount('');
-    setRemainingAmount(price);
+  const clearInput = () => {
+    setInput('0');
+    setRemainingAmount(maxFundingAmount);
   };
 
-  return { fundingAmount, remainingAmount, clearInput, handleChange };
+  return {
+    input,
+    remainingAmount,
+    setRemainingAmount,
+    clearInput,
+    handleChange,
+  };
 };
 
 export default useFundingInput;
