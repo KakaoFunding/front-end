@@ -12,6 +12,7 @@ export type ResponseExpectedPaymentAmount = {
 export type ResponseFundingPreview = {
   productId: number;
   name: string;
+  brandName: string;
   photo: string;
   optionNames: string[] | null;
   amount: {

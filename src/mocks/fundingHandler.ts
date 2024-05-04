@@ -1,4 +1,4 @@
-import { HttpResponse, PathParams, http } from 'msw';
+import { HttpResponse, PathParams, delay, http } from 'msw';
 
 import { ResponseFundingPreview } from 'types/payment';
 
@@ -9,9 +9,12 @@ type RequestAddFunding = {
 export const fundingHandlers = [
   // 펀딩 결제 내역 프리뷰
   http.post('/funding/preview', async () => {
+    await delay();
+
     return HttpResponse.json<ResponseFundingPreview>({
       productId: 2274,
       name: '[선물포장] 베르사체 에로스 30ML + 에로스 미니어처 5ML',
+      brandName: '베르사체',
       photo:
         'https://st.kakaocdn.net/product/gift/product/20240220155008_b20dcecc7a484754ad1e75854794e192.png',
       optionNames: null,

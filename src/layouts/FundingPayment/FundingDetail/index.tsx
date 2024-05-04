@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import PaymentItem from 'components/feature/PaymentItem';
+import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
 import { formatNumberWithComma } from 'utils/format';
@@ -51,15 +52,23 @@ const FundingDetail = ({ fundingId, setFundingAmount }: FundingDetailProps) => {
     setInput(formatNumberWithComma(newFundingAmount));
   };
 
+  if (!data) return <Spinner />;
+
   return (
     <section className={styles.area_funding_detail}>
       <strong className={styles.txt_title}>펀딩내역</strong>
       <div className={styles.wrapper_funding_item}>
-        <PaymentItem />
+        <PaymentItem
+          productId={data.productId}
+          name={data.name}
+          brandName={data.brandName}
+          photo={data.photo}
+          optionNames={data.optionNames}
+        />
         <p className={styles.wrapper_desc}>
           <span className={styles.txt_price}>펀딩 목표 금액</span>
           <span className={styles.num_price}>
-            {formatNumberWithComma(data?.amount?.goalAmount ?? 0)}
+            {formatNumberWithComma(data.amount.goalAmount ?? 0)}
           </span>
           원
         </p>
