@@ -27,9 +27,10 @@ const Receiver = () => {
   const {
     isSelected,
     isSelfSelected,
+    selectedHeadCount,
+    selectedFriends,
     setSelectedFriends,
     getImgUrl,
-    getTitle,
   } = useSelectedFriendsStore();
   const socialAccessToken = useAuthStore((state) => state.socialToken);
   const userName = useUserStore((state) => state.name);
@@ -38,6 +39,22 @@ const Receiver = () => {
   );
   const PROFILE_IMAGE =
     mockdata.login && isSelfSelected ? mockdata.myProfileImgUrl : getImgUrl();
+
+  // 서버 복구되면 테스트 해봐야함
+  const getTitle = () => {
+    let title = '';
+
+    if (!isSelected) {
+      title = '선물 받을 친구를 선택해주세요.';
+    } else if (selectedHeadCount > 1) {
+      title = `${selectedHeadCount}명의 친구에게 선물하기`;
+    } else if (isSelfSelected) {
+      title = '나를 위한 선물하기';
+    } else {
+      title = `${selectedFriends[0].profile_nickname}에게 선물하기`;
+    }
+    return title;
+  };
 
   window.Kakao.Auth.setAccessToken(socialAccessToken);
 

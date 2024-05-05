@@ -18,7 +18,6 @@ type SelectedFriendsAction = {
   setSelectedFriends: (state: PickerResponseData[], name: User['name']) => void;
   setCurrentSelectedFriends: (state: PickerResponseData[]) => void;
   getImgUrl: () => string;
-  getTitle: () => string;
   clearSelectedFriends: () => void;
 };
 
@@ -60,14 +59,6 @@ export const useSelectedFriendsStore = create<
         if (get().selectedHeadCount === 1)
           return get().selectedFriends[0].profile_thumbnail_image!;
         return defaultImgUrl;
-      },
-
-      getTitle: () => {
-        if (!get().isSelected) return '선물 받을 친구를 선택해주세요.';
-        if (get().selectedHeadCount > 1)
-          return `${get().selectedHeadCount}명의 친구에게 선물하기`;
-        if (get().isSelfSelected) return '나를 위한 선물하기';
-        return `${get().selectedFriends[0].profile_nickname}에게 선물하기`;
       },
     }),
     {
