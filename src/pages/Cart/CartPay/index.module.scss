@@ -1,0 +1,33 @@
+.area_cartpay {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 390px;
+  padding: 63px 25px 84px 24px;
+  border-left: 1px solid #ddd;
+  box-sizing: border-box;
+
+  .wrapper_cartpay {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+
+    .txt_cartpay {
+      margin-top: 4px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      letter-spacing: -0.006em;
+      padding: 32px 0 38px;
+      font-size: 13px;
+      line-height: 20px;
+      color: #000;
+      opacity: 0.4;
+      text-align: center;
+    }
+  }
+}
