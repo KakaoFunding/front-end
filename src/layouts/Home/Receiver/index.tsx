@@ -36,6 +36,8 @@ const Receiver = () => {
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
+  const PROFILE_IMAGE =
+    mockdata.login && isSelfSelected ? mockdata.myProfileImgUrl : getImgUrl();
 
   window.Kakao.Auth.setAccessToken(socialAccessToken);
 
@@ -72,11 +74,7 @@ const Receiver = () => {
           <div className={styles.wrapper_selector}>
             <ProfileImg
               size="l"
-              imgUrl={
-                mockdata.login && isSelfSelected
-                  ? mockdata.myProfileImgUrl
-                  : getImgUrl()
-              }
+              imgUrl={PROFILE_IMAGE}
               hasIcon="plus"
               onClick={handleClick}
             />
