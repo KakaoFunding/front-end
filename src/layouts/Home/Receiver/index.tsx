@@ -14,8 +14,13 @@ const mockdata = {
   myProfileImgUrl: '',
 };
 
-type PickerResponseProps = {
+type PickerResponseTypes = {
   users: [];
+};
+
+type PickerErrorTypes = {
+  msg: string;
+  code: string;
 };
 
 const Receiver = () => {
@@ -44,11 +49,12 @@ const Receiver = () => {
       maxPickableCount: 10,
       minPickableCount: 1,
     })
-      .then((response: PickerResponseProps) => {
+      .then((response: PickerResponseTypes) => {
         setSelectedFriends(response.users, userName);
       })
-      .catch((error: object) => {
-        console.error(error);
+      .catch((error: PickerErrorTypes) => {
+        const pickerError = error as PickerErrorTypes;
+        console.error(pickerError);
       })
       .finally(() => {
         Kakao.Picker.cleanup();
