@@ -157,3 +157,37 @@
   background-image: url('assets/ico_wishes.png');
   background-size: 175px 210px;
 }
+
+@mixin ico-cart($x, $y) {
+  display: block;
+  overflow: hidden;
+  font-size: 1px;
+  line-height: 0;
+  background-image: url('assets/ico_cartbox.png');
+  background-repeat: no-repeat;
+  background-size: 175px 190px;
+  color: transparent;
+  background-position: $x, $y;
+}
+
+@mixin ico-cart2($x, $y) {
+  display: block;
+  overflow: hidden;
+  font-size: 1px;
+  line-height: 0;
+  background-image: url('assets/ico_cartbox2.png');
+  background-repeat: no-repeat;
+  background-size: 300px 1325px;
+  color: transparent;
+}
+
+@mixin ico-cart3($x, $y) {
+  display: block;
+  overflow: hidden;
+  font-size: 1px;
+  line-height: 0;
+  background-image: url('assets/ico_cartbox3.png');
+  background-repeat: no-repeat;
+  background-size: 175px 190px;
+  color: transparent;
+}
