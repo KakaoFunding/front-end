@@ -1,8 +1,14 @@
-import FriendWishItems from './FriendWishItems';
+import Slider from 'react-slick';
+
+import SliderArrowButton from 'components/ui/SliderArrowButton';
+
+import { ProductItem } from 'types/productItem';
+
+import FriendWishItem from './FriendWishItem';
 
 import styles from './index.module.scss';
 
-const data2 = [
+const items = [
   {
     productId: 7359376,
     photo:
@@ -55,13 +61,29 @@ const data2 = [
   },
 ];
 
+const SLIDE_DISPLAY_COUNT = items.length === 1 ? 1 : 2;
+const SLIDE_DRAGGABLE = items.length > 2;
+
 const FriendWish = () => {
   return (
     <>
       <strong className={styles.title_wish}>친구의 위시리스트</strong>
-      <section className={styles.wrapper_wish}>
-        <FriendWishItems product={data2[0]} />
-      </section>
+      <Slider
+        arrows={items.length > SLIDE_DISPLAY_COUNT}
+        draggable={SLIDE_DRAGGABLE}
+        slidesToShow={SLIDE_DISPLAY_COUNT}
+        prevArrow={<SliderArrowButton arrowType="prev" />}
+        nextArrow={<SliderArrowButton arrowType="next" />}
+        infinite={false}
+        speed={300}
+        className={styles.wrapper_wish}
+      >
+        {items.map((item: ProductItem) => (
+          <li key={item.productId}>
+            <FriendWishItem product={item} />
+          </li>
+        ))}
+      </Slider>
     </>
   );
 };

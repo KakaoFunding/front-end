@@ -1,19 +1,30 @@
 @import 'styles/mixins.module';
 
+.wrapper_wish_item {
+  margin: 24px 16px;
+}
+
 .item_prod {
   display: flex;
-  width: 50%;
-  padding: 24px 16px;
+
+  .item_thumb {
+    @include size(168px, 168px, 0, 0);
+    @include wrapper-prod-img(168px, 4px);
+  }
 
   .info_prod {
+    width: 100%;
     margin-left: 20px;
     line-height: 22px;
 
     .txt_brand {
       @include font(15px, auto, #999);
+      @include text-ellipsis(1);
     }
 
     .txt_title {
+      @include text-ellipsis(2);
+
       font-size: 15px;
     }
 
