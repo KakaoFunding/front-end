@@ -1,0 +1,14 @@
+@import 'styles/mixins.module';
+
+.title_wish {
+  @include font(24px, 700);
+
+  display: block;
+  margin: 40px 0 20px;
+}
+
+.wrapper_wish {
+  padding: 0 9px;
+  border: 1px solid #ededed;
+  border-radius: 16px;
+}

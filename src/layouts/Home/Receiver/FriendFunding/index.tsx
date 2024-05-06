@@ -23,7 +23,7 @@ const data = {
 
 const WHITE_SPACE = `\u00A0`;
 
-const FriendsFunding = () => {
+const FriendFunding = () => {
   return (
     <>
       <strong className={styles.title_funding}>친구의 펀딩 아이템</strong>
@@ -74,4 +74,4 @@ const FriendsFunding = () => {
   );
 };
 
-export default FriendsFunding;
+export default FriendFunding;

@@ -3,7 +3,8 @@ import MainWrapper from 'components/ui/MainWrapper';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
-import FriendsFunding from './FriendsFunding';
+import FriendFunding from './FriendFunding';
+import FriendWish from './FriendWish';
 
 import styles from './index.module.scss';
 
@@ -45,8 +46,8 @@ const Receiver = () => {
         </strong>
       </div>
       <MainWrapper>
-        <FriendsFunding />
-        <div>위시</div>
+        <FriendFunding />
+        <FriendWish />
       </MainWrapper>
     </section>
   );
