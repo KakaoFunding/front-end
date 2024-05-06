@@ -11,6 +11,7 @@ import 'styles/hardreset.css';
 
 import App from 'pages/App';
 import Auth from 'pages/Auth';
+import Brand from 'pages/Brand';
 import CategoryResult from 'pages/CategoryResult';
 import FundingPayment from 'pages/FundingPayment';
 import GiftPayment from 'pages/GiftPayment';
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: '/categories/:parentId/subcategories/:subId',
         element: <CategoryResult />,
+      },
+      {
+        path: '/brand/:brandId',
+        element: <Brand />,
       },
       {
         path: '/search',

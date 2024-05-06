@@ -120,4 +120,28 @@ export const productHandlers = [
       last: totalPages <= page + 1,
     });
   }),
+
+  // 브랜드 id를 통한 상품 목록 조회
+  http.get('/products/brands', async ({ request }) => {
+    await delay();
+
+    const { searchParams } = new URL(request.url);
+
+    const size = Number(searchParams.get('size'));
+    const page = Number(searchParams.get('page'));
+    const totalElements = products.length;
+    const totalPages = Math.ceil(totalElements / size);
+
+    // 실제 응답 시에는 쿼리에 따라 다른 데이터를 보내지만,
+    // 모킹 API이므로 products로 통일함
+    return HttpResponse.json<PaginationResponse<ProductItem>>({
+      hasNext: totalPages > page + 1,
+      items: products.slice(page * size, (page + 1) * size),
+      pageNumber: page,
+      pageSize: size,
+      totalPages,
+      totalElements,
+      last: totalPages <= page + 1,
+    });
+  }),
 ];

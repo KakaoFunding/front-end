@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 
 import { formatNumberWithComma } from 'utils/format';
-import { isValidPrice } from 'utils/validation';
+import { isValidPrice } from 'utils/validate';
 
 const useFundingInput = (goalFundingPrice: number) => {
   const [fundingAmount, setFundingAmount] = useState<string>('');
