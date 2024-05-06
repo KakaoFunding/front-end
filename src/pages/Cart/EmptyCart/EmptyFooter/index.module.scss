@@ -1,0 +1,61 @@
+@import 'styles/mixins.module';
+
+.area_footer {
+  display: block;
+  unicode-bidi: isolate;
+}
+
+.footer_box {
+  border-color: #f2f2f2;
+  background-color: #ececec;
+  position: absolute;
+  width: 890px;
+  left: 0;
+  bottom: env(safe-area-inset-bottom);
+  z-index: 30020;
+  height: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 8%);
+  font-size: 0;
+
+  ::after {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    content: '';
+  }
+}
+
+.footer_parts {
+  border-color: #f2f2f2;
+  background-color: #ececec;
+  position: absolute;
+  width: 822px;
+  height: 33px;
+  right: auto;
+  left: 32px;
+  bottom: calc(env(safe-area-inset-bottom) + 52px);
+
+  .parts_left {
+    @include ico-cart3(0, 0);
+
+    background-position: -80px -150px;
+    position: absolute;
+    left: -34px;
+    top: -2px;
+    width: 34px;
+    height: 35px;
+  }
+
+  .parts_right {
+    @include ico-cart3(0, 0);
+
+    background-position: -120px -150px;
+    position: absolute;
+    right: -34px;
+    top: -2px;
+    width: 34px;
+    height: 35px;
+  }
+}
