@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 
-const EmptyHeader = () => {
+const CartBoxHeader = () => {
   return (
     <header className={styles.header_cart}>
       <div className={styles.area_cart_cover}>
@@ -14,4 +14,4 @@ const EmptyHeader = () => {
   );
 };
 
-export default EmptyHeader;
+export default CartBoxHeader;

@@ -1,11 +1,11 @@
 @import 'styles/mixins.module';
 
-.area_footer {
+.area_cartbox_footer {
   display: block;
   unicode-bidi: isolate;
 }
 
-.footer_box {
+.bottom_box {
   border-color: #f2f2f2;
   background-color: #ececec;
   position: absolute;
@@ -27,7 +27,7 @@
   }
 }
 
-.footer_parts {
+.bottom_parts {
   border-color: #f2f2f2;
   background-color: #ececec;
   position: absolute;

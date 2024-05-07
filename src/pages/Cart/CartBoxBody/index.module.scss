@@ -1,6 +1,6 @@
 @import 'styles/mixins.module';
 
-.area_cart_body {
+.area_cartbox_body {
   height: calc(100vh - 151px);
   min-height: 0;
   padding: 62px 0 0;
@@ -11,14 +11,14 @@
   z-index: 10;
 }
 
-.cart_list {
+.list_cart {
   display: table;
   width: 100%;
   min-height: 220px;
   table-layout: fixed;
   flex: 1;
 
-  .cart_item {
+  .item_cart {
     padding: 41px 0 0;
     display: table-cell;
     vertical-align: middle;
