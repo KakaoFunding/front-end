@@ -1,8 +1,8 @@
 import MainWrapper from 'components/ui/MainWrapper';
 
-import CartBoxBody from './CartBoxBody';
 import CartBoxFooter from './CartBoxFooter';
 import CartBoxHeader from './CartBoxHeader';
+import EmptyCartBoxBody from './EmptyCartBoxBody';
 
 import styles from './index.module.scss';
 
@@ -13,7 +13,7 @@ const Cart = () => {
         <div className={styles.area_cart}>
           <div className={styles.wrapper_cartbox}>
             <CartBoxHeader />
-            <CartBoxBody />
+            <EmptyCartBoxBody />
             <CartBoxFooter />
           </div>
         </div>

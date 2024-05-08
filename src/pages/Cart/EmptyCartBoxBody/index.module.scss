@@ -10,19 +10,11 @@
   z-index: 10;
 }
 
-.list_cart {
-  display: table;
-  width: 100%;
-  min-height: 220px;
-  table-layout: fixed;
-  flex: 1;
-
-  .item_cart {
-    padding: 41px 0 0;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-  }
+.wrapper_empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 
   .ico_empty_cart {
     @include ico-cart2(-115px, -760px, 50px, 50px);
