@@ -25,12 +25,9 @@
   }
 
   .ico_empty_cart {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-    background-position: -115px -760px;
+    @include ico-cart2(-115px, -760px, 50px, 50px);
 
-    @include ico-cart2(-115px, -760px);
+    margin: 0 auto;
   }
 
   .txt_empty_cart {

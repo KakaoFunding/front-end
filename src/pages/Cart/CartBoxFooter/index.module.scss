@@ -27,24 +27,18 @@
   bottom: 52px;
 
   .parts_left {
-    @include ico-cart3(0, 0);
+    @include ico-cart(-80px, -150px, 34px, 35px);
 
-    background-position: -80px -150px;
     position: absolute;
     left: -34px;
     top: -2px;
-    width: 34px;
-    height: 35px;
   }
 
   .parts_right {
-    @include ico-cart3(0, 0);
+    @include ico-cart(-120px, -150px, 34px, 35px);
 
-    background-position: -120px -150px;
     position: absolute;
     right: -34px;
     top: -2px;
-    width: 34px;
-    height: 35px;
   }
 }
