@@ -25,30 +25,28 @@
   .wrapper_cancel {
     display: flex;
 
-    .ico_cancel_active {
-      @include ico-layer(-195px, -20px, 18px, 18px);
+    .checkbox_cancel {
+      margin: 0 4px 0 0;
+      appearance: none;
 
-      margin-right: 4px;
-    }
-
-    .ico_cancel {
       @include ico-layer(-195px, 0, 18px, 18px);
 
-      margin-right: 4px;
+      &:checked {
+        @include ico-layer(-195px, -20px, 18px, 18px);
+      }
     }
   }
 
   .btn_cancel {
     margin: 20px 0 0;
     height: 40px;
-    color: #999;
-    background-color: #e5e5e5;
-    cursor: auto;
+    color: #000;
+    background-color: $point-yellow;
 
-    &.on {
-      color: #000;
-      background-color: $point-yellow;
-      cursor: pointer;
+    &:disabled {
+      color: #999;
+      background-color: #e5e5e5;
+      cursor: default;
     }
   }
 }

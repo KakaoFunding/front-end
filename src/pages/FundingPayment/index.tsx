@@ -1,14 +1,18 @@
+import { useState } from 'react';
+
 import MessageCard from 'components/feature/MessageCard';
 import PaymentDetail from 'components/feature/PaymentDetail';
 import MainWrapper from 'components/ui/MainWrapper';
 import FundingDetail from 'layouts/FundingPayment/FundingDetail';
 
-import { useInput } from 'hooks/useInput';
-
 import styles from './index.module.scss';
 
+const data = {
+  fundingId: 1,
+};
+
 const FundingPayment = () => {
-  const { value } = useInput('0');
+  const [fundingAmount, setFundingAmount] = useState<number>(0);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,9 +23,12 @@ const FundingPayment = () => {
       <form className={styles.wrapper_form} onSubmit={handleSubmit}>
         <div className={styles.area_field}>
           <MessageCard />
-          <FundingDetail />
+          <FundingDetail
+            fundingId={data.fundingId}
+            setFundingAmount={setFundingAmount}
+          />
         </div>
-        <PaymentDetail totalPrice={Number(value)} />
+        <PaymentDetail totalPrice={fundingAmount} />
       </form>
     </MainWrapper>
   );

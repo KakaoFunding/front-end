@@ -2,6 +2,7 @@ import { setupWorker } from 'msw/browser';
 
 import { brandHandlers } from './brandHandler';
 import { categoriesHandlers } from './categoriesHandler';
+import { fundingHandlers } from './fundingHandler';
 import { giftHandlers } from './giftHandler';
 import { paymentHandlers } from './paymentHandler';
 import { productHandlers } from './productHandler';
@@ -13,6 +14,7 @@ const handlers = [
   ...brandHandlers,
   ...paymentHandlers,
   ...giftHandlers,
+  ...fundingHandlers,
 ];
 
 export const worker = setupWorker(...handlers);
