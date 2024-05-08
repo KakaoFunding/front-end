@@ -10,7 +10,7 @@
   position: absolute;
   width: 890px;
   left: 0;
-  bottom: env(safe-area-inset-bottom);
+  bottom: 0;
   z-index: 30020;
   height: 50px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 8%);
@@ -24,7 +24,7 @@
   height: 33px;
   right: auto;
   left: 32px;
-  bottom: calc(env(safe-area-inset-bottom) + 52px);
+  bottom: 52px;
 
   .parts_left {
     @include ico-cart3(0, 0);
