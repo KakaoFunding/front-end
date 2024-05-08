@@ -1,4 +1,4 @@
-@import 'styles/mixins.module';
+@import 'styles/variable.module';
 
 .wrapper_cart {
   background-color: #f5f5f5;
@@ -6,7 +6,7 @@
 
 .area_cart {
   position: relative;
-  height: calc(100vh - 81px);
+  height: calc(100vh - $header-height);
   box-sizing: border-box;
   padding: 0 390px 0 0;
 }
