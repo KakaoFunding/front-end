@@ -6,7 +6,6 @@
 }
 
 .bottom_box {
-  border-color: #f2f2f2;
   background-color: #ececec;
   position: absolute;
   width: 890px;
@@ -16,19 +15,9 @@
   height: 50px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 8%);
   font-size: 0;
-
-  ::after {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #fff;
-    content: '';
-  }
 }
 
 .bottom_parts {
-  border-color: #f2f2f2;
   background-color: #ececec;
   position: absolute;
   width: 822px;
