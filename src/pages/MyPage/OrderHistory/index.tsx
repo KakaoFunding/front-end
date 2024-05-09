@@ -1,3 +1,5 @@
+import FilterBar from 'components/ui/FilterBar';
+
 import styles from './index.module.scss';
 
 const data = {
@@ -8,6 +10,8 @@ const OrderHistory = () => {
   return (
     <>
       <div className={styles.title}>{`${data.userName}님의 \n주문내역`}</div>
+
+      <FilterBar />
       <ul>
         <li>주문내역1</li>
         <li>주문내역2</li>
