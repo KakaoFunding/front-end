@@ -5,7 +5,7 @@ import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
 import { formatNumberWithComma } from 'utils/format';
-import { isValidPrice } from 'utils/validation';
+import { isValidPrice } from 'utils/validate';
 
 import { ResponseFundingPreview } from 'types/payment';
 
