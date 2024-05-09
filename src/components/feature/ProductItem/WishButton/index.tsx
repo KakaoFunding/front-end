@@ -8,12 +8,11 @@ import { ProductItem } from 'types/productItem';
 import styles from './index.module.scss';
 
 type WishButtonProps = {
-  id: ProductItem['productId'];
   isWished: ProductItem['wished'];
   wishCount: ProductItem['wishCount'];
 };
 
-const WishButton = ({ id, isWished, wishCount }: WishButtonProps) => {
+const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
   const DIVIDER = 10000;
   const REMAINS = '만+';
 

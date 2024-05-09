@@ -18,7 +18,7 @@ const ProductItem = ({ productId, photo, name, price }: ProductItemType) => {
         <Price price={price} />
       </Link>
       <div className={styles.wrapper_util_info}>
-        <CartButton id={productId} />
+        <CartButton />
       </div>
     </article>
   );
