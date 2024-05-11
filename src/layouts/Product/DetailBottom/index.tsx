@@ -65,7 +65,12 @@ const DetailBottom = ({ brandId }: DetailBottomProps) => {
         <ul className={styles.area_products}>
           {mockProducts.map((product) => (
             <li key={product.id} className={styles.wrapper_item}>
-              <ProductItem product={product} />
+              <ProductItem
+                productId={product.id}
+                name={product.name}
+                photo={product.thumbSrc}
+                price={product.price}
+              />
             </li>
           ))}
         </ul>

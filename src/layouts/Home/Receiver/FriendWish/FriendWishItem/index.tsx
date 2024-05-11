@@ -28,9 +28,8 @@ const FriendWishItem = ({ product }: { product: ProductItem }) => {
               <span className={styles.txt_unit}>원</span>
             </p>
             <div className={styles.wrapper_btn}>
-              <CartButton id={product.productId} />
+              <CartButton />
               <WishButton
-                id={product.productId}
                 isWished={product.wished}
                 wishCount={product.wishCount}
               />

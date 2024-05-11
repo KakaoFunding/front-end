@@ -1,12 +1,8 @@
 import { MouseEvent } from 'react';
 
-import { ProductItem } from 'types/productItem';
-
 import styles from './index.module.scss';
 
-type CartButtonProps = { id: ProductItem['productId'] };
-
-const CartButton = ({ id }: CartButtonProps) => {
+const CartButton = () => {
   // TODO : API 요청
   const handleAddCart = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
