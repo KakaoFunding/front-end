@@ -1,0 +1,43 @@
+@import 'styles/mixins.module';
+
+.area_cartbox_footer {
+  display: block;
+}
+
+.bottom_box {
+  background-color: #ececec;
+  position: absolute;
+  width: 890px;
+  left: 0;
+  bottom: 0;
+  z-index: 30020;
+  height: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 8%);
+  font-size: 0;
+}
+
+.bottom_parts {
+  background-color: #ececec;
+  position: absolute;
+  width: 822px;
+  height: 33px;
+  right: auto;
+  left: 32px;
+  bottom: 52px;
+
+  .parts_left {
+    @include ico-cart(-80px, -150px, 34px, 35px);
+
+    position: absolute;
+    left: -34px;
+    top: -2px;
+  }
+
+  .parts_right {
+    @include ico-cart(-120px, -150px, 34px, 35px);
+
+    position: absolute;
+    right: -34px;
+    top: -2px;
+  }
+}

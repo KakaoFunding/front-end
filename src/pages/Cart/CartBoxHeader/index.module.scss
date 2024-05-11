@@ -1,0 +1,53 @@
+@import 'styles/mixins.module';
+
+.header_cart {
+  display: block;
+}
+
+.area_cart_cover {
+  background-color: #ececec;
+  overflow: hidden;
+  height: 60px;
+  position: absolute;
+  width: 890px;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 8%);
+}
+
+.ico_cart_cover {
+  @include ico-cart(0, -55px, 172px, 53px);
+
+  margin-top: -2px;
+  margin-left: -86px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+}
+
+.area_cover_parts {
+  background-color: #e5e5e5;
+  top: 62px;
+  position: absolute;
+  right: auto;
+  left: 34px;
+  height: 32px;
+  width: 822px;
+
+  .parts_left {
+    @include ico-cart(0, -150px, 34px, 34px);
+
+    left: -34px;
+    position: absolute;
+    top: 0;
+  }
+
+  .parts_right {
+    @include ico-cart(-40px, -150px, 34px, 34px);
+
+    right: -34px;
+    position: absolute;
+    top: 0;
+  }
+}
