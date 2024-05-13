@@ -14,6 +14,7 @@ import Auth from 'pages/Auth';
 import Brand from 'pages/Brand';
 import Cart from 'pages/Cart';
 import CategoryResult from 'pages/CategoryResult';
+import FundingComplete from 'pages/FundingComplete';
 import FundingPayment from 'pages/FundingPayment';
 import GiftPayment from 'pages/GiftPayment';
 import Home from 'pages/Home';
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: '/bill/funding',
         element: <FundingPayment />,
+      },
+      {
+        path: '/funding/complete',
+        element: <FundingComplete />,
       },
       { path: '/auth', element: <Auth /> },
       {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import MessageCard from 'components/feature/MessageCard';
 import PaymentDetail from 'components/feature/PaymentDetail';
@@ -13,6 +13,7 @@ import { ResponseFundingReady, ResponseFundingSuccess } from 'types/payment';
 import styles from './index.module.scss';
 
 const FundingPayment = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const { fundingId }: { fundingId: number } = state;
 
@@ -57,7 +58,7 @@ const FundingPayment = () => {
     if (!approveData) return;
 
     console.log(approveData);
-    // approveData 들고 결제완료 페이지로 이동
+    navigate('/funding/complete', { state: approveData });
   }, [approveData]);
 
   return (
