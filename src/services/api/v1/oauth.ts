@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 
 import { User } from 'types/user';
 
+import { getCookie } from './cookie';
 import { setSessionStorageItem } from './sessionStorage';
 
 import { apiV1 } from '.';
@@ -68,7 +69,7 @@ export const login = async ({
 export const logout = async ({
   accessToken,
 }: LogoutRequestProps): Promise<AxiosResponse<LogoutRequestProps>> => {
-  const refreshToken = document.cookie.match('refreshToken');
+  const refreshToken = getCookie('refreshToken');
   console.log(refreshToken);
 
   const headers = {
