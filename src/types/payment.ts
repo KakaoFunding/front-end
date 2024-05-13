@@ -16,7 +16,7 @@ export type ResponseFundingPreview = {
   photo: string;
   optionNames: string[] | null;
   amount: {
-    totalAmount: number;
+    productAmount: number;
     goalAmount: number;
     remainAmount: number;
   };
