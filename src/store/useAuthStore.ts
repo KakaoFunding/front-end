@@ -38,12 +38,15 @@ export const useUserStore = create<UserState>()(
     (set) => ({
       name: null,
       profileUrl: null,
-      setUserInfo: ({ name, profileUrl }) =>
+      providerId: null,
+      setUserInfo: ({ name, profileUrl, providerId }) =>
         set({
           name,
           profileUrl,
+          providerId,
         }),
-      clearUserInfo: () => set({ name: null, profileUrl: null }),
+      clearUserInfo: () =>
+        set({ name: null, profileUrl: null, providerId: null }),
     }),
     {
       name: 'user',
