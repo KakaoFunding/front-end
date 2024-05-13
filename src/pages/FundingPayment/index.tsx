@@ -48,16 +48,12 @@ const FundingPayment = () => {
   // handle ready
   useEffect(() => {
     if (!readyData) return;
-
-    console.log(readyData);
     sendApprove();
   }, [readyData]);
 
   // handle success
   useEffect(() => {
     if (!approveData) return;
-
-    console.log(approveData);
     navigate('/funding/complete', { state: approveData });
   }, [approveData]);
 
