@@ -3,7 +3,7 @@
 import { useCookies } from 'react-cookie';
 
 export const getCookie = (key: string) => {
-  const [cookies] = useCookies([key]);
+  const [cookies, setCookies, removeCookies] = useCookies([key]);
   const { refreshToken } = cookies;
   return refreshToken;
 };
