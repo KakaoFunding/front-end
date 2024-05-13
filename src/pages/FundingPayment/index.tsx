@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import MessageCard from 'components/feature/MessageCard';
 import PaymentDetail from 'components/feature/PaymentDetail';
@@ -7,11 +8,11 @@ import FundingDetail from 'layouts/FundingPayment/FundingDetail';
 
 import styles from './index.module.scss';
 
-const data = {
-  fundingId: 1,
-};
 
 const FundingPayment = () => {
+  const { state } = useLocation();
+  const { fundingId }: { fundingId: number } = state;
+
   const [fundingAmount, setFundingAmount] = useState<number>(0);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,7 +25,7 @@ const FundingPayment = () => {
         <div className={styles.area_field}>
           <MessageCard />
           <FundingDetail
-            fundingId={data.fundingId}
+            fundingId={fundingId}
             setFundingAmount={setFundingAmount}
           />
         </div>
