@@ -10,6 +10,7 @@ import styles from './index.module.scss';
 
 // TODO : 펀딩 API 확인후 분리 예정
 type FundingItemProps = {
+  fundingId: number;
   imgUrl: string;
   price: number;
   productName: string;
@@ -20,6 +21,7 @@ type FundingItemProps = {
 };
 
 const FundingItem = ({
+  fundingId,
   imgUrl,
   price,
   productName,
@@ -32,7 +34,12 @@ const FundingItem = ({
 
   return (
     <section className={styles.area_funding_item}>
-      <FundingCancelModal isOpen={isOpen} close={close} scrollPos={scrollPos} />
+      <FundingCancelModal
+        fundingId={fundingId}
+        isOpen={isOpen}
+        close={close}
+        scrollPos={scrollPos}
+      />
       <Link to={`/product/${productId}`}>
         {/* TODO : Thumbnail 리팩토링시 교체 */}
         <img

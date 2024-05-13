@@ -9,7 +9,12 @@ import { ProductItem as ProductItemType } from 'types/productItem';
 
 import styles from './ProductItem.module.scss';
 
-const ProductItem = ({ productId, photo, name, price }: ProductItemType) => {
+type ProductItemProps = Pick<
+  ProductItemType,
+  'productId' | 'photo' | 'name' | 'price'
+>;
+
+const ProductItem = ({ productId, photo, name, price }: ProductItemProps) => {
   return (
     <article className={clsx(styles.wrapper_prod_item)}>
       <Link to={`/product/${productId}`} className={styles.wrapper_main_info}>
@@ -18,7 +23,7 @@ const ProductItem = ({ productId, photo, name, price }: ProductItemType) => {
         <Price price={price} />
       </Link>
       <div className={styles.wrapper_util_info}>
-        <CartButton id={productId} />
+        <CartButton />
       </div>
     </article>
   );

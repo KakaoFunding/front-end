@@ -12,6 +12,7 @@ import 'styles/hardreset.css';
 import App from 'pages/App';
 import Auth from 'pages/Auth';
 import Brand from 'pages/Brand';
+import Cart from 'pages/Cart';
 import CategoryResult from 'pages/CategoryResult';
 import FundingPayment from 'pages/FundingPayment';
 import GiftPayment from 'pages/GiftPayment';
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
         element: <FundingPayment />,
       },
       { path: '/auth', element: <Auth /> },
+      {
+        path: '/cart',
+        element: <Cart />,
+      },
     ],
   },
 ]);
