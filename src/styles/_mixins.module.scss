@@ -140,20 +140,27 @@
 @mixin ico-main($x, $y, $width, $height) {
   @include img-sprite($x, $y, $width, $height);
 
-  background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m640/ico_pcmain_230922.png');
+  background-image: url('assets/ico_pcmain.png');
   background-size: 450px 750px;
 }
 
 @mixin ico-frndpck($x, $y, $width, $height) {
   @include img-sprite($x, $y, $width, $height);
 
-  background-image: url('https://gift-s.kakaocdn.net/dn/gift/images/m320/ico_frndpck_210128.png');
+  background-image: url('assets/ico_frndpck.png');
   background-size: 450px 750px;
 }
 
 @mixin ico-wishes($x, $y, $width, $height) {
-  @include ico-template($x, $y, $width, $height);
+  @include img-sprite($x, $y, $width, $height);
 
   background-image: url('assets/ico_wishes.png');
   background-size: 175px 210px;
+}
+
+@mixin ico-gift-order($x, $y, $width, $height) {
+  @include img-sprite($x, $y, $width, $height);
+
+  background-image: url('assets/ico_giftorder.png');
+  background-size: 165px 210px;
 }
