@@ -20,6 +20,7 @@ const FundingPayment = () => {
   const [fundingAmount, setFundingAmount] = useState<number>(0);
   const [pgToken, setPgToken] = useState<string>('');
 
+  // 결제 준비용 API
   const { data: readyData, sendRequest: sendReady } =
     useAxios<ResponseFundingReady>({
       method: 'post',
@@ -30,6 +31,7 @@ const FundingPayment = () => {
       },
     });
 
+  // 결제 준비 성공 시 결제 승인용 API
   const { data: approveData, sendRequest: sendApprove } =
     useAxios<ResponseFundingSuccess>({
       method: 'post',
