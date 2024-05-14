@@ -45,10 +45,19 @@ const FundingPayment = () => {
     await sendReady();
   };
 
-  // handle ready
+  // handle ready response
   useEffect(() => {
     if (!readyData) return;
-    sendApprove();
+
+    const { redirectUrl } = readyData;
+
+    if (redirectUrl.includes('/payments/success')) {
+      sendApprove();
+    } else if (redirectUrl.includes('/payments/fail')) {
+      navigate('/payment/fail');
+    } else if (redirectUrl.includes('/payments/cancel')) {
+      navigate('/payment/cancel');
+    }
   }, [readyData]);
 
   // handle success
