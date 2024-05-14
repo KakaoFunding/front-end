@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import MessageCard from 'components/feature/MessageCard';
 import PaymentDetail from 'components/feature/PaymentDetail';
 import MainWrapper from 'components/ui/MainWrapper';
+import Spinner from 'components/ui/Spinner';
 import FundingDetail from 'layouts/FundingPayment/FundingDetail';
 
 import { useAxios } from 'hooks/useAxios';
@@ -19,6 +20,7 @@ const FundingPayment = () => {
 
   const [fundingAmount, setFundingAmount] = useState<number>(0);
   const [pgToken, setPgToken] = useState<string>('');
+  const [isPaying, setIsPaying] = useState<boolean>(false);
 
   // 결제 준비용 API
   const { data: readyData, sendRequest: sendReady } =
@@ -45,6 +47,7 @@ const FundingPayment = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsPaying(true);
     await sendReady();
   };
 
@@ -76,11 +79,13 @@ const FundingPayment = () => {
   useEffect(() => {
     if (!approveData) return;
 
+    setIsPaying(false);
     navigate('/funding/complete', { state: approveData });
   }, [approveData]);
 
   return (
     <MainWrapper>
+      {isPaying && <Spinner />}
       <form className={styles.wrapper_form} onSubmit={handleSubmit}>
         <div className={styles.area_field}>
           <MessageCard />
