@@ -68,12 +68,9 @@ export const login = async ({
 export const logout = async ({
   accessToken,
 }: LogoutRequestProps): Promise<AxiosResponse<LogoutRequestProps>> => {
-  const refreshToken = getCookie('refreshToken');
-  console.log(refreshToken);
-
   const headers = {
     Authorization: `Bearer ${accessToken}`,
-    Cookie: `refreshToken=${refreshToken}`,
+    // Cookie: `refreshToken=${refreshToken}`,
   };
   const response = await apiV1.get('/oauth/logout', {
     headers,
