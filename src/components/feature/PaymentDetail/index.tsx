@@ -40,7 +40,11 @@ const PaymentDetail = ({ totalPrice }: PaymentDetailProps) => {
           </span>
         </div>
 
-        <button type="submit" className={styles.btn_pay}>
+        <button
+          type="submit"
+          className={styles.btn_pay}
+          disabled={totalPrice === 0}
+        >
           {formatNumberWithUnit(totalPrice)} 결제하기
         </button>
       </fieldset>
