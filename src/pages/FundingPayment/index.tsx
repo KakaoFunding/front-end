@@ -18,6 +18,7 @@ const FundingPayment = () => {
   const { fundingId }: { fundingId: number } = state;
 
   const [fundingAmount, setFundingAmount] = useState<number>(0);
+  const [pgToken, setPgToken] = useState<string>('');
 
   const { data: readyData, sendRequest: sendReady } =
     useAxios<ResponseFundingReady>({
@@ -35,7 +36,7 @@ const FundingPayment = () => {
       url: '/funding/payments/success',
       data: {
         tid: readyData?.tid,
-        pgToken: '47aa61cf839cac18f669',
+        pgToken,
         orderNumber: readyData?.orderNumber,
       },
     });
@@ -52,7 +53,9 @@ const FundingPayment = () => {
     const { redirectUrl } = readyData;
 
     if (redirectUrl.includes('/payments/success')) {
-      sendApprove();
+      const url = new URL(redirectUrl);
+      const urlParams = new URLSearchParams(url.search);
+      setPgToken(urlParams.get('pg_token') as string);
     } else if (redirectUrl.includes('/payments/fail')) {
       navigate('/payment/fail');
     } else if (redirectUrl.includes('/payments/cancel')) {
@@ -60,9 +63,17 @@ const FundingPayment = () => {
     }
   }, [readyData]);
 
-  // handle success
+  // if pgToken is set, then send payment approve request
+  useEffect(() => {
+    if (pgToken === '') return;
+
+    sendApprove();
+  }, [pgToken]);
+
+  // handle approve success response
   useEffect(() => {
     if (!approveData) return;
+
     navigate('/funding/complete', { state: approveData });
   }, [approveData]);
 
