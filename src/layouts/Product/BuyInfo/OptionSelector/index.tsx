@@ -1,23 +1,23 @@
 import clsx from 'clsx';
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 
-import { Option } from 'types/product';
+import { OptionDetail } from 'types/product';
 
 import styles from './index.module.scss';
 
-type ProductOptionProps = {
+type OptionSelectorProps = {
   optionTitle: string;
-  options: Option[];
-  selectedOption: Option | false;
-  setSelectedOption: Dispatch<SetStateAction<Option | false>>;
+  options: OptionDetail[];
+  selectedOption: OptionDetail | false;
+  setSelectedOption: Dispatch<SetStateAction<OptionDetail | false>>;
 };
 
-const ProductOption = ({
+const OptionSelector = ({
   optionTitle,
   options,
   selectedOption,
   setSelectedOption,
-}: ProductOptionProps) => {
+}: OptionSelectorProps) => {
   const [isToggled, setIsToggled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -30,7 +30,8 @@ const ProductOption = ({
 
   const handleToggle = () => selectedOption && setIsToggled(!isToggled);
 
-  const handleOptionChange = (option: Option) => setSelectedOption(option);
+  const handleOptionChange = (option: OptionDetail) =>
+    setSelectedOption(option);
 
   return (
     <section>
@@ -62,4 +63,4 @@ const ProductOption = ({
   );
 };
 
-export default ProductOption;
+export default OptionSelector;

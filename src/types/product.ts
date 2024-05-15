@@ -1,4 +1,4 @@
-type OptionDetail = {
+export type OptionDetail = {
   id: number;
   name: string;
   photo: string | null;
