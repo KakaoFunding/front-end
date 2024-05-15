@@ -1,15 +1,27 @@
-.wrapper_main_info {
+@import 'styles/mixins.module';
+
+.wrapper_prod_item {
+  .thumb_prod {
+    width: 200px;
+    border-radius: 4px;
+  }
+
   .txt_prod_name {
+    @include text-ellipsis(2);
+
     display: block;
-    padding: 10px 0;
+    height: 44px;
+    margin: 10px 0;
     font-size: 14px;
+    line-height: 22px;
+    color: #333;
   }
 }
 
 .wrapper_util_info {
   display: flex;
   justify-content: end;
-  margin: 12px 0;
+  margin: 30px 0;
   padding: 18px 0;
   border-top: 1px solid #ededed;
 }
