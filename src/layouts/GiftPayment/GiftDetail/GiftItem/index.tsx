@@ -13,12 +13,27 @@ const data = {
   headCount: 1,
 };
 
+const previewData = {
+  productId: 222,
+  photo:
+    'https://img1.kakaocdn.net/thumb/C86x86@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20231120093525_68d33ddb2c0e426786589e6d47319a7d.jpg',
+  brandName: '탬버린즈',
+  name: '"NEW 펌키니" [단독/선물포장] 미니 퍼퓸 핸드크림',
+  optionNames: ['[NEW] PUMKINI #크리미 #제니PICK #카카오단독', 'THANK YOU'],
+};
+
 const GiftItem = () => {
   const [isToggled, handleToggle] = useReducer((prev) => !prev, false);
 
   return (
     <div className={styles.wrapper_item}>
-      <PaymentItem />
+      <PaymentItem
+        productId={previewData.productId}
+        name={previewData.name}
+        brandName={previewData.brandName}
+        photo={previewData.photo}
+        optionNames={previewData.optionNames}
+      />
       <button
         className={styles.btn_payment}
         type="button"

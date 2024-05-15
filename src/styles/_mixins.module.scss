@@ -157,3 +157,25 @@
   background-image: url('assets/ico_wishes.png');
   background-size: 175px 210px;
 }
+
+@mixin ico-cart($x, $y, $width, $height) {
+  @include img-sprite($x, $y, $width, $height);
+
+  display: block;
+  font-size: 1px;
+  line-height: 0;
+  background-image: url('assets/ico_cartbox.png');
+  background-size: 175px 190px;
+  color: transparent;
+}
+
+@mixin ico-cart2($x, $y, $width, $height) {
+  @include img-sprite($x, $y, $width, $height);
+
+  display: block;
+  font-size: 1px;
+  line-height: 0;
+  background-image: url('assets/ico_gift4.png');
+  background-size: 300px 1325px;
+  color: transparent;
+}
