@@ -1,20 +1,38 @@
+import { useQuery } from '@tanstack/react-query';
+
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import MainWrapper from 'components/ui/MainWrapper';
+import Spinner from 'components/ui/Spinner';
 import ProductBuyInfo from 'layouts/Product/BuyInfo';
 import DetailBottom from 'layouts/Product/DetailBottom';
 import DetailContents from 'layouts/Product/DetailContent';
 import DetailMain from 'layouts/Product/DetailMain';
 
-import styles from './index.module.scss';
+import {
+  getProductDescription,
+  getProductDetail,
+} from 'services/api/v1/product';
 
-// 상품 데이터 fetch 해오기
-const mockBrandId = 1;
+import styles from './index.module.scss';
 
 const Product = () => {
   const [isVisibleSelector, setIsVisibleSelector] = useState(false);
   const target = useRef<HTMLDivElement>(null);
+  const { productId } = useParams();
+
+  const { data: productDescription, isLoading: productDescriptionIsLoading } =
+    useQuery({
+      queryKey: ['productDescription'],
+      queryFn: () => getProductDescription(productId!),
+    });
+
+  const { data: productDetail, isLoading: productDetailIsLoading } = useQuery({
+    queryKey: ['productDetail'],
+    queryFn: () => getProductDetail(productId!),
+  });
 
   const handleObserver: IntersectionObserverCallback = (entries) => {
     if (entries[0].intersectionRatio === 1) {
@@ -29,25 +47,40 @@ const Product = () => {
   });
 
   useEffect(() => {
-    observer.observe(target.current!);
-  }, []);
+    if (productDescription) {
+      observer.observe(target.current!);
+    }
+  }, [productDescription]);
 
   return (
-    <MainWrapper>
-      <article className={styles.area_product}>
-        <section className={styles.area_detail}>
-          <DetailMain />
-          <DetailContents />
-          <DetailBottom brandId={mockBrandId} />
-          <div ref={target} className={styles.observer} />
-        </section>
-        <section
-          className={clsx(styles.area_buy, { [styles.on]: isVisibleSelector })}
-        >
-          <ProductBuyInfo isVisibleSelector={isVisibleSelector} />
-        </section>
-      </article>
-    </MainWrapper>
+    <>
+      {(productDescriptionIsLoading || productDetailIsLoading) && <Spinner />}
+      {productDescription && productDetail && (
+        <MainWrapper>
+          <article className={styles.area_product}>
+            <section className={styles.area_detail}>
+              <DetailMain productDescription={productDescription} />
+              <DetailContents
+                productDescription={productDescription}
+                productDetail={productDetail}
+              />
+              <DetailBottom brandId={productDescription.brandId} />
+              <div ref={target} className={styles.observer} />
+            </section>
+            <section
+              className={clsx(styles.area_buy, {
+                [styles.on]: isVisibleSelector,
+              })}
+            >
+              <ProductBuyInfo
+                isVisibleSelector={isVisibleSelector}
+                productDescription={productDescription}
+              />
+            </section>
+          </article>
+        </MainWrapper>
+      )}
+    </>
   );
 };
 
