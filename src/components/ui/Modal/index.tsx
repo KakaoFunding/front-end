@@ -1,10 +1,16 @@
 import clsx from 'clsx';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import { ModalProps } from 'types/modal';
-
 import styles from './index.module.scss';
+
+type ModalProps = {
+  children: ReactNode;
+  className: string;
+  onClose: () => void;
+  isOpen: boolean;
+  scrollPos: number;
+};
 
 const Modal = ({
   onClose,
