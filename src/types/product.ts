@@ -5,6 +5,8 @@ export type OptionDetail = {
   additionalPrice: number;
 };
 
+export type DescriptionPhotosType = string[];
+
 type Option = {
   optionsId: number;
   name: string;
@@ -26,7 +28,7 @@ type Product = {
 
 export type ProductDescriptionResponse = Product & {
   description: string;
-  descriptionPhotos: string[];
+  descriptionPhotos: DescriptionPhotosType;
 };
 
 export type ProductDetailResponse = Product & {
