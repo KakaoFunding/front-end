@@ -24,13 +24,15 @@ const BuyInfo = ({ isVisibleSelector, productDescription }: BuyInfoProps) => {
     false,
   );
 
+  const { options, name, price } = productDescription;
+
   useEffect(() => {
-    if (productDescription.options.length === 0) {
-      setOptionName(productDescription.name);
+    if (options.length === 0) {
+      setOptionName(name);
       setHasOption(false);
     } else {
-      setOptionName(productDescription.options[0].name);
-      setHasOption(productDescription.options.length !== 0);
+      setOptionName(options[0].name);
+      setHasOption(options.length !== 0);
     }
   }, []);
 
@@ -38,7 +40,7 @@ const BuyInfo = ({ isVisibleSelector, productDescription }: BuyInfoProps) => {
     if (selectedOption) {
       setOptionName(selectedOption.name);
     } else {
-      setOptionName(productDescription.name);
+      setOptionName(name);
     }
   }, [selectedOption]);
 
@@ -59,8 +61,8 @@ const BuyInfo = ({ isVisibleSelector, productDescription }: BuyInfoProps) => {
         >
           {hasOption && (
             <OptionSelector
-              optionTitle={productDescription.options[0].name}
-              options={productDescription.options[0].optionDetails}
+              optionTitle={options[0].name}
+              options={options[0].optionDetails}
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
             />
@@ -79,10 +81,14 @@ const BuyInfo = ({ isVisibleSelector, productDescription }: BuyInfoProps) => {
           <div className={styles.wrapper_price}>
             <strong className={styles.txt_total}>총 결제금액</strong>
             <strong className={styles.txt_price}>
-              {formatNumberWithUnit(productDescription.price * quantity)}
+              {formatNumberWithUnit(price * quantity)}
             </strong>
           </div>
-          <ButtonBundles />
+          <ButtonBundles
+            productDescription={productDescription}
+            hasOption={hasOption}
+            selectedOption={selectedOption}
+          />
         </section>
       </section>
     )

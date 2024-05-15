@@ -5,6 +5,8 @@ import WishModal from 'components/ui/Modal/WishModal';
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
 
+import { OptionDetail, ProductDescriptionResponse } from 'types/product';
+
 import styles from './index.module.scss';
 
 const handleClickGiftForFriend = () => {
@@ -23,7 +25,19 @@ const mockData = {
   wishCnt: 999999,
 };
 
-const ButtonBundles = () => {
+type ButtonBundlesProps = {
+  productDescription: ProductDescriptionResponse;
+  hasOption: boolean;
+  selectedOption: OptionDetail | false;
+};
+
+const ButtonBundles = ({
+  productDescription,
+  hasOption,
+  selectedOption,
+}: ButtonBundlesProps) => {
+  const { productId, name, price, productThumbnails } = productDescription;
+
   const {
     isOpen: isFundingOpen,
     open: openFundingModal,
@@ -38,9 +52,21 @@ const ButtonBundles = () => {
     scrollPos: scrollWishPos,
   } = useModal();
 
-  const handleClickFunding = openFundingModal;
+  const handleClickFunding = () => {
+    if (hasOption && !selectedOption) {
+      alert('옵션을 선택해주세요');
+      return;
+    }
+    openFundingModal();
+  };
 
-  const handleClickWish = openWishModal;
+  const handleClickWish = () => {
+    if (hasOption && !selectedOption) {
+      alert('옵션을 선택해주세요');
+      return;
+    }
+    openWishModal();
+  };
 
   return (
     <section className={styles.wrapper_bundle}>
@@ -48,6 +74,11 @@ const ButtonBundles = () => {
         close={closeFundingModal}
         isOpen={isFundingOpen}
         scrollPos={scrollFundingPos}
+        name={name}
+        price={price}
+        productId={productId}
+        selectedOption={selectedOption}
+        productThumbnail={productThumbnails[0]}
       />
       <WishModal
         close={closeWishModal}

@@ -10,34 +10,30 @@ import useFundingInput from 'hooks/useFundingInput';
 import { formatDate, formatNumberWithUnit } from 'utils/format';
 import { getOneYearLaterDate } from 'utils/generate';
 
-import { FriendsSelectorModalProps } from 'types/modal';
+import { FundingModalProps } from 'types/modal';
 
 import styles from './index.module.scss';
-
-const mockData = {
-  productId: 1,
-  title: '[각인+포장] 리브르 헤어 미스트 30ml 세트(+향수 미니어처 7.5ml)',
-  option: '940 코쿤 [New & Limited]',
-  thumbImgUrl:
-    'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220111185052_b92447cb764d470ead70b2d0fe75fe5c.jpg',
-  price: 3940000,
-};
 
 const FundingModal = ({
   close,
   isOpen,
   scrollPos,
-}: FriendsSelectorModalProps) => {
+  name,
+  price,
+  productId,
+  selectedOption,
+  productThumbnail,
+}: FundingModalProps) => {
   const {
     input: goalAmount,
     remainingAmount,
     clearInput,
     handleChange,
-  } = useFundingInput(mockData.price);
+  } = useFundingInput(price);
 
   const { sendRequest } = useAxios<{ id: number }>({
     method: 'post',
-    url: `/funding/${mockData.productId}`,
+    url: `/funding/${productId}`,
     data: {
       goalAmount,
       expiredAt: formatDate(getOneYearLaterDate()),
@@ -65,24 +61,24 @@ const FundingModal = ({
           펀딩 목표 금액을 설정해주세요
         </strong>
         <section className={styles.wrapper_info}>
-          <div className={styles.prod_title}>{mockData.title}</div>
-          {mockData.option && (
+          <div className={styles.prod_title}>{name}</div>
+          {selectedOption && (
             <div className={styles.prod_option}>
               <span className={styles.ico_option}>옵션</span>
-              {mockData.option}
+              {selectedOption.name}
             </div>
           )}
         </section>
         <div className={styles.wrapper_thumb}>
           <Thumbnail
-            src={mockData.thumbImgUrl}
-            alt={`${mockData.title}상품대표이미지`}
+            src={productThumbnail}
+            alt={`${name}상품대표이미지`}
             size="small"
           />
         </div>
         <section className={styles.wrapper_price}>
           <div className={styles.txt_price}>상품 금액</div>
-          {formatNumberWithUnit(mockData.price)}
+          {formatNumberWithUnit(price)}
         </section>
         <section className={styles.wrapper_price}>
           <div className={clsx(styles.txt_price, styles.wrapper_tooltip)}>
