@@ -64,7 +64,9 @@ const FundingPayment = () => {
     } else if (redirectUrl.includes('/payments/fail')) {
       navigate('/payment/fail');
     } else if (redirectUrl.includes('/payments/cancel')) {
-      navigate('/payment/cancel');
+      navigate('/payment/cancel', {
+        state: { paymentType: 'funding', ...state },
+      });
     }
   }, [readyData]);
 
