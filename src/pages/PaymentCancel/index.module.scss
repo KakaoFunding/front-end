@@ -1,0 +1,37 @@
+@import 'styles/variable.module';
+
+.wrapper_page {
+  min-height: calc(100vh - $header-height - $footer-height);
+  background-color: #ededed;
+  padding-top: 130px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.img_error {
+  width: 150px;
+  height: 150px;
+}
+
+.wrapper_txt {
+  margin: 30px 0 48px;
+
+  .txt_title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .txt_desc {
+    font-size: 15px;
+    color: #4684e9;
+  }
+}
+
+.btn {
+  display: inline-block;
+  margin-left: 5px;
+  width: 160px;
+  height: 45px;
+  font-weight: 400;
+  color: #222;
+}
