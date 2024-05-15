@@ -1,5 +1,10 @@
 import { ProductItem } from './productItem';
 
+export type Receiver = {
+  name: string;
+  photoUrl: string;
+};
+
 export type RequestExpectedPaymentAmount = {
   productId: number;
   quantity: number;
@@ -36,10 +41,7 @@ export type ResponseFundingReady = {
 };
 
 export type ResponseFundingSuccess = {
-  receiver: {
-    name: string;
-    photoUrl: string;
-  };
+  receiver: Receiver;
   product: Pick<ProductItem, 'brandName' | 'name' | 'photo'>;
   attributeAmount: number;
 };
