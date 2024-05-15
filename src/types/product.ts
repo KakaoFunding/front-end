@@ -1,38 +1,39 @@
-export type Option = {
+type OptionDetail = {
   id: number;
   name: string;
+  photo: string | null;
+  additionalPrice: number;
 };
 
-export type ProductDescriptionResponse = {
+type Option = {
+  optionsId: number;
+  name: string;
+  optionDetails: OptionDetail[];
+};
+
+type Product = {
   productId: number;
   name: string;
   price: number;
   type: string;
-  description: string;
-  descriptionPhotos: string[];
+  options: Option[];
   productName: string;
-  options: string[];
   productThumbnails: string[];
   brandName: string;
   brandId: number;
   brandThumbnail: string;
 };
 
-export type ProductDetailResponse = {
-  productId: number;
-  name: string;
-  price: number;
-  type: string;
-  productName: string;
-  options: string[];
-  brandName: string;
-  brandId: number;
-  brandThumbnail: string;
+export type ProductDescriptionResponse = Product & {
+  description: string;
+  descriptionPhotos: string[];
+};
+
+export type ProductDetailResponse = Product & {
   origin: string;
   manufacturer: string;
   tel: string;
   deliverDescription: string;
   billingNotice: string;
   caution: string;
-  productThumbnails: string[];
 };
