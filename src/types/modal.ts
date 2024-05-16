@@ -15,6 +15,4 @@ export type FundingModalProps = ModalProps &
   };
 
 export type WishModalProps = ModalProps &
-  Pick<ProductDescriptionResponse, 'productId'> & {
-    selectedOption: OptionDetail | false;
-  };
+  Pick<ProductDescriptionResponse, 'productId'>;
