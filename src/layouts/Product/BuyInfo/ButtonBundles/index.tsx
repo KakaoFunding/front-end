@@ -36,7 +36,8 @@ const ButtonBundles = ({
   selectedOption,
   quantity,
 }: ButtonBundlesProps) => {
-  const { productId, name, price, productThumbnails } = productDescription;
+  const { productId, name, price, productThumbnails, options } =
+    productDescription;
   const navigate = useNavigate();
 
   const {
@@ -72,10 +73,15 @@ const ButtonBundles = ({
   const handleClickGiftForMe = () => {
     const state = {
       productId,
-      name,
-      totalAmount: quantity * price,
-      discountAmount: 0,
-      stockQuantity: quantity,
+      quantity,
+      options: selectedOption
+        ? [
+            {
+              id: options[0].optionsId,
+              detailId: selectedOption.id,
+            },
+          ]
+        : [],
     };
     checkOptionBeforeAction(() => navigate('/bill/gift', { state }));
   };
