@@ -5,11 +5,11 @@ import { RecommendProductItemsResponse } from 'types/productItem';
 
 import styles from './ProductItem.module.scss';
 
-const ProductItem = ({
-  product,
-}: {
+type ProductItemProps = {
   product: RecommendProductItemsResponse;
-}) => {
+};
+
+const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <article className={styles.wrapper_prod_item}>
       <img
