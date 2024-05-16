@@ -13,3 +13,8 @@ export type FundingModalProps = ModalProps &
     selectedOption: OptionDetail | false;
     productThumbnail: string;
   };
+
+export type WishModalProps = ModalProps &
+  Pick<ProductDescriptionResponse, 'productId'> & {
+    selectedOption: OptionDetail | false;
+  };

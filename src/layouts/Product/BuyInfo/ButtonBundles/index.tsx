@@ -84,6 +84,8 @@ const ButtonBundles = ({
         close={closeWishModal}
         isOpen={isWishOpen}
         scrollPos={scrollWishPos}
+        productId={productId}
+        selectedOption={selectedOption}
       />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
