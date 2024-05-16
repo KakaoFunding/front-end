@@ -35,10 +35,9 @@ const WishModal = ({ close, isOpen, scrollPos, productId }: WishModalProps) => {
     setRadioStatus(selectedRadio);
   };
 
-  // TODO : baseurl
   const { sendRequest } = useAxios<{ id: number }>({
     method: 'post',
-    url: `https://fundina.shop/api/v1/products/${productId}/wishes?type=${radioStatus}`,
+    url: `/products/${productId}/wishes?type=${radioStatus}`,
   });
 
   const handleAddWish = async () => {
