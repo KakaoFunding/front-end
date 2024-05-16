@@ -53,27 +53,23 @@ const ButtonBundles = ({
     scrollPos: scrollWishPos,
   } = useModal();
 
-  const handleClickFunding = () => {
+  const checkOptionBeforeAction = (action: () => void) => {
     if (hasOption && !selectedOption) {
       alert('옵션을 선택해주세요');
       return;
     }
-    openFundingModal();
+    action();
+  };
+
+  const handleClickFunding = () => {
+    checkOptionBeforeAction(openFundingModal);
   };
 
   const handleClickWish = () => {
-    if (hasOption && !selectedOption) {
-      alert('옵션을 선택해주세요');
-      return;
-    }
-    openWishModal();
+    checkOptionBeforeAction(openWishModal);
   };
 
   const handleClickGiftForMe = () => {
-    if (hasOption && !selectedOption) {
-      alert('옵션을 선택해주세요');
-      return;
-    }
     const state = {
       productId,
       name,
@@ -81,7 +77,7 @@ const ButtonBundles = ({
       discountAmount: 0,
       stockQuantity: quantity,
     };
-    navigate('/bill/gift', { state });
+    checkOptionBeforeAction(() => navigate('/bill/gift', { state }));
   };
 
   return (
