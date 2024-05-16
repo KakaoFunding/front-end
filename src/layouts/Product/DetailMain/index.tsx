@@ -8,11 +8,11 @@ import ProductCarousel from './ProductCarousel';
 
 import styles from './index.module.scss';
 
-const DetailMain = ({
-  productDescription,
-}: {
+type DetailMainProps = {
   productDescription: ProductDescriptionResponse;
-}) => {
+};
+
+const DetailMain = ({ productDescription }: DetailMainProps) => {
   const {
     productThumbnails,
     productName,
