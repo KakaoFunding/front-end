@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from 'components/ui/Button';
 import FundingModal from 'components/ui/Modal/FundingModal';
 import WishModal from 'components/ui/Modal/WishModal';
@@ -17,10 +19,6 @@ const handleClickCart = () => {
   // console.log('선물상자 담기');
 };
 
-const handleClickGiftForMe = () => {
-  // console.log('나에게 선물하기');
-};
-
 const mockData = {
   wishCnt: 999999,
 };
@@ -29,14 +27,17 @@ type ButtonBundlesProps = {
   productDescription: ProductDescriptionResponse;
   hasOption: boolean;
   selectedOption: OptionDetail | false;
+  quantity: number;
 };
 
 const ButtonBundles = ({
   productDescription,
   hasOption,
   selectedOption,
+  quantity,
 }: ButtonBundlesProps) => {
   const { productId, name, price, productThumbnails } = productDescription;
+  const navigate = useNavigate();
 
   const {
     isOpen: isFundingOpen,
@@ -66,6 +67,21 @@ const ButtonBundles = ({
       return;
     }
     openWishModal();
+  };
+
+  const handleClickGiftForMe = () => {
+    if (hasOption && !selectedOption) {
+      alert('옵션을 선택해주세요');
+      return;
+    }
+    const state = {
+      productId,
+      name,
+      totalAmount: quantity * price,
+      discountAmount: 0,
+      stockQuantity: quantity,
+    };
+    navigate('/bill/gift', { state });
   };
 
   return (

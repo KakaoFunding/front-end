@@ -88,6 +88,7 @@ const BuyInfo = ({ isVisibleSelector, productDescription }: BuyInfoProps) => {
             productDescription={productDescription}
             hasOption={hasOption}
             selectedOption={selectedOption}
+            quantity={quantity}
           />
         </section>
       </section>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import MessageCard from 'components/feature/MessageCard';
 import PaymentDetail from 'components/feature/PaymentDetail';
@@ -12,6 +13,8 @@ import { ResponseExpectedPaymentAmount } from 'types/payment';
 import styles from './index.module.scss';
 
 const GiftPayment = () => {
+  const { state } = useLocation();
+  const { productId, name, totalAmount, discountAmount, stockQuantity } = state;
   const { data, sendRequest } = useAxios<ResponseExpectedPaymentAmount>({
     method: 'post',
     url: '/payments/preview',
