@@ -1,18 +1,18 @@
-import { ReactNode } from 'react';
+import { OptionDetail, ProductDescriptionResponse } from './product';
 
-export type ModalComponentProps = {
-  children: ReactNode;
-  className: string;
-};
-
-export type ModalProps = ModalComponentProps & {
-  onClose: () => void;
-  isOpen: boolean;
-  scrollPos: number;
-};
-
-export type FriendsSelectorModalProps = {
+type ModalProps = {
   close: () => void;
   isOpen: boolean;
   scrollPos: number;
 };
+
+export type FriendsSelectorModalProps = ModalProps;
+
+export type FundingModalProps = ModalProps &
+  Pick<ProductDescriptionResponse, 'name' | 'price' | 'productId'> & {
+    selectedOption: OptionDetail | false;
+    productThumbnail: string;
+  };
+
+export type WishModalProps = ModalProps &
+  Pick<ProductDescriptionResponse, 'productId'>;

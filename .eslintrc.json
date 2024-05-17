@@ -22,6 +22,7 @@
   "plugins": ["@typescript-eslint", "react-refresh"],
   "ignorePatterns": ["dist", ".eslintrc.json", "vite.config.ts"],
   "rules": {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",

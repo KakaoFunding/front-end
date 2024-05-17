@@ -3,20 +3,22 @@ import { useState, useEffect } from 'react';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
-import { FriendsSelectorModalProps } from 'types/modal';
+import { useAxios } from 'hooks/useAxios';
+
+import { WishModalProps } from 'types/modal';
 
 import styles from './index.module.scss';
 
-const WISH_RADIO_STATUS = { PUBLIC: 'PUBLIC', PRIVATE: 'PRIVATE' } as const;
+const WISH_RADIO_STATUS = { OTHERS: 'OTHERS', ME: 'ME' } as const;
 
 const WISH_RADIO_INFO = [
   {
-    type: WISH_RADIO_STATUS.PUBLIC,
+    type: WISH_RADIO_STATUS.OTHERS,
     title: '친구공개! 내 취향은 이거야♡',
     subTitle: '내 선물을 고민하는 친구를 위해 힌트 주기',
   },
   {
-    type: WISH_RADIO_STATUS.PRIVATE,
+    type: WISH_RADIO_STATUS.ME,
     title: '비밀! 나만 볼 수 있어요',
     subTitle: '나만 알고 싶은 상품, 몰래 찜해두기',
   },
@@ -24,23 +26,27 @@ const WISH_RADIO_INFO = [
 
 type WishRadioType = (typeof WISH_RADIO_STATUS)[keyof typeof WISH_RADIO_STATUS];
 
-const WishModal = ({ close, isOpen, scrollPos }: FriendsSelectorModalProps) => {
+const WishModal = ({ close, isOpen, scrollPos, productId }: WishModalProps) => {
   const [radioStatus, setRadioStatus] = useState<WishRadioType>(
-    WISH_RADIO_STATUS.PUBLIC as WishRadioType,
+    WISH_RADIO_STATUS.OTHERS as WishRadioType,
   );
 
   const handleRadioChange = (selectedRadio: WishRadioType) => {
     setRadioStatus(selectedRadio);
   };
 
-  // TODO : 위시로직추가
-  const handleAddWish = () => {
-    // TODO : radioStatus 사용해서 위시 등록
+  const { sendRequest } = useAxios<{ id: number }>({
+    method: 'post',
+    url: `/products/${productId}/wishes?type=${radioStatus}`,
+  });
+
+  const handleAddWish = async () => {
+    await sendRequest();
     close();
   };
 
   useEffect(() => {
-    setRadioStatus(WISH_RADIO_STATUS.PUBLIC as WishRadioType);
+    setRadioStatus(WISH_RADIO_STATUS.OTHERS as WishRadioType);
   }, [isOpen]);
 
   return (
