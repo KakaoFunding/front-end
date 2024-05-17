@@ -18,7 +18,7 @@ type DetailBottomProps = {
 
 const DetailBottom = ({ brandId }: DetailBottomProps) => {
   const { data: recommendProductItem, isFetched } = useQuery({
-    queryKey: ['recommendProductItem'],
+    queryKey: ['recommendProductItem', brandId],
     queryFn: () => getRecommendProductItems(brandId.toString()),
   });
 

@@ -25,12 +25,12 @@ const Product = () => {
 
   const { data: productDescription, isLoading: productDescriptionIsLoading } =
     useQuery({
-      queryKey: ['productDescription'],
+      queryKey: ['productDescription', productId],
       queryFn: () => getProductDescription(productId!),
     });
 
   const { data: productDetail, isLoading: productDetailIsLoading } = useQuery({
-    queryKey: ['productDetail'],
+    queryKey: ['productDetail', productId],
     queryFn: () => getProductDetail(productId!),
   });
 
