@@ -70,7 +70,6 @@ export const logout = async ({
 }: LogoutRequestProps): Promise<AxiosResponse<LogoutRequestProps>> => {
   const headers = {
     Authorization: `Bearer ${accessToken}`,
-    // Cookie: `refreshToken=${refreshToken}`,
   };
   const response = await apiV1.get('/oauth/logout', {
     headers,
