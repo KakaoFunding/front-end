@@ -5,9 +5,9 @@ import Spinner from 'components/ui/Spinner';
 
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
+import { setLocalStorageItem } from 'services/api/v1/localStorage';
 import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
 import { setSessionStorageItem } from 'services/api/v1/sessionStorage';
-import { setLocalStorageItem } from 'services/localStorage';
 
 const Auth = () => {
   const navigate = useNavigate();
