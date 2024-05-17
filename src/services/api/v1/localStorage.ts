@@ -14,7 +14,10 @@ export const setLocalStorageItem = (
 };
 
 export const getLocalStorageItem = (keyName: string) => {
-  return window.localStorage.getItem(keyName);
+  const data = window.localStorage.getItem(keyName);
+  const parsedData = JSON.parse(data ?? '');
+  console.log(parsedData);
+  return parsedData.value;
 };
 
 export const clearLocalStorageItem = (keyName: string) => {
