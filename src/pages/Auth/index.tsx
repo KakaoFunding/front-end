@@ -30,7 +30,7 @@ const Auth = () => {
         setSocialAccessToken(socialAccessToken);
 
         const res = await login({ socialAccessToken });
-        const { accessToken, member } = res.data;
+        const { accessToken, member, refreshToken } = res.data;
 
         setSessionStorageItem('accessToken', accessToken);
         setAccessToken(accessToken);
