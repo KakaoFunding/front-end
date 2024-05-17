@@ -12,3 +12,7 @@ export const setLocalStorageItem = (
 
   window.localStorage.setItem(keyName, objString);
 };
+
+export const getLocalStorageItem = (keyName: string) => {
+  return window.localStorage.getItem(keyName);
+};
