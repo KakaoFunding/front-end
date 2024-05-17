@@ -14,6 +14,7 @@ import Auth from 'pages/Auth';
 import Brand from 'pages/Brand';
 import Cart from 'pages/Cart';
 import CategoryResult from 'pages/CategoryResult';
+import FundingComplete from 'pages/FundingComplete';
 import FundingPayment from 'pages/FundingPayment';
 import GiftPayment from 'pages/GiftPayment';
 import Home from 'pages/Home';
@@ -24,6 +25,8 @@ import GiftBox from 'pages/MyPage/GiftBox';
 import OrderHistory from 'pages/MyPage/OrderHistory';
 import Wish from 'pages/MyPage/Wish';
 import NotFound from 'pages/NotFound';
+import PaymentCancel from 'pages/PaymentCancel';
+import PaymentFail from 'pages/PaymentFail';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
 import SearchResult from 'pages/SearchResult';
@@ -105,6 +108,18 @@ const router = createBrowserRouter([
       {
         path: '/bill/funding',
         element: <FundingPayment />,
+      },
+      {
+        path: '/funding/complete',
+        element: <FundingComplete />,
+      },
+      {
+        path: '/payment/fail',
+        element: <PaymentFail />,
+      },
+      {
+        path: '/payment/cancel',
+        element: <PaymentCancel />,
       },
       { path: '/auth', element: <Auth /> },
       {
