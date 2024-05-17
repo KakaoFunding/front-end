@@ -11,3 +11,8 @@ export type ProductItem = {
 export type ProductItemSize = {
   size: 'small' | 'medium';
 };
+
+export type RecommendProductItemsResponse = Pick<
+  ProductItem,
+  'productId' | 'photo' | 'name' | 'price'
+>;
