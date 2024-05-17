@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-// import { useCookies } from 'react-cookie';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import Spinner from 'components/ui/Spinner';
@@ -10,7 +9,6 @@ import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
 import { setSessionStorageItem } from 'utils/sessionStorage';
 
 const Auth = () => {
-  // const [cookies, setCookie] = useCookies([]);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const setAccessToken = useAuthStore((state) => state.setAccessToken);
@@ -33,14 +31,6 @@ const Auth = () => {
 
         const res = await login({ socialAccessToken });
         const { accessToken, member } = res.data;
-        const responseHeaders = res.headers;
-
-        console.log(responseHeaders);
-
-        // if (responseHeaders) {
-        //   const refreshToken = responseHeaders.get('Set-Cookie').split(';')[0];
-        //   setCookie('refreshToken', refreshToken, { path: '/' });
-        // }
 
         setSessionStorageItem('accessToken', accessToken);
         setAccessToken(accessToken);
