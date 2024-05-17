@@ -7,6 +7,7 @@ import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
 import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
 import { setSessionStorageItem } from 'services/api/v1/sessionStorage';
+import { setLocalStorageItem } from 'services/localStorage';
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -31,7 +32,9 @@ const Auth = () => {
 
         const res = await login({ socialAccessToken });
         const { accessToken, member, refreshToken } = res.data;
+        const { value, expiration } = refreshToken;
 
+        setLocalStorageItem('refreshToken', value, expiration);
         setSessionStorageItem('accessToken', accessToken);
         setAccessToken(accessToken);
         setUserInfo(member);
