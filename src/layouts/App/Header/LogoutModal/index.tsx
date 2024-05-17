@@ -2,6 +2,10 @@ import clsx from 'clsx';
 
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
+import {
+  clearLocalStorageItem,
+  getLocalStorageItem,
+} from 'services/api/v1/localStorage';
 import { logout } from 'services/api/v1/oauth';
 import { clearSessionStorageItem } from 'utils/sessionStorage';
 
@@ -17,14 +21,16 @@ const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
   const clearUser = useUserStore((state) => state.clearUserInfo);
   const clearAccessToken = useAuthStore((state) => state.clearAccessToken);
   const clearSocialToken = useAuthStore((state) => state.clearSocialToken);
+  const refreshToken = getLocalStorageItem('refreshToken');
 
   const handleLogout = async () => {
-    await logout({ accessToken });
+    await logout({ accessToken, refreshToken });
 
     clearAccessToken();
     clearSocialToken();
     clearUser();
     clearSessionStorageItem();
+    clearLocalStorageItem('refreshToken');
   };
 
   return (
