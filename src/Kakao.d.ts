@@ -1,6 +1,0 @@
-// declare global {
-//   type Window = {
-//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     Kakao: any;
-//   };
-// }
