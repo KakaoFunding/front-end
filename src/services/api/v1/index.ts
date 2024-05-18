@@ -49,13 +49,13 @@ apiV1.interceptors.response.use(
       console.log(error.response.data.message);
       // if (error.response.data.message === 'Unauthorized') {
       const originRequest = config;
-      const usersAuthState = useAuthStore.getState();
-      const usersAccessToken = usersAuthState.accessToken;
+      // const usersAuthState = useAuthStore.getState();
+      // const usersAccessToken = usersAuthState.accessToken;
       const usersRefreshToken = getLocalStorageItem('refreshToken');
-      console.log(usersAccessToken);
+      // console.log(usersAccessToken);
       console.log(usersRefreshToken);
       const response = await refreshAccessToken(
-        usersAccessToken,
+        // usersAccessToken,
         usersRefreshToken,
       );
 
