@@ -14,6 +14,10 @@ const mockdata = {
   myProfileImgUrl: '',
 };
 
+// Kakao 타입을 any로 지정해야 하는데 린트에서 any 타입 지정을 막고있음
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Kakao = window as any;
+
 type PickerResponseTypes = {
   users: [];
 };
@@ -56,10 +60,10 @@ const Receiver = () => {
     return title;
   };
 
-  window.Kakao.Auth.setAccessToken(socialAccessToken);
+  Kakao.Auth.setAccessToken(socialAccessToken);
 
   const handleClick = () => {
-    window.Kakao.Picker.selectFriends({
+    Kakao.Picker.selectFriends({
       title: '친구 선택',
       enableSearch: true,
       showMyProfile: true,
