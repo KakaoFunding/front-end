@@ -46,6 +46,7 @@ apiV1.interceptors.response.use(
     } = error;
 
     if (status === 403) {
+      console.log(error.response.data.message);
       if (error.response.data.message === 'Unauthorized') {
         const originRequest = config;
         const usersAuthState = useAuthStore.getState();
