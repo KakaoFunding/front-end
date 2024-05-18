@@ -16,6 +16,7 @@ import Cart from 'pages/Cart';
 import CategoryResult from 'pages/CategoryResult';
 import FundingComplete from 'pages/FundingComplete';
 import FundingPayment from 'pages/FundingPayment';
+import GiftComplete from 'pages/GiftComplete';
 import GiftPayment from 'pages/GiftPayment';
 import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: '/bill/funding',
         element: <FundingPayment />,
+      },
+      {
+        path: '/gift/complete',
+        element: <GiftComplete />,
       },
       {
         path: '/funding/complete',

@@ -45,3 +45,17 @@ export type ResponseFundingSuccess = {
   product: Pick<ProductItem, 'brandName' | 'name' | 'photo'>;
   attributeAmount: number;
 };
+
+type Order = {
+  product: Pick<ProductItem, 'brandName' | 'name' | 'photo' | 'price'>;
+  quantity: number;
+  options: {
+    optionName: string;
+    optionDetailName: string;
+  }[];
+};
+
+export type ResponseGiftSuccess = {
+  receiver: Receiver;
+  orders: Order[];
+};
