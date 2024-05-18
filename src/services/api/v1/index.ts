@@ -2,7 +2,15 @@ import axios from 'axios';
 
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
+import {
+  clearLocalStorageItem,
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from './localStorage';
+// members.ts와 현재 파일이 서로 import를 하고 있어서 린트 에러가 발생 중
+// eslint-disable-next-line import/no-cycle
 import { refreshAccessToken } from './members';
+import { clearSessionStorageItem } from './sessionStorage';
 
 export const apiV1 = axios.create({
   baseURL: `${import.meta.env.VITE_SERVER_URL}/api/v1`,
@@ -19,22 +27,33 @@ apiV1.interceptors.response.use(
       response: { status },
     } = error;
 
-    if (status === 401) {
+    if (status === 403) {
       if (error.response.data.message === 'Unauthorized') {
         const originRequest = config;
-        const response = await refreshAccessToken();
+        const usersAuthState = useAuthStore.getState();
+        const usersAccessToken = usersAuthState.accessToken;
+        const usersRefreshToken = getLocalStorageItem('refreshToken');
+        const response = await refreshAccessToken(
+          usersAccessToken,
+          usersRefreshToken,
+        );
 
         if (response.status === 200) {
-          const newAccessToken = response.data.accessToken;
-          useAuthStore.setState({ accessToken: newAccessToken });
-          // axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+          const { accessToken, refreshToken } = response.data;
+          const { value, expiration } = refreshToken;
 
-          // originRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          useAuthStore.setState({ accessToken });
+          setLocalStorageItem('refreshToken', value, expiration);
+          axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+          originRequest.headers.Authorization = `Bearer ${accessToken}`;
+
           return axios(originRequest);
         }
 
         if (response.status === 404) {
           useUserStore.getState().clearUserInfo();
+          clearSessionStorageItem();
+          clearLocalStorageItem('refreshToken');
           window.location.replace('/');
         }
       }
