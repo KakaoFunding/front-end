@@ -47,35 +47,35 @@ apiV1.interceptors.response.use(
 
     if (status === 403) {
       console.log(error.response.data.message);
-      if (error.response.data.message === 'Unauthorized') {
-        const originRequest = config;
-        const usersAuthState = useAuthStore.getState();
-        const usersAccessToken = usersAuthState.accessToken;
-        const usersRefreshToken = getLocalStorageItem('refreshToken');
-        const response = await refreshAccessToken(
-          usersAccessToken,
-          usersRefreshToken,
-        );
+      // if (error.response.data.message === 'Unauthorized') {
+      const originRequest = config;
+      const usersAuthState = useAuthStore.getState();
+      const usersAccessToken = usersAuthState.accessToken;
+      const usersRefreshToken = getLocalStorageItem('refreshToken');
+      const response = await refreshAccessToken(
+        usersAccessToken,
+        usersRefreshToken,
+      );
 
-        if (response.status === 200) {
-          const { accessToken, refreshToken } = response.data;
-          const { value, expiration } = refreshToken;
+      if (response.status === 200) {
+        const { accessToken, refreshToken } = response.data;
+        const { value, expiration } = refreshToken;
 
-          useAuthStore.setState({ accessToken });
-          setLocalStorageItem('refreshToken', value, expiration);
-          axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-          originRequest.headers.Authorization = `Bearer ${accessToken}`;
+        useAuthStore.setState({ accessToken });
+        setLocalStorageItem('refreshToken', value, expiration);
+        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+        originRequest.headers.Authorization = `Bearer ${accessToken}`;
 
-          return axios(originRequest);
-        }
-
-        if (response.status === 404) {
-          useUserStore.getState().clearUserInfo();
-          clearSessionStorageItem();
-          clearLocalStorageItem('refreshToken');
-          window.location.replace('/');
-        }
+        return axios(originRequest);
       }
+
+      if (response.status === 404) {
+        useUserStore.getState().clearUserInfo();
+        clearSessionStorageItem();
+        clearLocalStorageItem('refreshToken');
+        window.location.replace('/');
+      }
+      // }
     }
     return Promise.reject(error);
   },
