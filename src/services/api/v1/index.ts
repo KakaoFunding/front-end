@@ -34,6 +34,8 @@ apiV1.interceptors.response.use(
       const usersAuthState = useAuthStore.getState();
       const usersAccessToken = usersAuthState.accessToken;
       const usersRefreshToken = getLocalStorageItem('refreshToken');
+      console.log(usersAccessToken);
+      console.log(usersRefreshToken);
       const response = await refreshAccessToken(
         usersAccessToken,
         usersRefreshToken,
