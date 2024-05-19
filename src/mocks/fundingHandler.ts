@@ -19,7 +19,7 @@ export const fundingHandlers = [
         'https://st.kakaocdn.net/product/gift/product/20240220155008_b20dcecc7a484754ad1e75854794e192.png',
       optionNames: null,
       amount: {
-        totalAmount: 41700,
+        productAmount: 41700,
         goalAmount: 41700,
         remainAmount: 31700,
       },

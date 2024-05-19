@@ -1,3 +1,10 @@
+import { ProductItem } from './productItem';
+
+export type Receiver = {
+  name: string;
+  photoUrl: string;
+};
+
 export type RequestExpectedPaymentAmount = {
   productId: number;
   quantity: number;
@@ -16,8 +23,25 @@ export type ResponseFundingPreview = {
   photo: string;
   optionNames: string[] | null;
   amount: {
-    totalAmount: number;
+    productAmount: number;
     goalAmount: number;
     remainAmount: number;
   };
+};
+
+export type RequestFundingReady = {
+  fundingId: number;
+  amount: number;
+};
+
+export type ResponseFundingReady = {
+  tid: string;
+  redirectUrl: string;
+  orderNumber: string;
+};
+
+export type ResponseFundingSuccess = {
+  receiver: Receiver;
+  product: Pick<ProductItem, 'brandName' | 'name' | 'photo'>;
+  attributeAmount: number;
 };

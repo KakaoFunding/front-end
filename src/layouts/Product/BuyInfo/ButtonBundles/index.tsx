@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from 'components/ui/Button';
 import FundingModal from 'components/ui/Modal/FundingModal';
 import WishModal from 'components/ui/Modal/WishModal';
 
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
+
+import { OptionDetail, ProductDescriptionResponse } from 'types/product';
 
 import styles from './index.module.scss';
 
@@ -15,15 +19,27 @@ const handleClickCart = () => {
   // console.log('선물상자 담기');
 };
 
-const handleClickGiftForMe = () => {
-  // console.log('나에게 선물하기');
-};
-
 const mockData = {
   wishCnt: 999999,
 };
 
-const ButtonBundles = () => {
+type ButtonBundlesProps = {
+  productDescription: ProductDescriptionResponse;
+  hasOption: boolean;
+  selectedOption: OptionDetail | false;
+  quantity: number;
+};
+
+const ButtonBundles = ({
+  productDescription,
+  hasOption,
+  selectedOption,
+  quantity,
+}: ButtonBundlesProps) => {
+  const { productId, name, price, productThumbnails, options } =
+    productDescription;
+  const navigate = useNavigate();
+
   const {
     isOpen: isFundingOpen,
     open: openFundingModal,
@@ -38,9 +54,37 @@ const ButtonBundles = () => {
     scrollPos: scrollWishPos,
   } = useModal();
 
-  const handleClickFunding = openFundingModal;
+  const checkOptionBeforeAction = (action: () => void) => {
+    if (hasOption && !selectedOption) {
+      alert('옵션을 선택해주세요');
+      return;
+    }
+    action();
+  };
 
-  const handleClickWish = openWishModal;
+  const handleClickFunding = () => {
+    checkOptionBeforeAction(openFundingModal);
+  };
+
+  const handleClickWish = () => {
+    openWishModal();
+  };
+
+  const handleClickGiftForMe = () => {
+    const state = {
+      productId,
+      quantity,
+      options: selectedOption
+        ? [
+            {
+              id: options[0].optionsId,
+              detailId: selectedOption.id,
+            },
+          ]
+        : [],
+    };
+    checkOptionBeforeAction(() => navigate('/bill/gift', { state }));
+  };
 
   return (
     <section className={styles.wrapper_bundle}>
@@ -48,11 +92,17 @@ const ButtonBundles = () => {
         close={closeFundingModal}
         isOpen={isFundingOpen}
         scrollPos={scrollFundingPos}
+        name={name}
+        price={price}
+        productId={productId}
+        selectedOption={selectedOption}
+        productThumbnail={productThumbnails[0]}
       />
       <WishModal
         close={closeWishModal}
         isOpen={isWishOpen}
         scrollPos={scrollWishPos}
+        productId={productId}
       />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button

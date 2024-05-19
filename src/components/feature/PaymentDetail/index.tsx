@@ -20,7 +20,12 @@ const PaymentDetail = ({ totalPrice }: PaymentDetailProps) => {
           <div className={styles.wrapper_kakao}>
             <span className={styles.ico_kakao}>카카오페이 아이콘</span>
             <label htmlFor="KAKAO_PAY">
-              <input type="radio" id="KAKAO_PAY" name={PAY_METHOD} checked />
+              <input
+                type="radio"
+                id="KAKAO_PAY"
+                name={PAY_METHOD}
+                defaultChecked
+              />
               <span className={styles.txt_method}>카카오페이</span>
             </label>
           </div>
@@ -40,7 +45,11 @@ const PaymentDetail = ({ totalPrice }: PaymentDetailProps) => {
           </span>
         </div>
 
-        <button type="submit" className={styles.btn_pay}>
+        <button
+          type="submit"
+          className={styles.btn_pay}
+          disabled={totalPrice === 0}
+        >
           {formatNumberWithUnit(totalPrice)} 결제하기
         </button>
       </fieldset>
