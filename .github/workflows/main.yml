@@ -1,0 +1,52 @@
+name: deploy-actions
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    depoly:
+        runs-on: ubuntu-latest
+        steps:
+			### 1 레포지토리 체크아웃
+            - name: Checkout source code
+              uses: actions/checkout@v3
+
+			### 2 의존성 캐싱
+            - name: Cache node modules
+              uses: actions/cache@v3
+              with:
+                  path: node_modules
+                  key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.OS }}-build-
+                      ${{ runner.OS }}-
+
+			### 3 의존성 설치 (캐싱된 의존성이 없는 경우)
+            - name: Install Dependencies
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: npm ci
+
+			### 4 AWS 자격 증명 및 지역 환경 변수 구성
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v1-node16
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
+                  aws-region: ${{ secrets.AWS_S3_REGION }}
+
+			### 5 빌드
+            - name: Build
+              run: npm run build
+
+			### 6 S3 배포
+            - name: Deploy to S3
+              run: aws s3 sync ./build s3://${{ secrets.AWS_S3_BUCKET }} --delete
+
+			### 7 CloudFront 무효화
+            - name: Invalidate CloudFront Cache
+              run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DEV_DISTRIBUTION_ID }} --paths "/*"
