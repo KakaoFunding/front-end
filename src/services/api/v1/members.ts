@@ -16,17 +16,17 @@ type RefreshAccessTokenResponseProps = {
 };
 
 export const refreshAccessToken = async (
-  accessToken: string | null,
+  // accessToken: string | null,
   refreshToken: string,
 ): Promise<AxiosResponse<RefreshAccessTokenResponseProps>> => {
-  const headers = {
-    Authorization: `Bearer ${accessToken}`,
-  };
+  // const headers = {
+  //   Authorization: `Bearer ${accessToken}`,
+  // };
 
   const response = await apiV1.post(
     '/oauth/reissue',
     { refreshToken },
-    { headers },
+    // { headers },
   );
   return response;
 };
