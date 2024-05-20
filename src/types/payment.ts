@@ -49,6 +49,20 @@ export type ResponseFundingPreview = {
   };
 };
 
+export type RequestGiftReady = {
+  receiver: {
+    providerId: string;
+    socialAccessToken: string;
+  };
+  items: {
+    productId: number;
+    totalAmount: number;
+    discountAmount: number;
+    quantity: number;
+    optionDetailIds: number[];
+  }[];
+};
+
 export type RequestFundingReady = {
   fundingId: number;
   amount: number;

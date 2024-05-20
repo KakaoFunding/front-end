@@ -9,6 +9,7 @@ import {
   ResponseFundingSuccess,
   RequestOrderPreview,
   GiftPaymentCard,
+  RequestGiftReady,
 } from 'types/payment';
 
 let fundingAmount = 0;
@@ -61,6 +62,23 @@ export const paymentHandlers = [
         shoppingPoint: 0,
         methods: ['KAKAO_PAY'],
         totalProductAmount: totalStock * 10000,
+      });
+    },
+  ),
+
+  // 선물 결제 준비
+  http.post<PathParams, RequestGiftReady, ResponsePaymentReady>(
+    '/payments/ready',
+    async ({ request }) => {
+      const data = await request.json();
+
+      const pgToken = `pgToken_${data.receiver.providerId}`;
+      await delay(1000);
+
+      return HttpResponse.json({
+        tid: '123',
+        redirectUrl: `http://localhost:5173/payments/success?pg_token=${pgToken}`,
+        orderNumber: '123',
       });
     },
   ),
