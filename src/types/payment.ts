@@ -24,6 +24,18 @@ export type ResponsePaymentPreview = {
   totalProductAmount: number;
 };
 
+export type GiftPaymentCard = {
+  product: {
+    productId: number;
+    name: string;
+    photo: string;
+    price: number;
+    brandName: string;
+  };
+  optionNames: string[];
+  quantity: number;
+};
+
 export type ResponseFundingPreview = {
   productId: number;
   name: string;

@@ -8,7 +8,12 @@ import GiftDetail from 'layouts/GiftPayment/GiftDetail';
 
 import { useAxios } from 'hooks/useAxios';
 
-import { RequestOrderPreview, ResponsePaymentPreview } from 'types/payment';
+import { PaginationResponse } from 'types/PaginationResponse';
+import {
+  GiftPaymentCard,
+  RequestOrderPreview,
+  ResponsePaymentPreview,
+} from 'types/payment';
 
 import styles from './index.module.scss';
 
@@ -16,6 +21,16 @@ const GiftPayment = () => {
   const { state } = useLocation();
   const orders: RequestOrderPreview = state;
 
+  // 구매할 상품 조회 API
+  const { data: orderData, sendRequest: sendOrderRequest } = useAxios<
+    PaginationResponse<GiftPaymentCard>
+  >({
+    method: 'post',
+    url: '/orders/preview',
+    data: orders,
+  });
+
+  // 예상 결제 정보 조회 API
   const { data: paymentData, sendRequest: sendPaymentRequest } =
     useAxios<ResponsePaymentPreview>({
       method: 'post',
@@ -27,6 +42,7 @@ const GiftPayment = () => {
     });
 
   useEffect(() => {
+    sendOrderRequest();
     sendPaymentRequest();
   }, []);
 
