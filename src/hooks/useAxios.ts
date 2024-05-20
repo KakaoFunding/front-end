@@ -1,5 +1,7 @@
-import axios, { AxiosError, AxiosRequestConfig, Method } from 'axios';
+import { AxiosError, AxiosRequestConfig, Method } from 'axios';
 import { useState } from 'react';
+
+import { apiV1 } from 'services/api/v1';
 
 type RequestConfig = AxiosRequestConfig & {
   method: Method;
@@ -19,7 +21,7 @@ export const useAxios = <T>(config: RequestConfig) => {
   const sendRequest = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.request<T>(config);
+      const res = await apiV1.request<T>(config);
       setData(res.data as T);
     } catch (err) {
       setError(err as AxiosError<T>);
