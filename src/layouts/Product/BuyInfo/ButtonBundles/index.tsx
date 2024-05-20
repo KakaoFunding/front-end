@@ -72,7 +72,7 @@ const ButtonBundles = ({
   };
 
   const handleClickGiftForMe = () => {
-    const state: RequestOrderPreview = [
+    const orderInfos: RequestOrderPreview = [
       {
         productId,
         quantity,
@@ -86,7 +86,9 @@ const ButtonBundles = ({
           : [],
       },
     ];
-    checkOptionBeforeAction(() => navigate('/bill/gift', { state }));
+    checkOptionBeforeAction(() =>
+      navigate('/bill/gift', { state: { orderInfos } }),
+    );
   };
 
   return (

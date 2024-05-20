@@ -19,7 +19,7 @@ import styles from './index.module.scss';
 
 const GiftPayment = () => {
   const { state } = useLocation();
-  const orders: RequestOrderPreview = state;
+  const { orderInfos }: { orderInfos: RequestOrderPreview } = state;
 
   // 구매할 상품 조회 API
   const { data: orderData, sendRequest: sendOrderRequest } = useAxios<
@@ -27,7 +27,7 @@ const GiftPayment = () => {
   >({
     method: 'post',
     url: '/orders/preview',
-    data: orders,
+    data: orderInfos,
   });
 
   // 예상 결제 정보 조회 API
@@ -35,7 +35,7 @@ const GiftPayment = () => {
     useAxios<ResponsePaymentPreview>({
       method: 'post',
       url: '/payments/preview',
-      data: orders.filter((order) => ({
+      data: orderInfos.filter((order) => ({
         productId: order.productId,
         quantity: order.quantity,
       })),
