@@ -54,7 +54,7 @@ export type RequestFundingReady = {
   amount: number;
 };
 
-export type ResponseFundingReady = {
+export type ResponsePaymentReady = {
   tid: string;
   redirectUrl: string;
   orderNumber: string;

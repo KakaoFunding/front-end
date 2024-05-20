@@ -5,7 +5,7 @@ import {
   RequestPaymentPreview,
   RequestFundingReady,
   ResponsePaymentPreview,
-  ResponseFundingReady,
+  ResponsePaymentReady,
   ResponseFundingSuccess,
   RequestOrderPreview,
   GiftPaymentCard,
@@ -66,7 +66,7 @@ export const paymentHandlers = [
   ),
 
   // 펀딩 결제 준비
-  http.post<PathParams, RequestFundingReady, ResponseFundingReady>(
+  http.post<PathParams, RequestFundingReady, ResponsePaymentReady>(
     '/funding/payments/ready',
     async ({ request }) => {
       const data = await request.json();
