@@ -52,7 +52,7 @@ const GiftPayment = () => {
       })),
     });
 
-  // 선물 결제 준비 API
+  // 결제 준비 API
   const { data: readyData, sendRequest: sendReady } =
     useAxios<ResponsePaymentReady>({
       method: 'post',
@@ -69,6 +69,7 @@ const GiftPayment = () => {
       },
     });
 
+  // 결제 준비 성공 시 결제 승인 API
   const { data: approveData, sendRequest: sendApprove } =
     useAxios<ResponseGiftSuccess>({
       method: 'post',
