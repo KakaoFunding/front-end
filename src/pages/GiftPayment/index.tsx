@@ -83,6 +83,12 @@ const GiftPayment = () => {
     sendPaymentRequest();
   }, []);
 
+  // 결제 버튼 클릭 핸들러
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await sendReady();
+  };
+
   // handle ready response
   useEffect(() => {
     if (!readyData) return;
@@ -115,11 +121,6 @@ const GiftPayment = () => {
 
     navigate('/gift/complete', { state: approveData });
   }, [approveData]);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await sendReady();
-  };
 
   return (
     <MainWrapper>
