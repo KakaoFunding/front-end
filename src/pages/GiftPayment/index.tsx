@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import MessageCard from 'components/feature/MessageCard';
 import PaymentDetail from 'components/feature/PaymentDetail';
 import MainWrapper from 'components/ui/MainWrapper';
+import Spinner from 'components/ui/Spinner';
 import GiftDetail from 'layouts/GiftPayment/GiftDetail';
 
 import { useAxios } from 'hooks/useAxios';
@@ -26,6 +27,7 @@ const GiftPayment = () => {
 
   const navigate = useNavigate();
   const [pgToken, setPgToken] = useState<string>('');
+  const [isPaying, setIsPaying] = useState<boolean>(false);
 
   const providerId = '333'; // TODO: 카카오 피커 응답의 id를 적어야 함
   const socialAccessToken = getSessionStorageItem('socialToken');
@@ -86,6 +88,7 @@ const GiftPayment = () => {
   // 결제 버튼 클릭 핸들러
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsPaying(true);
     await sendReady();
   };
 
@@ -119,11 +122,13 @@ const GiftPayment = () => {
   useEffect(() => {
     if (!approveData) return;
 
+    setIsPaying(false);
     navigate('/gift/complete', { state: approveData });
   }, [approveData]);
 
   return (
     <MainWrapper>
+      {isPaying && <Spinner />}
       <form className={styles.wrapper_form} onSubmit={handleSubmit}>
         <div className={styles.area_field}>
           <MessageCard />
