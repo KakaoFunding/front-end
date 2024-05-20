@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
 import { logout } from 'services/api/v1/oauth';
-import { clearSessionStorageItem } from 'services/api/v1/sessionStorage';
+import { clearSessionStorageItem } from 'utils/sessionStorage';
 
 import styles from './index.module.scss';
 

@@ -2,11 +2,28 @@ import axios from 'axios';
 
 import { useAuthStore, useUserStore } from 'store/useAuthStore';
 
+import { getSessionStorageItem } from 'utils/sessionStorage';
+
+// eslint-disable-next-line import/no-cycle
 import { refreshAccessToken } from './members';
 
 export const apiV1 = axios.create({
   baseURL: `${import.meta.env.VITE_SERVER_URL}/api/v1`,
 });
+
+apiV1.interceptors.request.use(
+  (config) => {
+    const newConfig = config;
+    const accessToken = getSessionStorageItem('accessToken');
+    if (accessToken) {
+      newConfig.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return newConfig;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
 
 apiV1.interceptors.response.use(
   (res) => {
