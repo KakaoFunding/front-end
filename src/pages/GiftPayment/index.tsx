@@ -8,10 +8,7 @@ import GiftDetail from 'layouts/GiftPayment/GiftDetail';
 
 import { useAxios } from 'hooks/useAxios';
 
-import {
-  RequestOrderPreview,
-  ResponseExpectedPaymentAmount,
-} from 'types/payment';
+import { RequestOrderPreview, ResponsePaymentPreview } from 'types/payment';
 
 import styles from './index.module.scss';
 
@@ -20,7 +17,7 @@ const GiftPayment = () => {
   const orders: RequestOrderPreview = state;
 
   const { data: paymentData, sendRequest: sendPaymentRequest } =
-    useAxios<ResponseExpectedPaymentAmount>({
+    useAxios<ResponsePaymentPreview>({
       method: 'post',
       url: '/payments/preview',
       data: orders.filter((order) => ({

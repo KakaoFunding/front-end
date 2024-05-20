@@ -1,9 +1,9 @@
 import { HttpResponse, PathParams, delay, http } from 'msw';
 
 import {
-  RequestExpectedPaymentAmount,
+  RequestPaymentPreview,
   RequestFundingReady,
-  ResponseExpectedPaymentAmount,
+  ResponsePaymentPreview,
   ResponseFundingReady,
   ResponseFundingSuccess,
 } from 'types/payment';
@@ -11,24 +11,23 @@ import {
 let fundingAmount = 0;
 
 export const paymentHandlers = [
-  http.post<
-    PathParams,
-    RequestExpectedPaymentAmount,
-    ResponseExpectedPaymentAmount
-  >('/payments/preview', async ({ request }) => {
-    const data = await request.json();
+  http.post<PathParams, RequestPaymentPreview, ResponsePaymentPreview>(
+    '/payments/preview',
+    async ({ request }) => {
+      const data = await request.json();
 
-    const totalStock = data?.reduce((sum, product) => {
-      const { quantity } = product;
-      return sum + quantity;
-    }, 0);
+      const totalStock = data?.reduce((sum, product) => {
+        const { quantity } = product;
+        return sum + quantity;
+      }, 0);
 
-    return HttpResponse.json({
-      shoppingPoint: 0,
-      methods: ['KAKAO_PAY'],
-      totalProductAmount: totalStock * 10000,
-    });
-  }),
+      return HttpResponse.json({
+        shoppingPoint: 0,
+        methods: ['KAKAO_PAY'],
+        totalProductAmount: totalStock * 10000,
+      });
+    },
+  ),
 
   // 펀딩 결제 준비
   http.post<PathParams, RequestFundingReady, ResponseFundingReady>(

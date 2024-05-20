@@ -16,9 +16,9 @@ type OrderPreview = {
 export type RequestOrderPreview = OrderPreview[];
 
 type PaymentPreview = Omit<OrderPreview, 'options'>;
-export type RequestExpectedPaymentAmount = PaymentPreview[];
+export type RequestPaymentPreview = PaymentPreview[];
 
-export type ResponseExpectedPaymentAmount = {
+export type ResponsePaymentPreview = {
   shoppingPoint: number;
   methods: string[];
   totalProductAmount: number;
