@@ -13,6 +13,12 @@ import {
   ResponseGiftSuccess,
 } from 'types/payment';
 
+const receiver = {
+  name: '김펀딩',
+  photoUrl:
+    'https://gift-s.kakaocdn.net/dn/gift/images/m640/bg_profile_default.png',
+};
+
 let fundingAmount = 0;
 
 export const paymentHandlers = [
@@ -106,11 +112,7 @@ export const paymentHandlers = [
     };
 
     return HttpResponse.json<ResponseGiftSuccess>({
-      receiver: {
-        name: '김민우',
-        photoUrl:
-          'https://gift-s.kakaocdn.net/dn/gift/images/m640/bg_profile_default.png',
-      },
+      receiver,
       orders: [order],
     });
   }),
@@ -139,11 +141,7 @@ export const paymentHandlers = [
     await delay(1000);
 
     return HttpResponse.json<ResponseFundingSuccess>({
-      receiver: {
-        name: '김민우',
-        photoUrl:
-          'https://gift-s.kakaocdn.net/dn/gift/images/m640/bg_profile_default.png',
-      },
+      receiver,
       product: {
         brandName: '남성향수',
         photo:
