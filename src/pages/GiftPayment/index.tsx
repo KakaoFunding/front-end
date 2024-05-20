@@ -55,7 +55,7 @@ const GiftPayment = () => {
       <form className={styles.wrapper_form} onSubmit={handleSubmit}>
         <div className={styles.area_field}>
           <MessageCard />
-          <GiftDetail />
+          <GiftDetail items={orderData?.items ?? []} />
         </div>
         <PaymentDetail totalPrice={paymentData?.totalProductAmount ?? 0} />
       </form>
