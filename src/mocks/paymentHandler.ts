@@ -10,6 +10,7 @@ import {
   RequestOrderPreview,
   GiftPaymentCard,
   RequestGiftReady,
+  ResponseGiftSuccess,
 } from 'types/payment';
 
 let fundingAmount = 0;
@@ -82,6 +83,37 @@ export const paymentHandlers = [
       });
     },
   ),
+
+  // 선물 결제 승인 - 성공
+  http.post('/payments/success', async () => {
+    await delay(1000);
+
+    const order = {
+      product: {
+        brandName: '스타벅스',
+        photo:
+          'https://st.kakaocdn.net/product/gift/product/20220422165729_0119e39ca8a14084a3504b85ca4eaf30.jpeg',
+        name: '아메리카노',
+        price: 5000,
+      },
+      quantity: 1,
+      options: [
+        {
+          optionName: '얼음',
+          optionDetailName: '간얼음',
+        },
+      ],
+    };
+
+    return HttpResponse.json<ResponseGiftSuccess>({
+      receiver: {
+        name: '김민우',
+        photoUrl:
+          'https://gift-s.kakaocdn.net/dn/gift/images/m640/bg_profile_default.png',
+      },
+      orders: [order],
+    });
+  }),
 
   // 펀딩 결제 준비
   http.post<PathParams, RequestFundingReady, ResponsePaymentReady>(

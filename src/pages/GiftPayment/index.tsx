@@ -13,6 +13,7 @@ import { PaginationResponse } from 'types/PaginationResponse';
 import {
   GiftPaymentCard,
   RequestOrderPreview,
+  ResponseGiftSuccess,
   ResponsePaymentPreview,
   ResponsePaymentReady,
 } from 'types/payment';
@@ -66,6 +67,17 @@ const GiftPayment = () => {
       },
     });
 
+  const { data: approveData, sendRequest: sendApprove } =
+    useAxios<ResponseGiftSuccess>({
+      method: 'post',
+      url: '/payments/success',
+      data: {
+        tid: readyData?.tid,
+        pgToken,
+        orderNumber: readyData?.orderNumber,
+      },
+    });
+
   useEffect(() => {
     sendOrderRequest();
     sendPaymentRequest();
@@ -89,6 +101,20 @@ const GiftPayment = () => {
       });
     }
   }, [readyData]);
+
+  // if pgToken is set, then send payment approve request
+  useEffect(() => {
+    if (pgToken === '') return;
+
+    sendApprove();
+  }, [pgToken]);
+
+  // handle approve success response
+  useEffect(() => {
+    if (!approveData) return;
+
+    navigate('/gift/complete', { state: approveData });
+  }, [approveData]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
