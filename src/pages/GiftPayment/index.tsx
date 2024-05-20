@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import MessageCard from 'components/feature/MessageCard';
 import PaymentDetail from 'components/feature/PaymentDetail';
@@ -8,31 +8,29 @@ import GiftDetail from 'layouts/GiftPayment/GiftDetail';
 
 import { useAxios } from 'hooks/useAxios';
 
-import { ResponseExpectedPaymentAmount } from 'types/payment';
+import {
+  RequestOrderPreview,
+  ResponseExpectedPaymentAmount,
+} from 'types/payment';
 
 import styles from './index.module.scss';
 
 const GiftPayment = () => {
-  // const { state } = useLocation();
+  const { state } = useLocation();
+  const orders: RequestOrderPreview = state;
 
-  const { data, sendRequest } = useAxios<ResponseExpectedPaymentAmount>({
-    method: 'post',
-    url: '/payments/preview',
-    data: [
-      // 임시 데이터
-      {
-        productId: 386515,
-        quantity: 1,
-      },
-      {
-        productId: 2274,
-        quantity: 3,
-      },
-    ],
-  });
+  const { data: paymentData, sendRequest: sendPaymentRequest } =
+    useAxios<ResponseExpectedPaymentAmount>({
+      method: 'post',
+      url: '/payments/preview',
+      data: orders.filter((order) => ({
+        productId: order.productId,
+        quantity: order.quantity,
+      })),
+    });
 
   useEffect(() => {
-    sendRequest();
+    sendPaymentRequest();
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,7 +44,7 @@ const GiftPayment = () => {
           <MessageCard />
           <GiftDetail />
         </div>
-        <PaymentDetail totalPrice={data?.totalProductAmount ?? 0} />
+        <PaymentDetail totalPrice={paymentData?.totalProductAmount ?? 0} />
       </form>
     </MainWrapper>
   );

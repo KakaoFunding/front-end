@@ -5,10 +5,18 @@ export type Receiver = {
   photoUrl: string;
 };
 
-export type RequestExpectedPaymentAmount = {
+type OrderPreview = {
   productId: number;
   quantity: number;
-}[];
+  options: {
+    id: number;
+    detailId: number;
+  }[];
+};
+export type RequestOrderPreview = OrderPreview[];
+
+type PaymentPreview = Omit<OrderPreview, 'options'>;
+export type RequestExpectedPaymentAmount = PaymentPreview[];
 
 export type ResponseExpectedPaymentAmount = {
   shoppingPoint: number;
