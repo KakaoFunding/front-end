@@ -1,8 +1,10 @@
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useAuthStore';
+
+import { getSessionStorageItem } from 'services/api/v1/sessionStorage';
 
 export const useUserExists = (): boolean => {
   const name = useUserStore((state) => state.name);
-  const accessToken = useAuthStore((state) => state.accessToken);
+  const accessToken = getSessionStorageItem('accessToken');
 
   if (name && accessToken) return true;
 

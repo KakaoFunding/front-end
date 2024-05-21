@@ -1,13 +1,16 @@
 import clsx from 'clsx';
 
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useAuthStore';
 
 import {
   clearLocalStorageItem,
   getLocalStorageItem,
 } from 'services/api/v1/localStorage';
 import { logout } from 'services/api/v1/oauth';
-import { clearSessionStorageItem } from 'utils/sessionStorage';
+import {
+  clearSessionStorageItem,
+  getSessionStorageItem,
+} from 'utils/sessionStorage';
 
 import styles from './index.module.scss';
 
@@ -17,17 +20,13 @@ type LogoutModalProps = {
 };
 
 const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
-  const accessToken = useAuthStore((state) => state.accessToken);
   const clearUser = useUserStore((state) => state.clearUserInfo);
-  const clearAccessToken = useAuthStore((state) => state.clearAccessToken);
-  const clearSocialToken = useAuthStore((state) => state.clearSocialToken);
+  const accessToken = getSessionStorageItem('accessToken');
   const refreshToken = getLocalStorageItem('refreshToken');
 
   const handleLogout = async () => {
     await logout({ accessToken, refreshToken });
 
-    clearAccessToken();
-    clearSocialToken();
     clearUser();
     clearSessionStorageItem();
     clearLocalStorageItem('refreshToken');

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useAuthStore';
 
 import {
   getSessionStorageItem,
@@ -55,7 +55,7 @@ apiV1.interceptors.response.use(
         const { accessToken, refreshToken } = response.data;
         const { value, expiration } = refreshToken;
 
-        useAuthStore.setState({ accessToken });
+        setSessionStorageItem('accessToken', accessToken);
         setLocalStorageItem('refreshToken', value, expiration);
 
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
