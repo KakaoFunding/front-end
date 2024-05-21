@@ -48,15 +48,8 @@ apiV1.interceptors.response.use(
     if (status === 403) {
       // if (error.response.data.message === 'Unauthorized') {
       const originRequest = config;
-      // const usersAuthState = useAuthStore.getState();
-      // const usersAccessToken = usersAuthState.accessToken;
       const usersRefreshToken = getLocalStorageItem('refreshToken');
-      // console.log(usersAccessToken);
-      console.log(usersRefreshToken);
-      const response = await refreshAccessToken(
-        // usersAccessToken,
-        usersRefreshToken,
-      );
+      const response = await refreshAccessToken(usersRefreshToken);
 
       if (response.status === 200) {
         const { accessToken, refreshToken } = response.data;
@@ -64,8 +57,10 @@ apiV1.interceptors.response.use(
 
         useAuthStore.setState({ accessToken });
         setLocalStorageItem('refreshToken', value, expiration);
+
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
         originRequest.headers.Authorization = `Bearer ${accessToken}`;
+        originRequest.data = { refreshToken: value };
 
         return axios(originRequest);
       }
