@@ -50,9 +50,9 @@ export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
       },
     });
 
-    setSessionStorageItem('socialToken', res.data.access_token);
-    const token = res.data.access_token;
-    return token;
+    const socialToken = res.data.access_token;
+    setSessionStorageItem('socialToken', socialToken);
+    return socialToken;
   } catch (error) {
     console.warn(error);
     return undefined;
