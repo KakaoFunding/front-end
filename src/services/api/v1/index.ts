@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useAuthStore';
 
 import {
   clearLocalStorageItem,
@@ -10,7 +10,10 @@ import {
 // members.ts와 현재 파일이 서로 import를 하고 있어서 린트 에러가 발생 중
 // eslint-disable-next-line import/no-cycle
 import { refreshAccessToken } from './members';
-import { clearSessionStorageItem } from './sessionStorage';
+import {
+  clearSessionStorageItem,
+  setSessionStorageItem,
+} from './sessionStorage';
 
 export const apiV1 = axios.create({
   baseURL: `${import.meta.env.VITE_SERVER_URL}/api/v1`,
@@ -37,7 +40,7 @@ apiV1.interceptors.response.use(
         const { accessToken, refreshToken } = response.data;
         const { value, expiration } = refreshToken;
 
-        useAuthStore.setState({ accessToken });
+        setSessionStorageItem('accessToken', accessToken);
         setLocalStorageItem('refreshToken', value, expiration);
 
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
