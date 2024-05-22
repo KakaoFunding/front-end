@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 import { UserWithUserId } from 'types/user';
 
 const defaultImgUrl =
-  'https://github.com/KakaoFunding/front-end/blob/dev/src/assets/profile_default.png?raw=true';
+  'https://github.com/KakaoFunding/front-end/blob/dev/src/assets/bg_profile_default.png?raw=true';
 const peopleImgUrl = 'src/assets/profile_people.png';
 
 type SelectedFriendsState = {
