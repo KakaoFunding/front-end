@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useUserStore';
 
 import {
   clearLocalStorageItem,

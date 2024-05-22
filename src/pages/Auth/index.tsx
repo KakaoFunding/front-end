@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import Spinner from 'components/ui/Spinner';
 
-import { useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useUserStore';
 
 import { setLocalStorageItem } from 'services/api/v1/localStorage';
 import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
