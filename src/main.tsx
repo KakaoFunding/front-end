@@ -23,6 +23,7 @@ import GiftPayment from 'pages/GiftPayment';
 import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
 import Funding from 'pages/MyPage/Funding';
+import FundingBox from 'pages/MyPage/FundingBox';
 import FundingHistory from 'pages/MyPage/FundingHistory';
 import GiftBox from 'pages/MyPage/GiftBox';
 import OrderHistory from 'pages/MyPage/OrderHistory';
@@ -71,6 +72,11 @@ const router = createBrowserRouter([
             path: 'giftbox',
             element: <GiftBox />,
           },
+          {
+            path: 'fundingbox',
+            element: <FundingBox />,
+          },
+
           {
             path: 'wish',
             element: <Wish />,

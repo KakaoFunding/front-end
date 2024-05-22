@@ -4,7 +4,13 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './index.module.scss';
 
 type SidebarItemProps = {
-  type: 'wish' | 'funding' | 'giftbox' | 'orderHistory' | 'fundingHistory';
+  type:
+    | 'wish'
+    | 'funding'
+    | 'fundingbox'
+    | 'giftbox'
+    | 'orderHistory'
+    | 'fundingHistory';
   titleName: string;
 };
 
@@ -12,6 +18,7 @@ const formatTypeToStyle = {
   wish: 'wish',
   funding: 'funding',
   giftbox: 'giftbox',
+  fundingbox: 'fundingbox',
   orderHistory: 'order_history',
   fundingHistory: 'funding_history',
 };
