@@ -1,4 +1,4 @@
-import { useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useUserStore';
 
 import { getSessionStorageItem } from 'services/api/v1/sessionStorage';
 

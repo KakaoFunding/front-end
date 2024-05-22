@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useUserStore';
 
 import {
   clearLocalStorageItem,

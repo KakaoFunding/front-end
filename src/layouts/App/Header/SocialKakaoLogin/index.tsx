@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useUserStore';
 
 import { useUserExists } from 'hooks/useUserExists';
 
