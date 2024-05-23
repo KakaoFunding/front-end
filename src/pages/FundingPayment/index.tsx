@@ -9,7 +9,7 @@ import FundingDetail from 'layouts/FundingPayment/FundingDetail';
 
 import { useAxios } from 'hooks/useAxios';
 
-import { ResponseFundingReady, ResponseFundingSuccess } from 'types/payment';
+import { ResponsePaymentReady, ResponseFundingSuccess } from 'types/payment';
 
 import styles from './index.module.scss';
 
@@ -24,7 +24,7 @@ const FundingPayment = () => {
 
   // 결제 준비용 API
   const { data: readyData, sendRequest: sendReady } =
-    useAxios<ResponseFundingReady>({
+    useAxios<ResponsePaymentReady>({
       method: 'post',
       url: '/funding/payments/ready',
       data: {
