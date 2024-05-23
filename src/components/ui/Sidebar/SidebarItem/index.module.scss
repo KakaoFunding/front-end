@@ -26,6 +26,14 @@
     }
   }
 
+  &.fundingbox {
+    @include ico-gift4(-255px, -295px, 18px, 18px);
+
+    &.on {
+      @include ico-gift4(-275px, -295px, 18px, 18px);
+    }
+  }
+
   &.wish {
     @include ico-gift4(-255px, -275px, 18px, 18px);
 
@@ -43,10 +51,10 @@
   }
 
   &.order_history {
-    @include ico-gift4(-255px, -295px, 18px, 18px);
+    @include ico-gift4(-255px, -315px, 18px, 18px);
 
     &.on {
-      @include ico-gift4(-275px, -295px, 18px, 18px);
+      @include ico-gift4(-275px, -315px, 18px, 18px);
     }
   }
 

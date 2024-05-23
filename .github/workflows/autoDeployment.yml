@@ -1,0 +1,68 @@
+name: Auto deploy after push
+
+on:
+    push:
+        branches:
+            - main
+            - dev
+
+jobs:
+    deploy:
+        name: Build & Deploy to AWS S3 bucket
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout source code
+              uses: actions/checkout@v3
+
+            - name: Create .env
+              env:
+                  VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
+                  VITE_CLIENT_SECRET_KEY: ${{ secrets.VITE_CLIENT_SECRET_KEY }}
+                  VITE_JAVASCRIPT_KEY: ${{ secrets.VITE_JAVASCRIPT_KEY }}
+                  VITE_REST_API_KEY: ${{ secrets.VITE_REST_API_KEY }}
+                  VITE_REDIRECT_URL: ${{ secrets.VITE_REDIRECT_URL }}
+              run: |
+                  touch .env
+                  echo VITE_SERVER_URL="$VITE_SERVER_URL" >> .env
+                  echo VITE_CLIENT_SECRET_KEY="$VITE_CLIENT_SECRET_KEY" >> .env
+                  echo VITE_JAVASCRIPT_KEY="$VITE_JAVASCRIPT_KEY" >> .env
+                  echo VITE_REST_API_KEY="$VITE_REST_API_KEY" >> .env
+                  echo VITE_REDIRECT_URL="$VITE_REDIRECT_URL" >> .env
+              
+            - name: Cache node modules
+              uses: actions/cache@v3
+              with:
+                  path: node_modules
+                  key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.OS }}-build-
+                      ${{ runner.OS }}-
+
+            - name: Install Dependencies
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: npm ci
+
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v1-node16
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
+                  aws-region: ${{ secrets.AWS_S3_REGION }}
+
+            - name: Build
+              run: npm run build
+
+            - name: Deploy to S3
+              uses: jakejarvis/s3-sync-action@v0.5.1
+              with:
+                  args: --delete
+              env:
+                  AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
+                  AWS_REGION: ${{ secrets.AWS_S3_REGION }}
+                  SOURCE_DIR: 'dist'
+                  
+            - name: Invalidate CloudFront Cache
+              run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DEV_DISTRIBUTION_ID }} --paths "/*"
+              

@@ -27,7 +27,8 @@
   }
 }
 
-.area_products {
-  display: flex;
-  justify-content: space-between;
+.wrapper_items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 10px;
 }

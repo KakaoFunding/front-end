@@ -105,4 +105,10 @@
   text-align: center;
 
   @include font(18px, 700);
+
+  &:disabled {
+    color: #999;
+    background-color: #e5e5e5;
+    cursor: default;
+  }
 }

@@ -5,7 +5,7 @@ import { isValidQuantity } from 'utils/validate';
 
 import styles from './index.module.scss';
 
-type ProductQuantityProps = {
+type QuantitySelectorProps = {
   hasOption: boolean;
   optionName: string;
   quantity: number;
@@ -13,13 +13,13 @@ type ProductQuantityProps = {
   handleOptionClear?: () => void;
 };
 
-const ProductQuantity = ({
+const QuantitySelector = ({
   hasOption,
   optionName,
   quantity,
   setQuantity,
   handleOptionClear,
-}: ProductQuantityProps) => {
+}: QuantitySelectorProps) => {
   const [input, setInput] = useState<string>('1');
 
   useEffect(() => {
@@ -94,4 +94,4 @@ const ProductQuantity = ({
   );
 };
 
-export default ProductQuantity;
+export default QuantitySelector;

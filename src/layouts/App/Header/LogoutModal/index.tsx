@@ -10,7 +10,7 @@ import { logout } from 'services/api/v1/oauth';
 import {
   clearSessionStorageItem,
   getSessionStorageItem,
-} from 'services/api/v1/sessionStorage';
+} from 'utils/sessionStorage';
 
 import styles from './index.module.scss';
 

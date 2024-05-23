@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { User } from 'types/user';
+import { setSessionStorageItem } from 'utils/sessionStorage';
 
-import { setSessionStorageItem } from './sessionStorage';
+import { User } from 'types/user';
 
 import { apiV1 } from '.';
 

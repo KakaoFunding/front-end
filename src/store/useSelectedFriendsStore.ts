@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { UserWithUserId } from 'types/user';
+import { PickerResponseData, User } from 'types/user';
 
 const defaultImgUrl =
   'https://github.com/KakaoFunding/front-end/blob/dev/src/assets/bg_profile_default.png?raw=true';
@@ -10,16 +10,14 @@ const peopleImgUrl = 'src/assets/profile_people.png';
 type SelectedFriendsState = {
   isSelected: boolean;
   isSelfSelected: boolean;
-  selectedFriends: UserWithUserId[];
+  selectedFriends: PickerResponseData[];
   selectedHeadCount: number;
-  currentSelectedFriends: UserWithUserId[];
 };
 
 type SelectedFriendsAction = {
-  setSelectedFriends: (state: UserWithUserId[]) => void;
-  setCurrentSelectedFriends: (state: UserWithUserId[]) => void;
+  setSelectedFriends: (state: PickerResponseData[], name: User['name']) => void;
   getImgUrl: () => string;
-  getTitle: () => string;
+  clearSelectedFriends: () => void;
 };
 
 export const useSelectedFriendsStore = create<
@@ -33,32 +31,28 @@ export const useSelectedFriendsStore = create<
       selectedHeadCount: 0,
       currentSelectedFriends: [],
 
-      setSelectedFriends: (state) =>
+      setSelectedFriends: (state, name) =>
         set(() => ({
           isSelected: !(state.length === 0),
-          isSelfSelected: state.length === 1 && state[0].id === 0,
+          isSelfSelected:
+            state.length === 1 && state[0].profile_nickname === name,
           selectedFriends: state,
           selectedHeadCount: state.length,
         })),
 
-      setCurrentSelectedFriends: (state) =>
-        set(() => ({
-          currentSelectedFriends: state,
-        })),
+      clearSelectedFriends: () =>
+        set({
+          selectedFriends: [],
+          isSelected: false,
+          isSelfSelected: false,
+          selectedHeadCount: 0,
+        }),
 
       getImgUrl: () => {
         if (get().selectedHeadCount > 1) return peopleImgUrl;
         if (get().selectedHeadCount === 1)
-          return get().selectedFriends[0].profileUrl!;
+          return get().selectedFriends[0].profile_thumbnail_image!;
         return defaultImgUrl;
-      },
-
-      getTitle: () => {
-        if (!get().isSelected) return '선물 받을 친구를 선택해주세요.';
-        if (get().selectedHeadCount > 1)
-          return `${get().selectedHeadCount}명의 친구에게 선물하기`;
-        if (get().isSelfSelected) return '나를 위한 선물하기';
-        return `${get().selectedFriends[0].name}에게 선물하기`;
       },
     }),
     {
