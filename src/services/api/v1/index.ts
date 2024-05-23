@@ -5,6 +5,7 @@ import { useUserStore } from 'store/useUserStore';
 import {
   getSessionStorageItem,
   clearSessionStorageItem,
+  setSessionStorageItem,
 } from 'utils/sessionStorage';
 
 import {
