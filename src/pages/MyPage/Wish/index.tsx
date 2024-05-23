@@ -39,7 +39,7 @@ const Wish = () => {
           ))}
         </ul>
       )}
-      {wishItems || <EmptyItem type="wish" />}
+      {wishItems ?? <EmptyItem type="wish" />}
     </>
   );
 };
