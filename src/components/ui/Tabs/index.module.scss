@@ -62,3 +62,22 @@
     }
   }
 }
+
+.funding_history {
+  .wrapper_tab {
+    width: 50%;
+    text-align: center;
+    padding: 14px 0;
+    line-height: 22px;
+    font-weight: 400;
+
+    &.on {
+      font-weight: 700;
+      border-bottom: 4px solid #000;
+
+      .txt_name {
+        color: #000;
+      }
+    }
+  }
+}
