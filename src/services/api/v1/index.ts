@@ -2,23 +2,20 @@ import axios from 'axios';
 
 import { useUserStore } from 'store/useUserStore';
 
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
-
-import { getSessionStorageItem } from 'utils/sessionStorage';
-
 import {
-  clearLocalStorageItem,
-  getLocalStorageItem,
-  setLocalStorageItem,
-} from './localStorage';
+  getSessionStorageItem,
+  clearSessionStorageItem,
+  setSessionStorageItem,
+} from 'utils/sessionStorage';
 
 // members.ts와 현재 파일이 서로 import를 하고 있어서 린트 에러가 발생 중
 // eslint-disable-next-line import/no-cycle
 import { refreshAccessToken } from './members';
 import {
-  clearSessionStorageItem,
-  setSessionStorageItem,
-} from './sessionStorage';
+  clearLocalStorageItem,
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from './localStorage';
 
 export const apiV1 = axios.create({
   baseURL: `${import.meta.env.VITE_SERVER_URL}/api/v1`,

@@ -7,7 +7,7 @@ import { useUserStore } from 'store/useUserStore';
 
 import { setLocalStorageItem } from 'services/api/v1/localStorage';
 import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
-import { setSessionStorageItem } from 'utils/sessionStorage';
+import { setSessionStorageItem } from 'services/api/v1/sessionStorage';
 
 const Auth = () => {
   const navigate = useNavigate();
