@@ -1,16 +1,33 @@
 @import 'styles/mixins.module';
 
-.wrapper_selector {
+.area_selector {
   @include size(100%, 150px, 0, 40px 120px);
 
   display: flex;
   justify-content: start;
   align-items: center;
   background-color: #fafafa;
+}
+
+.wrapper_selector {
+  display: flex;
+  justify-content: start;
+  align-items: center;
 
   .title_selector {
-    padding-left: 10px;
+    padding-left: 15px;
     font-size: 28px;
     line-height: 35px;
+    color: #333;
+  }
+
+  .btn_cancel {
+    margin-left: auto;
+
+    .ico_cancel {
+      @include ico-frndpck(-103px, -90px, 30px, 30px);
+
+      background-size: 200px, 150px;
+    }
   }
 }
