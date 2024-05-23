@@ -47,10 +47,10 @@ const Product = () => {
   });
 
   useEffect(() => {
-    if (productDescription) {
+    if (productDescription && productDetail) {
       observer.observe(target.current!);
     }
-  }, [productDescription]);
+  }, [productDescription, productDetail]);
 
   return (
     <>
