@@ -40,7 +40,7 @@ const Receiver = () => {
     getImgUrl,
   } = useSelectedFriendsStore();
   const socialAccessToken = getSessionStorageItem('socialToken');
-  const userName = useUserStore((state) => state.name);
+  const { name, providerId } = useUserStore();
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
@@ -76,7 +76,7 @@ const Receiver = () => {
       minPickableCount: 1,
     })
       .then((response: PickerResponseTypes) => {
-        setSelectedFriends(response.users, userName);
+        setSelectedFriends(response.users, name, providerId);
       })
       .catch((error: PickerErrorTypes) => {
         const pickerError = error as PickerErrorTypes;
