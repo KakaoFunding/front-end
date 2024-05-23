@@ -46,6 +46,7 @@ const Receiver = () => {
   );
   const PROFILE_IMAGE =
     mockdata.login && isSelfSelected ? mockdata.myProfileImgUrl : getImgUrl();
+  const isKakaoConnected = window.Kakao?.isInitialized();
 
   // 서버 복구되면 테스트 해봐야함
   const getTitle = () => {
@@ -63,7 +64,9 @@ const Receiver = () => {
     return title;
   };
 
-  window.Kakao?.Auth.setAccessToken(socialAccessToken);
+  if (isKakaoConnected) {
+    window.Kakao?.Auth.setAccessToken(socialAccessToken);
+  }
 
   const handleClick = () => {
     window.Kakao?.Picker.selectFriends({
