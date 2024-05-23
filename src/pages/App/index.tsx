@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 import Footer from 'layouts/App/Footer';
 import Header from 'layouts/App/Header';
@@ -12,6 +12,7 @@ const App = () => (
   <>
     <Header />
     <main className={styles.main}>
+      <ScrollRestoration />
       <Outlet />
     </main>
     <Footer />
