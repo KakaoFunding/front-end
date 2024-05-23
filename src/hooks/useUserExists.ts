@@ -1,6 +1,6 @@
 import { useUserStore } from 'store/useUserStore';
 
-import { getSessionStorageItem } from 'services/api/v1/sessionStorage';
+import { getSessionStorageItem } from 'utils/sessionStorage';
 
 export const useUserExists = (): boolean => {
   const name = useUserStore((state) => state.name);
