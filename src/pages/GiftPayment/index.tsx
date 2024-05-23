@@ -8,7 +8,7 @@ import Spinner from 'components/ui/Spinner';
 import GiftDetail from 'layouts/GiftPayment/GiftDetail';
 
 import { useAxios } from 'hooks/useAxios';
-import { getSessionStorageItem } from 'services/api/v1/sessionStorage';
+import { getSessionStorageItem } from 'utils/sessionStorage';
 
 import { PaginationResponse } from 'types/PaginationResponse';
 import {
