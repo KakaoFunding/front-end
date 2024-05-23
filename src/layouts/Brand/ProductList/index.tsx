@@ -25,9 +25,8 @@ const ProductList = ({ brandId }: ProductListProps) => {
     PaginationResponse<ProductItemType>
   >({
     method: 'get',
-    url: '/products/brands',
+    url: `/products/brands/${brandId}`,
     params: {
-      brandId,
       page,
       size: 20,
     },
