@@ -5,15 +5,35 @@ export type Receiver = {
   photoUrl: string;
 };
 
-export type RequestExpectedPaymentAmount = {
+type OrderPreview = {
   productId: number;
   quantity: number;
-}[];
+  options: {
+    id: number;
+    detailId: number;
+  }[];
+};
+export type RequestOrderPreview = OrderPreview[];
 
-export type ResponseExpectedPaymentAmount = {
+type PaymentPreview = Omit<OrderPreview, 'options'>;
+export type RequestPaymentPreview = PaymentPreview[];
+
+export type ResponsePaymentPreview = {
   shoppingPoint: number;
   methods: string[];
   totalProductAmount: number;
+};
+
+export type GiftPaymentCard = {
+  product: {
+    productId: number;
+    name: string;
+    photo: string;
+    price: number;
+    brandName: string;
+  };
+  optionNames: string[];
+  quantity: number;
 };
 
 export type ResponseFundingPreview = {
@@ -29,12 +49,26 @@ export type ResponseFundingPreview = {
   };
 };
 
+export type RequestGiftReady = {
+  receiver: {
+    providerId: string;
+    socialAccessToken: string;
+  };
+  items: {
+    productId: number;
+    totalAmount: number;
+    discountAmount: number;
+    quantity: number;
+    optionDetailIds: number[];
+  }[];
+};
+
 export type RequestFundingReady = {
   fundingId: number;
   amount: number;
 };
 
-export type ResponseFundingReady = {
+export type ResponsePaymentReady = {
   tid: string;
   redirectUrl: string;
   orderNumber: string;

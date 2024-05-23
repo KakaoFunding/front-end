@@ -7,6 +7,7 @@ import WishModal from 'components/ui/Modal/WishModal';
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
 
+import { RequestOrderPreview } from 'types/payment';
 import { OptionDetail, ProductDescriptionResponse } from 'types/product';
 
 import styles from './index.module.scss';
@@ -71,19 +72,23 @@ const ButtonBundles = ({
   };
 
   const handleClickGiftForMe = () => {
-    const state = {
-      productId,
-      quantity,
-      options: selectedOption
-        ? [
-            {
-              id: options[0].optionsId,
-              detailId: selectedOption.id,
-            },
-          ]
-        : [],
-    };
-    checkOptionBeforeAction(() => navigate('/bill/gift', { state }));
+    const orderInfos: RequestOrderPreview = [
+      {
+        productId,
+        quantity,
+        options: selectedOption
+          ? [
+              {
+                id: options[0].optionsId,
+                detailId: selectedOption.id,
+              },
+            ]
+          : [],
+      },
+    ];
+    checkOptionBeforeAction(() =>
+      navigate('/bill/gift', { state: { orderInfos } }),
+    );
   };
 
   return (
