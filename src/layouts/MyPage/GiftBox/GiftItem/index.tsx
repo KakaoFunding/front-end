@@ -25,7 +25,11 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
   return (
     <div className={styles.wrapper_gift}>
       <div className={styles.wrapper_thumb}>
-        <img src={productThumbnail} alt={productName} />
+        <img
+          src={productThumbnail}
+          alt={productName}
+          className={clsx({ [styles.img_unavailable]: status !== 'not_used' })}
+        />
       </div>
       <span className={styles.txt_brand}>{brandName}</span>
       <strong className={styles.txt_prod}>{productName}</strong>

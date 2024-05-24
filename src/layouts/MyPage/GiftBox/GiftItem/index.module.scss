@@ -41,6 +41,10 @@
 
   .wrapper_thumb {
     @include wrapper-prod-img($width, 0);
+
+    .img_unavailable {
+      opacity: 0.4;
+    }
   }
 
   .txt_brand {
