@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
-import { useAxios } from 'hooks/useAxios';
+import { useAddWish } from 'hooks/useWish';
 
 import { WishModalProps } from 'types/modal';
 
@@ -26,24 +26,30 @@ const WISH_RADIO_INFO = [
 
 type WishRadioType = (typeof WISH_RADIO_STATUS)[keyof typeof WISH_RADIO_STATUS];
 
-const WishModal = ({ close, isOpen, scrollPos, productId }: WishModalProps) => {
+const WishModal = ({
+  close,
+  isOpen,
+  scrollPos,
+  productId,
+  onWishAdded = () => null,
+}: WishModalProps) => {
   const [radioStatus, setRadioStatus] = useState<WishRadioType>(
     WISH_RADIO_STATUS.OTHERS as WishRadioType,
   );
+  const { addWishData, addWish } = useAddWish(productId, radioStatus);
 
   const handleRadioChange = (selectedRadio: WishRadioType) => {
     setRadioStatus(selectedRadio);
   };
 
-  const { sendRequest } = useAxios<{ id: number }>({
-    method: 'post',
-    url: `/products/${productId}/wishes?type=${radioStatus}`,
-  });
-
   const handleAddWish = async () => {
-    await sendRequest();
+    await addWish();
     close();
   };
+
+  useEffect(() => {
+    if (addWishData) onWishAdded(addWishData);
+  }, [addWishData]);
 
   useEffect(() => {
     setRadioStatus(WISH_RADIO_STATUS.OTHERS as WishRadioType);

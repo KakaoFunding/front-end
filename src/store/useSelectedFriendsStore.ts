@@ -15,7 +15,11 @@ type SelectedFriendsState = {
 };
 
 type SelectedFriendsAction = {
-  setSelectedFriends: (state: PickerResponseData[], name: User['name']) => void;
+  setSelectedFriends: (
+    state: PickerResponseData[],
+    name: User['name'],
+    providerId: User['providerId'],
+  ) => void;
   getImgUrl: () => string;
   clearSelectedFriends: () => void;
 };
@@ -31,11 +35,13 @@ export const useSelectedFriendsStore = create<
       selectedHeadCount: 0,
       currentSelectedFriends: [],
 
-      setSelectedFriends: (state, name) =>
+      setSelectedFriends: (state, name, providerId) =>
         set(() => ({
           isSelected: !(state.length === 0),
           isSelfSelected:
-            state.length === 1 && state[0].profile_nickname === name,
+            state.length === 1 &&
+            state[0].profile_nickname === name &&
+            state[0].id === providerId,
           selectedFriends: state,
           selectedHeadCount: state.length,
         })),

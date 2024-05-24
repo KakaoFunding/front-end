@@ -31,9 +31,11 @@ import Wish from 'pages/MyPage/Wish';
 import NotFound from 'pages/NotFound';
 import PaymentCancel from 'pages/PaymentCancel';
 import PaymentFail from 'pages/PaymentFail';
+import PrivateRoute from 'pages/PrivateRoute';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
 import SearchResult from 'pages/SearchResult';
+import UnPrivateRoute from 'pages/UnPrivateRoute';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
@@ -61,37 +63,74 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/home', element: <Home /> },
       {
-        path: '/mypage',
-        element: <Navigate to="/mypage/giftbox" />,
+        element: <UnPrivateRoute />,
+        children: [{ path: '/auth', element: <Auth /> }],
       },
       {
-        path: '/mypage',
-        element: <MyPage />,
+        element: <PrivateRoute />,
         children: [
           {
-            path: 'giftbox',
-            element: <GiftBox />,
+            path: '/cart',
+            element: <Cart />,
           },
           {
-            path: 'fundingbox',
-            element: <FundingBox />,
+            path: '/mypage',
+            element: <Navigate to="/mypage/giftbox" />,
           },
+          {
+            path: '/mypage',
+            element: <MyPage />,
+            children: [
+              {
+                path: 'giftbox',
+                element: <GiftBox />,
+              },
+              {
+                path: 'fundingbox',
+                element: <FundingBox />,
+              },
 
-          {
-            path: 'wish',
-            element: <Wish />,
+              {
+                path: 'wish',
+                element: <Wish />,
+              },
+              {
+                path: 'funding',
+                element: <Funding />,
+              },
+              {
+                path: 'orderHistory',
+                element: <OrderHistory />,
+              },
+              {
+                path: 'fundingHistory',
+                element: <FundingHistory />,
+              },
+            ],
           },
           {
-            path: 'funding',
-            element: <Funding />,
+            path: '/bill/gift',
+            element: <GiftPayment />,
           },
           {
-            path: 'orderHistory',
-            element: <OrderHistory />,
+            path: '/bill/funding',
+            element: <FundingPayment />,
           },
           {
-            path: 'fundingHistory',
-            element: <FundingHistory />,
+            path: '/gift/complete',
+            element: <GiftComplete />,
+          },
+          {
+            path: '/funding/complete',
+            element: <FundingComplete />,
+          },
+          {
+            path: '/payment/fail',
+            element: <PaymentFail />,
+          },
+          {
+            path: '/payment/cancel',
+            element: <PaymentCancel />,
           },
         ],
       },
@@ -118,35 +157,6 @@ const router = createBrowserRouter([
       {
         path: '/search/result',
         element: <SearchResult />,
-      },
-      {
-        path: '/bill/gift',
-        element: <GiftPayment />,
-      },
-      {
-        path: '/bill/funding',
-        element: <FundingPayment />,
-      },
-      {
-        path: '/gift/complete',
-        element: <GiftComplete />,
-      },
-      {
-        path: '/funding/complete',
-        element: <FundingComplete />,
-      },
-      {
-        path: '/payment/fail',
-        element: <PaymentFail />,
-      },
-      {
-        path: '/payment/cancel',
-        element: <PaymentCancel />,
-      },
-      { path: '/auth', element: <Auth /> },
-      {
-        path: '/cart',
-        element: <Cart />,
       },
     ],
   },

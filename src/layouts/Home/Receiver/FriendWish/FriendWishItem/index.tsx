@@ -30,6 +30,7 @@ const FriendWishItem = ({ product }: { product: ProductItem }) => {
             <div className={styles.wrapper_btn}>
               <CartButton />
               <WishButton
+                productId={product.productId}
                 isWished={product.wished}
                 wishCount={product.wishCount}
               />

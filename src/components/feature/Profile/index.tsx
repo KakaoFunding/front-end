@@ -1,23 +1,23 @@
 import ProfileImg from 'components/feature/ProfileImg';
 
+import { useUserStore } from 'store/useUserStore';
+
+import { formatBirthDate } from 'utils/format';
+
 import styles from './index.module.scss';
 
-const mockdata = {
-  imgUrl:
-    'https://gift-s.kakaocdn.net/dn/gift/images/m640/bg_profile_default.png',
-  userName: '보경',
-  month: 5,
-  day: 7,
-};
 const Profile = () => {
+  const { name, profileUrl, birthDate } = useUserStore();
+  const { month, day } = formatBirthDate(birthDate ?? '2000-01-01');
+
   return (
     <section className={styles.wrapper_profile}>
-      <ProfileImg size="xl" imgUrl={mockdata.imgUrl} />
+      <ProfileImg size="xl" imgUrl={profileUrl!} />
       <div className={styles.txt_name}>
-        {mockdata.userName}
+        {name}
         <div
           className={styles.txt_birth}
-        >{`내 생일은 ${mockdata.month}월 ${mockdata.day}일`}</div>
+        >{`내 생일은 ${month}월 ${day}일`}</div>
       </div>
     </section>
   );

@@ -36,3 +36,10 @@ export const formatDate = (date: Date) => {
 
   return `${year}-${month}-${day}`;
 };
+
+export const formatBirthDate = (birthDate: string) => {
+  const formattedBirthDate = birthDate.split('-');
+  const [year, month, day] = formattedBirthDate;
+
+  return { year, month, day };
+};

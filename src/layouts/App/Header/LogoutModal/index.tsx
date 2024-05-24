@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
 import { useUserStore } from 'store/useUserStore';
 
@@ -20,6 +21,8 @@ type LogoutModalProps = {
 };
 
 const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
+  const navigate = useNavigate();
+
   const clearUser = useUserStore((state) => state.clearUserInfo);
   const accessToken = getSessionStorageItem('accessToken');
   const refreshToken = getLocalStorageItem('refreshToken');
@@ -30,6 +33,8 @@ const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
     clearUser();
     clearSessionStorageItem();
     clearLocalStorageItem('refreshToken');
+
+    navigate('/');
   };
 
   return (
