@@ -13,18 +13,20 @@ type WishButtonProps = {
 };
 
 const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
-  const DIVIDER = 10000;
-  const REMAINS = '만+';
 
   // TODO : API 요청
   const handleAddWish = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
 
-  const formattedWishCount =
-    wishCount >= DIVIDER
-      ? Math.floor(wishCount / DIVIDER).toString() + REMAINS
-      : formatNumberWithComma(wishCount);
+  const formatWishCount = (count: number) => {
+    const DIVIDER = 10000;
+    const REMAINS = '만+';
+
+    return count >= DIVIDER
+      ? Math.floor(count / DIVIDER).toString() + REMAINS
+      : formatNumberWithComma(count);
+  };
 
   return (
     <button type="button" onClick={handleAddWish}>
@@ -35,7 +37,7 @@ const WishButton = ({ isWished, wishCount }: WishButtonProps) => {
       >
         {isWished ? '위시 해제' : '위시리스트 추가'}
       </span>
-      <span className={styles.txt_wish_cnt}>{formattedWishCount}</span>
+      <span className={styles.txt_wish_cnt}>{formatWishCount(wishCount)}</span>
     </button>
   );
 };
