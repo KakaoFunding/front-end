@@ -13,7 +13,11 @@ import GiftItem from '../GiftItem';
 
 import styles from './index.module.scss';
 
-const AvailableGiftTab = () => {
+type GiftTabProps = {
+  status: 'NOT_USED' | 'USED';
+};
+
+const GiftTab = ({ status }: GiftTabProps) => {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
@@ -22,7 +26,7 @@ const AvailableGiftTab = () => {
     method: 'get',
     url: '/giftBox',
     params: {
-      status: 'NOT_USED',
+      status,
       page,
       size: 20,
     },
@@ -62,4 +66,4 @@ const AvailableGiftTab = () => {
   );
 };
 
-export default AvailableGiftTab;
+export default GiftTab;

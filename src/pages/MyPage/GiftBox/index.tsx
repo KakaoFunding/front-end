@@ -1,6 +1,5 @@
 import Tabs from 'components/ui/Tabs';
-import AvailableGiftTab from 'layouts/MyPage/GiftBox/AvailableGiftTab';
-import UnavailableGiftTab from 'layouts/MyPage/GiftBox/UnavailableGiftTab';
+import GiftTab from 'layouts/MyPage/GiftBox/GiftTab';
 
 import { Tab } from 'types/tab';
 
@@ -11,12 +10,12 @@ const GiftBox = () => {
     {
       id: 0,
       name: '사용가능',
-      content: <AvailableGiftTab />,
+      content: <GiftTab status="NOT_USED" />,
     },
     {
       id: 1,
       name: '사용완료',
-      content: <UnavailableGiftTab />,
+      content: <GiftTab status="USED" />,
     },
   ];
 
