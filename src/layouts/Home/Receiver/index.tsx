@@ -4,18 +4,13 @@ import MainWrapper from 'components/ui/MainWrapper';
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
+import { useUserExists } from 'hooks/useUserExists';
 import { getSessionStorageItem } from 'utils/sessionStorage';
 
 import FriendFunding from './FriendFunding';
 import FriendWish from './FriendWish';
 
 import styles from './index.module.scss';
-
-const mockdata = {
-  login: false,
-  name: '보경',
-  myProfileImgUrl: '',
-};
 
 type PickerResponseTypes = {
   users: [];
@@ -40,12 +35,12 @@ const Receiver = () => {
     getImgUrl,
   } = useSelectedFriendsStore();
   const socialAccessToken = getSessionStorageItem('socialToken');
-  const { name, providerId } = useUserStore();
+  const { name, providerId, profileUrl } = useUserStore();
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
-  const PROFILE_IMAGE =
-    mockdata.login && isSelfSelected ? mockdata.myProfileImgUrl : getImgUrl();
+  const isLogin = useUserExists();
+  const PROFILE_IMAGE = isLogin && isSelfSelected ? profileUrl : getImgUrl();
   const isKakaoConnected = window.Kakao?.isInitialized();
 
   // 서버 복구되면 테스트 해봐야함
@@ -106,9 +101,9 @@ const Receiver = () => {
               onClick={handleClick}
             />
             <strong className={styles.title_selector}>
-              {mockdata.login && !isSelected && (
+              {isLogin && !isSelected && (
                 <>
-                  {`${mockdata.name}님`}
+                  {`${name}님`}
                   <br />
                 </>
               )}
