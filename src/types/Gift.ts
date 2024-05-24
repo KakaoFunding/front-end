@@ -1,10 +1,10 @@
-export const BADGE_TEXT = {
-  NOT_USED: '미사용',
-  USED: '사용완료',
-  CANCELED: '취소환불',
+export const STATUS_TEXT = {
+  not_used: '미사용',
+  used: '사용완료',
+  canceled: '취소환불',
 } as const;
 
-export type BadgeType = keyof typeof BADGE_TEXT;
+export type StatusType = keyof typeof STATUS_TEXT;
 
 export type Gift = {
   giftId: number;

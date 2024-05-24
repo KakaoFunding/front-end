@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 
-import { BADGE_TEXT, BadgeType, Gift } from 'types/Gift';
+import { Gift, STATUS_TEXT, StatusType } from 'types/Gift';
 
 import styles from './index.module.scss';
 
-type GiftItemProps = { gift: Gift; status: BadgeType };
+type GiftItemProps = { gift: Gift; status: StatusType };
 
 const GiftItem = ({ gift, status }: GiftItemProps) => {
   const {
@@ -30,11 +30,11 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
       <span className={styles.txt_brand}>{brandName}</span>
       <strong className={styles.txt_prod}>{productName}</strong>
 
-      {status === 'NOT_USED' ? (
+      {status === 'not_used' ? (
         <span className={styles.d_day}>D-{getDDay()}</span>
       ) : (
         <span className={clsx(styles.badge, styles[status])}>
-          {BADGE_TEXT[status]}
+          {STATUS_TEXT[status]}
         </span>
       )}
 

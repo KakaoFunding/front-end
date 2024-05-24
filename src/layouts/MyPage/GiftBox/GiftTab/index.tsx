@@ -6,7 +6,7 @@ import Spinner from 'components/ui/Spinner';
 import { useAxios } from 'hooks/useAxios';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
 
-import { Gift } from 'types/Gift';
+import { Gift, StatusType } from 'types/Gift';
 import { PaginationResponse } from 'types/PaginationResponse';
 
 import GiftItem from '../GiftItem';
@@ -14,7 +14,7 @@ import GiftItem from '../GiftItem';
 import styles from './index.module.scss';
 
 type GiftTabProps = {
-  status: 'NOT_USED' | 'USED';
+  status: StatusType;
 };
 
 const GiftTab = ({ status }: GiftTabProps) => {
@@ -48,7 +48,7 @@ const GiftTab = ({ status }: GiftTabProps) => {
   }, [data]);
 
   if (!hasNext && gifts.length === 0) {
-    const emptyType = status === 'NOT_USED' ? 'gift_not_used' : 'gift_used';
+    const emptyType = status === 'not_used' ? 'gift_not_used' : 'gift_used';
     return <EmptyItem type={emptyType} />;
   }
 
@@ -57,7 +57,7 @@ const GiftTab = ({ status }: GiftTabProps) => {
       <ul className={styles.list_gift}>
         {gifts.map((gift) => (
           <li key={gift.giftId}>
-            <GiftItem gift={gift} status="NOT_USED" />
+            <GiftItem gift={gift} status={status} />
           </li>
         ))}
       </ul>

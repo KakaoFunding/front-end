@@ -10,12 +10,12 @@ const GiftBox = () => {
     {
       id: 0,
       name: '사용가능',
-      content: <GiftTab status="NOT_USED" />,
+      content: <GiftTab status="not_used" />,
     },
     {
       id: 1,
       name: '사용완료',
-      content: <GiftTab status="USED" />,
+      content: <GiftTab status="used" />,
     },
   ];
 
