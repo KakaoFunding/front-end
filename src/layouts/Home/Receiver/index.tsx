@@ -43,7 +43,6 @@ const Receiver = () => {
   const PROFILE_IMAGE = isLoggedIn && isSelfSelected ? profileUrl : getImgUrl();
   const isKakaoConnected = window.Kakao?.isInitialized();
 
-  // 서버 복구되면 테스트 해봐야함
   const getTitle = () => {
     let title = '';
 
