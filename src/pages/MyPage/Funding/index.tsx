@@ -1,6 +1,8 @@
 import EmptyItem from 'components/feature/EmptyItem';
 import FundingItem from 'layouts/MyPage/Funding/FundingItem';
 
+import { useUserStore } from 'store/useUserStore';
+
 import styles from './index.module.scss';
 
 // 목데이터
@@ -20,9 +22,11 @@ const data = {
 };
 
 const Funding = () => {
+  const { name } = useUserStore();
+
   return (
     <>
-      <div className={styles.title}>{`${data.userName}님의 \n펀딩아이템`}</div>
+      <div className={styles.title}>{`${name}님의 \n펀딩아이템`}</div>
       {data.hasFunding ? (
         <FundingItem
           fundingId={data.fundingId}
