@@ -34,6 +34,7 @@ import PaymentFail from 'pages/PaymentFail';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
 import SearchResult from 'pages/SearchResult';
+import UnPrivateRoute from 'pages/UnPrivateRoute';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/home', element: <Home /> },
+      {
+        element: <UnPrivateRoute />,
+        children: [{ path: '/auth', element: <Auth /> }],
+      },
       {
         path: '/mypage',
         element: <Navigate to="/mypage/giftbox" />,
@@ -143,7 +148,6 @@ const router = createBrowserRouter([
         path: '/payment/cancel',
         element: <PaymentCancel />,
       },
-      { path: '/auth', element: <Auth /> },
       {
         path: '/cart',
         element: <Cart />,
