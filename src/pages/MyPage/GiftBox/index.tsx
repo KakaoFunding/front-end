@@ -22,9 +22,9 @@ const GiftBox = () => {
   return (
     <>
       <h1 className={styles.txt_title}>
-        사용가능한 선물이
+        사용가능한 선물을
         <br />
-        n개 남아있어요.
+        확인해보세요 🎁
       </h1>
       <Tabs initialTabId={0} mode="product_list" tabs={tabs} />
     </>
