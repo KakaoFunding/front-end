@@ -3,6 +3,7 @@ import { MouseEvent, useEffect, useState } from 'react';
 
 import WishModal from 'components/ui/Modal/WishModal';
 
+import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
 import { useDeleteWish } from 'hooks/useWish';
 import { formatNumberWithComma } from 'utils/format';
@@ -23,6 +24,7 @@ const WishButton = ({
   isWished: isWishedProp,
   wishCount: wishCountProp,
 }: WishButtonProps) => {
+  const { isLoggedIn, login, confirmLogin } = useLogin();
   const { isOpen, open, close, scrollPos } = useModal();
   const { deleteWishData, deleteWish } = useDeleteWish(productId);
   const [wishCount, setWishCount] = useState<number>(wishCountProp);
@@ -37,8 +39,13 @@ const WishButton = ({
 
   const handleClickWish = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (wished) deleteWish();
-    else open();
+    if (isLoggedIn) {
+      if (wished) deleteWish();
+      else open();
+    } else {
+      const result = confirmLogin();
+      if (result) login();
+    }
   };
 
   const handleWishAdded = (wishData: ResponseWishAddOrDelete) => {
