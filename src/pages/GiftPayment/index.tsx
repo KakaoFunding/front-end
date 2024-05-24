@@ -7,6 +7,9 @@ import MainWrapper from 'components/ui/MainWrapper';
 import Spinner from 'components/ui/Spinner';
 import GiftDetail from 'layouts/GiftPayment/GiftDetail';
 
+import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+import { useUserStore } from 'store/useUserStore';
+
 import { useAxios } from 'hooks/useAxios';
 import { getSessionStorageItem } from 'utils/sessionStorage';
 
@@ -21,15 +24,23 @@ import {
 
 import styles from './index.module.scss';
 
+/**
+ * 이 페이지는 다음 state를 요구함
+ * - orderInfos: 주문할 상품 (type: RequestOrderPreview)
+ * - giftFor: 선물 대상 (type: 'me' | 'friends')
+ */
 const GiftPayment = () => {
   const { state } = useLocation();
   const { orderInfos }: { orderInfos: RequestOrderPreview } = state;
+  const { giftFor }: { giftFor: 'me' | 'friends' } = state;
 
   const navigate = useNavigate();
   const [pgToken, setPgToken] = useState<string>('');
   const [isPaying, setIsPaying] = useState<boolean>(false);
 
-  const providerId = '333'; // TODO: 카카오 피커 응답의 id를 적어야 함
+  const { providerId: myId } = useUserStore();
+  const { selectedFriends } = useSelectedFriendsStore();
+  const providerId = giftFor === 'me' ? myId : selectedFriends[0].id;
   const socialAccessToken = getSessionStorageItem('socialToken');
 
   // 구매할 상품 조회 API

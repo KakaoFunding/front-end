@@ -97,7 +97,7 @@ const ButtonBundles = ({
     ];
     checkLoginBeforeAction(() => {
       checkOptionBeforeAction(() => {
-        navigate('/bill/gift', { state: { orderInfos } });
+        navigate('/bill/gift', { state: { orderInfos, giftFor: 'me' } });
       });
     });
   };
