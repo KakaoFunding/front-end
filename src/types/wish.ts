@@ -7,3 +7,8 @@ export type WishItemType = {
 };
 
 export type WishResponse = WishItemType[];
+
+export type ResponseWishAddOrDelete = {
+  productId: number;
+  wishCount: number;
+};
