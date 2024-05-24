@@ -8,6 +8,7 @@ import { useDeleteWish } from 'hooks/useWish';
 import { formatNumberWithComma } from 'utils/format';
 
 import { ProductItem } from 'types/productItem';
+import { ResponseWishAddOrDelete } from 'types/wish';
 
 import styles from './index.module.scss';
 
@@ -17,15 +18,19 @@ type WishButtonProps = {
   wishCount: ProductItem['wishCount'];
 };
 
-const WishButton = ({ productId, isWished, wishCount }: WishButtonProps) => {
+const WishButton = ({
+  productId,
+  isWished: isWishedProp,
+  wishCount: wishCountProp,
+}: WishButtonProps) => {
   const { isOpen, open, close, scrollPos } = useModal();
   const { deleteWishData, deleteWish } = useDeleteWish(productId);
-  const [count, setCount] = useState<number>(wishCount);
-  const [wished, setWished] = useState<boolean>(isWished);
+  const [wishCount, setWishCount] = useState<number>(wishCountProp);
+  const [wished, setWished] = useState<boolean>(isWishedProp);
 
   useEffect(() => {
     if (deleteWishData) {
-      setCount(deleteWishData.wishCount);
+      setWishCount(deleteWishData.wishCount);
       setWished(false);
     }
   }, [deleteWishData]);
@@ -36,8 +41,9 @@ const WishButton = ({ productId, isWished, wishCount }: WishButtonProps) => {
     else open();
   };
 
-  const handleWishAdded = () => {
+  const handleWishAdded = (wishData: ResponseWishAddOrDelete) => {
     setWished(true);
+    setWishCount(wishData.wishCount);
   };
 
   const formatWishCount = (num: number) => {
@@ -66,7 +72,9 @@ const WishButton = ({ productId, isWished, wishCount }: WishButtonProps) => {
         >
           {wished ? '위시 해제' : '위시리스트 추가'}
         </span>
-        <span className={styles.txt_wish_cnt}>{formatWishCount(count)}</span>
+        <span className={styles.txt_wish_cnt}>
+          {formatWishCount(wishCount)}
+        </span>
       </button>
     </>
   );

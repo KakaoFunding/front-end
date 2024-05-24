@@ -1,4 +1,5 @@
 import { OptionDetail, ProductDescriptionResponse } from './product';
+import { ResponseWishAddOrDelete } from './wish';
 
 type ModalProps = {
   close: () => void;
@@ -16,5 +17,5 @@ export type FundingModalProps = ModalProps &
 
 export type WishModalProps = ModalProps & {
   productId: number;
-  onWishAdded?: () => void;
+  onWishAdded?: (addWishData: ResponseWishAddOrDelete) => void;
 };

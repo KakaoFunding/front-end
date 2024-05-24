@@ -36,7 +36,7 @@ const WishModal = ({
   const [radioStatus, setRadioStatus] = useState<WishRadioType>(
     WISH_RADIO_STATUS.OTHERS as WishRadioType,
   );
-  const { addWish } = useAddWish(productId, radioStatus);
+  const { addWishData, addWish } = useAddWish(productId, radioStatus);
 
   const handleRadioChange = (selectedRadio: WishRadioType) => {
     setRadioStatus(selectedRadio);
@@ -45,7 +45,7 @@ const WishModal = ({
   const handleAddWish = async () => {
     await addWish();
     close();
-    onWishAdded();
+    if (addWishData) onWishAdded(addWishData);
   };
 
   useEffect(() => {
