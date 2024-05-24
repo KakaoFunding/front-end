@@ -40,12 +40,13 @@ const Receiver = () => {
     getImgUrl,
   } = useSelectedFriendsStore();
   const socialAccessToken = getSessionStorageItem('socialToken');
-  const userName = useUserStore((state) => state.name);
+  const { name, providerId } = useUserStore();
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
   const PROFILE_IMAGE =
     mockdata.login && isSelfSelected ? mockdata.myProfileImgUrl : getImgUrl();
+  const isKakaoConnected = window.Kakao?.isInitialized();
 
   // 서버 복구되면 테스트 해봐야함
   const getTitle = () => {
@@ -63,7 +64,9 @@ const Receiver = () => {
     return title;
   };
 
-  window.Kakao?.Auth.setAccessToken(socialAccessToken);
+  if (isKakaoConnected) {
+    window.Kakao?.Auth.setAccessToken(socialAccessToken);
+  }
 
   const handleClick = () => {
     window.Kakao?.Picker.selectFriends({
@@ -76,7 +79,7 @@ const Receiver = () => {
       minPickableCount: 1,
     })
       .then((response: PickerResponseTypes) => {
-        setSelectedFriends(response.users, userName);
+        setSelectedFriends(response.users, name, providerId);
       })
       .catch((error: PickerErrorTypes) => {
         const pickerError = error as PickerErrorTypes;
