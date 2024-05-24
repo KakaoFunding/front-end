@@ -1,0 +1,88 @@
+@import 'styles/mixins.module';
+
+.txt_date {
+  @include font(15px, 400);
+
+  margin-bottom: 10px;
+
+  .num_data {
+    @include font(15px, 700);
+
+    margin-left: 5px;
+  }
+}
+
+.wrapper_history {
+  margin-bottom: 30px;
+  border: 2px solid #ededed;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 6%);
+}
+
+.section_status {
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px solid #ededed;
+
+  .ico_receiver {
+    @include ico-gift-order(-125px, -15px, 18px, 12px);
+
+    display: inline-block;
+    margin: 2px 3px 0 0;
+  }
+
+  .txt_detail {
+    @include font(13px, 400, #666);
+
+    position: absolute;
+    right: 16px;
+    line-height: 16px;
+    letter-spacing: -0.024em;
+
+    .ico_detail {
+      @include ico-gift-order(-100px, -15px, 6px, 10px);
+
+      margin: 0 0 0 4px;
+    }
+  }
+}
+
+.section_product {
+  display: flex;
+  padding: 16px;
+
+  .thumb_product {
+    @include size(96px, 96px, 0 10px 0 0, 0);
+  }
+
+  .info_product {
+    line-height: 18px;
+
+    .txt_brand {
+      @include font(14px, 400, #888);
+    }
+
+    .txt_title {
+      @include font(14px, 400, #222);
+      @include text-ellipsis(2);
+
+      display: block;
+      overflow: hidden;
+      padding: 4px 0;
+    }
+  }
+}
+
+.num_price {
+  @include font(14px, 700, #000);
+}
+
+.txt_price {
+  @include font(14px, 400, #a5a5a5);
+
+  padding: 5px 6px 0 0;
+}
+
+.txt_unit {
+  @include font(14px, 400, #000);
+}
