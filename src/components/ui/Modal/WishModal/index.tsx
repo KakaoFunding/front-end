@@ -26,7 +26,13 @@ const WISH_RADIO_INFO = [
 
 type WishRadioType = (typeof WISH_RADIO_STATUS)[keyof typeof WISH_RADIO_STATUS];
 
-const WishModal = ({ close, isOpen, scrollPos, productId }: WishModalProps) => {
+const WishModal = ({
+  close,
+  isOpen,
+  scrollPos,
+  productId,
+  onWishAdded = () => null,
+}: WishModalProps) => {
   const [radioStatus, setRadioStatus] = useState<WishRadioType>(
     WISH_RADIO_STATUS.OTHERS as WishRadioType,
   );
@@ -43,6 +49,7 @@ const WishModal = ({ close, isOpen, scrollPos, productId }: WishModalProps) => {
   const handleAddWish = async () => {
     await sendRequest();
     close();
+    onWishAdded();
   };
 
   useEffect(() => {

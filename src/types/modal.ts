@@ -14,5 +14,7 @@ export type FundingModalProps = ModalProps &
     productThumbnail: string;
   };
 
-export type WishModalProps = ModalProps &
-  Pick<ProductDescriptionResponse, 'productId'>;
+export type WishModalProps = ModalProps & {
+  productId: number;
+  onWishAdded?: () => void;
+};
