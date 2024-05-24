@@ -1,8 +1,10 @@
 import ProfileImg from 'components/feature/ProfileImg';
 import MainWrapper from 'components/ui/MainWrapper';
 
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+import { useUserStore } from 'store/useUserStore';
+
+import { getSessionStorageItem } from 'utils/sessionStorage';
 
 import FriendFunding from './FriendFunding';
 import FriendWish from './FriendWish';
@@ -37,7 +39,7 @@ const Receiver = () => {
     setSelectedFriends,
     getImgUrl,
   } = useSelectedFriendsStore();
-  const socialAccessToken = useAuthStore((state) => state.socialToken);
+  const socialAccessToken = getSessionStorageItem('socialToken');
   const userName = useUserStore((state) => state.name);
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,

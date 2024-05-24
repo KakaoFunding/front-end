@@ -1,9 +1,19 @@
 import axios from 'axios';
 
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useUserStore';
 
-import { getSessionStorageItem } from 'utils/sessionStorage';
+import {
+  getSessionStorageItem,
+  clearSessionStorageItem,
+  setSessionStorageItem,
+} from 'utils/sessionStorage';
 
+import {
+  clearLocalStorageItem,
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from './localStorage';
+// members.ts와 현재 파일이 서로 import를 하고 있어서 린트 에러가 발생 중
 // eslint-disable-next-line import/no-cycle
 import { refreshAccessToken } from './members';
 
@@ -36,25 +46,33 @@ apiV1.interceptors.response.use(
       response: { status },
     } = error;
 
-    if (status === 401) {
-      if (error.response.data.message === 'Unauthorized') {
-        const originRequest = config;
-        const response = await refreshAccessToken();
+    if (status === 403) {
+      // if (error.response.data.message === 'Unauthorized') {
+      const originRequest = config;
+      const usersRefreshToken = getLocalStorageItem('refreshToken');
+      const response = await refreshAccessToken(usersRefreshToken);
 
-        if (response.status === 200) {
-          const newAccessToken = response.data.accessToken;
-          useAuthStore.setState({ accessToken: newAccessToken });
-          // axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+      if (response.status === 200) {
+        const { accessToken, refreshToken } = response.data;
+        const { value, expiration } = refreshToken;
 
-          // originRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-          return axios(originRequest);
-        }
+        setSessionStorageItem('accessToken', accessToken);
+        setLocalStorageItem('refreshToken', value, expiration);
 
-        if (response.status === 404) {
-          useUserStore.getState().clearUserInfo();
-          window.location.replace('/');
-        }
+        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+        originRequest.headers.Authorization = `Bearer ${accessToken}`;
+        originRequest.data = { refreshToken: value };
+
+        return axios(originRequest);
       }
+
+      if (response.status === 404) {
+        useUserStore.getState().clearUserInfo();
+        clearSessionStorageItem();
+        clearLocalStorageItem('refreshToken');
+        window.location.replace('/');
+      }
+      // }
     }
     return Promise.reject(error);
   },
