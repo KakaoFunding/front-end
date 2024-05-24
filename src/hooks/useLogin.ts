@@ -4,11 +4,11 @@ import { useUserExists } from './useUserExists';
 
 export const useLogin = () => {
   const isLoggedIn = useUserExists(); // 로그인 여부
+  const { pathname, search } = useLocation();
 
   const login = () => {
-    if (!isLoggedIn) return;
+    if (isLoggedIn) return;
 
-    const { pathname, search } = useLocation();
     const currentUrl = pathname + search;
     const REST_API_KEY = import.meta.env.VITE_REST_API_KEY;
     const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URL;
