@@ -16,8 +16,11 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
     receivedAt,
   } = gift;
 
-  const diffTime = new Date().getTime() - new Date(expiredAt).getTime(); // ms 차이
-  const remainingDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // 차이 / 1일
+  const getDDay = () => {
+    const diffTime = new Date(expiredAt).getTime() - new Date().getTime(); // 시간 차이, 단위: ms
+    const DDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // 밀리초 / 1일
+    return DDay;
+  };
 
   return (
     <div className={styles.wrapper_gift}>
@@ -28,7 +31,7 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
       <strong className={styles.txt_prod}>{productName}</strong>
 
       {status === 'NOT_USED' ? (
-        <span className={styles.d_day}>D-{remainingDays}</span>
+        <span className={styles.d_day}>D-{getDDay()}</span>
       ) : (
         <span className={clsx(styles.badge, styles[status])}>
           {BADGE_TEXT[status]}
