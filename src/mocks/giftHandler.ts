@@ -5,8 +5,8 @@ import { PaginationResponse } from 'types/PaginationResponse';
 
 const gifts: Gift[] = Array.from({ length: 50 }).map((_, i) => ({
   giftId: i,
-  brandName: `브랜드${i}`,
-  productName: `상품${i}`,
+  brandName: `브랜드`,
+  productName: `사용가능 상품${i}`,
   productThumbnail:
     'https://img1.kakaocdn.net/thumb/C300x300@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20201230180133_cd30cb29560f4f1f8c7f380eb94e3cf1.png',
   senderName: '홍길동',
@@ -18,15 +18,23 @@ export const giftHandlers = [
   http.get('/giftBox', ({ request }) => {
     const { searchParams } = new URL(request.url);
 
-    // const status = searchParams.get('status');
+    const status = searchParams.get('status');
     const page = Number(searchParams.get('page'));
     const size = Number(searchParams.get('size'));
+
+    let items: Gift[] = gifts;
+    if (status === 'USED')
+      items = gifts.map((gift, i) => ({
+        ...gift,
+        giftId: 100 + i,
+        productName: `사용완료 상품${i}`,
+      }));
 
     const totalElements = gifts.length;
     const totalPages = Math.ceil(totalElements / size);
 
     return HttpResponse.json<PaginationResponse<Gift>>({
-      items: gifts.slice(page * size, (page + 1) * size),
+      items: items.slice(page * size, (page + 1) * size),
       hasNext: totalPages > page + 1,
       last: totalPages <= page + 1,
       pageNumber: page,
