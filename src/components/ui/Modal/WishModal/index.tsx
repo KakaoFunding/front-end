@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from 'components/ui/Button';
 import Modal from 'components/ui/Modal';
 
-import { useAxios } from 'hooks/useAxios';
+import { useAddWish } from 'hooks/useWish';
 
 import { WishModalProps } from 'types/modal';
 
@@ -36,18 +36,14 @@ const WishModal = ({
   const [radioStatus, setRadioStatus] = useState<WishRadioType>(
     WISH_RADIO_STATUS.OTHERS as WishRadioType,
   );
+  const { addWish } = useAddWish(productId, radioStatus);
 
   const handleRadioChange = (selectedRadio: WishRadioType) => {
     setRadioStatus(selectedRadio);
   };
 
-  const { sendRequest } = useAxios<{ id: number }>({
-    method: 'post',
-    url: `/products/${productId}/wishes?type=${radioStatus}`,
-  });
-
   const handleAddWish = async () => {
-    await sendRequest();
+    await addWish();
     close();
     onWishAdded();
   };
