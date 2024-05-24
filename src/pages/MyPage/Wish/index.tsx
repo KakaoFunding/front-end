@@ -4,15 +4,16 @@ import EmptyItem from 'components/feature/EmptyItem';
 import Spinner from 'components/ui/Spinner';
 import WishItem from 'layouts/MyPage/Wish/WishItem';
 
+import { useUserStore } from 'store/useUserStore';
+
 import { useAxios } from 'hooks/useAxios';
 
 import { WishResponse } from 'types/wish';
 
 import styles from './index.module.scss';
 
-const userName = '보경';
-
 const Wish = () => {
+  const { name } = useUserStore();
   const {
     data: wishItems,
     sendRequest,
@@ -29,7 +30,7 @@ const Wish = () => {
   return (
     <>
       {isLoading && <Spinner />}
-      <div className={styles.title}>{`${userName}님의 \n위시리스트`}</div>
+      <div className={styles.title}>{`${name}님의 \n위시리스트`}</div>
       {wishItems && (
         <ul>
           {wishItems.map((wishItem) => (
