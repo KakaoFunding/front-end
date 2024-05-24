@@ -48,7 +48,8 @@ const GiftTab = ({ status }: GiftTabProps) => {
   }, [data]);
 
   if (!hasNext && gifts.length === 0) {
-    return <EmptyItem type="available_gift" />;
+    const emptyType = status === 'NOT_USED' ? 'gift_not_used' : 'gift_used';
+    return <EmptyItem type={emptyType} />;
   }
 
   return (
