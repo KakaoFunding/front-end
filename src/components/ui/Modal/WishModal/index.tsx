@@ -45,8 +45,11 @@ const WishModal = ({
   const handleAddWish = async () => {
     await addWish();
     close();
-    if (addWishData) onWishAdded(addWishData);
   };
+
+  useEffect(() => {
+    if (addWishData) onWishAdded(addWishData);
+  }, [addWishData]);
 
   useEffect(() => {
     setRadioStatus(WISH_RADIO_STATUS.OTHERS as WishRadioType);
