@@ -20,8 +20,9 @@ const AvailableGiftTab = () => {
 
   const { data, isLoading, sendRequest } = useAxios<PaginationResponse<Gift>>({
     method: 'get',
-    url: '/gifts/unused', // mock URL
+    url: '/giftBox',
     params: {
+      status: 'NOT_USED',
       page,
       size: 20,
     },
@@ -51,16 +52,7 @@ const AvailableGiftTab = () => {
       <ul className={styles.list_gift}>
         {gifts.map((gift) => (
           <li key={gift.giftId}>
-            <GiftItem
-              productId={gift.productId}
-              name={gift.name}
-              brandName={gift.brandName}
-              photo={gift.photo}
-              senderName={gift.senderName}
-              receivedDate={gift.receivedDate}
-              expiredDate={gift.expiredDate}
-              status={gift.status}
-            />
+            <GiftItem gift={gift} status="NOT_USED" />
           </li>
         ))}
       </ul>
