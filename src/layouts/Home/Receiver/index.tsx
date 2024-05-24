@@ -4,7 +4,7 @@ import MainWrapper from 'components/ui/MainWrapper';
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
-import { useUserExists } from 'hooks/useUserExists';
+import { useLogin } from 'hooks/useLogin';
 import { getSessionStorageItem } from 'utils/sessionStorage';
 
 import FriendFunding from './FriendFunding';
@@ -39,8 +39,8 @@ const Receiver = () => {
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
-  const isLogin = useUserExists();
-  const PROFILE_IMAGE = isLogin && isSelfSelected ? profileUrl : getImgUrl();
+  const { isLoggedIn } = useLogin();
+  const PROFILE_IMAGE = isLoggedIn && isSelfSelected ? profileUrl : getImgUrl();
   const isKakaoConnected = window.Kakao?.isInitialized();
 
   // 서버 복구되면 테스트 해봐야함
@@ -101,7 +101,7 @@ const Receiver = () => {
               onClick={handleClick}
             />
             <strong className={styles.title_selector}>
-              {isLogin && !isSelected && (
+              {isLoggedIn && !isSelected && (
                 <>
                   {`${name}님`}
                   <br />
