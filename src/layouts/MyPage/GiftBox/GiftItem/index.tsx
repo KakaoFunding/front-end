@@ -43,7 +43,9 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
           <span className={styles.txt_from}>from. </span>
           {senderName}
         </span>
-        <span className={styles.txt_date}>{receivedAt}</span>
+        <span className={styles.txt_date}>
+          {new Date(receivedAt).toLocaleString()}
+        </span>
       </div>
     </div>
   );
