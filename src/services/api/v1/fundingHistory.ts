@@ -10,7 +10,7 @@ export const getContributedFundingHistory = async (
   endDate: Date,
 ) => {
   const contributedFundingHistory = await apiV1.get(
-    `/fundingDetail?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}&status=PROGRESS`,
+    `/fundingDetail?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`,
   );
 
   return contributedFundingHistory.data as PaginationResponse<ContributedFundingItem>;

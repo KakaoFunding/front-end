@@ -12,7 +12,7 @@ export type ContributedFundingItem = {
     attributeAmount: number;
     attributedAt: string;
     creatorName: string;
-    status: 'PROGRESS';
+    status: 'PROGRESS' | 'CANCEL_REFUND' | 'COMPLETED';
   };
 };
 
