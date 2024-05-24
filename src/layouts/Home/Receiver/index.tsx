@@ -39,7 +39,7 @@ const Receiver = () => {
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
-  const { isLoggedIn } = useLogin();
+  const { isLoggedIn, login, confirmLogin } = useLogin();
   const PROFILE_IMAGE = isLoggedIn && isSelfSelected ? profileUrl : getImgUrl();
   const isKakaoConnected = window.Kakao?.isInitialized();
 
@@ -63,6 +63,13 @@ const Receiver = () => {
   }
 
   const handleClick = () => {
+    if (!isLoggedIn) {
+      const result = confirmLogin();
+
+      if (result) login();
+      return;
+    }
+
     window.Kakao?.Picker.selectFriends({
       title: '친구 선택',
       enableSearch: true,
