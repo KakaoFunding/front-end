@@ -49,6 +49,22 @@ const ButtonBundles = ({
     scrollPos: scrollWishPos,
   } = useModal();
 
+  // 주문 정보
+  const orderInfos: RequestOrderPreview = [
+    {
+      productId,
+      quantity,
+      options: selectedOption
+        ? [
+            {
+              id: options[0].optionsId,
+              detailId: selectedOption.id,
+            },
+          ]
+        : [],
+    },
+  ];
+
   // 로그인 여부 확인
   const checkLoginBeforeAction = (action: () => void) => {
     if (isLoggedIn) action();
@@ -81,20 +97,6 @@ const ButtonBundles = ({
 
   // 나에게 선물하기 버튼 핸들러
   const handleClickGiftForMe = () => {
-    const orderInfos: RequestOrderPreview = [
-      {
-        productId,
-        quantity,
-        options: selectedOption
-          ? [
-              {
-                id: options[0].optionsId,
-                detailId: selectedOption.id,
-              },
-            ]
-          : [],
-      },
-    ];
     checkLoginBeforeAction(() => {
       checkOptionBeforeAction(() => {
         navigate('/bill/gift', { state: { orderInfos, giftFor: 'me' } });
@@ -105,8 +107,9 @@ const ButtonBundles = ({
   // 친구에게 선물하기 버튼 핸들러
   const handleClickGiftForFriend = () => {
     checkLoginBeforeAction(() => {
-      // 친구를 선택하지 않은 경우 피커 오픈
+      // TODO: 친구를 선택하지 않은 경우 피커 오픈
       // 친구를 선택한 경우 선물 결제 페이지로 이동
+      navigate('/bill/gift', { state: { orderInfos, giftFor: 'friends' } });
     });
   };
 
