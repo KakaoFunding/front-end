@@ -4,6 +4,7 @@ import MainWrapper from 'components/ui/MainWrapper';
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
+import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
 import { getSessionStorageItem } from 'utils/sessionStorage';
 
@@ -11,15 +12,6 @@ import FriendFunding from './FriendFunding';
 import FriendWish from './FriendWish';
 
 import styles from './index.module.scss';
-
-type PickerResponseTypes = {
-  users: [];
-};
-
-type PickerErrorTypes = {
-  msg: string;
-  code: string;
-};
 
 const FriendsData = {
   hasWish: true,
@@ -31,11 +23,11 @@ const Receiver = () => {
     isSelfSelected,
     selectedHeadCount,
     selectedFriends,
-    setSelectedFriends,
     getImgUrl,
   } = useSelectedFriendsStore();
   const socialAccessToken = getSessionStorageItem('socialToken');
-  const { name, providerId, profileUrl } = useUserStore();
+  const { name, profileUrl } = useUserStore();
+  const { openKakaoPicker } = useKakaoPicker();
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
@@ -70,25 +62,7 @@ const Receiver = () => {
       return;
     }
 
-    window.Kakao?.Picker.selectFriends({
-      title: '친구 선택',
-      enableSearch: true,
-      showMyProfile: true,
-      showFavorite: true,
-      showPickedFriend: true,
-      maxPickableCount: 10,
-      minPickableCount: 1,
-    })
-      .then((response: PickerResponseTypes) => {
-        setSelectedFriends(response.users, name, providerId);
-      })
-      .catch((error: PickerErrorTypes) => {
-        const pickerError = error as PickerErrorTypes;
-        console.error(pickerError);
-      })
-      .finally(() => {
-        window.Kakao?.Picker.cleanup();
-      });
+    openKakaoPicker();
   };
 
   const handleCancel = () => {
