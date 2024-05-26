@@ -26,9 +26,12 @@ apiV1.interceptors.request.use(
   (config) => {
     const newConfig = config;
     const accessToken = getSessionStorageItem('accessToken');
-    if (accessToken) {
+    const reissueUrlPattern = /\/oauth\/reissue/;
+
+    if (accessToken && !reissueUrlPattern.test(newConfig.url || '')) {
       newConfig.headers.Authorization = `Bearer ${accessToken}`;
     }
+
     return newConfig;
   },
   (error) => {
@@ -51,8 +54,8 @@ apiV1.interceptors.response.use(
       // if (error.response.data.message === 'Unauthorized') {
       const originRequest = config;
       const usersRefreshToken = getLocalStorageItem('refreshToken');
+      delete apiV1.defaults.headers.common.Authorization;
       const response = await refreshAccessToken(usersRefreshToken);
-
       if (response.status === 200) {
         const { accessToken, refreshToken } = response.data;
         const { value, expiration } = refreshToken;
@@ -74,6 +77,7 @@ apiV1.interceptors.response.use(
         clearLocalStorageItem('refreshToken');
         window.location.replace('/');
       }
+
       // }
     }
     return Promise.reject(error);
