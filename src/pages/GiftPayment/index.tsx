@@ -11,6 +11,7 @@ import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
 import { useAxios } from 'hooks/useAxios';
+import { usePaymentWindow } from 'hooks/usePaymentWindow';
 import { getSessionStorageItem } from 'utils/sessionStorage';
 
 import { PaginationResponse } from 'types/PaginationResponse';
@@ -35,13 +36,14 @@ const GiftPayment = () => {
   const { giftFor }: { giftFor: 'me' | 'friends' } = state;
 
   const navigate = useNavigate();
-  const [pgToken, setPgToken] = useState<string>('');
   const [isPaying, setIsPaying] = useState<boolean>(false);
 
   const { providerId: myId } = useUserStore();
   const { selectedFriends } = useSelectedFriendsStore();
   const providerId = giftFor === 'me' ? myId : selectedFriends[0].id;
   const socialAccessToken = getSessionStorageItem('socialToken');
+
+  const { pgToken, openPaymentWindow, checkPaymentStatus } = usePaymentWindow();
 
   // 구매할 상품 조회 API
   const { data: orderData, sendRequest: sendOrderRequest } = useAxios<
@@ -104,20 +106,6 @@ const GiftPayment = () => {
     await sendReady();
   };
 
-  const openPaymentWindow = (redirectUrl: string) => {
-    const width = 520;
-    const height = 700;
-    const left = window.outerWidth / 2 - width / 2;
-    const top = window.outerHeight / 2 - height / 2;
-    const features = [
-      `width=${width}`,
-      `height=${height}`,
-      `left=${left}`,
-      `top=${top}`,
-    ];
-    return window.open(redirectUrl, '_blank', features.join(','));
-  };
-
   // handle ready response
   useEffect(() => {
     if (!readyData) return;
@@ -125,31 +113,10 @@ const GiftPayment = () => {
     const { redirectUrl } = readyData;
     const paymentWindow = openPaymentWindow(redirectUrl);
 
-    if (!paymentWindow) return;
-
-    const checkPaymentStatus = setInterval(() => {
-      if (paymentWindow.closed) {
-        setIsPaying(false);
-        clearInterval(checkPaymentStatus);
-        return;
-      }
-
-      const paymentUrl = paymentWindow.location.href;
-      if (paymentUrl.includes('/payments')) {
-        paymentWindow.close();
-        if (paymentUrl.includes('/success')) {
-          const url = new URL(paymentUrl);
-          const urlParams = new URLSearchParams(url.search);
-          setPgToken(urlParams.get('pg_token')!);
-        } else if (paymentUrl.includes('/fail')) {
-          navigate('/payment/fail');
-        } else if (paymentUrl.includes('/cancel')) {
-          navigate('/payment/cancel', {
-            state: { paymentType: 'gift', ...state },
-          });
-        }
-      }
-    }, 1000);
+    if (paymentWindow) {
+      const onWindowClosed = () => setIsPaying(false);
+      checkPaymentStatus(paymentWindow, onWindowClosed, 'gift', state);
+    }
   }, [readyData]);
 
   // if pgToken is set, then send payment approve request
