@@ -3,9 +3,9 @@ import { persist } from 'zustand/middleware';
 
 import { PickerResponseData, User } from 'types/user';
 
-const defaultImgUrl = 'assets/bg_profile_default.png';
-const peopleImgUrl = 'assets/profile_people.png';
-const friendsDefaultImgUrl = 'assets/profile_default.png';
+import defaultImgUrl from 'assets/bg_profile_default.png';
+import friendsDefaultImgUrl from 'assets/profile_default.png';
+import peopleImgUrl from 'assets/profile_people.png';
 
 type SelectedFriendsState = {
   isSelected: boolean;
