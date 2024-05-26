@@ -104,23 +104,52 @@ const GiftPayment = () => {
     await sendReady();
   };
 
+  const openPaymentWindow = (redirectUrl: string) => {
+    const width = 520;
+    const height = 700;
+    const left = window.outerWidth / 2 - width / 2;
+    const top = window.outerHeight / 2 - height / 2;
+    const features = [
+      `width=${width}`,
+      `height=${height}`,
+      `left=${left}`,
+      `top=${top}`,
+    ];
+    return window.open(redirectUrl, '_blank', features.join(','));
+  };
+
   // handle ready response
   useEffect(() => {
     if (!readyData) return;
 
     const { redirectUrl } = readyData;
+    const paymentWindow = openPaymentWindow(redirectUrl);
 
-    if (redirectUrl.includes('/payments/success')) {
-      const url = new URL(redirectUrl);
-      const urlParams = new URLSearchParams(url.search);
-      setPgToken(urlParams.get('pg_token') as string);
-    } else if (redirectUrl.includes('/payments/fail')) {
-      navigate('/payment/fail');
-    } else if (redirectUrl.includes('/payments/cancel')) {
-      navigate('/payment/cancel', {
-        state: { paymentType: 'gift', ...state },
-      });
-    }
+    if (!paymentWindow) return;
+
+    const checkPaymentStatus = setInterval(() => {
+      if (paymentWindow.closed) {
+        setIsPaying(false);
+        clearInterval(checkPaymentStatus);
+        return;
+      }
+
+      const paymentUrl = paymentWindow.location.href;
+      if (paymentUrl.includes('/payments')) {
+        paymentWindow.close();
+        if (paymentUrl.includes('/success')) {
+          const url = new URL(paymentUrl);
+          const urlParams = new URLSearchParams(url.search);
+          setPgToken(urlParams.get('pg_token')!);
+        } else if (paymentUrl.includes('/fail')) {
+          navigate('/payment/fail');
+        } else if (paymentUrl.includes('/cancel')) {
+          navigate('/payment/cancel', {
+            state: { paymentType: 'gift', ...state },
+          });
+        }
+      }
+    }, 1000);
   }, [readyData]);
 
   // if pgToken is set, then send payment approve request
