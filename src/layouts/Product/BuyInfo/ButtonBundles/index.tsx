@@ -4,6 +4,7 @@ import { Button } from 'components/ui/Button';
 import FundingModal from 'components/ui/Modal/FundingModal';
 import WishModal from 'components/ui/Modal/WishModal';
 
+import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
 
@@ -11,14 +12,6 @@ import { RequestOrderPreview } from 'types/payment';
 import { OptionDetail, ProductDescriptionResponse } from 'types/product';
 
 import styles from './index.module.scss';
-
-const handleClickGiftForFriend = () => {
-  // console.log('피커오픈');
-};
-
-const handleClickCart = () => {
-  // console.log('선물상자 담기');
-};
 
 const mockData = {
   wishCnt: 999999,
@@ -40,6 +33,7 @@ const ButtonBundles = ({
   const { productId, name, price, productThumbnails, options } =
     productDescription;
   const navigate = useNavigate();
+  const { isLoggedIn, login, confirmLogin } = useLogin();
 
   const {
     isOpen: isFundingOpen,
@@ -55,6 +49,32 @@ const ButtonBundles = ({
     scrollPos: scrollWishPos,
   } = useModal();
 
+  // 주문 정보
+  const orderInfos: RequestOrderPreview = [
+    {
+      productId,
+      quantity,
+      options: selectedOption
+        ? [
+            {
+              id: options[0].optionsId,
+              detailId: selectedOption.id,
+            },
+          ]
+        : [],
+    },
+  ];
+
+  // 로그인 여부 확인
+  const checkLoginBeforeAction = (action: () => void) => {
+    if (isLoggedIn) action();
+    else {
+      const result = confirmLogin();
+      if (result) login();
+    }
+  };
+
+  // 옵션 선택 여부 확인
   const checkOptionBeforeAction = (action: () => void) => {
     if (hasOption && !selectedOption) {
       alert('옵션을 선택해주세요');
@@ -63,32 +83,39 @@ const ButtonBundles = ({
     action();
   };
 
+  // 펀딩 등록 버튼 핸들러
   const handleClickFunding = () => {
-    checkOptionBeforeAction(openFundingModal);
+    checkLoginBeforeAction(() => {
+      checkOptionBeforeAction(openFundingModal);
+    });
   };
 
+  // 위시 버튼 핸들러
   const handleClickWish = () => {
-    openWishModal();
+    checkLoginBeforeAction(openWishModal);
   };
 
+  // 나에게 선물하기 버튼 핸들러
   const handleClickGiftForMe = () => {
-    const orderInfos: RequestOrderPreview = [
-      {
-        productId,
-        quantity,
-        options: selectedOption
-          ? [
-              {
-                id: options[0].optionsId,
-                detailId: selectedOption.id,
-              },
-            ]
-          : [],
-      },
-    ];
-    checkOptionBeforeAction(() =>
-      navigate('/bill/gift', { state: { orderInfos } }),
-    );
+    checkLoginBeforeAction(() => {
+      checkOptionBeforeAction(() => {
+        navigate('/bill/gift', { state: { orderInfos, giftFor: 'me' } });
+      });
+    });
+  };
+
+  // 친구에게 선물하기 버튼 핸들러
+  const handleClickGiftForFriend = () => {
+    checkLoginBeforeAction(() => {
+      // TODO: 친구를 선택하지 않은 경우 피커 오픈
+      // 친구를 선택한 경우 선물 결제 페이지로 이동
+      navigate('/bill/gift', { state: { orderInfos, giftFor: 'friends' } });
+    });
+  };
+
+  // 선물상자 담기 버튼 핸들러
+  const handleClickCart = () => {
+    // console.log('선물상자 담기');
   };
 
   return (
