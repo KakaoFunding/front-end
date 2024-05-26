@@ -3,12 +3,9 @@ import { persist } from 'zustand/middleware';
 
 import { PickerResponseData, User } from 'types/user';
 
-const defaultImgUrl =
-  'https://github.com/KakaoFunding/front-end/blob/dev/src/assets/bg_profile_default.png?raw=true';
-const peopleImgUrl =
-  'https://github.com/KakaoFunding/front-end/blob/dev/src/assets/profile_people.png?raw=true';
-const friendsDefaultImgUrl =
-  'https://github.com/KakaoFunding/front-end/blob/dev/src/assets/profile_default.png?raw=true';
+const defaultImgUrl = 'assets/bg_profile_default.png';
+const peopleImgUrl = 'assets/profile_people.png';
+const friendsDefaultImgUrl = 'assets/profile_default.png';
 
 type SelectedFriendsState = {
   isSelected: boolean;
