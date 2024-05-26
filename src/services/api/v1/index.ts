@@ -65,7 +65,8 @@ apiV1.interceptors.response.use(
 
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
         originRequest.headers.Authorization = `Bearer ${accessToken}`;
-        originRequest.data = { refreshToken: value };
+        const parsedOriginData = JSON.parse(originRequest.data);
+        originRequest.data = { ...parsedOriginData, refreshToken: value };
 
         return axios(originRequest);
       }
