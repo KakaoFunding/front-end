@@ -11,10 +11,10 @@ type UserState = {
 export const useUserStore = create<UserState>()(
   persist(
     (set) => ({
-      name: null,
-      profileUrl: null,
-      providerId: null,
-      birthDate: null,
+      name: '',
+      profileUrl: '',
+      providerId: '',
+      birthDate: '',
       setUserInfo: ({ name, profileUrl, providerId, birthDate }) =>
         set({
           name,
@@ -24,10 +24,10 @@ export const useUserStore = create<UserState>()(
         }),
       clearUserInfo: () =>
         set({
-          name: null,
-          profileUrl: null,
-          providerId: null,
-          birthDate: null,
+          name: '',
+          profileUrl: '',
+          providerId: '',
+          birthDate: '',
         }),
     }),
     {

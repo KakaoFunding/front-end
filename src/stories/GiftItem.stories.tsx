@@ -25,17 +25,15 @@ type Story = StoryObj<typeof GiftItem>;
 
 const giftData: Gift = {
   giftId: 1,
-  productId: 1,
-  name: '기프트카드 5만원권',
-  brandName: '올리브영',
-  photo:
+  brandName: '브랜드',
+  productName: '상품',
+  productThumbnail:
     'https://img1.kakaocdn.net/thumb/C300x300@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20201230180133_cd30cb29560f4f1f8c7f380eb94e3cf1.png',
   senderName: '홍길동',
-  receivedDate: '2021.07.01 오전 10:00',
-  expiredDate: '2022.07.01 오전 10:00',
-  status: 'unused',
+  receivedAt: '2022-05-23T23:59:59',
+  expiredAt: '2024-12-31T23:59:59',
 };
 
-export const Item: Story = {
-  args: { ...giftData },
+export const NotUsedGift: Story = {
+  args: { gift: giftData, status: 'not_used' },
 };

@@ -20,7 +20,7 @@ const PaymentItem = ({
       <div>
         <p className={styles.txt_brand}>{brandName}</p>
         <p className={styles.txt_title}>{name}</p>
-        {optionNames && (
+        {optionNames && optionNames.length > 0 && (
           <p className={styles.txt_option}>
             <span className={styles.ico_option} />
             {optionNames?.join(' | ')}

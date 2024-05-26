@@ -4,11 +4,11 @@ import EmptyItem from 'components/feature/EmptyItem';
 import Spinner from 'components/ui/Spinner';
 import WishItem from 'layouts/MyPage/Wish/WishItem';
 
+import { useUserStore } from 'store/useUserStore';
+
 import { getWishItems } from 'services/api/v1/wish';
 
 import styles from './index.module.scss';
-
-const userName = '보경';
 
 const Wish = () => {
   const { data: wishItems, isLoading } = useQuery({

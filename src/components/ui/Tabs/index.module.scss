@@ -20,6 +20,10 @@
   }
 }
 
+.hidden {
+  display: none;
+}
+
 .product_detail {
   .wrapper_tab {
     @include center(row);

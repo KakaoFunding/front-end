@@ -3,9 +3,9 @@ import { persist } from 'zustand/middleware';
 
 import { PickerResponseData, User } from 'types/user';
 
-const defaultImgUrl =
-  'https://github.com/KakaoFunding/front-end/blob/dev/src/assets/bg_profile_default.png?raw=true';
-const peopleImgUrl = 'src/assets/profile_people.png';
+import defaultImgUrl from 'assets/bg_profile_default.png';
+import friendsDefaultImgUrl from 'assets/profile_default.png';
+import peopleImgUrl from 'assets/profile_people.png';
 
 type SelectedFriendsState = {
   isSelected: boolean;
@@ -15,7 +15,11 @@ type SelectedFriendsState = {
 };
 
 type SelectedFriendsAction = {
-  setSelectedFriends: (state: PickerResponseData[], name: User['name']) => void;
+  setSelectedFriends: (
+    state: PickerResponseData[],
+    name: User['name'],
+    providerId: User['providerId'],
+  ) => void;
   getImgUrl: () => string;
   clearSelectedFriends: () => void;
 };
@@ -31,11 +35,13 @@ export const useSelectedFriendsStore = create<
       selectedHeadCount: 0,
       currentSelectedFriends: [],
 
-      setSelectedFriends: (state, name) =>
+      setSelectedFriends: (state, name, providerId) =>
         set(() => ({
           isSelected: !(state.length === 0),
           isSelfSelected:
-            state.length === 1 && state[0].profile_nickname === name,
+            state.length === 1 &&
+            state[0].profile_nickname === name &&
+            state[0].id === providerId,
           selectedFriends: state,
           selectedHeadCount: state.length,
         })),
@@ -49,9 +55,20 @@ export const useSelectedFriendsStore = create<
         }),
 
       getImgUrl: () => {
-        if (get().selectedHeadCount > 1) return peopleImgUrl;
-        if (get().selectedHeadCount === 1)
-          return get().selectedFriends[0].profile_thumbnail_image!;
+        const selectCount = get().selectedHeadCount;
+
+        if (selectCount > 1) return peopleImgUrl;
+        if (selectCount === 1) {
+          const friendsProfileImgUrl =
+            get().selectedFriends[0].profile_thumbnail_image;
+
+          if (!friendsProfileImgUrl) {
+            return friendsDefaultImgUrl;
+          }
+
+          return friendsProfileImgUrl;
+        }
+
         return defaultImgUrl;
       },
     }),

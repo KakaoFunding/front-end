@@ -1,5 +1,7 @@
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
+import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
 import {
@@ -20,7 +22,12 @@ type LogoutModalProps = {
 };
 
 const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
+  const navigate = useNavigate();
+
   const clearUser = useUserStore((state) => state.clearUserInfo);
+  const clearSelectedFiends = useSelectedFriendsStore(
+    (state) => state.clearSelectedFriends,
+  );
   const accessToken = getSessionStorageItem('accessToken');
   const refreshToken = getLocalStorageItem('refreshToken');
 
@@ -28,8 +35,11 @@ const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
     await logout({ accessToken, refreshToken });
 
     clearUser();
+    clearSelectedFiends();
     clearSessionStorageItem();
     clearLocalStorageItem('refreshToken');
+
+    navigate('/');
   };
 
   return (
