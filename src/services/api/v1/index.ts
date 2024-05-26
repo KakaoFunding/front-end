@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
-import { useUserStore } from 'store/useUserStore';
+// import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+// import { useUserStore } from 'store/useUserStore';
 
 import {
   getSessionStorageItem,
-  clearSessionStorageItem,
+  // clearSessionStorageItem,
   setSessionStorageItem,
 } from 'utils/sessionStorage';
 
 import {
-  clearLocalStorageItem,
+  // clearLocalStorageItem,
   getLocalStorageItem,
   setLocalStorageItem,
 } from './localStorage';
@@ -70,13 +70,14 @@ apiV1.interceptors.response.use(
         return axios(originRequest);
       }
 
-      if (response.status === 404) {
-        useUserStore.getState().clearUserInfo();
-        useSelectedFriendsStore.getState().clearSelectedFriends();
-        clearSessionStorageItem();
-        clearLocalStorageItem('refreshToken');
-        window.location.replace('/');
-      }
+      // 추후 에러 코드가 세분화 되면 다시 리팩토링 예정
+      // if (response.status === 404) {
+      //   useUserStore.getState().clearUserInfo();
+      //   useSelectedFriendsStore.getState().clearSelectedFriends();
+      //   clearSessionStorageItem();
+      //   clearLocalStorageItem('refreshToken');
+      //   window.location.replace('/');
+      // }
 
       // }
     }
