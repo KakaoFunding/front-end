@@ -40,7 +40,14 @@ const Tabs = ({ initialTabId = 0, tabs, mode }: TabProps) => {
           </li>
         ))}
       </ul>
-      {tabs[currentTabId].content}
+      {tabs.map((tab) => (
+        <section
+          key={tab.id}
+          className={clsx({ [styles.hidden]: currentTabId !== tab.id })}
+        >
+          {currentTabId === tab.id && tab.content}
+        </section>
+      ))}
     </>
   );
 };
