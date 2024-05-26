@@ -28,6 +28,16 @@ type LogoutRequestProps = {
   refreshToken: string | null;
 };
 
+type SocialLogoutRequestProps = {
+  socialAccessToken: string;
+  providerId: string;
+};
+
+type SocialLogoutResponseProps = {
+  message: string;
+  code: number;
+};
+
 // 로그인: 토큰 발급
 export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
   const API_KEY = import.meta.env.VITE_REST_API_KEY;
@@ -82,5 +92,21 @@ export const logout = async ({
     { refreshToken },
     { headers },
   );
+  return response;
+};
+
+// 소셜 로그아웃
+export const socialLogout = async ({
+  providerId,
+  socialAccessToken,
+}: SocialLogoutRequestProps): Promise<
+  AxiosResponse<SocialLogoutResponseProps>
+> => {
+  const response = await apiV1.post('/oauth/social/logout', {
+    provider: 'KAKAO',
+    providerId,
+    socialAccessToken,
+  });
+
   return response;
 };
