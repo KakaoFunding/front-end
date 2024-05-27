@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useState, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAxios } from 'hooks/useAxios';
+import { useAddWish, useDeleteWish } from 'hooks/useWish';
 import { formatNumberWithUnit } from 'utils/format';
 
 import { WishItemType } from 'types/wish';
@@ -18,15 +18,8 @@ const WishItem = ({ wishItem }: WishItemProp) => {
   const [isWish, setIsWish] = useState<boolean>(true);
   const [isPrivate, setIsPrivate] = useState<boolean>(isPublic);
 
-  const { sendRequest: addWish } = useAxios({
-    method: 'post',
-    url: `/products/${productId}/wishes?type=${isPublic ? 'OTHERS' : 'ME'}`,
-  });
-
-  const { sendRequest: deleteWish } = useAxios({
-    method: 'delete',
-    url: `/products/${productId}/wishes`,
-  });
+  const { addWish } = useAddWish(productId, isPublic ? 'ME' : 'OTHERS');
+  const { deleteWish } = useDeleteWish(productId);
 
   const handleWishClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -65,7 +58,7 @@ const WishItem = ({ wishItem }: WishItemProp) => {
           <button type="button" onClick={handleChangeVisibility}>
             <span
               className={clsx(styles.ico_public, {
-                [styles.ico_private]: isPrivate,
+                [styles.ico_private]: !isPublic,
               })}
             >
               비밀/나만공개
