@@ -11,3 +11,13 @@ export const getOneYearLaterDate = () => {
   );
   return oneYearLaterDate;
 };
+
+export const getHalfYearEarlierDate = () => {
+  const currentDate = new Date();
+  const halfYearEarlierDate = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() - 6,
+    currentDate.getDate(),
+  );
+  return halfYearEarlierDate;
+};

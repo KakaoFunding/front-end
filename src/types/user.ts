@@ -1,6 +1,8 @@
 export type User = {
-  name: string | null;
-  profileUrl: string | null;
+  name: string;
+  profileUrl: string;
+  providerId: string;
+  birthDate: string;
 };
 
 export type UserWithUserId = User & {

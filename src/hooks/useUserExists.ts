@@ -1,10 +1,12 @@
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useUserStore';
+
+import { getSessionStorageItem } from 'utils/sessionStorage';
 
 export const useUserExists = (): boolean => {
-  const name = useUserStore((state) => state.name);
-  const accessToken = useAuthStore((state) => state.accessToken);
+  const providerId = useUserStore((state) => state.providerId);
+  const accessToken = getSessionStorageItem('accessToken');
 
-  if (name && accessToken) return true;
+  if (providerId && accessToken) return true;
 
   return false;
 };

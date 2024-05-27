@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 type TabProps = {
   initialTabId: Tab['id'];
   tabs: Tab[];
-  mode: 'product_list' | 'product_detail';
+  mode: 'product_list' | 'product_detail' | 'funding_history';
 };
 
 const Tabs = ({ initialTabId = 0, tabs, mode }: TabProps) => {
@@ -40,7 +40,14 @@ const Tabs = ({ initialTabId = 0, tabs, mode }: TabProps) => {
           </li>
         ))}
       </ul>
-      {tabs[currentTabId].content}
+      {tabs.map((tab) => (
+        <section
+          key={tab.id}
+          className={clsx({ [styles.hidden]: currentTabId !== tab.id })}
+        >
+          {currentTabId === tab.id && tab.content}
+        </section>
+      ))}
     </>
   );
 };

@@ -17,10 +17,15 @@ type LoginRequestProps = {
 type LoginResponseProps = {
   accessToken: string;
   member: NonNullable<User>;
+  refreshToken: {
+    value: string;
+    expiration: number;
+  };
 };
 
 type LogoutRequestProps = {
   accessToken: string | null;
+  refreshToken: string | null;
 };
 
 // 로그인: 토큰 발급
@@ -45,9 +50,9 @@ export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
       },
     });
 
-    setSessionStorageItem('socialToken', res.data.access_token);
-    const token = res.data.access_token;
-    return token;
+    const socialToken = res.data.access_token;
+    setSessionStorageItem('socialToken', socialToken);
+    return socialToken;
   } catch (error) {
     console.warn(error);
     return undefined;
@@ -60,18 +65,22 @@ export const login = async ({
 }: LoginRequestProps): Promise<AxiosResponse<LoginResponseProps>> => {
   return apiV1.post('/oauth/login', null, {
     params: { provider: 'kakao', socialAccessToken },
+    withCredentials: true,
   });
 };
 
 // 로그아웃 요청
 export const logout = async ({
   accessToken,
+  refreshToken,
 }: LogoutRequestProps): Promise<AxiosResponse<LogoutRequestProps>> => {
   const headers = {
     Authorization: `Bearer ${accessToken}`,
   };
-  const response = await apiV1.get('/oauth/logout', {
-    headers,
-  });
+  const response = await apiV1.post(
+    '/oauth/logout',
+    { refreshToken },
+    { headers },
+  );
   return response;
 };

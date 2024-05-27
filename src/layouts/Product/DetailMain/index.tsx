@@ -23,10 +23,19 @@ const DetailMain = ({ productDescription }: DetailMainProps) => {
   } = productDescription;
   return (
     <section className={styles.area_main}>
-      <ProductCarousel
-        thumbnails={productThumbnails}
-        className={styles.carousel}
-      />
+      {productThumbnails.length > 1 && (
+        <ProductCarousel
+          thumbnails={productThumbnails}
+          className={styles.carousel}
+        />
+      )}
+      {productThumbnails.length === 1 && (
+        <img
+          src={productThumbnails[0]}
+          alt={`${productName}상품이미지`}
+          className={styles.carousel}
+        />
+      )}
       <section className={styles.wrapper_info}>
         <section className={styles.desc_prod}>
           <div className={styles.title}>{productName}</div>

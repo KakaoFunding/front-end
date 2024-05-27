@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 import EmptyItem from 'components/feature/EmptyItem';
@@ -7,22 +6,27 @@ import Spinner from 'components/ui/Spinner';
 import { useAxios } from 'hooks/useAxios';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
 
-import { Gift } from 'types/Gift';
+import { Gift, StatusType } from 'types/Gift';
 import { PaginationResponse } from 'types/PaginationResponse';
 
 import GiftItem from '../GiftItem';
 
 import styles from './index.module.scss';
 
-const UnavailableGiftTab = () => {
+type GiftTabProps = {
+  status: StatusType;
+};
+
+const GiftTab = ({ status }: GiftTabProps) => {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
 
   const { data, isLoading, sendRequest } = useAxios<PaginationResponse<Gift>>({
     method: 'get',
-    url: '/gifts/finish', // mock URL
+    url: '/giftBox',
     params: {
+      status,
       page,
       size: 20,
     },
@@ -44,24 +48,16 @@ const UnavailableGiftTab = () => {
   }, [data]);
 
   if (!hasNext && gifts.length === 0) {
-    return <EmptyItem type="unavailable_gift" />;
+    const emptyType = status === 'NOT_USED' ? 'gift_not_used' : 'gift_used';
+    return <EmptyItem type={emptyType} />;
   }
 
   return (
     <>
-      <ul className={clsx(styles.list_gift, styles.list_use)}>
+      <ul className={styles.list_gift}>
         {gifts.map((gift) => (
           <li key={gift.giftId}>
-            <GiftItem
-              productId={gift.productId}
-              name={gift.name}
-              brandName={gift.brandName}
-              photo={gift.photo}
-              senderName={gift.senderName}
-              receivedDate={gift.receivedDate}
-              expiredDate={gift.expiredDate}
-              status={gift.status}
-            />
+            <GiftItem gift={gift} status={status} />
           </li>
         ))}
       </ul>
@@ -71,4 +67,4 @@ const UnavailableGiftTab = () => {
   );
 };
 
-export default UnavailableGiftTab;
+export default GiftTab;

@@ -1,38 +1,28 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
-import { useUserStore } from 'store/useAuthStore';
+import { useUserStore } from 'store/useUserStore';
 
-import { useUserExists } from 'hooks/useUserExists';
+import { useLogin } from 'hooks/useLogin';
 
 import LogoutModal from '../LogoutModal';
 
 import styles from './index.module.scss';
 
 const SocialKakaoLogin = () => {
-  const { pathname, search } = useLocation();
-  const isUserExists = useUserExists();
-  const currentUrl = pathname + search;
-  const REST_API_KEY = import.meta.env.VITE_REST_API_KEY;
-  const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URL;
-  const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&state=${currentUrl}&scope=friends`;
+  const { isLoggedIn, login } = useLogin();
   const userName = useUserStore().name;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleLogin = () => {
-    window.location.href = KAKAO_URL;
-  };
-
   const handleAuthAction = () => {
-    if (isUserExists) {
+    if (isLoggedIn) {
       setIsModalOpen(!isModalOpen);
     } else {
-      handleLogin();
+      login();
     }
   };
 
-  const buttonText = isUserExists ? (
+  const buttonText = isLoggedIn ? (
     <>
       <span>{userName}</span>
       <span className={styles.ico_logout}>모달 버튼</span>
@@ -50,7 +40,7 @@ const SocialKakaoLogin = () => {
       >
         {buttonText}
       </button>
-      <LogoutModal modalState={isModalOpen} userState={isUserExists} />
+      <LogoutModal modalState={isModalOpen} userState={isLoggedIn} />
     </>
   );
 };

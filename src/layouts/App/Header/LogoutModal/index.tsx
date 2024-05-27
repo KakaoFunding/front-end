@@ -1,9 +1,18 @@
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
-import { useAuthStore, useUserStore } from 'store/useAuthStore';
+import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+import { useUserStore } from 'store/useUserStore';
 
+import {
+  clearLocalStorageItem,
+  getLocalStorageItem,
+} from 'services/api/v1/localStorage';
 import { logout } from 'services/api/v1/oauth';
-import { clearSessionStorageItem } from 'utils/sessionStorage';
+import {
+  clearSessionStorageItem,
+  getSessionStorageItem,
+} from 'utils/sessionStorage';
 
 import styles from './index.module.scss';
 
@@ -13,18 +22,24 @@ type LogoutModalProps = {
 };
 
 const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
-  const accessToken = useAuthStore((state) => state.accessToken);
+  const navigate = useNavigate();
+
   const clearUser = useUserStore((state) => state.clearUserInfo);
-  const clearAccessToken = useAuthStore((state) => state.clearAccessToken);
-  const clearSocialToken = useAuthStore((state) => state.clearSocialToken);
+  const clearSelectedFiends = useSelectedFriendsStore(
+    (state) => state.clearSelectedFriends,
+  );
+  const accessToken = getSessionStorageItem('accessToken');
+  const refreshToken = getLocalStorageItem('refreshToken');
 
   const handleLogout = async () => {
-    await logout({ accessToken });
+    await logout({ accessToken, refreshToken });
 
-    clearAccessToken();
-    clearSocialToken();
     clearUser();
+    clearSelectedFiends();
     clearSessionStorageItem();
+    clearLocalStorageItem('refreshToken');
+
+    navigate('/');
   };
 
   return (
