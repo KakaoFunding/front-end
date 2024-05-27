@@ -8,6 +8,7 @@ import Spinner from 'components/ui/Spinner';
 import FundingDetail from 'layouts/FundingPayment/FundingDetail';
 
 import { useAxios } from 'hooks/useAxios';
+import { usePaymentWindow } from 'hooks/usePaymentWindow';
 
 import { ResponsePaymentReady, ResponseFundingSuccess } from 'types/payment';
 
@@ -19,8 +20,9 @@ const FundingPayment = () => {
   const { fundingId }: { fundingId: number } = state;
 
   const [fundingAmount, setFundingAmount] = useState<number>(0);
-  const [pgToken, setPgToken] = useState<string>('');
   const [isPaying, setIsPaying] = useState<boolean>(false);
+
+  const { pgToken, openPaymentWindow, checkPaymentStatus } = usePaymentWindow();
 
   // 결제 준비용 API
   const { data: readyData, sendRequest: sendReady } =
@@ -56,17 +58,11 @@ const FundingPayment = () => {
     if (!readyData) return;
 
     const { redirectUrl } = readyData;
+    const paymentWindow = openPaymentWindow(redirectUrl);
 
-    if (redirectUrl.includes('/payments/success')) {
-      const url = new URL(redirectUrl);
-      const urlParams = new URLSearchParams(url.search);
-      setPgToken(urlParams.get('pg_token') as string);
-    } else if (redirectUrl.includes('/payments/fail')) {
-      navigate('/payment/fail');
-    } else if (redirectUrl.includes('/payments/cancel')) {
-      navigate('/payment/cancel', {
-        state: { paymentType: 'funding', ...state },
-      });
+    if (paymentWindow) {
+      const onWindowClosed = () => setIsPaying(false);
+      checkPaymentStatus(paymentWindow, onWindowClosed, 'funding', state);
     }
   }, [readyData]);
 
