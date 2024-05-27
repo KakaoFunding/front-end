@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useEffect, useState } from 'react';
 
+import EmptyItem from 'components/feature/EmptyItem';
 import FilterBar from 'components/ui/FilterBar';
 import Spinner from 'components/ui/Spinner';
 import OrderItem from 'layouts/MyPage/OrderHistory/OrderItem';
@@ -49,13 +50,16 @@ const OrderHistory = () => {
     <>
       <div className={styles.title}>{`${name}님의 \n주문내역`}</div>
       <FilterBar />
-      <ul className={styles.wrapper_item}>
-        {orderItems.map((item) => (
-          <li key={item.id}>
-            <OrderItem item={item} />
-          </li>
-        ))}
-      </ul>
+      <div className={styles.wrapper_item}>
+        {orderItems.length === 0 && <EmptyItem type="history_order" />}
+        <ul>
+          {orderItems.map((item) => (
+            <li key={item.id}>
+              <OrderItem item={item} />
+            </li>
+          ))}
+        </ul>
+      </div>
       {isLoading && <Spinner />}
       {!isLoading && hasNext && <div ref={observingTarget} />}
     </>
