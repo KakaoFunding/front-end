@@ -35,5 +35,5 @@ const giftData: Gift = {
 };
 
 export const NotUsedGift: Story = {
-  args: { gift: giftData, status: 'not_used' },
+  args: { gift: giftData, status: 'NOT_USED' },
 };
