@@ -11,6 +11,8 @@ import { getWishItems } from 'services/api/v1/wish';
 import styles from './index.module.scss';
 
 const Wish = () => {
+  const { name } = useUserStore();
+
   const { data: wishItems, isLoading } = useQuery({
     queryKey: ['wishItem'],
     queryFn: () => getWishItems(),
@@ -19,7 +21,7 @@ const Wish = () => {
   return (
     <>
       {isLoading && <Spinner />}
-      <div className={styles.title}>{`${userName}님의 \n위시리스트`}</div>
+      <div className={styles.title}>{`${name}님의 \n위시리스트`}</div>
       {wishItems && wishItems.length === 0 && <EmptyItem type="wish" />}
       {wishItems && wishItems.length && (
         <ul>
