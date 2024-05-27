@@ -1,0 +1,72 @@
+@import 'styles/mixins.module';
+
+.area_cart_body {
+  padding: 16px 0 65px;
+}
+
+.wrapper_cart_body {
+  position: relative;
+  z-index: 10;
+}
+
+.title_billcard {
+  margin: 60px 0 0;
+  padding: 18px 12px 18px 16px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 824px;
+}
+
+.wrapper_checkbox_all {
+  display: inline-block;
+  position: relative;
+  font-size: 0;
+  vertical-align: top;
+}
+
+.check_all {
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.01;
+}
+
+.txt_checkbox_all {
+  display: inline-block;
+  margin: 4px 0 0 6px;
+  font-size: 15px;
+  line-height: 18px;
+  color: #222;
+  vertical-align: top;
+  font-weight: bold;
+}
+
+.txt_check_count {
+  display: inline-block;
+  padding: 4px 0 0;
+  line-height: 16px;
+  color: #222;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.btn_delete_all {
+  color: #a5a5a5;
+  padding: 4px 4px 2px 3px;
+  float: right;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.ico_checkbox_all {
+  @include ico-gift4(-170px, -790px, 24px, 24px);
+
+  vertical-align: top;
+}
