@@ -11,6 +11,7 @@ import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
 import { useAxios } from 'hooks/useAxios';
+import { usePaymentWindow } from 'hooks/usePaymentWindow';
 import { getSessionStorageItem } from 'utils/sessionStorage';
 
 import { PaginationResponse } from 'types/PaginationResponse';
@@ -35,13 +36,14 @@ const GiftPayment = () => {
   const { giftFor }: { giftFor: 'me' | 'friends' } = state;
 
   const navigate = useNavigate();
-  const [pgToken, setPgToken] = useState<string>('');
   const [isPaying, setIsPaying] = useState<boolean>(false);
 
   const { providerId: myId } = useUserStore();
   const { selectedFriends } = useSelectedFriendsStore();
   const providerId = giftFor === 'me' ? myId : selectedFriends[0].id;
   const socialAccessToken = getSessionStorageItem('socialToken');
+
+  const { pgToken, openPaymentWindow, checkPaymentStatus } = usePaymentWindow();
 
   // 구매할 상품 조회 API
   const { data: orderData, sendRequest: sendOrderRequest } = useAxios<
@@ -109,17 +111,11 @@ const GiftPayment = () => {
     if (!readyData) return;
 
     const { redirectUrl } = readyData;
+    const paymentWindow = openPaymentWindow(redirectUrl);
 
-    if (redirectUrl.includes('/payments/success')) {
-      const url = new URL(redirectUrl);
-      const urlParams = new URLSearchParams(url.search);
-      setPgToken(urlParams.get('pg_token') as string);
-    } else if (redirectUrl.includes('/payments/fail')) {
-      navigate('/payment/fail');
-    } else if (redirectUrl.includes('/payments/cancel')) {
-      navigate('/payment/cancel', {
-        state: { paymentType: 'gift', ...state },
-      });
+    if (paymentWindow) {
+      const onWindowClosed = () => setIsPaying(false);
+      checkPaymentStatus(paymentWindow, onWindowClosed, 'gift', state);
     }
   }, [readyData]);
 
