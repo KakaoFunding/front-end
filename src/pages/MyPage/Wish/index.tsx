@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 
 import EmptyItem from 'components/feature/EmptyItem';
 import Spinner from 'components/ui/Spinner';
-import WishItem from 'layouts/MyPage/Wish/WishItem';
+import MyWishItem from 'layouts/MyPage/Wish/MyWishItem';
 
 import { useUserStore } from 'store/useUserStore';
 
-import { getWishItems } from 'services/api/v1/wish';
+import { getMyWishItems } from 'services/api/v1/wish';
 
 import styles from './index.module.scss';
 
@@ -15,7 +15,7 @@ const Wish = () => {
 
   const { data: wishItems, isLoading } = useQuery({
     queryKey: ['wishItem'],
-    queryFn: () => getWishItems(),
+    queryFn: () => getMyWishItems(),
   });
 
   return (
@@ -27,7 +27,7 @@ const Wish = () => {
         <ul className={styles.wrapper_items}>
           {wishItems.map((wishItem) => (
             <li key={wishItem.productId}>
-              <WishItem wishItem={wishItem} />
+              <MyWishItem myWishItem={wishItem} />
             </li>
           ))}
         </ul>

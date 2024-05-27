@@ -6,13 +6,13 @@ import { useAxios } from 'hooks/useAxios';
 import { useAddWish, useDeleteWish } from 'hooks/useWish';
 import { formatNumberWithUnit } from 'utils/format';
 
-import { WishItemType } from 'types/wish';
+import { MyWishItemType } from 'types/wish';
 
 import styles from './index.module.scss';
 
-type WishItemProp = { wishItem: WishItemType };
+type MyWishItemProp = { myWishItem: MyWishItemType };
 
-const WishItem = ({ wishItem }: WishItemProp) => {
+const MyWishItem = ({ myWishItem }: MyWishItemProp) => {
   const {
     wishId,
     productId,
@@ -20,7 +20,7 @@ const WishItem = ({ wishItem }: WishItemProp) => {
     productPhoto,
     productPrice,
     isPublic: isPublicProps,
-  } = wishItem;
+  } = myWishItem;
 
   const [isWish, setIsWish] = useState<boolean>(true);
   const [isPublic, setIsPublic] = useState<boolean>(isPublicProps);
@@ -82,4 +82,4 @@ const WishItem = ({ wishItem }: WishItemProp) => {
   );
 };
 
-export default WishItem;
+export default MyWishItem;
