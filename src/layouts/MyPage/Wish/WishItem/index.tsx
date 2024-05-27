@@ -19,11 +19,11 @@ const WishItem = ({ wishItem }: WishItemProp) => {
     productName,
     productPhoto,
     productPrice,
-    isPublic,
+    isPublic: isPublicProps,
   } = wishItem;
 
   const [isWish, setIsWish] = useState<boolean>(true);
-  const [isPrivate, setIsPrivate] = useState<boolean>(!isPublic);
+  const [isPublic, setIsPublic] = useState<boolean>(isPublicProps);
 
   const { addWish } = useAddWish(productId, isPublic ? 'ME' : 'OTHERS');
   const { deleteWish } = useDeleteWish(productId);
@@ -46,7 +46,7 @@ const WishItem = ({ wishItem }: WishItemProp) => {
   const handleChangeVisibility = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     sendRequest();
-    setIsPrivate(!isPrivate);
+    setIsPublic(!isPublic);
   };
 
   return (
@@ -70,7 +70,7 @@ const WishItem = ({ wishItem }: WishItemProp) => {
           <button type="button" onClick={handleChangeVisibility}>
             <span
               className={clsx(styles.ico_public, {
-                [styles.ico_private]: isPrivate,
+                [styles.ico_private]: !isPublic,
               })}
             >
               비밀/나만공개
