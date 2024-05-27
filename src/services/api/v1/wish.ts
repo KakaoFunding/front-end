@@ -3,7 +3,7 @@ import { WishResponse } from 'types/wish';
 import { apiV1 } from '.';
 
 export const getWishItems = async () => {
-  const orderHistory = await apiV1.get(`/wishes/me`);
+  const wishItems = await apiV1.get(`/wishes/me`);
 
-  return orderHistory.data as WishResponse;
+  return wishItems.data as WishResponse;
 };
