@@ -55,7 +55,7 @@ const Thema = () => {
     queryKey: ['themaItems'],
     queryFn: async () => {
       const categoryId = getRandomCategoryId();
-      const pageNumber = getRandomNumber(1, 5);
+      const pageNumber = getRandomNumber(0, 5);
       const response = await getThemaItems(pageNumber, categoryId);
 
       return response;
