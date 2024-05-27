@@ -93,12 +93,14 @@ const Thema = () => {
 
   return (
     <>
-      {themaItems.map((items, idx) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <li key={idx}>
-          <ThemaList themaItems={items} title={titles[idx]} />
-        </li>
-      ))}
+      <ul>
+        {themaItems.map((items, idx) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li key={idx}>
+            <ThemaList themaItems={items} title={titles[idx]} />
+          </li>
+        ))}
+      </ul>
       {isLoading && <Spinner />}
       {!isLoading && <div ref={observingTarget} className={styles.observer} />}
     </>
