@@ -23,7 +23,7 @@ const Wish = () => {
       {isLoading && <Spinner />}
       <div className={styles.title}>{`${name}님의 \n위시리스트`}</div>
       {wishItems && wishItems.length === 0 && <EmptyItem type="wish" />}
-      {wishItems && wishItems.length && (
+      {wishItems && wishItems.length !== 0 && (
         <ul className={styles.wrapper_items}>
           {wishItems.map((wishItem) => (
             <li key={wishItem.productId}>
