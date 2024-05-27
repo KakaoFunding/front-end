@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
 import {
@@ -68,6 +69,7 @@ apiV1.interceptors.response.use(
 
       if (response.status === 404) {
         useUserStore.getState().clearUserInfo();
+        useSelectedFriendsStore.getState().clearSelectedFriends();
         clearSessionStorageItem();
         clearLocalStorageItem('refreshToken');
         window.location.replace('/');

@@ -12,11 +12,11 @@
   top: 10px;
   right: 10px;
 
-  &.finish {
+  &.used {
     @include img-badge(0, -55px, 50px, 50px);
   }
 
-  &.cancel {
+  &.canceled {
     @include img-badge(-55px, -55px, 50px, 50px);
   }
 }
@@ -41,6 +41,10 @@
 
   .wrapper_thumb {
     @include wrapper-prod-img($width, 0);
+
+    .img_unavailable {
+      opacity: 0.4;
+    }
   }
 
   .txt_brand {

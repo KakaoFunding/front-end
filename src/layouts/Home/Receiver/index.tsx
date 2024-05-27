@@ -4,27 +4,14 @@ import MainWrapper from 'components/ui/MainWrapper';
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
+import { useKakaoPicker } from 'hooks/useKakaoPicker';
+import { useLogin } from 'hooks/useLogin';
 import { getSessionStorageItem } from 'utils/sessionStorage';
 
 import FriendFunding from './FriendFunding';
 import FriendWish from './FriendWish';
 
 import styles from './index.module.scss';
-
-const mockdata = {
-  login: false,
-  name: '보경',
-  myProfileImgUrl: '',
-};
-
-type PickerResponseTypes = {
-  users: [];
-};
-
-type PickerErrorTypes = {
-  msg: string;
-  code: string;
-};
 
 const FriendsData = {
   hasWish: true,
@@ -36,19 +23,18 @@ const Receiver = () => {
     isSelfSelected,
     selectedHeadCount,
     selectedFriends,
-    setSelectedFriends,
     getImgUrl,
   } = useSelectedFriendsStore();
   const socialAccessToken = getSessionStorageItem('socialToken');
-  const { name, providerId } = useUserStore();
+  const { name, profileUrl } = useUserStore();
+  const { openKakaoPicker } = useKakaoPicker();
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
-  const PROFILE_IMAGE =
-    mockdata.login && isSelfSelected ? mockdata.myProfileImgUrl : getImgUrl();
+  const { isLoggedIn, login, confirmLogin } = useLogin();
+  const PROFILE_IMAGE = isLoggedIn && isSelfSelected ? profileUrl : getImgUrl();
   const isKakaoConnected = window.Kakao?.isInitialized();
 
-  // 서버 복구되면 테스트 해봐야함
   const getTitle = () => {
     let title = '';
 
@@ -69,25 +55,14 @@ const Receiver = () => {
   }
 
   const handleClick = () => {
-    window.Kakao?.Picker.selectFriends({
-      title: '친구 선택',
-      enableSearch: true,
-      showMyProfile: true,
-      showFavorite: true,
-      showPickedFriend: true,
-      maxPickableCount: 10,
-      minPickableCount: 1,
-    })
-      .then((response: PickerResponseTypes) => {
-        setSelectedFriends(response.users, name, providerId);
-      })
-      .catch((error: PickerErrorTypes) => {
-        const pickerError = error as PickerErrorTypes;
-        console.error(pickerError);
-      })
-      .finally(() => {
-        window.Kakao?.Picker.cleanup();
-      });
+    if (!isLoggedIn) {
+      const result = confirmLogin();
+
+      if (result) login();
+      return;
+    }
+
+    openKakaoPicker();
   };
 
   const handleCancel = () => {
@@ -106,9 +81,9 @@ const Receiver = () => {
               onClick={handleClick}
             />
             <strong className={styles.title_selector}>
-              {mockdata.login && !isSelected && (
+              {isLoggedIn && !isSelected && (
                 <>
-                  {`${mockdata.name}님`}
+                  {`${name}님`}
                   <br />
                 </>
               )}
