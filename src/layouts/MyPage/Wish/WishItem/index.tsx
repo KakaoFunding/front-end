@@ -28,7 +28,7 @@ const WishItem = ({ wishItem }: WishItemProp) => {
   const { addWish } = useAddWish(productId, isPublic ? 'OTHERS' : 'ME');
   const { deleteWish } = useDeleteWish(productId);
 
-  const { sendRequest } = useAxios({
+  const { sendRequest: changeVisibilityType } = useAxios({
     method: 'post',
     url: `wishes/${wishId}/change-type`,
   });
@@ -45,7 +45,7 @@ const WishItem = ({ wishItem }: WishItemProp) => {
 
   const handleChangeVisibility = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    sendRequest();
+    changeVisibilityType();
     setIsPublic(!isPublic);
   };
 
