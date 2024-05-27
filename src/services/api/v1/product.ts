@@ -1,3 +1,4 @@
+import { PaginationResponse } from 'types/PaginationResponse';
 import {
   ProductDescriptionResponse,
   ProductDetailResponse,
@@ -19,10 +20,10 @@ export const getProductDetail = async (productId: string) => {
   return productDetail.data as ProductDetailResponse;
 };
 
-export const getRecommendProductItems = async (brandId: string) => {
+export const getRecommendProductItems = async (brandId: number) => {
   const recommendProductItems = await apiV1.get(
-    `/products/brands/${brandId}?size=4&page=1&sort=PRICE%2Cdesc`,
+    `/products/brands/${brandId}?size=4&page=0&sort=PRICE%2Cdesc`,
   );
 
-  return recommendProductItems.data.content as RecommendProductItemsResponse[];
+  return recommendProductItems.data as PaginationResponse<RecommendProductItemsResponse>;
 };
