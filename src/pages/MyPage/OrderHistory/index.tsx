@@ -32,7 +32,7 @@ const OrderHistory = () => {
   });
 
   const observingTarget = useInfinityScroll(() => {
-    if (data) setPage(data!.pageNumber + 1);
+    if (data) setPage(data.pageNumber + 1);
   }, hasNext);
 
   useEffect(() => {
