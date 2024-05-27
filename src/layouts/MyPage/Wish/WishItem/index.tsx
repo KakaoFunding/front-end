@@ -25,7 +25,7 @@ const WishItem = ({ wishItem }: WishItemProp) => {
   const [isWish, setIsWish] = useState<boolean>(true);
   const [isPublic, setIsPublic] = useState<boolean>(isPublicProps);
 
-  const { addWish } = useAddWish(productId, isPublic ? 'ME' : 'OTHERS');
+  const { addWish } = useAddWish(productId, isPublic ? 'OTHERS' : 'ME');
   const { deleteWish } = useDeleteWish(productId);
 
   const { sendRequest } = useAxios({
