@@ -26,7 +26,7 @@ const Wish = () => {
       {wishItems && wishItems.length !== 0 && (
         <ul className={styles.wrapper_items}>
           {wishItems.map((wishItem) => (
-            <li key={wishItem.productId}>
+            <li key={wishItem.wishDetail.wishId}>
               <MyWishItem myWishItem={wishItem} />
             </li>
           ))}
