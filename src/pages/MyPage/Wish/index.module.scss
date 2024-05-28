@@ -11,3 +11,19 @@
 .wrapper_items {
   margin-bottom: 100px;
 }
+
+.btn_more {
+  width: 100%;
+  height: 45px;
+  border: 1px solid #ededed;
+  border-radius: 2px;
+  text-align: center;
+  color: #222;
+
+  .ico_more {
+    @include ico-wishes(-70px, -65px, 11px, 6px);
+
+    margin: 7px 8px 0 0;
+    vertical-align: top;
+  }
+}

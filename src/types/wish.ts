@@ -13,8 +13,6 @@ export type MyWishItemType = {
   public: boolean;
 };
 
-export type MyWishResponse = MyWishItemType[];
-
 export type FriendWishItemType = {
   wishDetail: WishDetail;
   wished: boolean;
