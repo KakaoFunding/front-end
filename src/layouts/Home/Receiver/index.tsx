@@ -13,10 +13,6 @@ import FriendWish from './FriendWish';
 
 import styles from './index.module.scss';
 
-const FriendsData = {
-  hasWish: true,
-  hasFunding: true,
-};
 const Receiver = () => {
   const {
     isSelected,
@@ -102,8 +98,15 @@ const Receiver = () => {
         </MainWrapper>
       </div>
       <MainWrapper>
-        {FriendsData.hasFunding && <FriendFunding />}
-        {FriendsData.hasWish && <FriendWish />}
+        {selectedHeadCount === 1 && !isSelfSelected && (
+          <>
+            <FriendFunding />
+            <FriendWish
+              friendId={selectedFriends[0].id}
+              socialAccessToken={socialAccessToken}
+            />
+          </>
+        )}
       </MainWrapper>
     </section>
   );

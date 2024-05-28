@@ -15,6 +15,11 @@ export type MyWishItemType = {
 
 export type MyWishResponse = MyWishItemType[];
 
+export type FriendWishItemType = {
+  wishDetail: WishDetail;
+  wished: boolean;
+};
+
 export type ResponseWishAddOrDelete = {
   productId: number;
   wishCount: number;
