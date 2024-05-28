@@ -54,7 +54,7 @@ const ProductTab = ({ keyword, tabName }: ProductTabProps) => {
   return (
     <section className={styles.area_prod_tab}>
       <ResultTabTitle tabName={tabName} count={count}>
-        <div>정렬 드롭다운</div>
+        {/* <div>정렬 드롭다운</div> */}
       </ResultTabTitle>
 
       {/* 가격 필터링 */}
