@@ -19,6 +19,7 @@ import styles from './index.module.scss';
 
 const OrderHistory = () => {
   const [orderItems, setProducts] = useState<OrderItemType[]>([]);
+
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
 
@@ -30,6 +31,8 @@ const OrderHistory = () => {
     queryKey: ['orderHistory', startDate, endDate],
     queryFn: () => getOrderHistory(startDate, endDate),
   });
+
+  const hasOrderItem = orderItems.length !== 0;
 
   const observingTarget = useInfinityScroll(() => {
     if (data) setPage(data.pageNumber + 1);
@@ -51,14 +54,17 @@ const OrderHistory = () => {
       <div className={styles.title}>{`${name}님의 \n주문내역`}</div>
       <FilterBar />
       <div className={styles.wrapper_item}>
-        {orderItems.length === 0 && <EmptyItem type="history_order" />}
-        <ul>
-          {orderItems.map((item) => (
-            <li key={item.id}>
-              <OrderItem item={item} />
-            </li>
-          ))}
-        </ul>
+        {hasOrderItem ? (
+          <ul>
+            {orderItems.map((item) => (
+              <li key={item.id}>
+                <OrderItem item={item} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <EmptyItem type="history_order" />
+        )}
       </div>
       {isLoading && <Spinner />}
       {!isLoading && hasNext && <div ref={observingTarget} />}
