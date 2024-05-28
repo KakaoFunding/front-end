@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import MessageCard from 'components/feature/MessageCard';
 import PaymentDetail from 'components/feature/PaymentDetail';
 import MainWrapper from 'components/ui/MainWrapper';
 import Spinner from 'components/ui/Spinner';
@@ -139,7 +138,6 @@ const GiftPayment = () => {
       {isPaying && <Spinner />}
       <form className={styles.wrapper_form} onSubmit={handleSubmit}>
         <div className={styles.area_field}>
-          <MessageCard />
           <GiftDetail items={orderData?.items ?? []} />
         </div>
         <PaymentDetail totalPrice={paymentData?.totalProductAmount ?? 0} />
