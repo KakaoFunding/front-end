@@ -35,7 +35,6 @@ const fundingItem: MyFundingItemType = {
   },
   quantity: 1,
   date: '2024-04-24T14:59:42.48152',
-  status: 'USABLE',
 };
 
 export const NotUsedGift: Story = {

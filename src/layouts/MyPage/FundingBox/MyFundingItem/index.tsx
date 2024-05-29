@@ -10,10 +10,13 @@ import {
 
 import styles from './index.module.scss';
 
-type MyFundingItemProps = { fundingItem: MyFundingItemType };
+type MyFundingItemProps = {
+  fundingItem: MyFundingItemType;
+  status: 'USABLE' | 'USED';
+};
 
-const MyFundingItem = ({ fundingItem }: MyFundingItemProps) => {
-  const { product, date, status } = fundingItem;
+const MyFundingItem = ({ fundingItem, status }: MyFundingItemProps) => {
+  const { product, date } = fundingItem;
   const { name, photo, brandName } = product;
   const expiredAt = getOneYearLaterDate(date).toString();
 

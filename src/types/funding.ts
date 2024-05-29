@@ -16,5 +16,4 @@ export type MyFundingItemType = {
   };
   quantity: number;
   date: string;
-  status: FundingItemStatusType;
 };
