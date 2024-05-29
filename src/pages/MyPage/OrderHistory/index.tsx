@@ -19,7 +19,6 @@ import styles from './index.module.scss';
 
 const OrderHistory = () => {
   const [orderItems, setProducts] = useState<OrderItemType[]>([]);
-
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
 
@@ -27,7 +26,7 @@ const OrderHistory = () => {
 
   const { startDate, endDate } = useDateFilter();
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch, isFetched } = useQuery({
     queryKey: ['orderHistory', startDate, endDate],
     queryFn: () => getOrderHistory(startDate, endDate),
   });
@@ -51,21 +50,25 @@ const OrderHistory = () => {
 
   return (
     <>
-      <div className={styles.title}>{`${name}님의 \n주문내역`}</div>
-      <FilterBar />
-      <div className={styles.wrapper_item}>
-        {hasOrderItem ? (
-          <ul>
-            {orderItems.map((item) => (
-              <li key={item.id}>
-                <OrderItem item={item} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <EmptyItem type="history_order" />
-        )}
-      </div>
+      {isFetched && (
+        <>
+          <div className={styles.title}>{`${name}님의 \n주문내역`}</div>
+          <FilterBar />
+          <div className={styles.wrapper_item}>
+            {hasOrderItem ? (
+              <ul>
+                {orderItems.map((item) => (
+                  <li key={item.id}>
+                    <OrderItem item={item} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <EmptyItem type="history_order" />
+            )}
+          </div>
+        </>
+      )}
       {isLoading && <Spinner />}
       {!isLoading && hasNext && <div ref={observingTarget} />}
     </>
