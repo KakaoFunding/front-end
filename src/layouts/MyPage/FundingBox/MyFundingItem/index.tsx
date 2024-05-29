@@ -1,0 +1,45 @@
+import clsx from 'clsx';
+
+import { getDDay, getOneYearLaterDate } from 'utils/generate';
+
+import {
+  MyFundingItemType,
+  STATUS_TEXT,
+  FundingItemStatusType,
+} from 'types/funding';
+
+import styles from './index.module.scss';
+
+type MyFundingItemProps = { fundingItem: MyFundingItemType };
+
+const MyFundingItem = ({ fundingItem }: MyFundingItemProps) => {
+  const { product, date, status } = fundingItem;
+  const { name, photo, brandName } = product;
+  const expiredAt = getOneYearLaterDate(date).toString();
+
+  return (
+    <div className={styles.wrapper_funding}>
+      <div className={styles.wrapper_thumb}>
+        <img
+          src={photo}
+          alt={name}
+          className={clsx({ [styles.img_unavailable]: status !== 'USABLE' })}
+        />
+      </div>
+      <span className={styles.txt_brand}>{brandName}</span>
+      <strong className={styles.txt_prod}>{name}</strong>
+
+      {status === 'USABLE' ? (
+        <span className={styles.d_day}>D-{getDDay(expiredAt)}</span>
+      ) : (
+        <span className={clsx(styles.badge, styles[status.toLowerCase()])}>
+          {STATUS_TEXT[status as FundingItemStatusType]}
+        </span>
+      )}
+
+      <span className={styles.txt_date}>{new Date(date).toLocaleString()}</span>
+    </div>
+  );
+};
+
+export default MyFundingItem;
