@@ -12,8 +12,8 @@
 }
 
 .area_wrapper_cartbox {
-  // overflow-y: auto; 스크롤바 때문에 우선 꺼둠
-  padding: 0;
+  overflow-y: scroll; // 아이템이 없는 상황에는 필요없음.
+  padding: 0 18px 0 33px; // 아이템이 없는 상황에는 모두 0으로 변해야함.
   height: 100%;
   min-height: 448px;
   box-sizing: border-box;
