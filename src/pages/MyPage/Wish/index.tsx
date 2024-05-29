@@ -1,46 +1,37 @@
-import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import EmptyItem from 'components/feature/EmptyItem';
 import Spinner from 'components/ui/Spinner';
-import WishItem from 'layouts/MyPage/Wish/WishItem';
+import MyWishItem from 'layouts/MyPage/Wish/MyWishItem';
 
 import { useUserStore } from 'store/useUserStore';
 
-import { useAxios } from 'hooks/useAxios';
-
-import { WishResponse } from 'types/wish';
+import { getMyWishItems } from 'services/api/v1/wish';
 
 import styles from './index.module.scss';
 
 const Wish = () => {
   const { name } = useUserStore();
-  const {
-    data: wishItems,
-    sendRequest,
-    isLoading,
-  } = useAxios<WishResponse>({
-    method: 'get',
-    url: '/wishes/me',
-  });
 
-  useEffect(() => {
-    sendRequest();
-  }, []);
+  const { data: wishItems, isLoading } = useQuery({
+    queryKey: ['wishItem'],
+    queryFn: () => getMyWishItems(),
+  });
 
   return (
     <>
       {isLoading && <Spinner />}
       <div className={styles.title}>{`${name}님의 \n위시리스트`}</div>
-      {wishItems && (
-        <ul>
+      {wishItems && wishItems.length === 0 && <EmptyItem type="wish" />}
+      {wishItems && wishItems.length !== 0 && (
+        <ul className={styles.wrapper_items}>
           {wishItems.map((wishItem) => (
             <li key={wishItem.productId}>
-              <WishItem wishItem={wishItem} />
+              <MyWishItem myWishItem={wishItem} />
             </li>
           ))}
         </ul>
       )}
-      {wishItems ?? <EmptyItem type="wish" />}
     </>
   );
 };

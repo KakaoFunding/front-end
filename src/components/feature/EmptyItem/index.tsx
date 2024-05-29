@@ -1,4 +1,4 @@
-import choonsicImg from 'assets/bg_choonsik.png';
+import choonsikImg from 'assets/bg_choonsik.png';
 
 import styles from './index.module.scss';
 
@@ -23,6 +23,10 @@ const EMPTY_ITEM_TEXT = {
     title: `사용한 선물이 없어요`,
     description: `받은 선물🎁을 사용하고, 친구에게 고마운 마음을 표현해보세요~!`,
   },
+  history_order: {
+    title: `주문내역이 없어요`,
+    description: `소중한 친구에게 마음❤️을 전해보아요~!`,
+  },
   funding_contributed: {
     title: `기여했던 펀딩이 없어요`,
     description: `친구의 펀딩아이템에 마음을 전해보세요~!`,
@@ -36,7 +40,7 @@ const EMPTY_ITEM_TEXT = {
 const EmptyItem = ({ type }: EmptyItemProps) => {
   return (
     <section className={styles.wrapper_item}>
-      <img alt="춘식이사진" src={choonsicImg} className={styles.img_choonsik} />
+      <img alt="춘식이사진" src={choonsikImg} className={styles.img_choonsik} />
       <strong className={styles.txt_title}>
         {EMPTY_ITEM_TEXT[type].title}
       </strong>

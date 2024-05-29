@@ -28,16 +28,16 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
         <img
           src={productThumbnail}
           alt={productName}
-          className={clsx({ [styles.img_unavailable]: status !== 'not_used' })}
+          className={clsx({ [styles.img_unavailable]: status !== 'NOT_USED' })}
         />
       </div>
       <span className={styles.txt_brand}>{brandName}</span>
       <strong className={styles.txt_prod}>{productName}</strong>
 
-      {status === 'not_used' ? (
+      {status === 'NOT_USED' ? (
         <span className={styles.d_day}>D-{getDDay()}</span>
       ) : (
-        <span className={clsx(styles.badge, styles[status])}>
+        <span className={clsx(styles.badge, styles[status.toLowerCase()])}>
           {STATUS_TEXT[status]}
         </span>
       )}
