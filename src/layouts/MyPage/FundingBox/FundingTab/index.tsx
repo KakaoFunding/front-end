@@ -54,7 +54,7 @@ const FundingTab = ({ status }: FundingTabProps) => {
       <ul className={styles.list_funding}>
         {fundingItems.map((fundingItem) => (
           <li key={fundingItem.id}>
-            <MyFundingItem fundingItem={fundingItem} />
+            <MyFundingItem fundingItem={fundingItem} status={status} />
           </li>
         ))}
       </ul>

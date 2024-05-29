@@ -34,7 +34,7 @@ const fundingItem: MyFundingItemType = {
     brandName: '디핀다트',
   },
   quantity: 1,
-  date: '2024-04-24T14:59:42.48152',
+  receivedDate: '2024-04-24T14:59:42.48152',
 };
 
 export const NotUsedGift: Story = {

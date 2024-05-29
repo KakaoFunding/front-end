@@ -15,5 +15,5 @@ export type MyFundingItemType = {
     brandName: string;
   };
   quantity: number;
-  date: string;
+  receivedDate: string;
 };

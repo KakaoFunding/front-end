@@ -16,9 +16,9 @@ type MyFundingItemProps = {
 };
 
 const MyFundingItem = ({ fundingItem, status }: MyFundingItemProps) => {
-  const { product, date } = fundingItem;
+  const { product, receivedDate } = fundingItem;
   const { name, photo, brandName } = product;
-  const expiredAt = getOneYearLaterDate(date).toString();
+  const expiredAt = getOneYearLaterDate(receivedDate).toString();
 
   return (
     <div className={styles.wrapper_funding}>
@@ -40,7 +40,9 @@ const MyFundingItem = ({ fundingItem, status }: MyFundingItemProps) => {
         </span>
       )}
 
-      <span className={styles.txt_date}>{new Date(date).toLocaleString()}</span>
+      <span className={styles.txt_date}>
+        {new Date(receivedDate).toLocaleString()}
+      </span>
     </div>
   );
 };
