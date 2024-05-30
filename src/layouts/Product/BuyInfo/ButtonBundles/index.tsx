@@ -4,6 +4,9 @@ import { Button } from 'components/ui/Button';
 import FundingModal from 'components/ui/Modal/FundingModal';
 import WishModal from 'components/ui/Modal/WishModal';
 
+import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+
+import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
@@ -34,6 +37,9 @@ const ButtonBundles = ({
     productDescription;
   const navigate = useNavigate();
   const { isLoggedIn, login, confirmLogin } = useLogin();
+  const { isSelected, isSelfSelected, selectedFriends } =
+    useSelectedFriendsStore();
+  const { openKakaoPicker } = useKakaoPicker();
 
   const {
     isOpen: isFundingOpen,
@@ -107,9 +113,18 @@ const ButtonBundles = ({
   // 친구에게 선물하기 버튼 핸들러
   const handleClickGiftForFriend = () => {
     checkLoginBeforeAction(() => {
-      // TODO: 친구를 선택하지 않은 경우 피커 오픈
-      // 친구를 선택한 경우 선물 결제 페이지로 이동
-      navigate('/bill/gift', { state: { orderInfos, giftFor: 'friends' } });
+      if (!isSelected) {
+        openKakaoPicker();
+        return;
+      }
+
+      if (isSelfSelected) {
+        navigate('/bill/gift', { state: { orderInfos, giftFor: 'me' } });
+      } else if (selectedFriends.length === 1) {
+        navigate('/bill/gift', { state: { orderInfos, giftFor: 'friends' } });
+      } else {
+        alert('지금은 한 번에 한 명에게만 선물할 수 있어요.');
+      }
     });
   };
 
