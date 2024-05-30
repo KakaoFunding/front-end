@@ -130,6 +130,12 @@ const ButtonBundles = ({
     });
   };
 
+  // 친구 프로필 이미지 클릭 핸들러
+  const handleClickProfile = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    openKakaoPicker();
+  };
+
   // 선물상자 담기 버튼 핸들러
   const handleClickCart = () => {
     // console.log('선물상자 담기');
@@ -188,7 +194,7 @@ const ButtonBundles = ({
           onClick={handleClickGiftForFriend}
           className={styles.btn_gift}
         >
-          <div className={styles.wrapper_profile}>
+          <div className={styles.wrapper_profile} onClick={handleClickProfile}>
             <img
               src={getImgUrl(DefaultProfileImage)}
               alt="선물할 친구 프로필 사진"
