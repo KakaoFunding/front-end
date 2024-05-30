@@ -14,6 +14,8 @@ import { formatNumberWithPlus } from 'utils/format';
 import { RequestOrderPreview } from 'types/payment';
 import { OptionDetail, ProductDescriptionResponse } from 'types/product';
 
+import DefaultProfileImage from 'assets/profile_noimg.png';
+
 import styles from './index.module.scss';
 
 const mockData = {
@@ -37,7 +39,7 @@ const ButtonBundles = ({
     productDescription;
   const navigate = useNavigate();
   const { isLoggedIn, login, confirmLogin } = useLogin();
-  const { isSelected, isSelfSelected, selectedFriends } =
+  const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
     useSelectedFriendsStore();
   const { openKakaoPicker } = useKakaoPicker();
 
@@ -186,10 +188,14 @@ const ButtonBundles = ({
           onClick={handleClickGiftForFriend}
           className={styles.btn_gift}
         >
-          <span className={styles.img_profile}>
-            {/* TODO : 로그인 되었을 때만 보이게 */}
+          <div className={styles.wrapper_profile}>
+            <img
+              src={getImgUrl(DefaultProfileImage)}
+              alt="선물할 친구 프로필 사진"
+              className={styles.img_profile}
+            />
             <span className={styles.ico_profile} />
-          </span>
+          </div>
           선물하기
         </Button>
       </section>
