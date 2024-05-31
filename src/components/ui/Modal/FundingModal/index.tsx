@@ -7,7 +7,11 @@ import Modal from 'components/ui/Modal';
 
 import { useAxios } from 'hooks/useAxios';
 import useFundingInput from 'hooks/useFundingInput';
-import { formatDate, formatNumberWithUnit } from 'utils/format';
+import {
+  formatCommaToNumber,
+  formatDate,
+  formatNumberWithUnit,
+} from 'utils/format';
 import { getOneYearLaterDate } from 'utils/generate';
 
 import { FundingModalProps } from 'types/modal';
@@ -35,7 +39,7 @@ const FundingModal = ({
     method: 'post',
     url: `/funding/${productId}`,
     data: {
-      goalAmount,
+      goalAmount: formatCommaToNumber(goalAmount),
       expiredAt: formatDate(getOneYearLaterDate()),
     },
   });

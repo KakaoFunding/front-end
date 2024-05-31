@@ -53,10 +53,12 @@ export const usePaymentWindow = () => {
           const urlParams = new URLSearchParams(url.search);
           setPgToken(urlParams.get('pg_token')!);
         } else if (paymentUrl.includes('/fail')) {
-          navigate('/payment/fail');
+          navigate('/payment/error', {
+            state: { errorType: 'fail', paymentType, ...state },
+          });
         } else if (paymentUrl.includes('/cancel')) {
-          navigate('/payment/cancel', {
-            state: { paymentType, ...state },
+          navigate('/payment/error', {
+            state: { errorType: 'cancel', paymentType, ...state },
           });
         }
       }

@@ -1,3 +1,8 @@
+export const formatCommaToNumber = (string: string): number => {
+  const number = Number(string.replace(/,/g, ''));
+  return number;
+};
+
 export const formatNumberWithComma = (number: number): string => {
   return number.toLocaleString('ko-KR');
 };

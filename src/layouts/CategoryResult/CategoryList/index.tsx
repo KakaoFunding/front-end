@@ -14,7 +14,7 @@ type CategoryListProps = {
 };
 
 const CategoryList = ({ parentId, subId }: CategoryListProps) => {
-  const { data, error, sendRequest } = useAxios<Category>({
+  const { data, sendRequest } = useAxios<Category>({
     method: 'get',
     url: `/categories/${parentId}`,
   });
@@ -23,12 +23,7 @@ const CategoryList = ({ parentId, subId }: CategoryListProps) => {
     sendRequest();
   }, [parentId]);
 
-  // 예외 처리 추가 구현 필요 (아래는 임시)
-  if (!data) {
-    const ERROR_MSG = error?.message ?? '알 수 없는 에러';
-    // console.log('응답 메시지:', error?.response?.data);
-    return <p>{ERROR_MSG}</p>;
-  }
+  if (!data) return null;
 
   const { categoryId, categoryName, subCategories }: Category = data;
 
