@@ -39,7 +39,7 @@ const FundingBox = () => {
             <br />
             펀딩을 달성했습니다. 🎉
           </h1>
-          <Tabs initialTabId={0} mode="product_list" tabs={tabs} />
+          <Tabs initialTabId={0} mode="received_box" tabs={tabs} />
         </>
       )}
     </div>
