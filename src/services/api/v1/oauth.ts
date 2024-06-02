@@ -32,11 +32,6 @@ type SocialLogoutRequestProps = {
   providerId: string;
 };
 
-type SocialLogoutResponseProps = {
-  message: string;
-  code: number;
-};
-
 // 로그인: 토큰 발급
 export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
   const API_KEY = import.meta.env.VITE_REST_API_KEY;
@@ -90,9 +85,7 @@ export const logout = async ({
 export const socialLogout = async ({
   providerId,
   socialAccessToken,
-}: SocialLogoutRequestProps): Promise<
-  AxiosResponse<SocialLogoutResponseProps>
-> => {
+}: SocialLogoutRequestProps): Promise<AxiosResponse> => {
   const response = await apiV1.post('/oauth/social/logout', {
     provider: 'KAKAO',
     providerId,
