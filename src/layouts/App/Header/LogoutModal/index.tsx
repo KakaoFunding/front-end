@@ -28,13 +28,12 @@ const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
   const clearSelectedFiends = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
-  const accessToken = getSessionStorageItem('accessToken');
   const refreshToken = getLocalStorageItem('refreshToken');
   const socialAccessToken = getSessionStorageItem('socialToken');
   const { providerId } = useUserStore();
 
   const handleLogout = async () => {
-    await logout({ accessToken, refreshToken });
+    await logout({ refreshToken });
     await socialLogout({ providerId, socialAccessToken });
 
     clearUser();
