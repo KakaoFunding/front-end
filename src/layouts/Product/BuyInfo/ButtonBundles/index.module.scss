@@ -47,13 +47,18 @@
   .btn_gift {
     @include size(40%, 60px, 0 0 0 5px, 0);
 
-    .img_profile {
+    .wrapper_profile {
       @include size(32px, 32px, 0, 0);
 
       position: relative;
       margin-right: 6px;
-      background-image: url('assets/profile_noimg.png');
-      background-size: cover;
+
+      .img_profile {
+        @include masking;
+
+        width: 100%;
+        object-fit: cover;
+      }
     }
 
     .ico_profile {
