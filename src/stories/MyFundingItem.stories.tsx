@@ -37,6 +37,6 @@ const fundingItem: MyFundingItemType = {
   receivedDate: '2024-04-24T14:59:42.48152',
 };
 
-export const NotUsedGift: Story = {
+export const NotUsedFundingItem: Story = {
   args: { fundingItem },
 };
