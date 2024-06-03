@@ -8,6 +8,8 @@ import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
 import { getSessionStorageItem } from 'utils/sessionStorage';
 
+import DefaultImgUrl from 'assets/bg_profile_default.png';
+
 import FriendFunding from './FriendFunding';
 import FriendWish from './FriendWish';
 
@@ -32,7 +34,8 @@ const Receiver = () => {
     (state) => state.clearSelectedFriends,
   );
   const { isLoggedIn, login, confirmLogin } = useLogin();
-  const PROFILE_IMAGE = isLoggedIn && isSelfSelected ? profileUrl : getImgUrl();
+  const PROFILE_IMAGE =
+    isLoggedIn && isSelfSelected ? profileUrl : getImgUrl(DefaultImgUrl);
   const isKakaoConnected = window.Kakao?.isInitialized();
 
   const getTitle = () => {

@@ -34,7 +34,7 @@
   }
 
   .ico_public {
-    @include ico-wishes(-55px, -25px, 52px, 24px);
+    @include ico-wishes(-55px, 0, 52px, 24px);
 
     position: absolute;
     padding: 3px 5px;
@@ -42,7 +42,7 @@
     top: 73px;
 
     &.ico_private {
-      @include ico-wishes(-55px, 0, 52px, 24px);
+      @include ico-wishes(-55px, -25px, 52px, 24px);
     }
   }
 }

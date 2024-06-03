@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useEffect, useState } from 'react';
 
+import EmptyItem from 'components/feature/EmptyItem';
 import FilterBar from 'components/ui/FilterBar';
 import Spinner from 'components/ui/Spinner';
 import OrderItem from 'layouts/MyPage/OrderHistory/OrderItem';
@@ -25,13 +26,15 @@ const OrderHistory = () => {
 
   const { startDate, endDate } = useDateFilter();
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch, isFetched } = useQuery({
     queryKey: ['orderHistory', startDate, endDate],
     queryFn: () => getOrderHistory(startDate, endDate),
   });
 
+  const hasOrderItem = orderItems.length !== 0;
+
   const observingTarget = useInfinityScroll(() => {
-    if (data) setPage(data!.pageNumber + 1);
+    if (data) setPage(data.pageNumber + 1);
   }, hasNext);
 
   useEffect(() => {
@@ -47,15 +50,25 @@ const OrderHistory = () => {
 
   return (
     <>
-      <div className={styles.title}>{`${name}님의 \n주문내역`}</div>
-      <FilterBar />
-      <ul className={styles.wrapper_item}>
-        {orderItems.map((item) => (
-          <li key={item.id}>
-            <OrderItem item={item} />
-          </li>
-        ))}
-      </ul>
+      {isFetched && (
+        <>
+          <div className={styles.title}>{`${name}님의 \n주문내역`}</div>
+          <FilterBar />
+          <div className={styles.wrapper_item}>
+            {hasOrderItem ? (
+              <ul>
+                {orderItems.map((item) => (
+                  <li key={item.id}>
+                    <OrderItem item={item} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <EmptyItem type="history_order" />
+            )}
+          </div>
+        </>
+      )}
       {isLoading && <Spinner />}
       {!isLoading && hasNext && <div ref={observingTarget} />}
     </>

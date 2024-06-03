@@ -1,7 +1,6 @@
 export const STATUS_TEXT = {
-  not_used: '미사용',
-  used: '사용완료',
-  canceled: '취소환불',
+  NOT_USED: '미사용',
+  USED: '사용완료',
 } as const;
 
 export type StatusType = keyof typeof STATUS_TEXT;

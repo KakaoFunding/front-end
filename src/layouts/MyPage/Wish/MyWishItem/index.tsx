@@ -3,29 +3,34 @@ import { useState, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAxios } from 'hooks/useAxios';
+import { useAddWish, useDeleteWish } from 'hooks/useWish';
 import { formatNumberWithUnit } from 'utils/format';
 
-import { WishItemType } from 'types/wish';
+import { MyWishItemType } from 'types/wish';
 
 import styles from './index.module.scss';
 
-type WishItemProp = { wishItem: WishItemType };
+type MyWishItemProp = { myWishItem: MyWishItemType };
 
-const WishItem = ({ wishItem }: WishItemProp) => {
-  const { productId, productName, productPhoto, productPrice, isPublic } =
-    wishItem;
+const MyWishItem = ({ myWishItem }: MyWishItemProp) => {
+  const {
+    wishId,
+    productId,
+    productName,
+    productPhoto,
+    productPrice,
+    isPublic: isPublicProps,
+  } = myWishItem;
 
   const [isWish, setIsWish] = useState<boolean>(true);
-  const [isPrivate, setIsPrivate] = useState<boolean>(isPublic);
+  const [isPublic, setIsPublic] = useState<boolean>(isPublicProps);
 
-  const { sendRequest: addWish } = useAxios({
+  const { addWish } = useAddWish(productId, isPublic ? 'OTHERS' : 'ME');
+  const { deleteWish } = useDeleteWish(productId);
+
+  const { sendRequest: changeVisibilityType } = useAxios({
     method: 'post',
-    url: `/products/${productId}/wishes?type=${isPublic ? 'OTHERS' : 'ME'}`,
-  });
-
-  const { sendRequest: deleteWish } = useAxios({
-    method: 'delete',
-    url: `/products/${productId}/wishes`,
+    url: `wishes/${wishId}/change-type`,
   });
 
   const handleWishClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -38,10 +43,10 @@ const WishItem = ({ wishItem }: WishItemProp) => {
     setIsWish(!isWish);
   };
 
-  // TODO : API 요청
   const handleChangeVisibility = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setIsPrivate(!isPrivate);
+    changeVisibilityType();
+    setIsPublic(!isPublic);
   };
 
   return (
@@ -65,7 +70,7 @@ const WishItem = ({ wishItem }: WishItemProp) => {
           <button type="button" onClick={handleChangeVisibility}>
             <span
               className={clsx(styles.ico_public, {
-                [styles.ico_private]: isPrivate,
+                [styles.ico_private]: !isPublic,
               })}
             >
               비밀/나만공개
@@ -77,4 +82,4 @@ const WishItem = ({ wishItem }: WishItemProp) => {
   );
 };
 
-export default WishItem;
+export default MyWishItem;
