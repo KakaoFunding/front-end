@@ -56,6 +56,7 @@ apiV1.interceptors.response.use(
         const usersRefreshToken = getLocalStorageItem('refreshToken');
         apiV1.defaults.headers.common.Authorization = null;
         const response = await refreshAccessToken(usersRefreshToken);
+
         if (response.status === 200) {
           const { accessToken, refreshToken } = response.data;
           const { value, expiration } = refreshToken;
@@ -67,10 +68,14 @@ apiV1.interceptors.response.use(
           originRequest.headers.Authorization = `Bearer ${accessToken}`;
           const parsedOriginData = JSON.parse(originRequest.data);
 
-          if (parsedOriginData.refreshToken) {
-            originRequest.data = { ...parsedOriginData, refreshToken: value };
-          } else {
+          if (Array.isArray(parsedOriginData)) {
             originRequest.data = [...parsedOriginData];
+          } else if (typeof parsedOriginData === 'object') {
+            originRequest.data = { ...parsedOriginData };
+
+            if (parsedOriginData.refreshToken) {
+              originRequest.data = { ...parsedOriginData, refreshToken: value };
+            }
           }
 
           return axios(originRequest);
