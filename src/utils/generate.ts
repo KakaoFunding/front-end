@@ -3,17 +3,7 @@ export function getRandomNumber(start: number, end: number): number {
 }
 
 export const getOneYearLaterDate = (date?: string) => {
-  if (date) {
-    const currentDate = new Date(date);
-    const oneYearLaterDate = new Date(
-      currentDate.getFullYear() + 1,
-      currentDate.getMonth(),
-      currentDate.getDate(),
-    );
-    return oneYearLaterDate;
-  }
-
-  const currentDate = new Date();
+  const currentDate = date ? new Date(date) : new Date();
   const oneYearLaterDate = new Date(
     currentDate.getFullYear() + 1,
     currentDate.getMonth(),
