@@ -50,27 +50,32 @@ apiV1.interceptors.response.use(
       response: { status },
     } = error;
 
-    if (status === 403) {
-      // if (error.response.data.message === 'Unauthorized') {
-      const originRequest = config;
-      const usersRefreshToken = getLocalStorageItem('refreshToken');
-      delete apiV1.defaults.headers.common.Authorization;
-      const response = await refreshAccessToken(usersRefreshToken);
-      if (response.status === 200) {
-        const { accessToken, refreshToken } = response.data;
-        const { value, expiration } = refreshToken;
+    if (status === 401) {
+      if (error.response.data.code === 'KF003') {
+        const originRequest = config;
+        const usersRefreshToken = getLocalStorageItem('refreshToken');
+        apiV1.defaults.headers.common.Authorization = null;
+        const response = await refreshAccessToken(usersRefreshToken);
+        if (response.status === 200) {
+          const { accessToken, refreshToken } = response.data;
+          const { value, expiration } = refreshToken;
 
-        setSessionStorageItem('accessToken', accessToken);
-        setLocalStorageItem('refreshToken', value, expiration);
+          setSessionStorageItem('accessToken', accessToken);
+          setLocalStorageItem('refreshToken', value, expiration);
 
-        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-        originRequest.headers.Authorization = `Bearer ${accessToken}`;
-        const parsedOriginData = JSON.parse(originRequest.data);
-        originRequest.data = { ...parsedOriginData, refreshToken: value };
+          axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+          originRequest.headers.Authorization = `Bearer ${accessToken}`;
+          const parsedOriginData = JSON.parse(originRequest.data);
 
-        return axios(originRequest);
+          if (parsedOriginData.refreshToken) {
+            originRequest.data = { ...parsedOriginData, refreshToken: value };
+          } else {
+            originRequest.data = [...parsedOriginData];
+          }
+
+          return axios(originRequest);
+        }
       }
-
       // 추후 에러 코드가 세분화 되면 다시 리팩토링 예정
       // if (response.status === 404) {
       //   useUserStore.getState().clearUserInfo();
@@ -79,9 +84,8 @@ apiV1.interceptors.response.use(
       //   clearLocalStorageItem('refreshToken');
       //   window.location.replace('/');
       // }
-
-      // }
     }
+
     return Promise.reject(error);
   },
 );
