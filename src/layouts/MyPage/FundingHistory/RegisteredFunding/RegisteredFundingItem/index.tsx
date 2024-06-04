@@ -2,27 +2,9 @@ import { Link } from 'react-router-dom';
 
 import { formatNumberWithComma } from 'utils/format';
 
-import styles from './index.module.scss';
+import { RegisteredFundingItemType } from 'types/fundingHistory';
 
-// 목데이터
-const item = {
-  product: {
-    productId: 2274,
-    name: '[선물포장] 베르사체 에로스 30ML + 에로스 미니어처 5ML',
-    photo:
-      'https://st.kakaocdn.net/product/gift/product/20240220155008_b20dcecc7a484754ad1e75854794e192.png',
-    price: 41700,
-    brandName: '남성향수',
-  },
-  fundingDetail: {
-    fundingId: 1,
-    fundingDetailId: 7,
-    attributeAmount: 10000,
-    attributedAt: '2024-05-07T21:26:49',
-    creatorName: '김민우',
-    status: 'PROGRESS',
-  },
-};
+import styles from './index.module.scss';
 
 const FUNDING_STATUS = {
   PROGRESS: '진행중',
@@ -30,14 +12,16 @@ const FUNDING_STATUS = {
   CANCEL_REFUND: '취소됨',
 };
 
-const RegisteredFundingItem = () => {
+type RegisteredFundingItemProps = {
+  item: RegisteredFundingItemType;
+};
+
+const RegisteredFundingItem = ({ item }: RegisteredFundingItemProps) => {
   return (
-    <Link to={`/product/${item.product.productId}`}>
+    <Link to={`/product/${item.productId}`}>
       <p className={styles.txt_date}>
         등록한 날짜
-        <span className={styles.num_data}>
-          {item.fundingDetail.attributedAt}
-        </span>
+        <span className={styles.num_data}>{item.expiredAt}</span>
       </p>
 
       <div className={styles.wrapper_history}>
@@ -51,24 +35,17 @@ const RegisteredFundingItem = () => {
 
         <div className={styles.section_product}>
           <img
-            src={item.product.photo}
-            alt={`${item.product.name}상품이미지`}
+            src={item.productImage}
+            alt={`${item.productName}상품이미지`}
             className={styles.thumb_product}
           />
           <div className={styles.info_product}>
-            <p className={styles.txt_brand}>{item.product.brandName}</p>
-            <strong className={styles.txt_title}>{item.product.name}</strong>
-            <p className={styles.txt_price}>
-              상품 금액 |
-              <em className={styles.num_price}>
-                {formatNumberWithComma(item.product.price)}
-              </em>
-              <span className={styles.txt_unit}>원</span>
-            </p>
+            <p className={styles.txt_brand}>{item.brandName}</p>
+            <strong className={styles.txt_title}>{item.productName}</strong>
             <p className={styles.txt_price}>
               목표 금액 |
               <em className={styles.num_price}>
-                {formatNumberWithComma(item.product.price)}
+                {formatNumberWithComma(item.goalAmount)}
               </em>
               <span className={styles.txt_unit}>원</span>
             </p>

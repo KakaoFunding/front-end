@@ -56,7 +56,7 @@ const RegisteredFunding = () => {
             <ul>
               {fundingItems.map((item) => (
                 <li key={item.fundingId}>
-                  <RegisteredFundingItem />
+                  <RegisteredFundingItem item={item} />
                 </li>
               ))}
             </ul>
