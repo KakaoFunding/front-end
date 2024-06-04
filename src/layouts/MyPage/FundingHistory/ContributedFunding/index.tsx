@@ -12,7 +12,7 @@ import { getContributedFundingHistory } from 'services/api/v1/fundingHistory';
 
 import { ContributedFundingItemType } from 'types/fundingHistory';
 
-import FundingHistoryItem from '../FundingHistoryItem';
+import ContributedFundingItem from './ContributedFundingItem';
 
 import styles from './index.module.scss';
 
@@ -27,7 +27,8 @@ const ContributedFunding = () => {
 
   const { data, isLoading, refetch, isFetched } = useQuery({
     queryKey: ['contributedFundingHistory', startDate, endDate],
-    queryFn: () => getContributedFundingHistory(startDate, endDate),
+    queryFn: () =>
+      getContributedFundingHistory(startDate, new Date('2024-06-03')),
   });
 
   const observingTarget = useInfinityScroll(() => {
@@ -56,7 +57,7 @@ const ContributedFunding = () => {
             <ul>
               {fundingItems.map((item) => (
                 <li key={item.fundingDetail.fundingId}>
-                  <FundingHistoryItem mode="contribute" />
+                  <ContributedFundingItem />
                 </li>
               ))}
             </ul>
