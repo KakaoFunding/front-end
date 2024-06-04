@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 
 import { formatNumberWithComma, formatDateAndTime } from 'utils/format';
@@ -19,12 +20,16 @@ const RegisteredFundingItem = ({ item }: RegisteredFundingItemProps) => {
       <p className={styles.txt_date}>
         등록한 날짜
         <span className={styles.num_data}>
-          {/* {formatDateAndTime(item.createdAt)} */}
+          {formatDateAndTime(item.createdAt)}
         </span>
       </p>
 
       <div className={styles.wrapper_history}>
-        <div className={styles.section_status}>
+        <div
+          className={clsx(styles.section_status, {
+            [styles.cancel]: item.status === 'CANCEL',
+          })}
+        >
           {REGISTERED_ITEM_STATUS[item.status]}
           <span className={styles.txt_detail}>
             상세보기
