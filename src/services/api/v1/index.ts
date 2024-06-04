@@ -1,22 +1,14 @@
 import axios from 'axios';
 
-// import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
-// import { useUserStore } from 'store/useUserStore';
-
 import {
   getSessionStorageItem,
-  // clearSessionStorageItem,
   setSessionStorageItem,
 } from 'utils/sessionStorage';
 
-import {
-  // clearLocalStorageItem,
-  getLocalStorageItem,
-  setLocalStorageItem,
-} from './localStorage';
+import { getLocalStorageItem, setLocalStorageItem } from './localStorage';
 // members.ts와 현재 파일이 서로 import를 하고 있어서 린트 에러가 발생 중
 // eslint-disable-next-line import/no-cycle
-import { refreshAccessToken } from './members';
+import { refreshAccessToken, refreshSocialAccessToken } from './members';
 
 export const apiV1 = axios.create({
   baseURL: `${import.meta.env.VITE_SERVER_URL}/api/v1`,
@@ -49,10 +41,10 @@ apiV1.interceptors.response.use(
       config,
       response: { status },
     } = error;
+    const originRequest = config;
 
     if (status === 401) {
       if (error.response.data.code === 'KF003') {
-        const originRequest = config;
         const usersRefreshToken = getLocalStorageItem('refreshToken');
         apiV1.defaults.headers.common.Authorization = null;
         const response = await refreshAccessToken(usersRefreshToken);
@@ -81,14 +73,32 @@ apiV1.interceptors.response.use(
           return axios(originRequest);
         }
       }
-      // 추후 에러 코드가 세분화 되면 다시 리팩토링 예정
-      // if (response.status === 404) {
-      //   useUserStore.getState().clearUserInfo();
-      //   useSelectedFriendsStore.getState().clearSelectedFriends();
-      //   clearSessionStorageItem();
-      //   clearLocalStorageItem('refreshToken');
-      //   window.location.replace('/');
-      // }
+    } else if (status === 400) {
+      if (error.response.data.code === 'KF008') {
+        const socialAccessToken = getSessionStorageItem('socialToken');
+        const socialRefreshToken = getLocalStorageItem('socialRefreshToken');
+        const response = await refreshSocialAccessToken(
+          socialAccessToken,
+          socialRefreshToken,
+        );
+        const { accessToken, refreshToken } = response.data;
+        const parsedOriginData = JSON.parse(originRequest.data);
+
+        if (refreshToken.value && refreshToken.expiration) {
+          setLocalStorageItem(
+            'socialRefreshToken',
+            refreshToken.value,
+            refreshToken.expiration,
+          );
+        }
+
+        setSessionStorageItem('socialAccessToken', accessToken);
+        window.Kakao?.Auth.setAccessToken(accessToken);
+        parsedOriginData.receiver.socialAccessToken = accessToken;
+        originRequest.data = { ...parsedOriginData };
+
+        return axios(originRequest);
+      }
     }
 
     return Promise.reject(error);
