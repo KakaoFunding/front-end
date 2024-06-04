@@ -54,7 +54,7 @@ const RegisteredFunding = () => {
             <ul>
               {fundingItems.map((item) => (
                 <li key={item.fundingId}>
-                  <FundingHistoryItem mode="contribute" />
+                  <FundingHistoryItem mode="register" />
                 </li>
               ))}
             </ul>
