@@ -67,10 +67,16 @@ export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
 export const login = async ({
   socialAccessToken,
 }: LoginRequestProps): Promise<AxiosResponse<LoginResponseProps>> => {
-  return apiV1.post('/oauth/login', null, {
-    params: { provider: 'kakao', socialAccessToken },
-    withCredentials: true,
-  });
+  return apiV1.post(
+    '/oauth/login',
+    {
+      provider: 'kakao',
+      socialAccessToken,
+    },
+    {
+      withCredentials: true,
+    },
+  );
 };
 
 // 로그아웃 요청
