@@ -18,7 +18,7 @@ const RegisteredFundingItem = ({ item }: RegisteredFundingItemProps) => {
     <Link to={`/product/${item.productId}`}>
       <p className={styles.txt_date}>
         등록한 날짜
-        <span className={styles.num_data}>{item.expiredAt}</span>
+        <span className={styles.num_data}>{item.createdAt}</span>
       </p>
 
       <div className={styles.wrapper_history}>

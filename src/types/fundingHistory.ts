@@ -32,6 +32,7 @@ export type RegisteredFundingItemType = {
   fundingId: number;
   status: RegisteredFundingItemStatus;
   expiredAt: string;
+  createdAt: string;
   goalAmount: number;
   brandName: string;
   productName: string;
