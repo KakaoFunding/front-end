@@ -1,7 +1,10 @@
 import { formatDate } from 'utils/format';
 
 import { PaginationResponse } from 'types/PaginationResponse';
-import { ContributedFundingItem, RegisteredFundingItem } from 'types/funding';
+import {
+  ContributedFundingItem,
+  RegisteredFundingItem,
+} from 'types/fundingHistory';
 
 import { apiV1 } from '.';
 
@@ -16,12 +19,13 @@ export const getContributedFundingHistory = async (
   return contributedFundingHistory.data as PaginationResponse<ContributedFundingItem>;
 };
 
-export const getRegisteredFundingItem = async () =>
-  // startDate: Date,
-  // endDate: Date,
-  {
-    // TODO : api 수정 예정
-    const registeredFundingItem = await apiV1.get(`/members/funding/products`);
+export const getRegisteredFundingItem = async (
+  startDate: Date,
+  endDate: Date,
+) => {
+  const registeredFundingItem = await apiV1.get(
+    `/members/funding/products?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`,
+  );
 
-    return registeredFundingItem.data as PaginationResponse<RegisteredFundingItem>;
-  };
+  return registeredFundingItem.data as PaginationResponse<RegisteredFundingItem>;
+};
