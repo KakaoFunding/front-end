@@ -27,8 +27,7 @@ const ContributedFunding = () => {
 
   const { data, isLoading, refetch, isFetched } = useQuery({
     queryKey: ['contributedFundingHistory', startDate, endDate],
-    queryFn: () =>
-      getContributedFundingHistory(startDate, new Date('2024-06-03')),
+    queryFn: () => getContributedFundingHistory(startDate, endDate),
   });
 
   const observingTarget = useInfinityScroll(() => {
@@ -57,7 +56,7 @@ const ContributedFunding = () => {
             <ul>
               {fundingItems.map((item) => (
                 <li key={item.fundingDetail.fundingId}>
-                  <ContributedFundingItem />
+                  <ContributedFundingItem item={item} />
                 </li>
               ))}
             </ul>
