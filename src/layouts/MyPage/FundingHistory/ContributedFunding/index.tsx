@@ -10,7 +10,7 @@ import { useDateFilter } from 'hooks/useDateFilter';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
 import { getContributedFundingHistory } from 'services/api/v1/fundingHistory';
 
-import { ContributedFundingItem } from 'types/funding';
+import { ContributedFundingItem } from 'types/fundingHistory';
 
 import FundingHistoryItem from '../FundingHistoryItem';
 
@@ -25,7 +25,7 @@ const ContributedFunding = () => {
 
   const { startDate, endDate } = useDateFilter();
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch, isFetched } = useQuery({
     queryKey: ['contributedFundingHistory', startDate, endDate],
     queryFn: () => getContributedFundingHistory(startDate, endDate),
   });
@@ -49,14 +49,18 @@ const ContributedFunding = () => {
     <>
       <section className={styles.area_funding}>
         <FilterBar />
-        <ul>
-          {fundingItems.map((item) => (
-            <li key={item.fundingDetail.fundingId}>
-              <FundingHistoryItem mode="contribute" />
-            </li>
+        {isFetched &&
+          (fundingItems.length === 0 ? (
+            <EmptyItem type="funding_contributed" />
+          ) : (
+            <ul>
+              {fundingItems.map((item) => (
+                <li key={item.fundingDetail.fundingId}>
+                  <FundingHistoryItem mode="contribute" />
+                </li>
+              ))}
+            </ul>
           ))}
-        </ul>
-        {fundingItems.length === 0 && <EmptyItem type="funding_contributed" />}
       </section>
       {isLoading && <Spinner />}
       {!isLoading && hasNext && <div ref={observingTarget} />}
