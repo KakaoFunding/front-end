@@ -19,7 +19,7 @@ const RegisteredFundingItem = ({ item }: RegisteredFundingItemProps) => {
       <p className={styles.txt_date}>
         등록한 날짜
         <span className={styles.num_data}>
-          {formatDateAndTime(item.createdAt)}
+          {/* {formatDateAndTime(item.createdAt)} */}
         </span>
       </p>
 
