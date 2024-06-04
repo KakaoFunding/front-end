@@ -2,8 +2,8 @@ import { formatDate } from 'utils/format';
 
 import { PaginationResponse } from 'types/PaginationResponse';
 import {
-  ContributedFundingItem,
-  RegisteredFundingItem,
+  ContributedFundingItemType,
+  RegisteredFundingItemType,
 } from 'types/fundingHistory';
 
 import { apiV1 } from '.';
@@ -16,7 +16,7 @@ export const getContributedFundingHistory = async (
     `/fundingDetail?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`,
   );
 
-  return contributedFundingHistory.data as PaginationResponse<ContributedFundingItem>;
+  return contributedFundingHistory.data as PaginationResponse<ContributedFundingItemType>;
 };
 
 export const getRegisteredFundingItem = async (
@@ -27,5 +27,5 @@ export const getRegisteredFundingItem = async (
     `/members/funding/products?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`,
   );
 
-  return registeredFundingItem.data as PaginationResponse<RegisteredFundingItem>;
+  return registeredFundingItem.data as PaginationResponse<RegisteredFundingItemType>;
 };

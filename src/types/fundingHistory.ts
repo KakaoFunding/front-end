@@ -1,6 +1,6 @@
 type FundingItemStatus = 'PROGRESS' | 'CANCEL_REFUND' | 'COMPLETED';
 
-export type ContributedFundingItem = {
+export type ContributedFundingItemType = {
   product: {
     productId: number;
     name: string;
@@ -18,7 +18,7 @@ export type ContributedFundingItem = {
   };
 };
 
-export type RegisteredFundingItem = {
+export type RegisteredFundingItemType = {
   fundingId: number;
   status: FundingItemStatus;
   expiredAt: string;

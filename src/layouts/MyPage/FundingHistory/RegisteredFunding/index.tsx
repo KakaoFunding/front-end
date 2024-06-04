@@ -10,14 +10,16 @@ import { useDateFilter } from 'hooks/useDateFilter';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
 import { getRegisteredFundingItem } from 'services/api/v1/fundingHistory';
 
-import { RegisteredFundingItem } from 'types/fundingHistory';
+import { RegisteredFundingItemType } from 'types/fundingHistory';
 
-import FundingHistoryItem from '../FundingHistoryItem';
+import RegisteredFundingItem from './RegisteredFundingItem';
 
 import styles from './index.module.scss';
 
 const RegisteredFunding = () => {
-  const [fundingItems, setFundingItems] = useState<RegisteredFundingItem[]>([]);
+  const [fundingItems, setFundingItems] = useState<RegisteredFundingItemType[]>(
+    [],
+  );
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
 
@@ -54,7 +56,7 @@ const RegisteredFunding = () => {
             <ul>
               {fundingItems.map((item) => (
                 <li key={item.fundingId}>
-                  <FundingHistoryItem mode="register" />
+                  <RegisteredFundingItem />
                 </li>
               ))}
             </ul>

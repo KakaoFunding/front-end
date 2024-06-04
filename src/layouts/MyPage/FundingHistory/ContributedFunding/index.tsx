@@ -10,16 +10,16 @@ import { useDateFilter } from 'hooks/useDateFilter';
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
 import { getContributedFundingHistory } from 'services/api/v1/fundingHistory';
 
-import { ContributedFundingItem } from 'types/fundingHistory';
+import { ContributedFundingItemType } from 'types/fundingHistory';
 
 import FundingHistoryItem from '../FundingHistoryItem';
 
 import styles from './index.module.scss';
 
 const ContributedFunding = () => {
-  const [fundingItems, setFundingItems] = useState<ContributedFundingItem[]>(
-    [],
-  );
+  const [fundingItems, setFundingItems] = useState<
+    ContributedFundingItemType[]
+  >([]);
   const [hasNext, setHasNext] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);
 
