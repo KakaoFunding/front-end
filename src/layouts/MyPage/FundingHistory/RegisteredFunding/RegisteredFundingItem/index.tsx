@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { formatNumberWithComma } from 'utils/format';
+import { formatNumberWithComma, formatDateAndTime } from 'utils/format';
 
 import {
   REGISTERED_ITEM_STATUS,
@@ -18,7 +18,9 @@ const RegisteredFundingItem = ({ item }: RegisteredFundingItemProps) => {
     <Link to={`/product/${item.productId}`}>
       <p className={styles.txt_date}>
         등록한 날짜
-        <span className={styles.num_data}>{item.createdAt}</span>
+        <span className={styles.num_data}>
+          {formatDateAndTime(item.createdAt)}
+        </span>
       </p>
 
       <div className={styles.wrapper_history}>

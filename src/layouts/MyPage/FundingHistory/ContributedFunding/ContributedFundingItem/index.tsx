@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { formatNumberWithComma } from 'utils/format';
+import { formatNumberWithComma, formatDateAndTime } from 'utils/format';
 
 import { ContributedFundingItemType } from 'types/fundingHistory';
 
@@ -14,7 +14,7 @@ const ContributedFundingItem = ({ item }: ContributedFundingItemProps) => {
       <p className={styles.txt_date}>
         기여한 날짜
         <span className={styles.num_data}>
-          {item.fundingDetail.contributedAt}
+          {formatDateAndTime(item.fundingDetail.contributedAt)}
         </span>
       </p>
 
