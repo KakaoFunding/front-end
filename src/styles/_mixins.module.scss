@@ -186,3 +186,10 @@
   background-image: url('assets/ico_giftorder.png');
   background-size: 165px 210px;
 }
+
+@mixin img-badge($x, $y, $width, $height) {
+  @include img-sprite($x, $y, $width, $height);
+
+  background-image: url('assets/badge_state.png');
+  background-size: 325px 105px;
+}
