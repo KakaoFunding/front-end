@@ -2,15 +2,12 @@ import { Link } from 'react-router-dom';
 
 import { formatNumberWithComma } from 'utils/format';
 
-import { RegisteredFundingItemType } from 'types/fundingHistory';
+import {
+  REGISTERED_ITEM_STATUS,
+  RegisteredFundingItemType,
+} from 'types/fundingHistory';
 
 import styles from './index.module.scss';
-
-const FUNDING_STATUS = {
-  PROGRESS: '진행중',
-  COMPLETED: '완료됨',
-  CANCEL_REFUND: '취소됨',
-};
 
 type RegisteredFundingItemProps = {
   item: RegisteredFundingItemType;
@@ -26,7 +23,7 @@ const RegisteredFundingItem = ({ item }: RegisteredFundingItemProps) => {
 
       <div className={styles.wrapper_history}>
         <div className={styles.section_status}>
-          {FUNDING_STATUS.PROGRESS}
+          {REGISTERED_ITEM_STATUS[item.status]}
           <span className={styles.txt_detail}>
             상세보기
             <span className={styles.ico_detail} />
