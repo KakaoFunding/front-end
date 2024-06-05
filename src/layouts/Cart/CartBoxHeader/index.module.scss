@@ -3,6 +3,7 @@
 @import '../index';
 
 .cover_front {
+  position: absolute;
   width: $cover-front-width;
   height: 60px;
   background-color: $cart-color;
@@ -29,6 +30,7 @@
   width: $cover-back-width;
   height: $cover-back-height;
   left: -$cover-side-width;
+  top: 60px;
   background-color: $cart-color;
 
   &.filled {

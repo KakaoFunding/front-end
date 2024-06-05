@@ -1,0 +1,15 @@
+@import 'styles/mixins.module';
+
+.wrapper_empty {
+  @include wh-full;
+  @include center(column);
+  @include font(18px, 400, #333);
+
+  line-height: 24px;
+
+  .ico_empty_cart {
+    @include ico-cart2(-115px, -798px, 51px, 51px);
+
+    margin-bottom: 20px;
+  }
+}
