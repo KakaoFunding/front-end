@@ -1,0 +1,11 @@
+@mixin filled {
+  background-color: $point-yellow;
+  border-bottom: 2px solid #ffea72;
+}
+
+$cart-color: #ececec;
+$cover-front-width: 890px;
+$cover-back-width: 822px;
+$cover-back-height: 32px;
+$cover-side-width: -34px;
+$cart-shadow: 0 4px 10px rgba(0, 0, 0, 8%);
