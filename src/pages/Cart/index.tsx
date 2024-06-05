@@ -1,26 +1,32 @@
 import MainWrapper from 'components/ui/MainWrapper';
+import Header from 'layouts/App/Header';
+import CartBoxFooter from 'layouts/Cart/CartBoxFooter';
+import CartBoxHeader from 'layouts/Cart/CartBoxHeader';
+import CartPay from 'layouts/Cart/CartPay';
 
-import CartBoxBody from './CartBoxBody';
-import CartBoxFooter from './CartBoxFooter';
-import CartBoxHeader from './CartBoxHeader';
 import EmptyCartBoxBody from './EmptyCartBoxBody';
 
 import styles from './index.module.scss';
 
 const Cart = () => {
+  const isItemInCart = true;
+
   return (
-    <div className={styles.wrapper_cart}>
-      <MainWrapper>
-        <div className={styles.area_cart}>
-          <div className={styles.area_wrapper_cartbox}>
-            <CartBoxHeader />
-            <CartBoxBody />
-            {/* <EmptyCartBoxBody /> */}
-            <CartBoxFooter />
+    <>
+      <Header />
+      <section className={styles.area_cart}>
+        <MainWrapper>
+          <div className={styles.wrapper_cart}>
+            <div>
+              <CartBoxHeader isItemInCart={isItemInCart} />
+              {isItemInCart ? <div>아이템목록</div> : <EmptyCartBoxBody />}
+              <CartBoxFooter isItemInCart={isItemInCart} />
+            </div>
+            <CartPay />
           </div>
-        </div>
-      </MainWrapper>
-    </div>
+        </MainWrapper>
+      </section>
+    </>
   );
 };
 

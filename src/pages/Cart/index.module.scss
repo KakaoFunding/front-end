@@ -1,20 +1,12 @@
 @import 'styles/variable.module';
 
-.wrapper_cart {
+.area_cart {
   background-color: #f5f5f5;
 }
 
-.area_cart {
-  position: relative;
+.wrapper_cart {
+  display: flex;
   height: calc(100vh - $header-height);
-  box-sizing: border-box;
-  padding: 0 390px 0 0;
-}
-
-.area_wrapper_cartbox {
-  overflow-y: scroll; // 아이템이 없는 상황에는 필요없음.
-  padding: 0 18px 0 33px; // 아이템이 없는 상황에는 모두 0으로 변해야함.
-  height: 100%;
-  min-height: 448px;
-  box-sizing: border-box;
+  margin-top: $header-height;
+  position: relative;
 }
