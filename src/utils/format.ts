@@ -42,6 +42,20 @@ export const formatDate = (date: Date) => {
   return `${year}-${month}-${day}`;
 };
 
+/**
+ * Format date and time as yyyy.mm.dd hh:mm:ss
+ * @param dateTime yyyy-mm-ddT:hh:mm:ss
+ * @returns formatted date and time (yyyy.mm.dd hh:mm:ss)
+ */
+export const formatDateAndTime = (dateTime: string) => {
+  const [date, time] = dateTime.split('T');
+
+  const formattedDate = date.split('-').join('.');
+  const formattedTime = time.slice(0, 8);
+
+  return `${formattedDate} ${formattedTime}`;
+};
+
 export const formatBirthDate = (birthDate: string) => {
   const formattedBirthDate = birthDate.split('-');
   const [year, month, day] = formattedBirthDate;
