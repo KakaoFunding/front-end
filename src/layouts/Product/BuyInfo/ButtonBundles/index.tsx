@@ -4,12 +4,17 @@ import { Button } from 'components/ui/Button';
 import FundingModal from 'components/ui/Modal/FundingModal';
 import WishModal from 'components/ui/Modal/WishModal';
 
+import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+
+import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithPlus } from 'utils/format';
 
 import { RequestOrderPreview } from 'types/payment';
 import { OptionDetail, ProductDescriptionResponse } from 'types/product';
+
+import DefaultProfileImage from 'assets/profile_noimg.png';
 
 import styles from './index.module.scss';
 
@@ -34,6 +39,9 @@ const ButtonBundles = ({
     productDescription;
   const navigate = useNavigate();
   const { isLoggedIn, login, confirmLogin } = useLogin();
+  const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
+    useSelectedFriendsStore();
+  const { openKakaoPicker } = useKakaoPicker();
 
   const {
     isOpen: isFundingOpen,
@@ -107,10 +115,25 @@ const ButtonBundles = ({
   // 친구에게 선물하기 버튼 핸들러
   const handleClickGiftForFriend = () => {
     checkLoginBeforeAction(() => {
-      // TODO: 친구를 선택하지 않은 경우 피커 오픈
-      // 친구를 선택한 경우 선물 결제 페이지로 이동
-      navigate('/bill/gift', { state: { orderInfos, giftFor: 'friends' } });
+      if (!isSelected) {
+        openKakaoPicker();
+        return;
+      }
+
+      if (isSelfSelected) {
+        navigate('/bill/gift', { state: { orderInfos, giftFor: 'me' } });
+      } else if (selectedFriends.length === 1) {
+        navigate('/bill/gift', { state: { orderInfos, giftFor: 'friends' } });
+      } else {
+        alert('지금은 한 번에 한 명에게만 선물할 수 있어요.');
+      }
     });
+  };
+
+  // 친구 프로필 이미지 클릭 핸들러
+  const handleClickProfile = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    openKakaoPicker();
   };
 
   // 선물상자 담기 버튼 핸들러
@@ -171,10 +194,14 @@ const ButtonBundles = ({
           onClick={handleClickGiftForFriend}
           className={styles.btn_gift}
         >
-          <span className={styles.img_profile}>
-            {/* TODO : 로그인 되었을 때만 보이게 */}
+          <div className={styles.wrapper_profile} onClick={handleClickProfile}>
+            <img
+              src={getImgUrl(DefaultProfileImage)}
+              alt="선물할 친구 프로필 사진"
+              className={styles.img_profile}
+            />
             <span className={styles.ico_profile} />
-          </span>
+          </div>
           선물하기
         </Button>
       </section>

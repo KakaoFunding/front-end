@@ -29,8 +29,7 @@ import GiftBox from 'pages/MyPage/GiftBox';
 import OrderHistory from 'pages/MyPage/OrderHistory';
 import Wish from 'pages/MyPage/Wish';
 import NotFound from 'pages/NotFound';
-import PaymentCancel from 'pages/PaymentCancel';
-import PaymentFail from 'pages/PaymentFail';
+import PaymentError from 'pages/PaymentError';
 import PrivateRoute from 'pages/PrivateRoute';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
@@ -125,12 +124,8 @@ const router = createBrowserRouter([
             element: <FundingComplete />,
           },
           {
-            path: '/payment/fail',
-            element: <PaymentFail />,
-          },
-          {
-            path: '/payment/cancel',
-            element: <PaymentCancel />,
+            path: '/payment/error',
+            element: <PaymentError />,
           },
         ],
       },

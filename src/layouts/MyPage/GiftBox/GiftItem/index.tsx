@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 
+import { getDDay } from 'utils/generate';
+
 import { Gift, STATUS_TEXT, StatusType } from 'types/Gift';
 
 import styles from './index.module.scss';
@@ -16,12 +18,6 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
     receivedAt,
   } = gift;
 
-  const getDDay = () => {
-    const diffTime = new Date(expiredAt).getTime() - new Date().getTime(); // 시간 차이, 단위: ms
-    const DDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // 밀리초 / 1일
-    return DDay;
-  };
-
   return (
     <div className={styles.wrapper_gift}>
       <div className={styles.wrapper_thumb}>
@@ -35,7 +31,7 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
       <strong className={styles.txt_prod}>{productName}</strong>
 
       {status === 'NOT_USED' ? (
-        <span className={styles.d_day}>D-{getDDay()}</span>
+        <span className={styles.d_day}>D-{getDDay(expiredAt)}</span>
       ) : (
         <span className={clsx(styles.badge, styles[status.toLowerCase()])}>
           {STATUS_TEXT[status]}

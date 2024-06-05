@@ -14,5 +14,5 @@ export type ProductItemSize = {
 
 export type RecommendProductItemsResponse = Pick<
   ProductItem,
-  'productId' | 'photo' | 'name' | 'price'
+  'productId' | 'photo' | 'name' | 'price' | 'brandName'
 >;

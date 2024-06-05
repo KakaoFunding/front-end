@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
-import { useUserStore } from 'store/useUserStore';
+// import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+// import { useUserStore } from 'store/useUserStore';
 
 import {
   getSessionStorageItem,
-  clearSessionStorageItem,
+  // clearSessionStorageItem,
   setSessionStorageItem,
 } from 'utils/sessionStorage';
 
 import {
-  clearLocalStorageItem,
+  // clearLocalStorageItem,
   getLocalStorageItem,
   setLocalStorageItem,
 } from './localStorage';
@@ -26,9 +26,12 @@ apiV1.interceptors.request.use(
   (config) => {
     const newConfig = config;
     const accessToken = getSessionStorageItem('accessToken');
-    if (accessToken) {
+    const reissueUrlPattern = /\/oauth\/reissue/;
+
+    if (accessToken && !reissueUrlPattern.test(newConfig.url || '')) {
       newConfig.headers.Authorization = `Bearer ${accessToken}`;
     }
+
     return newConfig;
   },
   (error) => {
@@ -47,35 +50,47 @@ apiV1.interceptors.response.use(
       response: { status },
     } = error;
 
-    if (status === 403) {
-      // if (error.response.data.message === 'Unauthorized') {
-      const originRequest = config;
-      const usersRefreshToken = getLocalStorageItem('refreshToken');
-      const response = await refreshAccessToken(usersRefreshToken);
+    if (status === 401) {
+      if (error.response.data.code === 'KF003') {
+        const originRequest = config;
+        const usersRefreshToken = getLocalStorageItem('refreshToken');
+        apiV1.defaults.headers.common.Authorization = null;
+        const response = await refreshAccessToken(usersRefreshToken);
 
-      if (response.status === 200) {
-        const { accessToken, refreshToken } = response.data;
-        const { value, expiration } = refreshToken;
+        if (response.status === 200) {
+          const { accessToken, refreshToken } = response.data;
+          const { value, expiration } = refreshToken;
 
-        setSessionStorageItem('accessToken', accessToken);
-        setLocalStorageItem('refreshToken', value, expiration);
+          setSessionStorageItem('accessToken', accessToken);
+          setLocalStorageItem('refreshToken', value, expiration);
 
-        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-        originRequest.headers.Authorization = `Bearer ${accessToken}`;
-        originRequest.data = { refreshToken: value };
+          axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+          originRequest.headers.Authorization = `Bearer ${accessToken}`;
+          const parsedOriginData = JSON.parse(originRequest.data);
 
-        return axios(originRequest);
+          if (Array.isArray(parsedOriginData)) {
+            originRequest.data = [...parsedOriginData];
+          } else if (typeof parsedOriginData === 'object') {
+            originRequest.data = { ...parsedOriginData };
+
+            if (parsedOriginData.refreshToken) {
+              originRequest.data = { ...parsedOriginData, refreshToken: value };
+            }
+          }
+
+          return axios(originRequest);
+        }
       }
-
-      if (response.status === 404) {
-        useUserStore.getState().clearUserInfo();
-        useSelectedFriendsStore.getState().clearSelectedFriends();
-        clearSessionStorageItem();
-        clearLocalStorageItem('refreshToken');
-        window.location.replace('/');
-      }
+      // 추후 에러 코드가 세분화 되면 다시 리팩토링 예정
+      // if (response.status === 404) {
+      //   useUserStore.getState().clearUserInfo();
+      //   useSelectedFriendsStore.getState().clearSelectedFriends();
+      //   clearSessionStorageItem();
+      //   clearLocalStorageItem('refreshToken');
+      //   window.location.replace('/');
       // }
     }
+
     return Promise.reject(error);
   },
 );

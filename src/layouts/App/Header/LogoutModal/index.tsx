@@ -8,7 +8,7 @@ import {
   clearLocalStorageItem,
   getLocalStorageItem,
 } from 'services/api/v1/localStorage';
-import { logout } from 'services/api/v1/oauth';
+import { logout, socialLogout } from 'services/api/v1/oauth';
 import {
   clearSessionStorageItem,
   getSessionStorageItem,
@@ -28,11 +28,13 @@ const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
   const clearSelectedFiends = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
-  const accessToken = getSessionStorageItem('accessToken');
   const refreshToken = getLocalStorageItem('refreshToken');
+  const socialAccessToken = getSessionStorageItem('socialToken');
+  const { providerId } = useUserStore();
 
   const handleLogout = async () => {
-    await logout({ accessToken, refreshToken });
+    await logout({ refreshToken });
+    await socialLogout({ providerId, socialAccessToken });
 
     clearUser();
     clearSelectedFiends();

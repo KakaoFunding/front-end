@@ -49,7 +49,8 @@
   }
 }
 
-.product_list {
+.product_list,
+.received_box {
   .wrapper_tab {
     margin-right: 33px;
     padding: 14px 0;
@@ -65,6 +66,10 @@
       }
     }
   }
+}
+
+.received_box {
+  margin-bottom: 30px;
 }
 
 .funding_history {

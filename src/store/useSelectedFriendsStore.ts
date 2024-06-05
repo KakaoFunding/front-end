@@ -3,7 +3,6 @@ import { persist } from 'zustand/middleware';
 
 import { PickerResponseData, User } from 'types/user';
 
-import defaultImgUrl from 'assets/bg_profile_default.png';
 import friendsDefaultImgUrl from 'assets/profile_default.png';
 import peopleImgUrl from 'assets/profile_people.png';
 
@@ -20,7 +19,7 @@ type SelectedFriendsAction = {
     name: User['name'],
     providerId: User['providerId'],
   ) => void;
-  getImgUrl: () => string;
+  getImgUrl: (defaultImgUrl: string) => string;
   clearSelectedFriends: () => void;
 };
 
@@ -54,7 +53,7 @@ export const useSelectedFriendsStore = create<
           selectedHeadCount: 0,
         }),
 
-      getImgUrl: () => {
+      getImgUrl: (defaultImgUrl: string) => {
         const selectCount = get().selectedHeadCount;
 
         if (selectCount > 1) return peopleImgUrl;
