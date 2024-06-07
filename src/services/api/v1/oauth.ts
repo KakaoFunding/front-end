@@ -24,8 +24,12 @@ type LoginResponseProps = {
 };
 
 type LogoutRequestProps = {
-  accessToken: string | null;
-  refreshToken: string | null;
+  refreshToken: string;
+};
+
+type SocialLogoutRequestProps = {
+  socialAccessToken: string;
+  providerId: string;
 };
 
 // 로그인: 토큰 발급
@@ -63,24 +67,36 @@ export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
 export const login = async ({
   socialAccessToken,
 }: LoginRequestProps): Promise<AxiosResponse<LoginResponseProps>> => {
-  return apiV1.post('/oauth/login', null, {
-    params: { provider: 'kakao', socialAccessToken },
-    withCredentials: true,
-  });
+  return apiV1.post(
+    '/oauth/login',
+    {
+      provider: 'kakao',
+      socialAccessToken,
+    },
+    {
+      withCredentials: true,
+    },
+  );
 };
 
 // 로그아웃 요청
 export const logout = async ({
-  accessToken,
   refreshToken,
-}: LogoutRequestProps): Promise<AxiosResponse<LogoutRequestProps>> => {
-  const headers = {
-    Authorization: `Bearer ${accessToken}`,
-  };
-  const response = await apiV1.post(
-    '/oauth/logout',
-    { refreshToken },
-    { headers },
-  );
+}: LogoutRequestProps): Promise<AxiosResponse> => {
+  const response = await apiV1.post('/oauth/logout', { refreshToken });
+  return response;
+};
+
+// 소셜 로그아웃
+export const socialLogout = async ({
+  providerId,
+  socialAccessToken,
+}: SocialLogoutRequestProps): Promise<AxiosResponse> => {
+  const response = await apiV1.post('/oauth/social/logout', {
+    provider: 'KAKAO',
+    providerId,
+    socialAccessToken,
+  });
+
   return response;
 };

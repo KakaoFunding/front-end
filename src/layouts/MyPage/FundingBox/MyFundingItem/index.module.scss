@@ -26,7 +26,7 @@
   letter-spacing: -0.03em;
 }
 
-.wrapper_gift {
+.wrapper_funding {
   $width: 196px;
 
   width: $width;
@@ -59,23 +59,9 @@
   }
 }
 
-.wrapper_receive_info {
+.txt_date {
   margin-top: 8px;
-
-  .txt_sender {
-    display: block;
-
-    @include font(15px, 700, #222);
-    @include text-ellipsis(1);
-
-    .txt_from {
-      letter-spacing: -0.04em;
-    }
-  }
-
-  .txt_date {
-    font-size: 12px;
-    color: #a0a0a0;
-    letter-spacing: -0.028em;
-  }
+  font-size: 12px;
+  color: #a0a0a0;
+  letter-spacing: -0.028em;
 }
