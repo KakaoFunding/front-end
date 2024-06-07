@@ -25,12 +25,10 @@ const Modal = ({
       document.documentElement.style.cssText = `
       position: fixed; 
       top: -${scrollPos}px;
-      overflow-y: scroll;
       width: 100%;`;
 
       modal!.style.cssText = `
       z-index: 5000;
-      overflow-y: auto;
       position: fixed;
       overscroll-behavior-y: contain;
       inset: 0;
