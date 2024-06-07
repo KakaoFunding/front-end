@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'components/ui/Button';
@@ -19,10 +21,6 @@ import DefaultProfileImage from 'assets/profile_noimg.png';
 
 import styles from './index.module.scss';
 
-const mockData = {
-  wishCnt: 999999,
-};
-
 type ButtonBundlesProps = {
   productDescription: ProductDescriptionResponse;
   hasOption: boolean;
@@ -36,8 +34,15 @@ const ButtonBundles = ({
   selectedOption,
   quantity,
 }: ButtonBundlesProps) => {
-  const { productId, name, price, productThumbnails, options } =
-    productDescription;
+  const {
+    productId,
+    name,
+    price,
+    productThumbnails,
+    options,
+    wishCount,
+    wish,
+  } = productDescription;
   const navigate = useNavigate();
   const { checkLoginBeforeAction } = useLogin();
   const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
@@ -149,6 +154,8 @@ const ButtonBundles = ({
     });
   };
 
+  useEffect(() => {}, [wish]);
+
   return (
     <section className={styles.wrapper_bundle}>
       <FundingModal
@@ -182,8 +189,8 @@ const ButtonBundles = ({
       </Button>
       <section className={styles.wrapper_gift}>
         <Button className={styles.btn_wish} onClick={handleClickWish}>
-          <span className={styles.ico_wish} />
-          {formatNumberWithPlus(mockData.wishCnt, 100000)}
+          <span className={clsx(styles.ico_wish, { [styles.on]: wish })} />
+          {formatNumberWithPlus(wishCount, 100000)}
         </Button>
         <Button
           color="black"
