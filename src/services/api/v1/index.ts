@@ -58,15 +58,23 @@ apiV1.interceptors.response.use(
 
           axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
           originRequest.headers.Authorization = `Bearer ${accessToken}`;
-          const parsedOriginData = JSON.parse(originRequest.data);
 
-          if (Array.isArray(parsedOriginData)) {
-            originRequest.data = [...parsedOriginData];
-          } else if (typeof parsedOriginData === 'object') {
-            originRequest.data = { ...parsedOriginData };
+          let parsedOriginData;
 
-            if (parsedOriginData.refreshToken) {
-              originRequest.data = { ...parsedOriginData, refreshToken: value };
+          if (originRequest.data) {
+            parsedOriginData = JSON.parse(originRequest.data);
+
+            if (Array.isArray(parsedOriginData)) {
+              originRequest.data = [...parsedOriginData];
+            } else if (typeof parsedOriginData === 'object') {
+              originRequest.data = { ...parsedOriginData };
+
+              if (parsedOriginData.refreshToken) {
+                originRequest.data = {
+                  ...parsedOriginData,
+                  refreshToken: value,
+                };
+              }
             }
           }
 
