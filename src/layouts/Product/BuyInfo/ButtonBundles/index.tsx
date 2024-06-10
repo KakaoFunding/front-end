@@ -39,7 +39,7 @@ const ButtonBundles = ({
     productThumbnails,
     options,
     wishCount,
-    wish,
+    wish: isWished,
   } = productDescription;
   const navigate = useNavigate();
   const { isLoggedIn, login, confirmLogin } = useLogin();
@@ -183,7 +183,7 @@ const ButtonBundles = ({
       </Button>
       <section className={styles.wrapper_gift}>
         <Button className={styles.btn_wish} onClick={handleClickWish}>
-          <span className={clsx(styles.ico_wish, { [styles.on]: wish })} />
+          <span className={clsx(styles.ico_wish, { [styles.on]: isWished })} />
           {formatNumberWithPlus(wishCount, 100000)}
         </Button>
         <Button
