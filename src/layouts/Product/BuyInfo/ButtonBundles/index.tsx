@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'components/ui/Button';
@@ -153,8 +152,6 @@ const ButtonBundles = ({
       checkOptionBeforeAction(addItemToCart);
     });
   };
-
-  useEffect(() => {}, [wish]);
 
   return (
     <section className={styles.wrapper_bundle}>
