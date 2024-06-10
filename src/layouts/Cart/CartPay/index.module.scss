@@ -1,0 +1,19 @@
+@import 'styles/mixins.module';
+
+.area_cartpay {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 390px;
+  padding: 63px 25px 84px 24px;
+  border-left: 1px solid #ddd;
+
+  .txt_cartpay {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    font-size: 13px;
+    line-height: 20px;
+    opacity: 0.4;
+    letter-spacing: -0.006em;
+  }
+}

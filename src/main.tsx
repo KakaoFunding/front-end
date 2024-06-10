@@ -69,10 +69,6 @@ const router = createBrowserRouter([
         element: <PrivateRoute />,
         children: [
           {
-            path: '/cart',
-            element: <Cart />,
-          },
-          {
             path: '/mypage',
             element: <Navigate to="/mypage/giftbox" />,
           },
@@ -152,6 +148,15 @@ const router = createBrowserRouter([
       {
         path: '/search/result',
         element: <SearchResult />,
+      },
+    ],
+  },
+  {
+    element: <PrivateRoute />,
+    children: [
+      {
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },

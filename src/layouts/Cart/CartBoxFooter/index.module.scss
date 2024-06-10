@@ -1,0 +1,52 @@
+@import 'styles/mixins.module';
+@import 'styles/variable.module';
+@import '../index.module';
+
+.cover_front {
+  position: absolute;
+  width: $cover-front-width;
+  height: 50px;
+  bottom: 0;
+  background-color: $cart-color;
+  z-index: 20;
+  box-shadow: $cart-shadow;
+
+  &.filled {
+    @include filled;
+  }
+}
+
+.cover_back {
+  position: absolute;
+  width: $cover-back-width;
+  height: $cover-back-height;
+  left: -$cover-side-width;
+  bottom: 50px;
+  background-color: $cart-color;
+
+  &.filled {
+    @include filled;
+  }
+
+  .cover_left {
+    @include ico-cart(-80px, -150px, 34px, 35px);
+
+    position: absolute;
+    left: $cover-side-width;
+
+    &.filled {
+      @include ico-cart(-80px, -110px, 34px, 34px);
+    }
+  }
+
+  .cover_right {
+    @include ico-cart(-120px, -150px, 34px, 35px);
+
+    position: absolute;
+    right: $cover-side-width;
+
+    &.filled {
+      @include ico-cart(-120px, -110px, 34px, 34px);
+    }
+  }
+}
