@@ -6,6 +6,7 @@ import WishModal from 'components/ui/Modal/WishModal';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
+import { useAxios } from 'hooks/useAxios';
 import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
@@ -56,6 +57,20 @@ const ButtonBundles = ({
     close: closeWishModal,
     scrollPos: scrollWishPos,
   } = useModal();
+
+  // 장바구니 등록 API
+  const { sendRequest: addItemToCart } = useAxios<{
+    cartId: number;
+  }>({
+    url: '/cart',
+    method: 'post',
+    data: {
+      productId,
+      itemCount: quantity,
+      optionId: selectedOption ? options[0].optionsId : null,
+      optionDetailId: selectedOption ? selectedOption.id : null,
+    },
+  });
 
   // 주문 정보
   const orderInfos: RequestOrderPreview = [
@@ -136,9 +151,9 @@ const ButtonBundles = ({
     openKakaoPicker();
   };
 
-  // 선물상자 담기 버튼 핸들러
-  const handleClickCart = () => {
-    // console.log('선물상자 담기');
+  // 장바구니 등록 버튼 핸들러
+  const handleAddCart = () => {
+    addItemToCart();
   };
 
   return (
@@ -168,12 +183,7 @@ const ButtonBundles = ({
         <span className={styles.ico_funding} />
         펀딩 아이템으로 등록하기
       </Button>
-      {/* TODO : 로그인 되었을 때만 보이게 */}
-      <Button
-        color="white"
-        onClick={handleClickCart}
-        className={styles.btn_cart}
-      >
+      <Button color="white" onClick={handleAddCart} className={styles.btn_cart}>
         <span className={styles.ico_cart} />
         선물상자 담기
       </Button>
