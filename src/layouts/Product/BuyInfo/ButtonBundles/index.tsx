@@ -153,7 +153,9 @@ const ButtonBundles = ({
 
   // 장바구니 등록 버튼 핸들러
   const handleAddCart = () => {
-    addItemToCart();
+    checkLoginBeforeAction(() => {
+      checkOptionBeforeAction(addItemToCart);
+    });
   };
 
   return (
