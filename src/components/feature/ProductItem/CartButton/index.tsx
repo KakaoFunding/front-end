@@ -3,6 +3,7 @@ import { MouseEvent } from 'react';
 import Spinner from 'components/ui/Spinner';
 
 import { useAxios } from 'hooks/useAxios';
+import { useLogin } from 'hooks/useLogin';
 
 import styles from './index.module.scss';
 
@@ -11,6 +12,7 @@ type CartButtonProps = {
 };
 
 const CartButton = ({ productId }: CartButtonProps) => {
+  const { isLoggedIn, login, confirmLogin } = useLogin();
   const { isLoading, sendRequest } = useAxios<{ cartId: number }>({
     url: '/cart',
     method: 'post',
@@ -24,7 +26,11 @@ const CartButton = ({ productId }: CartButtonProps) => {
 
   const handleAddCart = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    sendRequest();
+    if (isLoggedIn) sendRequest();
+    else {
+      const result = confirmLogin();
+      if (result) login();
+    }
   };
 
   return (
