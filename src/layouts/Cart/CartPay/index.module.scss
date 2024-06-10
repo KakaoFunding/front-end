@@ -55,6 +55,10 @@
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 
+  &.is_selected {
+    grid-template-columns: 1fr;
+  }
+
   .wrapper_profile {
     @include size(32px, 32px, 0, 0);
 
