@@ -1,24 +1,44 @@
 import MainWrapper from 'components/ui/MainWrapper';
-
-import CartBoxFooter from './CartBoxFooter';
-import CartBoxHeader from './CartBoxHeader';
-import EmptyCartBoxBody from './EmptyCartBoxBody';
+import Header from 'layouts/App/Header';
+import CartBoxFooter from 'layouts/Cart/CartBoxFooter';
+import CartBoxHeader from 'layouts/Cart/CartBoxHeader';
+import CartBoxItem from 'layouts/Cart/CartBoxItem';
+import CartPay from 'layouts/Cart/CartPay';
+import EmptyCartBoxBody from 'layouts/Cart/EmptyCartBoxBody';
 
 import styles from './index.module.scss';
 
+const items = [1, 2, 3];
+
 const Cart = () => {
+  const isItemInCart = true;
+
   return (
-    <div className={styles.wrapper_cart}>
-      <MainWrapper>
-        <div className={styles.area_cart}>
-          <div className={styles.wrapper_cartbox}>
-            <CartBoxHeader />
-            <EmptyCartBoxBody />
-            <CartBoxFooter />
+    <>
+      <Header />
+      <section className={styles.area_cart}>
+        <MainWrapper>
+          <div className={styles.wrapper_cart}>
+            <div className={styles.wrapper_cart_box}>
+              <CartBoxHeader isItemInCart={isItemInCart} />
+              {isItemInCart ? (
+                <ul className={styles.wrapper_item}>
+                  {items.map((item) => (
+                    <li key={item}>
+                      <CartBoxItem />
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <EmptyCartBoxBody />
+              )}
+              <CartBoxFooter isItemInCart={isItemInCart} />
+            </div>
+            <CartPay />
           </div>
-        </div>
-      </MainWrapper>
-    </div>
+        </MainWrapper>
+      </section>
+    </>
   );
 };
 

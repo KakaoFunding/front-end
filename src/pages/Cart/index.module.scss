@@ -1,20 +1,26 @@
 @import 'styles/variable.module';
 
-.wrapper_cart {
+.area_cart {
   background-color: #f5f5f5;
 }
 
-.area_cart {
-  position: relative;
+.wrapper_cart {
+  display: flex;
   height: calc(100vh - $header-height);
-  box-sizing: border-box;
-  padding: 0 390px 0 0;
+  margin-top: $header-height;
+  position: relative;
 }
 
-.area_wrapper_cartbox {
-  // overflow-y: auto; 스크롤바 때문에 우선 꺼둠
-  padding: 0;
+.wrapper_cart_box {
+  width: 890px;
   height: 100%;
-  min-height: 448px;
-  box-sizing: border-box;
+}
+
+.wrapper_item {
+  position: relative;
+  height: calc(100% - 110px);
+  margin-top: 60px;
+  padding: 0 33px;
+  overflow: hidden scroll;
+  z-index: 10;
 }
