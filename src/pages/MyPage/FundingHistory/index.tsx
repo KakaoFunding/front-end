@@ -1,4 +1,6 @@
 import Tabs from 'components/ui/Tabs';
+import ContributedFunding from 'layouts/MyPage/FundingHistory/ContributedFunding';
+import RegisteredFunding from 'layouts/MyPage/FundingHistory/RegisteredFunding';
 
 import { useUserStore } from 'store/useUserStore';
 
@@ -12,12 +14,12 @@ const FundingHistory = () => {
     {
       id: 0,
       name: '내가 등록한 펀딩',
-      content: <>내가 등록한 펀딩</>,
+      content: <RegisteredFunding />,
     },
     {
       id: 1,
       name: '내가 기여한 펀딩',
-      content: <>내가 기여한 펀딩</>,
+      content: <ContributedFunding />,
     },
   ];
 

@@ -40,6 +40,7 @@ const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
     clearSelectedFiends();
     clearSessionStorageItem();
     clearLocalStorageItem('refreshToken');
+    clearLocalStorageItem('socialRefreshToken');
 
     navigate('/');
   };
