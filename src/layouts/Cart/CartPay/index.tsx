@@ -79,15 +79,19 @@ const CartPay = () => {
     <section className={styles.area_cart_pay}>
       <div className={styles.wrapper_bills}>
         <div className={styles.line_bills} />
-        {isToggled && (
-          <ul>
-            {prod.map((it) => (
-              <li key={it}>
-                <BillItem />
-              </li>
-            ))}
-          </ul>
-        )}
+        <div
+          className={clsx(styles.wrapper_items, { [styles.on]: !isToggled })}
+        >
+          {isToggled && (
+            <ul className={styles.scroll}>
+              {prod.map((it) => (
+                <li key={it}>
+                  <BillItem />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
         <Button onClick={handleToggle} color="white" className={styles.btn}>
           <strong>총 결제 금액</strong>
           <em className={styles.num_price}>

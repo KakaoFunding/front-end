@@ -9,6 +9,7 @@
   height: calc(100vh - 80px);
   padding: 63px 25px 10px 24px;
   border-left: 1px solid #ddd;
+  background-color: #f5f5f5;
 }
 
 .wrapper_bills {
@@ -17,12 +18,29 @@
   justify-content: flex-end;
   flex-grow: 1;
   margin-bottom: 10px;
+  z-index: 5;
 
   .line_bills {
     top: -3px;
     height: 3px;
     background-image: url('/src/assets/pc_tline_bill.png');
     background-size: 8px 3px;
+  }
+
+  .wrapper_items {
+    padding-top: 28px;
+    background-color: #fff;
+
+    &.on {
+      padding-top: 0;
+    }
+
+    .scroll {
+      overflow-y: auto;
+      max-height: 318px;
+      padding: 0 18px;
+      box-sizing: border-box;
+    }
   }
 
   .btn {
@@ -40,7 +58,7 @@
       .ico_toggle {
         @include ico-gift4(-220px, -740px, 10px, 6px);
 
-        margin-left: 6px;
+        margin-left: 12px;
 
         &.on {
           @include ico-gift4(-220px, -750px, 10px, 6px);
@@ -90,4 +108,5 @@
   text-align: center;
   letter-spacing: -0.006em;
   opacity: 0.4;
+  z-index: 2;
 }
