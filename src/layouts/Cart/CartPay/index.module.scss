@@ -1,19 +1,89 @@
 @import 'styles/mixins.module';
 
-.area_cartpay {
+.area_cart_pay {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   inset: 0 0 0 auto;
   width: 390px;
-  padding: 63px 25px 84px 24px;
+  height: calc(100vh - 80px);
+  padding: 63px 25px 10px 24px;
   border-left: 1px solid #ddd;
+}
 
-  .txt_cartpay {
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    font-size: 13px;
-    line-height: 20px;
-    opacity: 0.4;
-    letter-spacing: -0.006em;
+.wrapper_bills {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
+  margin-bottom: 10px;
+
+  .line_bills {
+    top: -3px;
+    height: 3px;
+    background-image: url('/src/assets/pc_tline_bill.png');
+    background-size: 8px 3px;
   }
+
+  .btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: none;
+
+    .num_price {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+
+      .ico_toggle {
+        @include ico-gift4(-220px, -740px, 10px, 6px);
+
+        margin-left: 6px;
+
+        &.on {
+          @include ico-gift4(-220px, -750px, 10px, 6px);
+        }
+      }
+    }
+  }
+}
+
+.wrapper_buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  .wrapper_profile {
+    @include size(32px, 32px, 0, 0);
+
+    position: relative;
+    margin-right: 6px;
+
+    .img_profile {
+      @include masking;
+
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .ico_profile {
+    @include ico-pd-detail(-150px, -440px, 16px, 16px);
+
+    position: absolute;
+    bottom: 0;
+    right: -4px;
+  }
+}
+
+.txt_cart_pay {
+  position: absolute;
+  inset: 50% 0;
+  margin-top: -50px;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: -0.006em;
+  opacity: 0.4;
 }
