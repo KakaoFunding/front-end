@@ -50,9 +50,10 @@ export const formatDate = (date: Date) => {
 export const formatDateAndTime = (dateTime: string) => {
   const [date, time] = dateTime.split('T');
 
-  const formattedDate = date.split('-').join('.');
+  const formattedDate = date.replaceAll('-', '.');
+  const formattedTime = time.slice(0, 8);
 
-  return `${formattedDate} ${time}`;
+  return `${formattedDate} ${formattedTime}`;
 };
 
 export const formatBirthDate = (birthDate: string) => {

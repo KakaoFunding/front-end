@@ -1,5 +1,17 @@
 @import 'styles/mixins.module';
 
+.txt_date {
+  @include font(15px, 400);
+
+  margin-bottom: 10px;
+
+  .num_date {
+    @include font(15px, 700);
+
+    margin-left: 5px;
+  }
+}
+
 .wrapper_order {
   margin-bottom: 30px;
   border: 2px solid #ededed;
