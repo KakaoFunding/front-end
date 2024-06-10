@@ -23,8 +23,8 @@ const Cart = () => {
               <CartBoxHeader isItemInCart={isItemInCart} />
               {isItemInCart ? (
                 <ul className={styles.wrapper_item}>
-                  {items.map((it) => (
-                    <li key={it}>
+                  {items.map((item) => (
+                    <li key={item}>
                       <CartBoxItem />
                     </li>
                   ))}
