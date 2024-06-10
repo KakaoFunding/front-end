@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { formatNumberWithComma } from 'utils/format';
+import { formatNumberWithComma, formatDateAndTime } from 'utils/format';
 
 import { OrderItemType } from 'types/order';
 
@@ -11,6 +11,13 @@ type OrderItemProps = { item: OrderItemType };
 const OrderItem = ({ item }: OrderItemProps) => {
   return (
     <Link to={`/product/${item.product.productId}`}>
+      <p className={styles.txt_date}>
+        등록한 날짜
+        <span className={styles.num_data}>
+          {formatDateAndTime(item.orderDate)}
+        </span>
+      </p>
+
       <div className={styles.wrapper_order}>
         <div className={styles.section_receiver}>
           <span className={styles.ico_receiver} />

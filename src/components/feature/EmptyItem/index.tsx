@@ -35,6 +35,14 @@ const EMPTY_ITEM_TEXT = {
     title: `주문내역이 없어요`,
     description: `소중한 친구에게 마음❤️을 전해보아요~!`,
   },
+  funding_contributed: {
+    title: `기여했던 펀딩이 없어요`,
+    description: `친구의 펀딩아이템에 마음을 전해보세요~!`,
+  },
+  funding_registered: {
+    title: `등록했던 펀딩이 없어요`,
+    description: `펀딩받고 싶은 선물🎁이 있나요?\n내 취향에 맞는 선물을 등록해보세요~!`,
+  },
 } as const;
 
 const EmptyItem = ({ type }: EmptyItemProps) => {
