@@ -1,0 +1,31 @@
+@import 'styles/mixins.module';
+
+.wrapper_item {
+  padding-bottom: 28px;
+
+  .txt_title {
+    @include font(14px, 700, #222);
+
+    display: block;
+    padding-left: 8px;
+    line-height: 16px;
+    word-break: break-all;
+    letter-spacing: -0.06em;
+  }
+
+  .wrapper_pay_info {
+    border-top: 0.8px solid #f5f5f5;
+    border-bottom: 0.8px solid #f5f5f5;
+    margin: 8px 0;
+  }
+
+  .txt_info {
+    @include font(13px, auto, #888);
+
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 8px;
+    line-height: 16px;
+    letter-spacing: -0.025em;
+  }
+}
