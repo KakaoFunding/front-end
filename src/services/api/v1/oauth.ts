@@ -4,6 +4,8 @@ import { setSessionStorageItem } from 'utils/sessionStorage';
 
 import { User } from 'types/user';
 
+import { setLocalStorageItem } from './localStorage';
+
 import { apiV1 } from '.';
 
 type TokenRequestProps = {
@@ -55,7 +57,14 @@ export const getKakaoOauthToken = async ({ code }: TokenRequestProps) => {
     });
 
     const socialToken = res.data.access_token;
+    const socialRefreshToken = res.data.refresh_token;
+    const socialRefreshTokenExpiresIn = res.data.refresh_token_expires_in;
     setSessionStorageItem('socialToken', socialToken);
+    setLocalStorageItem(
+      'socialRefreshToken',
+      socialRefreshToken,
+      socialRefreshTokenExpiresIn,
+    );
     return socialToken;
   } catch (error) {
     console.warn(error);
