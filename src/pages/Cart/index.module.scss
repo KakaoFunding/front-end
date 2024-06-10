@@ -15,3 +15,12 @@
   width: 890px;
   height: 100%;
 }
+
+.wrapper_item {
+  position: relative;
+  height: calc(100% - 110px);
+  margin-top: 60px;
+  padding: 0 33px;
+  overflow: hidden scroll;
+  z-index: 10;
+}

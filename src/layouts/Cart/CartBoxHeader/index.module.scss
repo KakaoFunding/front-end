@@ -44,6 +44,7 @@
   position: absolute;
   top: -2px;
   left: $cover-side-width;
+  z-index: 20;
 
   &.filled {
     @include ico-cart(0, -110px, 34px, 34px);
@@ -56,6 +57,7 @@
   position: absolute;
   top: -2px;
   right: $cover-side-width;
+  z-index: 20;
 
   &.filled {
     @include ico-cart(-40px, -110px, 34px, 34px);
