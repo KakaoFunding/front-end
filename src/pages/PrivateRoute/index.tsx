@@ -12,11 +12,11 @@ const PrivateRoute = () => {
   }
 
   const navigate = useNavigate();
-  const { login, confirmLogin } = useLogin();
+  const { navigateToLoginPage, confirmLogin } = useLogin();
   const result = confirmLogin();
 
   useEffect(() => {
-    if (result) login();
+    if (result) navigateToLoginPage();
     else navigate(-1);
   }, [result]);
 

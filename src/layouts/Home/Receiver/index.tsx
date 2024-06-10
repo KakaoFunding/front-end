@@ -33,7 +33,7 @@ const Receiver = () => {
   const clearFriendsList = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
-  const { isLoggedIn, login, confirmLogin } = useLogin();
+  const { isLoggedIn, checkLoginBeforeAction } = useLogin();
   const PROFILE_IMAGE =
     isLoggedIn && isSelfSelected ? profileUrl : getImgUrl(DefaultImgUrl);
   const isKakaoConnected = window.Kakao?.isInitialized();
@@ -58,14 +58,7 @@ const Receiver = () => {
   }
 
   const handleClick = () => {
-    if (!isLoggedIn) {
-      const result = confirmLogin();
-
-      if (result) login();
-      return;
-    }
-
-    openKakaoPicker();
+    checkLoginBeforeAction(openKakaoPicker);
   };
 
   const handleCancel = () => {

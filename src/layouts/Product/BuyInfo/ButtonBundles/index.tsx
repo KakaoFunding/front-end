@@ -39,7 +39,7 @@ const ButtonBundles = ({
   const { productId, name, price, productThumbnails, options } =
     productDescription;
   const navigate = useNavigate();
-  const { isLoggedIn, login, confirmLogin } = useLogin();
+  const { checkLoginBeforeAction } = useLogin();
   const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
     useSelectedFriendsStore();
   const { openKakaoPicker } = useKakaoPicker();
@@ -87,15 +87,6 @@ const ButtonBundles = ({
         : [],
     },
   ];
-
-  // 로그인 여부 확인
-  const checkLoginBeforeAction = (action: () => void) => {
-    if (isLoggedIn) action();
-    else {
-      const result = confirmLogin();
-      if (result) login();
-    }
-  };
 
   // 옵션 선택 여부 확인
   const checkOptionBeforeAction = (action: () => void) => {
@@ -148,7 +139,7 @@ const ButtonBundles = ({
   // 친구 프로필 이미지 클릭 핸들러
   const handleClickProfile = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    openKakaoPicker();
+    checkLoginBeforeAction(openKakaoPicker);
   };
 
   // 장바구니 등록 버튼 핸들러
