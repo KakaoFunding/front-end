@@ -3,7 +3,7 @@ import { MyFundingItemType } from 'types/funding';
 
 import { apiV1 } from '.';
 
-export const getMyFundingItems = async (status?: string) => {
+export const getMyFundingBoxItems = async (status?: string) => {
   const baseUrl = `/funding/gift`;
 
   if (status) {
