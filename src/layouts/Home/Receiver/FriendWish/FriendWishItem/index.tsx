@@ -33,7 +33,7 @@ const FriendWishItem = ({ item, wished }: FriendWishItemProps) => {
               <span className={styles.txt_unit}>원</span>
             </p>
             <div className={styles.wrapper_btn}>
-              <CartButton />
+              <CartButton productId={product.productId} />
               <WishButton
                 productId={item.productId}
                 isWished={wished}
