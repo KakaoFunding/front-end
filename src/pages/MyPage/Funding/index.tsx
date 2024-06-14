@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import EmptyItem from 'components/feature/EmptyItem';
 import Spinner from 'components/ui/Spinner';
 import FundingItem from 'layouts/MyPage/Funding/FundingItem';
+import FundingProgress from 'layouts/MyPage/Funding/FundingProgress';
 
 import { useUserStore } from 'store/useUserStore';
 
@@ -25,16 +26,23 @@ const Funding = () => {
     <>
       <div className={styles.title}>{`${name}님의 \n펀딩아이템`}</div>
       {isFetched && data && !isEmptyObject(data) ? (
-        <FundingItem
-          fundingId={data.fundingId}
-          productPhoto={data.productPhoto}
-          goalAmount={data.goalAmount}
-          productName={data.productName}
-          productId={data.productId}
-          brandName={data.brandName}
-          brandPhoto={data.brandPhoto}
-          brandId={data.brandId}
-        />
+        <>
+          <FundingItem
+            fundingId={data.fundingId}
+            productPhoto={data.productPhoto}
+            goalAmount={data.goalAmount}
+            productName={data.productName}
+            productId={data.productId}
+            brandName={data.brandName}
+            brandPhoto={data.brandPhoto}
+            brandId={data.brandId}
+          />
+          <FundingProgress
+            remainAmount={data.remainAmount}
+            goalAmount={data.goalAmount}
+            accumulateAmount={data.accumulateAmount}
+          />
+        </>
       ) : (
         <EmptyItem type="funding" />
       )}
