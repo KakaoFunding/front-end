@@ -6,7 +6,7 @@ export const useLogin = () => {
   const isLoggedIn = useUserExists(); // 로그인 여부
   const { pathname, search } = useLocation();
 
-  const login = () => {
+  const navigateToLoginPage = () => {
     if (isLoggedIn) return;
 
     const currentUrl = pathname + search;
@@ -24,5 +24,22 @@ export const useLogin = () => {
     return result;
   };
 
-  return { isLoggedIn, login, confirmLogin };
+  /**
+   * If a user is not logged in pop up the confirmation window, else do action.
+   * @param action callback function to execute when a user is logged in
+   */
+  const checkLoginBeforeAction = (action: () => void) => {
+    if (isLoggedIn) action();
+    else {
+      const result = confirmLogin();
+      if (result) navigateToLoginPage();
+    }
+  };
+
+  return {
+    isLoggedIn,
+    navigateToLoginPage,
+    confirmLogin,
+    checkLoginBeforeAction,
+  };
 };

@@ -41,6 +41,10 @@
       @include ico-pd-detail(-110px, -420px, 26px, 22px);
 
       margin-bottom: 5px;
+
+      &.on {
+        @include ico-pd-detail(-110px, -450px, 26px, 22px);
+      }
     }
   }
 

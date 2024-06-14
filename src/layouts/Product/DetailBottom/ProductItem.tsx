@@ -20,7 +20,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
       <strong className={styles.txt_prod_name}>{product.name}</strong>
       <Price price={product.price} />
       <div className={styles.wrapper_util_info}>
-        <CartButton />
+        <CartButton productId={product.productId} />
       </div>
     </article>
   );

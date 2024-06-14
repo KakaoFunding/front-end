@@ -5,44 +5,42 @@
 
   margin-bottom: 10px;
 
-  .num_date {
+  .num_data {
     @include font(15px, 700);
 
     margin-left: 5px;
   }
 }
 
-.wrapper_order {
+.wrapper_history {
   margin-bottom: 30px;
   border: 2px solid #ededed;
   border-radius: 8px;
   box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 6%);
-}
 
-.section_receiver {
-  position: relative;
-  padding: 20px 16px;
-  border-bottom: 1px solid #ededed;
+  .section_status {
+    position: relative;
+    padding: 16px;
+    border-bottom: 1px solid #ededed;
 
-  .ico_receiver {
-    @include ico-gift-order(-125px, -15px, 18px, 12px);
+    .txt_detail {
+      @include font(13px, 400, #666);
 
-    margin: 2px 3px 0 0;
+      position: absolute;
+      right: 16px;
+      line-height: 16px;
+      letter-spacing: -0.024em;
+
+      .ico_detail {
+        @include ico-gift-order(-100px, -15px, 6px, 10px);
+
+        margin: 0 0 0 4px;
+      }
+    }
   }
 
-  .ico_detail {
-    @include ico-gift-order(-100px, -15px, 6px, 10px);
-
-    margin: 0 0 0 4px;
-  }
-
-  .txt_detail {
-    position: absolute;
-    right: 16px;
-    font-size: 13px;
-    line-height: 16px;
-    color: #666;
-    letter-spacing: -0.024em;
+  .cancel {
+    color: #f00;
   }
 }
 
@@ -69,15 +67,21 @@
       overflow: hidden;
       padding: 4px 0;
     }
+  }
+}
 
-    .txt_price {
-      @include font(14px, 700, #000);
-    }
+.txt_price {
+  @include font(14px, 400, #a5a5a5);
 
-    .txt_quantity {
-      @include font(13px, 400, #a5a5a5);
+  padding: 5px 6px 0 0;
 
-      padding: 4px 0 0 9px;
-    }
+  .num_price {
+    @include font(14px, 700, #000);
+
+    margin-left: 10px;
+  }
+
+  .txt_unit {
+    @include font(14px, 400, #000);
   }
 }

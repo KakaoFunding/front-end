@@ -24,7 +24,7 @@ const WishButton = ({
   isWished: isWishedProp,
   wishCount: wishCountProp,
 }: WishButtonProps) => {
-  const { isLoggedIn, login, confirmLogin } = useLogin();
+  const { checkLoginBeforeAction } = useLogin();
   const { isOpen, open, close, scrollPos } = useModal();
   const { deleteWishData, deleteWish } = useDeleteWish(productId);
   const [wishCount, setWishCount] = useState<number>(wishCountProp);
@@ -39,13 +39,10 @@ const WishButton = ({
 
   const handleClickWish = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (isLoggedIn) {
+    checkLoginBeforeAction(() => {
       if (wished) deleteWish();
       else open();
-    } else {
-      const result = confirmLogin();
-      if (result) login();
-    }
+    });
   };
 
   const handleWishAdded = (wishData: ResponseWishAddOrDelete) => {
