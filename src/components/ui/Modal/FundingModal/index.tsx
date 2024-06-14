@@ -45,6 +45,11 @@ const FundingModal = ({
   });
 
   const handleAddFunding = async () => {
+    if (formatCommaToNumber(goalAmount) === 0) {
+      alert('목표 금액은 0원일 수 없습니다.');
+
+      return;
+    }
     await sendRequest();
     close();
   };
