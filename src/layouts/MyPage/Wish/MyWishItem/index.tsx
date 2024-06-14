@@ -14,16 +14,12 @@ type MyWishItemProp = { myWishItem: MyWishItemType };
 
 const MyWishItem = ({ myWishItem }: MyWishItemProp) => {
   const {
-    wishId,
-    productId,
-    productName,
-    productPhoto,
-    productPrice,
-    isPublic: isPublicProps,
+    wishDetail: { wishId, productId, productName, productPhoto, productPrice },
+    public: isPublicProp,
   } = myWishItem;
 
   const [isWish, setIsWish] = useState<boolean>(true);
-  const [isPublic, setIsPublic] = useState<boolean>(isPublicProps);
+  const [isPublic, setIsPublic] = useState<boolean>(isPublicProp);
 
   const { addWish } = useAddWish(productId, isPublic ? 'OTHERS' : 'ME');
   const { deleteWish } = useDeleteWish(productId);

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'components/ui/Button';
@@ -6,6 +7,7 @@ import WishModal from 'components/ui/Modal/WishModal';
 
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
+import { useAxios } from 'hooks/useAxios';
 import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
@@ -17,10 +19,6 @@ import { OptionDetail, ProductDescriptionResponse } from 'types/product';
 import DefaultProfileImage from 'assets/profile_noimg.png';
 
 import styles from './index.module.scss';
-
-const mockData = {
-  wishCnt: 999999,
-};
 
 type ButtonBundlesProps = {
   productDescription: ProductDescriptionResponse;
@@ -35,10 +33,17 @@ const ButtonBundles = ({
   selectedOption,
   quantity,
 }: ButtonBundlesProps) => {
-  const { productId, name, price, productThumbnails, options } =
-    productDescription;
+  const {
+    productId,
+    name,
+    price,
+    productThumbnails,
+    options,
+    wishCount,
+    wish: isWished,
+  } = productDescription;
   const navigate = useNavigate();
-  const { isLoggedIn, login, confirmLogin } = useLogin();
+  const { checkLoginBeforeAction } = useLogin();
   const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
     useSelectedFriendsStore();
   const { openKakaoPicker } = useKakaoPicker();
@@ -57,6 +62,20 @@ const ButtonBundles = ({
     scrollPos: scrollWishPos,
   } = useModal();
 
+  // 장바구니 등록 API
+  const { sendRequest: addItemToCart } = useAxios<{
+    cartId: number;
+  }>({
+    url: '/cart',
+    method: 'post',
+    data: {
+      productId,
+      itemCount: quantity,
+      optionId: selectedOption ? options[0].optionsId : null,
+      optionDetailId: selectedOption ? selectedOption.id : null,
+    },
+  });
+
   // 주문 정보
   const orderInfos: RequestOrderPreview = [
     {
@@ -72,15 +91,6 @@ const ButtonBundles = ({
         : [],
     },
   ];
-
-  // 로그인 여부 확인
-  const checkLoginBeforeAction = (action: () => void) => {
-    if (isLoggedIn) action();
-    else {
-      const result = confirmLogin();
-      if (result) login();
-    }
-  };
 
   // 옵션 선택 여부 확인
   const checkOptionBeforeAction = (action: () => void) => {
@@ -133,12 +143,14 @@ const ButtonBundles = ({
   // 친구 프로필 이미지 클릭 핸들러
   const handleClickProfile = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    openKakaoPicker();
+    checkLoginBeforeAction(openKakaoPicker);
   };
 
-  // 선물상자 담기 버튼 핸들러
-  const handleClickCart = () => {
-    // console.log('선물상자 담기');
+  // 장바구니 등록 버튼 핸들러
+  const handleAddCart = () => {
+    checkLoginBeforeAction(() => {
+      checkOptionBeforeAction(addItemToCart);
+    });
   };
 
   return (
@@ -168,19 +180,14 @@ const ButtonBundles = ({
         <span className={styles.ico_funding} />
         펀딩 아이템으로 등록하기
       </Button>
-      {/* TODO : 로그인 되었을 때만 보이게 */}
-      <Button
-        color="white"
-        onClick={handleClickCart}
-        className={styles.btn_cart}
-      >
+      <Button color="white" onClick={handleAddCart} className={styles.btn_cart}>
         <span className={styles.ico_cart} />
         선물상자 담기
       </Button>
       <section className={styles.wrapper_gift}>
         <Button className={styles.btn_wish} onClick={handleClickWish}>
-          <span className={styles.ico_wish} />
-          {formatNumberWithPlus(mockData.wishCnt, 100000)}
+          <span className={clsx(styles.ico_wish, { [styles.on]: isWished })} />
+          {formatNumberWithPlus(wishCount, 100000)}
         </Button>
         <Button
           color="black"

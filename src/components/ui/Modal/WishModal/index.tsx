@@ -1,3 +1,5 @@
+import { useQueryClient } from '@tanstack/react-query';
+
 import { useState, useEffect } from 'react';
 
 import { Button } from 'components/ui/Button';
@@ -33,6 +35,7 @@ const WishModal = ({
   productId,
   onWishAdded = () => null,
 }: WishModalProps) => {
+  const queryClient = useQueryClient();
   const [radioStatus, setRadioStatus] = useState<WishRadioType>(
     WISH_RADIO_STATUS.OTHERS as WishRadioType,
   );
@@ -45,6 +48,8 @@ const WishModal = ({
   const handleAddWish = async () => {
     await addWish();
     close();
+
+    queryClient.invalidateQueries({ queryKey: ['productDescription'] });
   };
 
   useEffect(() => {

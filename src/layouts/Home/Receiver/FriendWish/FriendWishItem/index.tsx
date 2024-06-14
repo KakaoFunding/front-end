@@ -5,34 +5,39 @@ import WishButton from 'components/feature/ProductItem/WishButton';
 
 import { formatNumberWithComma } from 'utils/format';
 
-import { ProductItem } from 'types/productItem';
+import { FriendWishItemType } from 'types/wish';
 
 import styles from './index.module.scss';
 
-const FriendWishItem = ({ product }: { product: ProductItem }) => {
+type FriendWishItemProps = {
+  item: FriendWishItemType['wishDetail'];
+  wished: FriendWishItemType['wished'];
+};
+
+const FriendWishItem = ({ item, wished }: FriendWishItemProps) => {
   return (
     <div className={styles.wrapper_wish_item}>
-      <Link to={`/product/${product.productId}`}>
+      <Link to={`/product/${item.productId}`}>
         <div className={styles.item_prod}>
           <img
-            alt={product.name}
-            src={product.photo}
+            alt={item.productName}
+            src={item.productPhoto}
             className={styles.item_thumb}
           />
 
           <div className={styles.info_prod}>
-            <p className={styles.txt_brand}>{product.brandName}</p>
-            <strong className={styles.txt_title}>{product.name}</strong>
+            <p className={styles.txt_brand}>{item.brandName}</p>
+            <strong className={styles.txt_title}>{item.productName}</strong>
             <p className={styles.txt_price}>
-              {formatNumberWithComma(product.price)}
+              {formatNumberWithComma(item.productPrice)}
               <span className={styles.txt_unit}>원</span>
             </p>
             <div className={styles.wrapper_btn}>
-              <CartButton />
+              <CartButton productId={item.productId} />
               <WishButton
-                productId={product.productId}
-                isWished={product.wished}
-                wishCount={product.wishCount}
+                productId={item.productId}
+                isWished={wished}
+                wishCount={item.wishCount}
               />
             </div>
           </div>

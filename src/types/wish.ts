@@ -1,13 +1,22 @@
-export type MyWishItemType = {
+type WishDetail = {
   wishId: number;
   productId: number;
   productName: string;
   productPrice: number;
   productPhoto: string;
-  isPublic: boolean;
+  brandName: string;
+  wishCount: number;
 };
 
-export type MyWishResponse = MyWishItemType[];
+export type MyWishItemType = {
+  wishDetail: WishDetail;
+  public: boolean;
+};
+
+export type FriendWishItemType = {
+  wishDetail: WishDetail;
+  wished: boolean;
+};
 
 export type ResponseWishAddOrDelete = {
   productId: number;

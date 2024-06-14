@@ -24,6 +24,8 @@ type Product = {
   brandName: string;
   brandId: number;
   brandThumbnail: string;
+  wishCount: number;
+  wish: boolean;
 };
 
 export type ProductDescriptionResponse = Product & {

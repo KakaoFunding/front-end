@@ -9,7 +9,7 @@ import LogoutModal from '../LogoutModal';
 import styles from './index.module.scss';
 
 const SocialKakaoLogin = () => {
-  const { isLoggedIn, login } = useLogin();
+  const { isLoggedIn, navigateToLoginPage } = useLogin();
   const userName = useUserStore().name;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,7 +18,7 @@ const SocialKakaoLogin = () => {
     if (isLoggedIn) {
       setIsModalOpen(!isModalOpen);
     } else {
-      login();
+      navigateToLoginPage();
     }
   };
 
