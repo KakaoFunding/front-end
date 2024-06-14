@@ -19,3 +19,7 @@ export const isValidQuantity = (quantity: string) => {
 export const isValidPrice = (price: string) => {
   return isPositiveInteger(price) || isZero(price);
 };
+
+export const isEmptyObject = (obj: object): boolean => {
+  return Object.keys(obj).length === 0;
+};

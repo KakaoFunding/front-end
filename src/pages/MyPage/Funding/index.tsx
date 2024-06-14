@@ -8,12 +8,9 @@ import FundingProgress from 'layouts/MyPage/Funding/FundingProgress';
 import { useUserStore } from 'store/useUserStore';
 
 import { getMyFundingItem } from 'services/api/v1/funding';
+import { isEmptyObject } from 'utils/validate';
 
 import styles from './index.module.scss';
-
-const isEmptyObject = (obj: object): boolean => {
-  return Object.keys(obj).length === 0;
-};
 
 const Funding = () => {
   const { name } = useUserStore();
