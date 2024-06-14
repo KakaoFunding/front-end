@@ -1,3 +1,5 @@
+import { useQuery } from '@tanstack/react-query';
+
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +13,9 @@ import { useAxios } from 'hooks/useAxios';
 import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
+import { getMyFundingItem } from 'services/api/v1/funding';
 import { formatNumberWithPlus } from 'utils/format';
+import { isEmptyObject } from 'utils/validate';
 
 import { RequestOrderPreview } from 'types/payment';
 import { OptionDetail, ProductDescriptionResponse } from 'types/product';
@@ -47,6 +51,11 @@ const ButtonBundles = ({
   const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
     useSelectedFriendsStore();
   const { openKakaoPicker } = useKakaoPicker();
+
+  const { data } = useQuery({
+    queryKey: ['myFundingItem'],
+    queryFn: () => getMyFundingItem(),
+  });
 
   const {
     isOpen: isFundingOpen,
@@ -104,6 +113,11 @@ const ButtonBundles = ({
   // 펀딩 등록 버튼 핸들러
   const handleClickFunding = () => {
     checkLoginBeforeAction(() => {
+      if (!isEmptyObject(data!)) {
+        alert('이미 등록된 펀딩 아이템이 있습니다.');
+        return;
+      }
+
       checkOptionBeforeAction(openFundingModal);
     });
   };
