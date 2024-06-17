@@ -6,29 +6,31 @@ import FundingCancelModal from 'components/ui/Modal/FundingCancelModal';
 import { useModal } from 'hooks/useModal';
 import { formatNumberWithUnit } from 'utils/format';
 
+import { MyInProgressFunding } from 'types/funding';
+
 import styles from './index.module.scss';
 
-// TODO : 펀딩 API 확인후 분리 예정
-type FundingItemProps = {
-  fundingId: number;
-  imgUrl: string;
-  price: number;
-  productName: string;
-  productId: number;
-  brandName: string;
-  brandId: number;
-  brandThumbnail: string;
-};
+type FundingItemProps = Pick<
+  MyInProgressFunding,
+  | 'fundingId'
+  | 'productPhoto'
+  | 'goalAmount'
+  | 'productName'
+  | 'productId'
+  | 'brandName'
+  | 'brandPhoto'
+  | 'brandId'
+>;
 
 const FundingItem = ({
   fundingId,
-  imgUrl,
-  price,
+  productPhoto,
+  goalAmount,
   productName,
   productId,
   brandName,
+  brandPhoto,
   brandId,
-  brandThumbnail,
 }: FundingItemProps) => {
   const { open, isOpen, close, scrollPos } = useModal();
 
@@ -41,10 +43,9 @@ const FundingItem = ({
         scrollPos={scrollPos}
       />
       <Link to={`/product/${productId}`}>
-        {/* TODO : Thumbnail 리팩토링시 교체 */}
         <img
           className={styles.img_product}
-          src={imgUrl}
+          src={productPhoto}
           alt={`${productName}상품이미지`}
         />
       </Link>
@@ -57,7 +58,7 @@ const FundingItem = ({
             <div className={styles.wrapper_brand}>
               <span className={styles.txt_brand}>
                 <img
-                  src={brandThumbnail}
+                  src={brandPhoto}
                   alt={`${brandName}로고이미지`}
                   className={styles.img_brand}
                 />
@@ -67,7 +68,7 @@ const FundingItem = ({
             </div>
           </Link>
           <p className={styles.txt_price}>
-            목표금액<span>{formatNumberWithUnit(price)}</span>
+            목표금액<span>{formatNumberWithUnit(goalAmount)}</span>
           </p>
         </div>
         <div className={styles.wrapper_button}>

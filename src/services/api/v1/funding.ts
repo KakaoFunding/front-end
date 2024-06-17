@@ -1,9 +1,9 @@
 import { PaginationResponse } from 'types/PaginationResponse';
-import { MyFundingItemType } from 'types/funding';
+import { MyFundingItemType, MyInProgressFunding } from 'types/funding';
 
 import { apiV1 } from '.';
 
-export const getMyFundingItems = async (status?: string) => {
+export const getMyFundingBoxItems = async (status?: string) => {
   const baseUrl = `/funding/gift`;
 
   if (status) {
@@ -15,4 +15,10 @@ export const getMyFundingItems = async (status?: string) => {
   const myFundingItems = await apiV1.get(baseUrl);
 
   return myFundingItems.data as PaginationResponse<MyFundingItemType>;
+};
+
+export const getMyFundingItem = async () => {
+  const myFundingItem = await apiV1.get('/funding/myItem');
+
+  return myFundingItem.data as MyInProgressFunding;
 };

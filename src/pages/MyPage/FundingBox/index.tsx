@@ -4,7 +4,7 @@ import Spinner from 'components/ui/Spinner';
 import Tabs from 'components/ui/Tabs';
 import FundingTab from 'layouts/MyPage/FundingBox/FundingTab';
 
-import { getMyFundingItems } from 'services/api/v1/funding';
+import { getMyFundingBoxItems } from 'services/api/v1/funding';
 
 import { Tab } from 'types/tab';
 
@@ -13,7 +13,7 @@ import styles from './index.module.scss';
 const FundingBox = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['fundingItem'],
-    queryFn: () => getMyFundingItems(),
+    queryFn: () => getMyFundingBoxItems(),
   });
 
   const tabs: Tab[] = [
