@@ -8,7 +8,9 @@ import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 
 import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
+import { formatNumberWithUnit } from 'utils/format';
 
+import { CartItem } from 'types/cart';
 import { RequestOrderPreview } from 'types/payment';
 
 import DefaultProfileImage from 'assets/profile_noimg.png';
@@ -17,24 +19,18 @@ import BillItem from './BillItem';
 
 import styles from './index.module.scss';
 
-// TODO : 가짜 상품데이터
-const prod = [1, 2, 3];
-const CartPay = () => {
+type CartPayProps = {
+  selectedItems: CartItem[];
+  totalPayment: number;
+};
+
+const CartPay = ({ selectedItems, totalPayment }: CartPayProps) => {
   const [isToggled, handleToggle] = useReducer((prev) => !prev, false);
-  const navigate = useNavigate();
-  const { isLoggedIn, login, confirmLogin } = useLogin();
+  const { checkLoginBeforeAction } = useLogin();
+  const { openKakaoPicker } = useKakaoPicker();
   const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
     useSelectedFriendsStore();
-  const { openKakaoPicker } = useKakaoPicker();
-
-  // 로그인 여부 확인
-  const checkLoginBeforeAction = (action: () => void) => {
-    if (isLoggedIn) action();
-    else {
-      const result = confirmLogin();
-      if (result) login();
-    }
-  };
+  const navigate = useNavigate();
 
   const orderInfos: RequestOrderPreview = [
     {
@@ -84,8 +80,8 @@ const CartPay = () => {
         >
           {isToggled && (
             <ul className={styles.scroll}>
-              {prod.map((it) => (
-                <li key={it}>
+              {selectedItems.map((item) => (
+                <li key={item.cartId}>
                   <BillItem />
                 </li>
               ))}
@@ -95,7 +91,7 @@ const CartPay = () => {
         <Button onClick={handleToggle} color="white" className={styles.btn}>
           <strong>총 결제 금액</strong>
           <em className={styles.num_price}>
-            57,900원
+            {formatNumberWithUnit(totalPayment)}
             <span
               className={clsx(styles.ico_toggle, { [styles.on]: isToggled })}
             >

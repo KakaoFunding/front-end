@@ -19,6 +19,7 @@ import styles from './index.module.scss';
 
 const Cart = () => {
   const [selectedItems, setSelectedItems] = useState<CartItem[]>([]);
+  const [totalPayment, setTotalPayment] = useState<number>(0);
 
   const {
     data: cartItems,
@@ -34,6 +35,12 @@ const Cart = () => {
   useEffect(() => {
     if (cartItems) {
       setSelectedItems([...cartItems]);
+
+      const totalPrice = cartItems.reduce(
+        (acc, cartItem) => acc + cartItem.totalPrice,
+        0,
+      );
+      setTotalPayment(totalPrice);
     }
   }, [cartItems]);
 
@@ -60,7 +67,10 @@ const Cart = () => {
                   )}
                   <CartBoxFooter isItemInCart={isItemInCart} />
                 </div>
-                <CartPay />
+                <CartPay
+                  selectedItems={selectedItems}
+                  totalPayment={totalPayment}
+                />
               </div>
             </MainWrapper>
           </section>
