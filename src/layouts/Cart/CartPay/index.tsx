@@ -82,7 +82,7 @@ const CartPay = ({ selectedItems, totalPayment }: CartPayProps) => {
             <ul className={styles.scroll}>
               {selectedItems.map((item) => (
                 <li key={item.cartId}>
-                  <BillItem />
+                  <BillItem item={item} />
                 </li>
               ))}
             </ul>
