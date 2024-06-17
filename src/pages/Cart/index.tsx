@@ -58,7 +58,7 @@ const Cart = () => {
                     <ul className={styles.wrapper_item}>
                       {cartItems!.map((item) => (
                         <li key={item.cartId}>
-                          <CartBoxItem />
+                          <CartBoxItem item={item} />
                         </li>
                       ))}
                     </ul>
