@@ -18,7 +18,7 @@ type FriendWishProps = {
 
 const FriendWish = ({ friendId, socialAccessToken }: FriendWishProps) => {
   const { data: wishlist, sendRequest } = useAxios<FriendWishItemType[]>({
-    method: 'get',
+    method: 'post',
     url: '/wishes/friends',
     data: {
       friendsProviderId: friendId,
