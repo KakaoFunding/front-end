@@ -17,3 +17,21 @@ export type MyFundingItemType = {
   quantity: number;
   receivedDate: string;
 };
+
+type EmptyObject = Record<string, never>;
+
+export type MyInProgressFunding =
+  | {
+      fundingId: number;
+      progressRate: number;
+      remainAmount: number;
+      goalAmount: number;
+      accumulateAmount: number;
+      productId: number;
+      brandId: number;
+      brandPhoto: string;
+      productPhoto: string;
+      brandName: string;
+      productName: string;
+    }
+  | EmptyObject;

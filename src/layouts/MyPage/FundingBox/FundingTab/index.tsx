@@ -6,7 +6,7 @@ import EmptyItem from 'components/feature/EmptyItem';
 import Spinner from 'components/ui/Spinner';
 
 import { useInfinityScroll } from 'hooks/useInfinityScroll';
-import { getMyFundingItems } from 'services/api/v1/funding';
+import { getMyFundingBoxItems } from 'services/api/v1/funding';
 
 import { MyFundingItemType } from 'types/funding';
 
@@ -24,8 +24,8 @@ const FundingTab = ({ status }: FundingTabProps) => {
   const [page, setPage] = useState<number>(0);
 
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ['fundingItem', status],
-    queryFn: () => getMyFundingItems(status),
+    queryKey: ['fundingBoxItems', status],
+    queryFn: () => getMyFundingBoxItems(status),
   });
 
   const observingTarget = useInfinityScroll(() => {
