@@ -6,18 +6,23 @@ import { CartItem } from 'types/cart';
 
 import styles from './index.module.scss';
 
-const isSelect = true;
+type CartBoxItemProps = {
+  item: CartItem;
+  handleSelect: (productId: number) => void;
+  isSelected: boolean;
+};
 
-type CartBoxItemProps = { item: CartItem };
-
-const CartBoxItem = ({ item }: CartBoxItemProps) => {
+const CartBoxItem = ({ item, handleSelect, isSelected }: CartBoxItemProps) => {
   return (
     <div className={styles.wrapper_item}>
-      <div className={styles.wrapper_icons}>
+      <div
+        className={styles.wrapper_icons}
+        onClick={() => handleSelect(item.productId)}
+      >
         <input type="checkbox" className={styles.btn_input} id="checkbox" />
         <span
           id="checkbox"
-          className={clsx(styles.ico_input, { [styles.on]: isSelect })}
+          className={clsx(styles.ico_input, { [styles.on]: isSelected })}
         />
 
         <span className={styles.ico_delete} />

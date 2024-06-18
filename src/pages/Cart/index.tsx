@@ -32,6 +32,22 @@ const Cart = () => {
 
   const isItemInCart = cartItems ? cartItems.length > 0 : false;
 
+  const handleSelect = (productId: number) => {
+    setSelectedItems((prevSelectedItems) => {
+      if (prevSelectedItems.some((item) => item.productId === productId)) {
+        return prevSelectedItems.filter((item) => item.productId !== productId);
+      }
+
+      const selectedItem = cartItems!.find(
+        (item) => item.productId === productId,
+      );
+
+      return selectedItem
+        ? [...prevSelectedItems, selectedItem]
+        : prevSelectedItems;
+    });
+  };
+
   useEffect(() => {
     if (cartItems) {
       setSelectedItems([...cartItems]);
@@ -58,7 +74,14 @@ const Cart = () => {
                     <ul className={styles.wrapper_item}>
                       {cartItems!.map((item) => (
                         <li key={item.cartId}>
-                          <CartBoxItem item={item} />
+                          <CartBoxItem
+                            item={item}
+                            handleSelect={handleSelect}
+                            isSelected={selectedItems.some(
+                              (selectedItem) =>
+                                selectedItem.productId === item.productId,
+                            )}
+                          />
                         </li>
                       ))}
                     </ul>
