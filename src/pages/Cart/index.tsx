@@ -69,43 +69,41 @@ const Cart = () => {
 
   return (
     <>
+      <Header />
       {isFetched && (
-        <>
-          <Header />
-          <section className={styles.area_cart}>
-            <MainWrapper>
-              <div className={styles.wrapper_cart}>
-                <div className={styles.wrapper_cart_box}>
-                  <CartBoxHeader isItemInCart={isItemInCart} />
-                  {isItemInCart ? (
-                    <ul className={styles.wrapper_item}>
-                      {cartItems!.map((item) => (
-                        <li key={item.cartId}>
-                          <CartBoxItem
-                            refetch={refetch}
-                            item={item}
-                            handleSelect={handleSelect}
-                            isSelected={selectedItems.some(
-                              (selectedItem) =>
-                                selectedItem.productId === item.productId,
-                            )}
-                          />
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <EmptyCartBoxBody />
-                  )}
-                  <CartBoxFooter isItemInCart={isItemInCart} />
-                </div>
-                <CartPay
-                  selectedItems={selectedItems}
-                  totalPayment={totalPayment}
-                />
+        <section className={styles.area_cart}>
+          <MainWrapper>
+            <div className={styles.wrapper_cart}>
+              <div className={styles.wrapper_cart_box}>
+                <CartBoxHeader isItemInCart={isItemInCart} />
+                {isItemInCart ? (
+                  <ul className={styles.wrapper_item}>
+                    {cartItems!.map((item) => (
+                      <li key={item.cartId}>
+                        <CartBoxItem
+                          refetch={refetch}
+                          item={item}
+                          handleSelect={handleSelect}
+                          isSelected={selectedItems.some(
+                            (selectedItem) =>
+                              selectedItem.productId === item.productId,
+                          )}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <EmptyCartBoxBody />
+                )}
+                <CartBoxFooter isItemInCart={isItemInCart} />
               </div>
-            </MainWrapper>
-          </section>
-        </>
+              <CartPay
+                selectedItems={selectedItems}
+                totalPayment={totalPayment}
+              />
+            </div>
+          </MainWrapper>
+        </section>
       )}
       {isLoading && <Spinner />}
     </>
