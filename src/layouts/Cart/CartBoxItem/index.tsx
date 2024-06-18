@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 
+import { useAxios } from 'hooks/useAxios';
 import { formatNumberWithComma, formatNumberWithUnit } from 'utils/format';
 
 import { CartItem } from 'types/cart';
@@ -7,12 +8,28 @@ import { CartItem } from 'types/cart';
 import styles from './index.module.scss';
 
 type CartBoxItemProps = {
+  refetch: () => void;
   item: CartItem;
   handleSelect: (productId: number) => void;
   isSelected: boolean;
 };
 
-const CartBoxItem = ({ item, handleSelect, isSelected }: CartBoxItemProps) => {
+const CartBoxItem = ({
+  refetch,
+  item,
+  handleSelect,
+  isSelected,
+}: CartBoxItemProps) => {
+  const { sendRequest } = useAxios({
+    method: 'delete',
+    url: `cart/${item.productId}`,
+  });
+
+  const handleDelete = async () => {
+    await sendRequest();
+    refetch();
+  };
+
   return (
     <div className={styles.wrapper_item}>
       <div
@@ -24,8 +41,7 @@ const CartBoxItem = ({ item, handleSelect, isSelected }: CartBoxItemProps) => {
           id="checkbox"
           className={clsx(styles.ico_input, { [styles.on]: isSelected })}
         />
-
-        <span className={styles.ico_delete} />
+        <span className={styles.ico_delete} onClick={handleDelete} />
       </div>
       <div className={styles.wrapper_prod}>
         <img
