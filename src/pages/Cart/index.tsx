@@ -51,14 +51,20 @@ const Cart = () => {
   useEffect(() => {
     if (cartItems) {
       setSelectedItems([...cartItems]);
+    }
+  }, [cartItems]);
 
-      const totalPrice = cartItems.reduce(
+  useEffect(() => {
+    if (selectedItems) {
+      const totalPrice = selectedItems.reduce(
         (acc, cartItem) => acc + cartItem.totalPrice,
         0,
       );
       setTotalPayment(totalPrice);
+    } else {
+      setTotalPayment(0);
     }
-  }, [cartItems]);
+  }, [selectedItems]);
 
   return (
     <>
