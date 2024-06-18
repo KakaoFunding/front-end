@@ -1,27 +1,24 @@
 import { formatNumberWithUnit } from 'utils/format';
 
+import { CartItem } from 'types/cart';
+
 import styles from './index.module.scss';
 
-const prod = {
-  title:
-    '"선물제격" 보르딘 콜드브루 더치커피 알록달록 앰플 12종 커피 선물세트 (25ml*12개)',
-  quantity: 1,
-  price: 19900,
-  receiver: 1,
-};
+type BillItemProps = { item: CartItem };
 
-const BillItem = () => {
+const BillItem = ({ item }: BillItemProps) => {
+  const { productName, quantity, totalPrice } = item;
   return (
     <div className={styles.wrapper_item}>
-      <strong className={styles.txt_title}>{prod.title}</strong>
+      <strong className={styles.txt_title}>{productName}</strong>
       <div className={styles.wrapper_pay_info}>
         <p className={styles.txt_info}>
           상품금액
-          <span>{formatNumberWithUnit(prod.price)}</span>
+          <span>{formatNumberWithUnit(totalPrice)}</span>
         </p>
         <p className={styles.txt_info}>
           수량
-          <span>x {prod.quantity}개</span>
+          <span>x {quantity}개</span>
         </p>
         <p className={styles.txt_info}>
           수신인원
@@ -30,7 +27,7 @@ const BillItem = () => {
       </div>
       <p className={styles.txt_info}>
         상품 결제 금액
-        <span>{formatNumberWithUnit(prod.price * prod.quantity)}</span>
+        <span>{formatNumberWithUnit(totalPrice)}</span>
       </p>
     </div>
   );
