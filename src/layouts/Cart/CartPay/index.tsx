@@ -11,7 +11,6 @@ import { useLogin } from 'hooks/useLogin';
 import { formatNumberWithUnit } from 'utils/format';
 
 import { CartItem } from 'types/cart';
-import { RequestOrderPreview } from 'types/payment';
 
 import DefaultProfileImage from 'assets/profile_noimg.png';
 
@@ -32,18 +31,24 @@ const CartPay = ({ selectedItems, totalPayment }: CartPayProps) => {
     useSelectedFriendsStore();
   const navigate = useNavigate();
 
-  const orderInfos: RequestOrderPreview = [
-    {
-      productId: 1361966,
-      quantity: 1,
-      options: [],
-    },
-  ];
+  const getOrderInfo = () => {
+    const orderInfos = selectedItems.map((item) => {
+      return {
+        productId: item.productId,
+        quantity: item.quantity,
+        options: [{ id: item.optionId, detailId: item.optionDetailId }],
+      };
+    });
+
+    return orderInfos;
+  };
 
   // 나에게 선물하기 버튼 핸들러
   const handleClickGiftForMe = () => {
     checkLoginBeforeAction(() => {
-      navigate('/bill/gift', { state: { orderInfos, giftFor: 'me' } });
+      navigate('/bill/gift', {
+        state: { orderInfos: getOrderInfo(), giftFor: 'me' },
+      });
     });
   };
 
@@ -56,9 +61,13 @@ const CartPay = ({ selectedItems, totalPayment }: CartPayProps) => {
       }
 
       if (isSelfSelected) {
-        navigate('/bill/gift', { state: { orderInfos, giftFor: 'me' } });
+        navigate('/bill/gift', {
+          state: { orderInfos: getOrderInfo(), giftFor: 'me' },
+        });
       } else if (selectedFriends.length === 1) {
-        navigate('/bill/gift', { state: { orderInfos, giftFor: 'friends' } });
+        navigate('/bill/gift', {
+          state: { orderInfos: getOrderInfo(), giftFor: 'friends' },
+        });
       } else {
         alert('지금은 한 번에 한 명에게만 선물할 수 있어요.');
       }
