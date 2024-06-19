@@ -13,6 +13,7 @@ import {
   formatNumberWithUnit,
 } from 'utils/format';
 import { getOneYearLaterDate } from 'utils/generate';
+import { isValidFundingPrice } from 'utils/validate';
 
 import { FundingModalProps } from 'types/modal';
 
@@ -46,14 +47,23 @@ const FundingModal = ({
   });
 
   const handleAddFunding = async () => {
-    if (formatCommaToNumber(goalAmount) === 0) {
-      alert('목표 금액은 0원일 수 없습니다.');
+    if (!isValidFundingPrice(price, formatCommaToNumber(goalAmount))) {
+      alert(`목표 금액은 100원과 ${price - 100} 사이 값이여야 합니다.`);
 
       return;
     }
+
     await sendRequest();
     close();
   };
+
+  useEffect(() => {
+    if (isValidFundingPrice(price, formatCommaToNumber(goalAmount))) {
+      setIsFundingAllowed(true);
+    } else {
+      setIsFundingAllowed(false);
+    }
+  }, [goalAmount]);
 
   useEffect(() => {
     clearInput();
@@ -118,7 +128,7 @@ const FundingModal = ({
         <Button
           color={isFundingAllowed ? 'yellow' : 'gray'}
           onClick={handleAddFunding}
-          className={styles.btn_add}
+          className={clsx(styles.btn_add, { [styles.on]: isFundingAllowed })}
         >
           등록하기
         </Button>
