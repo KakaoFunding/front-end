@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
@@ -28,6 +28,7 @@ const FundingModal = ({
   selectedOption,
   productThumbnail,
 }: FundingModalProps) => {
+  const [isFundingAllowed, setIsFundingAllowed] = useState<boolean>(false);
   const {
     input: goalAmount,
     remainingAmount,
@@ -115,7 +116,7 @@ const FundingModal = ({
           </div>
         </section>
         <Button
-          color="yellow"
+          color={isFundingAllowed ? 'yellow' : 'gray'}
           onClick={handleAddFunding}
           className={styles.btn_add}
         >
