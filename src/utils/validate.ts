@@ -23,3 +23,14 @@ export const isValidPrice = (price: string) => {
 export const isEmptyObject = (obj: object): boolean => {
   return Object.keys(obj).length === 0;
 };
+
+export const isValidFundingPrice = (
+  productPrice: number,
+  fundingPrice: number,
+) => {
+  if (productPrice === fundingPrice) return true;
+  if (productPrice - fundingPrice < 100) return false;
+  if (fundingPrice < 100) return false;
+
+  return true;
+};
