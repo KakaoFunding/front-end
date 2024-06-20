@@ -1,7 +1,7 @@
 @import 'styles/mixins.module';
 
 .area_funding_item {
-  @include size(900px, 260px, 0, 0);
+  @include size(900px, 260px, 20px 0 40px 0, 0);
 
   display: flex;
 
