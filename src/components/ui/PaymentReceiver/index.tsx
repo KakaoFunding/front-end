@@ -10,9 +10,10 @@ type PaymentReceiverProps = {
 };
 
 const PaymentReceiver = ({ paymentType, receiver }: PaymentReceiverProps) => {
-  const TEXT_RECEIVERS = '님에게';
+  const RECEIVER_NAME = receiver.self ? '나' : receiver.name;
+  const RECEIVER_SUFFIX = receiver.self ? '에게' : '님에게';
 
-  const TEXT_ACTION =
+  const MESSAGE =
     paymentType === 'gift' ? '선물을 보냈습니다.' : '펀딩했습니다.';
 
   return (
@@ -22,10 +23,10 @@ const PaymentReceiver = ({ paymentType, receiver }: PaymentReceiverProps) => {
         <ProfileImg size="m" imgUrl={receiver.photoUrl} />
       </div>
       <div className={styles.txt_action}>
-        <strong className={styles.txt_name}>{receiver.name}</strong>
-        {TEXT_RECEIVERS}
+        <strong className={styles.txt_name}>{RECEIVER_NAME}</strong>
+        {RECEIVER_SUFFIX}
         <br />
-        {TEXT_ACTION}
+        {MESSAGE}
       </div>
     </div>
   );

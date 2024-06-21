@@ -1,6 +1,7 @@
 import { ProductItem } from './productItem';
 
 export type Receiver = {
+  self: boolean;
   name: string;
   photoUrl: string;
 };
