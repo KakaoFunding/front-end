@@ -3,6 +3,7 @@ import { ProductItem } from 'types/productItem';
 export type OrderItemType = {
   id: number;
   orderNumber: string;
+  self: boolean;
   receiverName: string;
   product: Pick<
     ProductItem,

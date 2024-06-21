@@ -21,7 +21,7 @@ const OrderItem = ({ item }: OrderItemProps) => {
       <div className={styles.wrapper_order}>
         <div className={styles.section_receiver}>
           <span className={styles.ico_receiver} />
-          {item.receiverName}
+          {item.self ? '나' : item.receiverName}
           <span className={styles.txt_detail}>
             상세보기
             <span className={styles.ico_detail} />
