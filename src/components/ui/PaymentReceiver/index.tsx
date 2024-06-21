@@ -6,12 +6,11 @@ import styles from './index.module.scss';
 
 type PaymentReceiverProps = {
   paymentType: 'gift' | 'funding';
-  receivers: Receiver[];
+  receiver: Receiver;
 };
 
-const PaymentReceiver = ({ paymentType, receivers }: PaymentReceiverProps) => {
-  const TEXT_RECEIVERS =
-    receivers.length === 1 ? '님에게' : `님 외 ${receivers.length - 1}명에게`;
+const PaymentReceiver = ({ paymentType, receiver }: PaymentReceiverProps) => {
+  const TEXT_RECEIVERS = '님에게';
 
   const TEXT_ACTION =
     paymentType === 'gift' ? '선물을 보냈습니다.' : '펀딩했습니다.';
@@ -20,10 +19,10 @@ const PaymentReceiver = ({ paymentType, receivers }: PaymentReceiverProps) => {
     <div className={styles.wrapper_receiver}>
       <div className={styles.wrapper_profile}>
         <span className={styles.img_deco}>프로필사진 꾸밈용 컨페티</span>
-        <ProfileImg size="m" imgUrl={receivers[0].photoUrl} />
+        <ProfileImg size="m" imgUrl={receiver.photoUrl} />
       </div>
       <div className={styles.txt_action}>
-        <strong className={styles.txt_name}>{receivers[0].name}</strong>
+        <strong className={styles.txt_name}>{receiver.name}</strong>
         {TEXT_RECEIVERS}
         <br />
         {TEXT_ACTION}

@@ -27,7 +27,7 @@ const FundingComplete = () => {
   return (
     <MainWrapper>
       <section className={styles.wrapper_content}>
-        <PaymentReceiver receivers={[receiver]} paymentType="funding" />
+        <PaymentReceiver receiver={receiver} paymentType="funding" />
 
         <div className={styles.area_item}>
           <div className={styles.txt_title}>기여한 펀딩</div>
