@@ -8,14 +8,13 @@ export type ContributedFundingItemType = {
     price: number;
     brandName: string;
   };
-  fundingDetail: {
-    fundingId: number;
-    fundingDetailId: number;
-    contributedAmount: number;
-    contributedAt: string;
-    creatorName: string;
-    status: ContributedFundingItemStatus;
-  };
+  fundingId: number;
+  fundingDetailId: number;
+  contributedAmount: number;
+  contributedAt: string;
+  creatorName: string;
+  self: boolean;
+  status: ContributedFundingItemStatus;
 };
 
 export const REGISTERED_ITEM_STATUS = {
