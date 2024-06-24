@@ -1,14 +1,16 @@
 @import 'styles/mixins.module';
 
 .area_funding_item {
-  @include size(900px, 260px, 0, 0);
+  @include size(900px, 260px, 20px 0 40px 0, 0);
 
   display: flex;
 
-  .img_product {
-    @include size(260px, 260px, 0 30px 0 0, 0);
+  .wrapper_thumb {
+    .img_product {
+      @include wrapper-prod-img(260px, 8px);
+    }
 
-    border-radius: 8px;
+    margin-right: 20px;
   }
 }
 

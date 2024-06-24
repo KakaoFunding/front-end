@@ -43,11 +43,11 @@ const FundingItem = ({
         scrollPos={scrollPos}
       />
       <Link to={`/product/${productId}`}>
-        <img
-          className={styles.img_product}
-          src={productPhoto}
-          alt={`${productName}상품이미지`}
-        />
+        <div className={styles.wrapper_thumb}>
+          <div className={styles.img_product}>
+            <img src={productPhoto} alt={`${productName}상품이미지`} />
+          </div>
+        </div>
       </Link>
       <section className={styles.area_info}>
         <div className={styles.wrapper_info}>
@@ -62,6 +62,7 @@ const FundingItem = ({
                   alt={`${brandName}로고이미지`}
                   className={styles.img_brand}
                 />
+
                 {brandName}
               </span>
               <span className={styles.ico} />
