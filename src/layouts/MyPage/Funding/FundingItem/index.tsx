@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from 'components/ui/Button';
 import FundingCancelModal from 'components/ui/Modal/FundingCancelModal';
@@ -33,6 +33,12 @@ const FundingItem = ({
   brandId,
 }: FundingItemProps) => {
   const { open, isOpen, close, scrollPos } = useModal();
+
+  const navigate = useNavigate();
+
+  const handleAddFunding = () => {
+    navigate('/bill/funding', { state: { fundingId } });
+  };
 
   return (
     <section className={styles.area_funding_item}>
@@ -76,11 +82,13 @@ const FundingItem = ({
           <Button color="black" onClick={open} className={styles.btn_default}>
             펀딩취소하기
           </Button>
-          <Link to="/bill/funding" state={{ fundingId }}>
-            <Button color="yellow" className={styles.btn_default}>
-              펀딩하기
-            </Button>
-          </Link>
+          <Button
+            color="yellow"
+            className={styles.btn_default}
+            onClick={handleAddFunding}
+          >
+            펀딩하기
+          </Button>
         </div>
       </section>
     </section>

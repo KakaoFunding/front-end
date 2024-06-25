@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import clsx from 'clsx';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
@@ -28,6 +28,12 @@ const FriendFunding = ({ friendId }: FriendFundingProps) => {
     queryKey: ['friendFunding', friendId],
     queryFn: () => getFriendFundingItem(friendId),
   });
+
+  const navigate = useNavigate();
+
+  const handleAddFunding = (fundingId: number) => {
+    navigate('/bill/funding', { state: { fundingId } });
+  };
 
   return (
     <>
@@ -67,14 +73,13 @@ const FriendFunding = ({ friendId }: FriendFundingProps) => {
                   denominator={fundingItem.goalAmount}
                   numerator={fundingItem.accumulateAmount}
                 />
-                <Link
-                  to="/bill/funding"
-                  state={{ fundingId: fundingItem.fundingId }}
+                <Button
+                  color="yellow"
+                  className={styles.btn_funding}
+                  onClick={() => handleAddFunding(fundingItem.fundingId)}
                 >
-                  <Button color="yellow" className={styles.btn_funding}>
-                    펀딩하기
-                  </Button>
-                </Link>
+                  펀딩하기
+                </Button>
               </div>
             </section>
           </section>
