@@ -14,6 +14,7 @@ import {
 } from 'types/payment';
 
 const receiver = {
+  self: false,
   name: '김펀딩',
   photoUrl:
     'https://gift-s.kakaocdn.net/dn/gift/images/m640/bg_profile_default.png',

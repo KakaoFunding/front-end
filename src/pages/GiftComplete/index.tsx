@@ -27,7 +27,7 @@ const GiftComplete = () => {
   return (
     <MainWrapper>
       <section className={styles.wrapper_content}>
-        <PaymentReceiver receivers={[receiver]} paymentType="gift" />
+        <PaymentReceiver receiver={receiver} paymentType="gift" />
 
         <div className={styles.area_item}>
           <div className={styles.txt_title}>보낸 선물</div>

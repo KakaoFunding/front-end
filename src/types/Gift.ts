@@ -10,6 +10,7 @@ export type Gift = {
   brandName: string;
   productName: string;
   productThumbnail: string;
+  self: boolean;
   senderName: string;
   receivedAt: string;
   expiredAt: string;

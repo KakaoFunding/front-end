@@ -10,9 +10,9 @@ import styles from './index.module.scss';
 type ContributedFundingItemProps = { item: ContributedFundingItemType };
 
 const ContributedFundingItem = ({ item }: ContributedFundingItemProps) => {
-  const { product, fundingDetail } = item;
+  const { product, ...fundingDetail } = item;
   const { productId, name, photo, brandName } = product;
-  const { contributedAt, creatorName, contributedAmount, status } =
+  const { contributedAt, creatorName, contributedAmount, status, self } =
     fundingDetail;
 
   return (
@@ -31,7 +31,7 @@ const ContributedFundingItem = ({ item }: ContributedFundingItemProps) => {
       <div className={styles.wrapper_history}>
         <div className={styles.section_status}>
           <span className={styles.ico_receiver} />
-          {creatorName}
+          {self ? '나' : creatorName}
           <span className={styles.txt_detail}>
             상세보기
             <span className={styles.ico_detail} />

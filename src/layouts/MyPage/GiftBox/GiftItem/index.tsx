@@ -13,6 +13,7 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
     brandName,
     productName,
     productThumbnail,
+    self,
     senderName,
     expiredAt,
     receivedAt,
@@ -41,7 +42,7 @@ const GiftItem = ({ gift, status }: GiftItemProps) => {
       <div className={styles.wrapper_receive_info}>
         <span className={styles.txt_sender}>
           <span className={styles.txt_from}>from. </span>
-          {senderName}
+          {self ? '나' : senderName}
         </span>
         <span className={styles.txt_date}>
           {new Date(receivedAt).toLocaleString()}
