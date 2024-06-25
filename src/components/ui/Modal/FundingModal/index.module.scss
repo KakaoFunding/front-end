@@ -105,4 +105,10 @@ $default-width: 350px;
 
 .btn_add {
   @include size($default-width, 50px, 10px, 0);
+
+  cursor: auto;
+
+  &.on {
+    cursor: pointer;
+  }
 }

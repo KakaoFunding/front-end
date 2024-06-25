@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Thumbnail from 'components/feature/ProductItem/Thumbnail';
 import { Button } from 'components/ui/Button';
@@ -28,6 +28,7 @@ const FundingModal = ({
   selectedOption,
   productThumbnail,
 }: FundingModalProps) => {
+  const [isFundingAllowed, setIsFundingAllowed] = useState<boolean>(false);
   const {
     input: goalAmount,
     remainingAmount,
@@ -45,14 +46,34 @@ const FundingModal = ({
   });
 
   const handleAddFunding = async () => {
-    if (formatCommaToNumber(goalAmount) === 0) {
-      alert('목표 금액은 0원일 수 없습니다.');
+    const numericGoalAmount = formatCommaToNumber(goalAmount);
+
+    if (price - numericGoalAmount < 100 && price !== numericGoalAmount) {
+      alert('잔여 금액은 100원 이상이어야 합니다.');
 
       return;
     }
+    if (numericGoalAmount < 100) {
+      alert('목표 금액은 100원 이상이어야 합니다.');
+
+      return;
+    }
+
     await sendRequest();
     close();
   };
+
+  useEffect(() => {
+    const numericGoalAmount = formatCommaToNumber(goalAmount);
+
+    if (price - numericGoalAmount < 100 && price !== numericGoalAmount) {
+      setIsFundingAllowed(false);
+    } else if (numericGoalAmount < 100) {
+      setIsFundingAllowed(false);
+    } else {
+      setIsFundingAllowed(true);
+    }
+  }, [goalAmount]);
 
   useEffect(() => {
     clearInput();
@@ -115,9 +136,9 @@ const FundingModal = ({
           </div>
         </section>
         <Button
-          color="yellow"
+          color={isFundingAllowed ? 'yellow' : 'gray'}
           onClick={handleAddFunding}
-          className={styles.btn_add}
+          className={clsx(styles.btn_add, { [styles.on]: isFundingAllowed })}
         >
           등록하기
         </Button>
