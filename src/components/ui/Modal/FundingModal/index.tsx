@@ -13,7 +13,6 @@ import {
   formatNumberWithUnit,
 } from 'utils/format';
 import { getOneYearLaterDate } from 'utils/generate';
-import { isValidFundingPrice } from 'utils/validate';
 
 import { FundingModalProps } from 'types/modal';
 
@@ -47,8 +46,15 @@ const FundingModal = ({
   });
 
   const handleAddFunding = async () => {
-    if (!isValidFundingPrice(price, formatCommaToNumber(goalAmount))) {
-      alert(`목표 금액은 100원과 ${price - 100} 사이 값이여야 합니다.`);
+    const numericGoalAmount = formatCommaToNumber(goalAmount);
+
+    if (price - numericGoalAmount < 100 && price !== numericGoalAmount) {
+      alert('잔여 금액은 100원 이상이어야 합니다.');
+
+      return;
+    }
+    if (numericGoalAmount < 100) {
+      alert('목표 금액은 100원 이상이어야 합니다.');
 
       return;
     }
@@ -58,10 +64,14 @@ const FundingModal = ({
   };
 
   useEffect(() => {
-    if (isValidFundingPrice(price, formatCommaToNumber(goalAmount))) {
-      setIsFundingAllowed(true);
-    } else {
+    const numericGoalAmount = formatCommaToNumber(goalAmount);
+
+    if (price - numericGoalAmount < 100 && price !== numericGoalAmount) {
       setIsFundingAllowed(false);
+    } else if (numericGoalAmount < 100) {
+      setIsFundingAllowed(false);
+    } else {
+      setIsFundingAllowed(true);
     }
   }, [goalAmount]);
 
