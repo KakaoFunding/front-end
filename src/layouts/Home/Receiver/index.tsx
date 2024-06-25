@@ -96,7 +96,7 @@ const Receiver = () => {
       <MainWrapper>
         {selectedHeadCount === 1 && !isSelfSelected && (
           <>
-            <FriendFunding />
+            <FriendFunding friendId={selectedFriends[0].id} />
             <FriendWish
               friendId={selectedFriends[0].id}
               socialAccessToken={socialAccessToken}

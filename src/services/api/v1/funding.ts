@@ -1,5 +1,9 @@
 import { PaginationResponse } from 'types/PaginationResponse';
-import { MyFundingItemType, MyInProgressFunding } from 'types/funding';
+import {
+  MyFundingItemType,
+  MyInProgressFunding,
+  FriendFundingItemType,
+} from 'types/funding';
 
 import { apiV1 } from '.';
 
@@ -21,4 +25,12 @@ export const getMyFundingItem = async () => {
   const myFundingItem = await apiV1.get('/funding/myItem');
 
   return myFundingItem.data as MyInProgressFunding;
+};
+
+export const getFriendFundingItem = async (friendProviderId: string) => {
+  const friendFundingItem = await apiV1.post('/funding/friendItem', {
+    friendProviderId,
+  });
+
+  return friendFundingItem.data as FriendFundingItemType;
 };

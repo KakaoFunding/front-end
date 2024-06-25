@@ -35,3 +35,19 @@ export type MyInProgressFunding =
       productName: string;
     }
   | EmptyObject;
+
+export type FriendFundingItemType =
+  | {
+      fundingId: number;
+      progressRate: number;
+      remainAmount: number;
+      goalAmount: number;
+      accumulateAmount: number;
+      productId: number;
+      brandId: number;
+      brandPhoto: string;
+      productPhoto: string;
+      brandName: string;
+      productName: string;
+    }
+  | EmptyObject;
