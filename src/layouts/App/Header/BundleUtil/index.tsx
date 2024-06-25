@@ -16,6 +16,7 @@ const BundleUtil = () => {
         <div className={styles.wrapper_ico} aria-hidden="true">
           <span className={styles.ico_cart}>장바구니</span>
         </div>
+        <span className={styles.num_cart}>2</span>
       </Link>
       <div className={styles.wrapper_login}>
         <SocialKakaoLogin />

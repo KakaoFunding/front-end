@@ -30,6 +30,21 @@
     @include ico-nav(-30px, -80px, 24px, 24px);
 
     margin: 8px;
+    position: relative;
+  }
+
+  .num_cart {
+    @include size(16px, 14px, 0, 1px 5px 0);
+    @include font(10px, 500, #fff);
+
+    position: absolute;
+    inset: 4px 0 0 22px;
+    border-radius: 100px;
+    letter-spacing: -0.05em;
+    line-height: 13px;
+    text-align: center;
+    background-color: #fc363c;
+    box-sizing: border-box;
   }
 
   .wrapper_login {
