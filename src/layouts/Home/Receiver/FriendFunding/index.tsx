@@ -9,6 +9,7 @@ import ProgressBar from 'components/ui/ProgressBar';
 import Spinner from 'components/ui/Spinner';
 
 import { getFriendFundingItem } from 'services/api/v1/funding';
+import { formatNumberWithComma } from 'utils/format';
 import { isEmptyObject } from 'utils/validate';
 
 import styles from './index.module.scss';
@@ -57,7 +58,7 @@ const FriendFunding = ({ friendId }: FriendFundingProps) => {
                     목표 달성까지
                     <span
                       className={styles.txt_point}
-                    >{`${WHITE_SPACE}${fundingItem.remainAmount}`}</span>
+                    >{`${WHITE_SPACE}${formatNumberWithComma(fundingItem.remainAmount)}`}</span>
                     원 남았어요
                   </p>
                   <p className={styles.txt_default}>
