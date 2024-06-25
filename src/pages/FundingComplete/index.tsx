@@ -55,14 +55,14 @@ const FundingComplete = () => {
             className={styles.btn}
             onClick={handleClickFundingHistory}
           >
-            펀딩내역
+            펀딩내역 보기
           </Button>
           <Button
             color="yellow"
             className={styles.btn}
             onClick={handleClickMyFunding}
           >
-            펀딩함 가기
+            펀딩 아이템 보기
           </Button>
         </div>
       </section>

@@ -70,7 +70,7 @@ const GiftComplete = () => {
             className={styles.btn}
             onClick={handleClickOrderHistory}
           >
-            주문내역
+            주문내역 보기
           </Button>
           <Button
             color="yellow"
