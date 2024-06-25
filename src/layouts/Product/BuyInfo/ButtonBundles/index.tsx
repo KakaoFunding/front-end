@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import clsx from 'clsx';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'components/ui/Button';
@@ -13,6 +14,7 @@ import { useAxios } from 'hooks/useAxios';
 import { useKakaoPicker } from 'hooks/useKakaoPicker';
 import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
+import { useDeleteWish } from 'hooks/useWish';
 import { getMyFundingItem } from 'services/api/v1/funding';
 import { formatNumberWithPlus } from 'utils/format';
 import { isEmptyObject } from 'utils/validate';
@@ -44,13 +46,15 @@ const ButtonBundles = ({
     productThumbnails,
     options,
     wishCount,
-    wish: isWished,
+    wish: isWishedProp,
   } = productDescription;
   const navigate = useNavigate();
   const { checkLoginBeforeAction } = useLogin();
   const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
     useSelectedFriendsStore();
   const { openKakaoPicker } = useKakaoPicker();
+  const [isWished, setIsWished] = useState<boolean>(isWishedProp);
+  const { deleteWishData, deleteWish } = useDeleteWish(productId);
 
   const { data } = useQuery({
     queryKey: ['myFundingItem'],
@@ -124,8 +128,15 @@ const ButtonBundles = ({
 
   // 위시 버튼 핸들러
   const handleClickWish = () => {
-    checkLoginBeforeAction(openWishModal);
+    checkLoginBeforeAction(() => {
+      if (isWished) deleteWish();
+      else openWishModal();
+    });
   };
+
+  useEffect(() => {
+    if (deleteWishData) setIsWished(false);
+  }, [deleteWishData]);
 
   // 나에게 선물하기 버튼 핸들러
   const handleClickGiftForMe = () => {
@@ -184,6 +195,7 @@ const ButtonBundles = ({
         isOpen={isWishOpen}
         scrollPos={scrollWishPos}
         productId={productId}
+        onWishAdded={() => setIsWished(true)}
       />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
