@@ -21,6 +21,7 @@ import { isEmptyObject } from 'utils/validate';
 
 import { RequestOrderPreview } from 'types/payment';
 import { OptionDetail, ProductDescriptionResponse } from 'types/product';
+import { ResponseWishAddOrDelete } from 'types/wish';
 
 import DefaultProfileImage from 'assets/profile_noimg.png';
 
@@ -45,7 +46,7 @@ const ButtonBundles = ({
     price,
     productThumbnails,
     options,
-    wishCount,
+    wishCount: wishCountProp,
     wish: isWishedProp,
   } = productDescription;
   const navigate = useNavigate();
@@ -53,6 +54,8 @@ const ButtonBundles = ({
   const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
     useSelectedFriendsStore();
   const { openKakaoPicker } = useKakaoPicker();
+
+  const [wishCount, setWishCount] = useState<number>(wishCountProp);
   const [isWished, setIsWished] = useState<boolean>(isWishedProp);
   const { deleteWishData, deleteWish } = useDeleteWish(productId);
 
@@ -134,8 +137,18 @@ const ButtonBundles = ({
     });
   };
 
+  // 위시 등록 완료 후 실행
+  const handleWishAdded = (wishData: ResponseWishAddOrDelete) => {
+    setIsWished(true);
+    setWishCount(wishData.wishCount);
+  };
+
+  // 위시 취소 완료 후 실행
   useEffect(() => {
-    if (deleteWishData) setIsWished(false);
+    if (deleteWishData) {
+      setIsWished(false);
+      setWishCount(deleteWishData.wishCount);
+    }
   }, [deleteWishData]);
 
   // 나에게 선물하기 버튼 핸들러
@@ -195,7 +208,7 @@ const ButtonBundles = ({
         isOpen={isWishOpen}
         scrollPos={scrollWishPos}
         productId={productId}
-        onWishAdded={() => setIsWished(true)}
+        onWishAdded={handleWishAdded}
       />
       {/* TODO : 로그인 되었을 때만 보이게 */}
       <Button
