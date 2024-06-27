@@ -13,7 +13,7 @@ const OrderItem = ({ item }: OrderItemProps) => {
     <Link to={`/product/${item.product.productId}`}>
       <p className={styles.txt_date}>
         등록한 날짜
-        <span className={styles.num_data}>
+        <span className={styles.num_date}>
           {formatDateAndTime(item.orderDate)}
         </span>
       </p>
