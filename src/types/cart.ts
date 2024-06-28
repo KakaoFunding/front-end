@@ -14,3 +14,5 @@ export type CartItem = {
 };
 
 export type CartResponse = CartItem[];
+
+export type CartCountResponse = { count: number };
