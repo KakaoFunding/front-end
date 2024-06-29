@@ -4,10 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
 import { useUserStore } from 'store/useUserStore';
 
-import {
-  clearLocalStorageItem,
-  getLocalStorageItem,
-} from 'services/api/v1/localStorage';
+import { clearLocalStorageItem } from 'services/api/v1/localStorage';
 import { logout, socialLogout } from 'services/api/v1/oauth';
 import {
   clearSessionStorageItem,
@@ -28,18 +25,16 @@ const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
   const clearSelectedFiends = useSelectedFriendsStore(
     (state) => state.clearSelectedFriends,
   );
-  const refreshToken = getLocalStorageItem('refreshToken');
   const socialAccessToken = getSessionStorageItem('socialToken');
   const { providerId } = useUserStore();
 
   const handleLogout = async () => {
-    await logout({ refreshToken });
+    await logout();
     await socialLogout({ providerId, socialAccessToken });
 
     clearUser();
     clearSelectedFiends();
     clearSessionStorageItem();
-    clearLocalStorageItem('refreshToken');
     clearLocalStorageItem('socialRefreshToken');
 
     navigate('/');
