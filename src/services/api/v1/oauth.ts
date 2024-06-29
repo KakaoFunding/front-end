@@ -19,10 +19,6 @@ type LoginRequestProps = {
 type LoginResponseProps = {
   accessToken: string;
   member: NonNullable<User>;
-  refreshToken: {
-    value: string;
-    expiration: number;
-  };
 };
 
 type LogoutRequestProps = {
