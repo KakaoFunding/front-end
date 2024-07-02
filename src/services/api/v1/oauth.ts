@@ -19,14 +19,6 @@ type LoginRequestProps = {
 type LoginResponseProps = {
   accessToken: string;
   member: NonNullable<User>;
-  refreshToken: {
-    value: string;
-    expiration: number;
-  };
-};
-
-type LogoutRequestProps = {
-  refreshToken: string;
 };
 
 type SocialLogoutRequestProps = {
@@ -89,10 +81,12 @@ export const login = async ({
 };
 
 // 로그아웃 요청
-export const logout = async ({
-  refreshToken,
-}: LogoutRequestProps): Promise<AxiosResponse> => {
-  const response = await apiV1.post('/oauth/logout', { refreshToken });
+export const logout = async (): Promise<AxiosResponse> => {
+  const response = await apiV1.post(
+    '/oauth/logout',
+    {},
+    { withCredentials: true },
+  );
   return response;
 };
 
