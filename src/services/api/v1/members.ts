@@ -5,10 +5,6 @@ import { apiV1 } from '.';
 
 type RefreshAccessTokenResponseProps = {
   accessToken: string;
-  refreshToken: {
-    value: string;
-    expiration: number;
-  };
 };
 
 type RefreshSocialAccessTokenResponseProps = {
@@ -19,10 +15,16 @@ type RefreshSocialAccessTokenResponseProps = {
   };
 };
 
-export const refreshAccessToken = async (
-  refreshToken: string,
-): Promise<AxiosResponse<RefreshAccessTokenResponseProps>> => {
-  const response = await apiV1.post('/oauth/reissue', { refreshToken });
+export const refreshAccessToken = async (): Promise<
+  AxiosResponse<RefreshAccessTokenResponseProps>
+> => {
+  const response = await apiV1.post(
+    '/oauth/reissue',
+    {},
+    {
+      withCredentials: true,
+    },
+  );
   return response;
 };
 

@@ -45,16 +45,13 @@ apiV1.interceptors.response.use(
 
     if (status === 401) {
       if (error.response.data.code === 'KF003') {
-        const usersRefreshToken = getLocalStorageItem('refreshToken');
         apiV1.defaults.headers.common.Authorization = null;
-        const response = await refreshAccessToken(usersRefreshToken);
+        const response = await refreshAccessToken();
 
         if (response.status === 200) {
-          const { accessToken, refreshToken } = response.data;
-          const { value, expiration } = refreshToken;
+          const { accessToken } = response.data;
 
           setSessionStorageItem('accessToken', accessToken);
-          setLocalStorageItem('refreshToken', value, expiration);
 
           axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
           originRequest.headers.Authorization = `Bearer ${accessToken}`;
@@ -68,13 +65,6 @@ apiV1.interceptors.response.use(
               originRequest.data = [...parsedOriginData];
             } else if (typeof parsedOriginData === 'object') {
               originRequest.data = { ...parsedOriginData };
-
-              if (parsedOriginData.refreshToken) {
-                originRequest.data = {
-                  ...parsedOriginData,
-                  refreshToken: value,
-                };
-              }
             }
           }
 

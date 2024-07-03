@@ -5,7 +5,6 @@ import Spinner from 'components/ui/Spinner';
 
 import { useUserStore } from 'store/useUserStore';
 
-import { setLocalStorageItem } from 'services/api/v1/localStorage';
 import { getKakaoOauthToken, login } from 'services/api/v1/oauth';
 import { setSessionStorageItem } from 'utils/sessionStorage';
 
@@ -28,10 +27,8 @@ const Auth = () => {
         const socialAccessToken = await getKakaoOauthToken({ code });
 
         const res = await login({ socialAccessToken });
-        const { accessToken, member, refreshToken } = res.data;
-        const { value, expiration } = refreshToken;
+        const { accessToken, member } = res.data;
 
-        setLocalStorageItem('refreshToken', value, expiration);
         setSessionStorageItem('accessToken', accessToken);
         setUserInfo(member);
         navigate(loginState);
