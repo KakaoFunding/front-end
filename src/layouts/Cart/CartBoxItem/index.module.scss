@@ -34,10 +34,14 @@
     &.on {
       @include ico-gift4(-170px, -790px, 24px, 24px);
     }
+
+    cursor: pointer;
   }
 
   .ico_delete {
     @include ico-gift4(-205px, -745px, 14px, 14px);
+
+    cursor: pointer;
   }
 }
 
