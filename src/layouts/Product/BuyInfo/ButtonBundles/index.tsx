@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
@@ -50,6 +50,7 @@ const ButtonBundles = ({
     wish: isWishedProp,
   } = productDescription;
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { checkLoginBeforeAction } = useLogin();
   const { isSelected, isSelfSelected, selectedFriends, getImgUrl } =
     useSelectedFriendsStore();
@@ -187,7 +188,12 @@ const ButtonBundles = ({
   // 장바구니 등록 버튼 핸들러
   const handleAddCart = () => {
     checkLoginBeforeAction(() => {
-      checkOptionBeforeAction(addItemToCart);
+      checkOptionBeforeAction(async () => {
+        await addItemToCart();
+
+        queryClient.invalidateQueries({ queryKey: ['cart'] });
+        queryClient.invalidateQueries({ queryKey: ['cartCount'] });
+      });
     });
   };
 

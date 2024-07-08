@@ -1,3 +1,5 @@
+import { useQueryClient } from '@tanstack/react-query';
+
 import { MouseEvent } from 'react';
 
 import Spinner from 'components/ui/Spinner';
@@ -23,10 +25,16 @@ const CartButton = ({ productId }: CartButtonProps) => {
       optionDetailId: null,
     },
   });
+  const queryClient = useQueryClient();
 
   const handleAddCart = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    checkLoginBeforeAction(sendRequest);
+
+    checkLoginBeforeAction(async () => {
+      await sendRequest();
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
+      queryClient.invalidateQueries({ queryKey: ['cartCount'] });
+    });
   };
 
   return (

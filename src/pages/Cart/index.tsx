@@ -25,7 +25,6 @@ const Cart = () => {
     data: cartItems,
     isFetched,
     isLoading,
-    refetch,
   } = useQuery({
     queryKey: ['cart'],
     queryFn: () => getCartItems(),
@@ -81,7 +80,6 @@ const Cart = () => {
                     {cartItems!.map((item) => (
                       <li key={item.cartId}>
                         <CartBoxItem
-                          refetch={refetch}
                           item={item}
                           handleSelect={handleSelect}
                           isSelected={selectedItems.some(

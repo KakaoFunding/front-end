@@ -1,3 +1,5 @@
+import { useQueryClient } from '@tanstack/react-query';
+
 import clsx from 'clsx';
 
 import { useAxios } from 'hooks/useAxios';
@@ -8,18 +10,13 @@ import { CartItem } from 'types/cart';
 import styles from './index.module.scss';
 
 type CartBoxItemProps = {
-  refetch: () => void;
   item: CartItem;
   handleSelect: (productId: number) => void;
   isSelected: boolean;
 };
 
-const CartBoxItem = ({
-  refetch,
-  item,
-  handleSelect,
-  isSelected,
-}: CartBoxItemProps) => {
+const CartBoxItem = ({ item, handleSelect, isSelected }: CartBoxItemProps) => {
+  const queryClient = useQueryClient();
   const { sendRequest } = useAxios({
     method: 'delete',
     url: `cart/${item.productId}`,
@@ -27,7 +24,9 @@ const CartBoxItem = ({
 
   const handleDelete = async () => {
     await sendRequest();
-    refetch();
+
+    queryClient.invalidateQueries({ queryKey: ['cart'] });
+    queryClient.invalidateQueries({ queryKey: ['cartCount'] });
   };
 
   return (
