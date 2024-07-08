@@ -11,5 +11,5 @@ export const getCartItems = async () => {
 export const getCartCount = async () => {
   const cartCount = await apiV1.get(`/cart/itemCount`);
 
-  return cartCount.data as CartCountResponse;
+  return cartCount.data.count as CartCountResponse;
 };
