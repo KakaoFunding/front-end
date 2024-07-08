@@ -22,7 +22,8 @@ const CartBoxItem = ({ item, handleSelect, isSelected }: CartBoxItemProps) => {
     url: `cart/${item.productId}`,
   });
 
-  const handleDelete = async () => {
+  const handleDelete = async (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     await sendRequest();
 
     queryClient.invalidateQueries({ queryKey: ['cart'] });
