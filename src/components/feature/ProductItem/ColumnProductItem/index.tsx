@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import { ProductItem, ProductItemSize } from 'types/productItem';
 
@@ -17,19 +18,19 @@ type ColumnProductItemProps = {
 const ColumnProductItem = ({ product, size }: ColumnProductItemProps) => {
   return (
     <article className={clsx(styles.wrapper_prod_item, styles[size])}>
-      <a href={`/product/${product.id}`}>
-        <Thumbnail src={product.thumbSrc} alt={product.name} size={size} />
+      <Link to={`/product/${product.productId}`}>
+        <Thumbnail src={product.photo} alt={product.name} size={size} />
         <div className={clsx(styles.wrapper_main_info, styles[size])}>
           <span className={styles.txt_brand_name}>{product.brandName}</span>
           <strong className={styles.txt_prod_name}>{product.name}</strong>
           <Price price={product.price} />
         </div>
-      </a>
+      </Link>
       <div className={styles.wrapper_util_info}>
-        <CartButton id={product.id} />
+        <CartButton productId={product.productId} />
         <WishButton
-          id={product.id}
-          isWished={product.isWished}
+          productId={product.productId}
+          isWished={product.wished}
           wishCount={product.wishCount}
         />
       </div>

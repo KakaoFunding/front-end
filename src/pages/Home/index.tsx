@@ -1,9 +1,9 @@
 import MainWrapper from 'components/ui/MainWrapper';
-import MainBrands from 'layouts/Home/MainBrands';
-import MainProducts from 'layouts/Home/MainProducts';
-import NowTrending from 'layouts/Home/NowTrending';
 import Receiver from 'layouts/Home/Receiver';
 import Thema from 'layouts/Home/Thema';
+// import MainBrands from 'layouts/Home/MainBrands';
+// import MainProducts from 'layouts/Home/MainProducts';
+// import NowTrending from 'layouts/Home/NowTrending';
 
 import styles from './index.module.scss';
 
@@ -13,9 +13,9 @@ const Home = () => {
       <Receiver />
       <MainWrapper>
         <Thema />
-        <NowTrending />
+        {/* <NowTrending />
         <MainBrands />
-        <MainProducts />
+        <MainProducts /> */}
       </MainWrapper>
     </section>
   );

@@ -1,0 +1,35 @@
+@import 'styles/mixins.module';
+@import 'styles/variable.module';
+
+$content-height: 80px;
+
+.area_banner {
+  border-bottom: 1px solid #e3e4e5;
+}
+
+.wrapper_content {
+  width: $fix-width;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.wrapper_logo {
+  float: left;
+  width: $content-height;
+  height: $content-height;
+  margin-right: 30px;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.txt_name {
+  @include font(30px, 700, #222);
+  @include text-ellipsis(1);
+
+  max-width: 560px;
+  height: $content-height;
+  line-height: $content-height;
+}

@@ -1,0 +1,7 @@
+.area_list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px 20px;
+  margin-top: 110px;
+  margin-bottom: 100px;
+}

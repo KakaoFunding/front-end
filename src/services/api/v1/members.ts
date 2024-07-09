@@ -1,43 +1,42 @@
-import { AxiosError, AxiosRequestHeaders, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
-// import { apiV1 } from '.';
+// eslint-disable-next-line import/no-cycle
+import { apiV1 } from '.';
 
-type RefreshAccessTokenProps = {
+type RefreshAccessTokenResponseProps = {
   accessToken: string;
 };
 
+type RefreshSocialAccessTokenResponseProps = {
+  accessToken: string;
+  refreshToken: {
+    value: string | null;
+    expiration: number | null;
+  };
+};
+
 export const refreshAccessToken = async (): Promise<
-  AxiosResponse<RefreshAccessTokenProps>
+  AxiosResponse<RefreshAccessTokenResponseProps>
 > => {
-  return new Promise((res, rej) => {
-    const fakeApiResponse: AxiosResponse<RefreshAccessTokenProps> = {
-      data: {
-        accessToken: 'fakeToken',
-      },
-      status: 200,
-      statusText: 'OK',
-      headers: {} as Record<string, string>,
-      config: { headers: {} as AxiosRequestHeaders },
-    };
+  const response = await apiV1.post(
+    '/oauth/reissue',
+    {},
+    {
+      withCredentials: true,
+    },
+  );
+  return response;
+};
 
-    // 토큰 만료 api
-    // const fakeApiError: AxiosError<RefreshAccessTokenProps> = {
-    //   name: 'AxiosError',
-    //   message: 'Unauthorized',
-    //   response: {
-    //     data: { accessToken: 'wrongToken' }, // 에러 응답의 형태에 맞게 데이터를 설정
-    //     status: 401,
-    //     statusText: 'Unauthorized',
-    //     headers: {},
-    //     config: { headers: {} as AxiosRequestHeaders },
-    //   },
-    //   isAxiosError: true,
-    //   toJSON: () => ({ message: 'Unauthorized', name: 'AxiosError' }),
-    // };
-
-    setTimeout(() => res(fakeApiResponse), 200);
-  });
-
-  // const response = await apiV1.post('/members/token');
-  // return response;
+export const refreshSocialAccessToken = async (
+  socialAccessToken: string,
+  socialRefreshToken: string,
+): Promise<AxiosResponse<RefreshSocialAccessTokenResponseProps>> => {
+  const headers = { Authorization: `Bearer ${socialAccessToken}` };
+  const response = await apiV1.post(
+    '/oauth/social/reissue',
+    { provider: 'kakao', refreshToken: socialRefreshToken },
+    { headers },
+  );
+  return response;
 };

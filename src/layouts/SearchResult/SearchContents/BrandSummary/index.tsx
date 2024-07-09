@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import ResultTabTitle from 'components/ui/ResultTabTitle';
 import Spinner from 'components/ui/Spinner';

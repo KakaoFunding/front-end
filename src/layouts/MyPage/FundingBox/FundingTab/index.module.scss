@@ -1,0 +1,7 @@
+.list_funding {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 30px;
+  max-width: 840px;
+  margin: 30px 0 100px;
+}

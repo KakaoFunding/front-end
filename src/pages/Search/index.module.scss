@@ -1,4 +1,28 @@
+@import 'styles/mixins.module';
+
 .area_search {
   background-color: #ededed;
   min-height: calc(100vh - 280px); // header + footer height
+}
+
+.area_info {
+  margin: auto 0;
+  text-align: center;
+  line-height: 1.5;
+  padding: 80px 20px;
+}
+
+.img_logo {
+  @include ico-main(-525px, -469px, 150px, 131px);
+
+  background-size: 675px 1125px;
+  margin: 15px auto;
+}
+
+.txt_title {
+  @include font(20px, 700, #222);
+}
+
+.txt_desc {
+  @include font(15px, 400, #4684e9);
 }

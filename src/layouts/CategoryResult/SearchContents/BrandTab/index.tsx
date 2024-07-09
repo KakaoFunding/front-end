@@ -19,7 +19,7 @@ const BrandTab = ({ tabName, brands, isLoading }: BrandTabProps) => {
   return (
     <section className={styles.area_brand_tab}>
       <ResultTabTitle tabName={tabName} count={brands.length}>
-        <div>정렬 드롭다운</div>
+        {/* <div>정렬 드롭다운</div> */}
       </ResultTabTitle>
 
       {isLoading && <Spinner />}

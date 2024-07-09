@@ -1,0 +1,16 @@
+@import 'styles/variable.module';
+
+$border-style: 1px solid #ededed;
+
+.wrapper_form {
+  display: flex;
+  position: relative;
+  min-height: calc(100vh - $header-height - $footer-height);
+  border: $border-style;
+  border-width: 0 1px;
+}
+
+.area_field {
+  width: 868px;
+  border-right: $border-style;
+}

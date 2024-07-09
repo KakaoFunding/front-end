@@ -5,7 +5,7 @@ import { ProductItem, ProductItemSize } from 'types/productItem';
 import styles from './index.module.scss';
 
 type ThumbnailProps = {
-  src: ProductItem['thumbSrc'];
+  src: ProductItem['photo'];
   alt: ProductItem['name'];
   size: ProductItemSize['size'];
 };

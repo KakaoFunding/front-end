@@ -1,0 +1,20 @@
+@import 'styles/mixins.module';
+
+.area_thema {
+  padding-top: 120px;
+
+  .txt_title {
+    @include font(35px, 700);
+
+    display: block;
+    padding-bottom: 40px;
+    text-align: center;
+    line-height: 51px;
+  }
+
+  .wrapper_item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px 20px;
+  }
+}

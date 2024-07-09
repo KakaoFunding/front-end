@@ -1,0 +1,61 @@
+@import 'styles/variable.module';
+@import 'styles/mixins.module';
+
+.modal {
+  @include center(column);
+  @include size(500px, 400px, auto, 26px);
+
+  .modal_title {
+    @include font(22px, 700);
+
+    padding-bottom: 22px;
+  }
+
+  .btn_add {
+    @include font(16px, 700);
+
+    margin: 0;
+  }
+}
+
+.wrapper_radio {
+  flex-grow: 1;
+
+  .default_radio {
+    display: flex;
+    width: 440px;
+    height: 45%;
+
+    .label_radio {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    &:first-child {
+      border-bottom: 1px solid rgba(231, 232, 233, 40%);
+    }
+
+    .btn_radio {
+      width: 28px;
+      height: 28px;
+      margin: 0;
+    }
+
+    .wrapper_txt {
+      margin-left: 20px;
+
+      .txt_title {
+        @include font(20px, 700);
+
+        line-height: 30px;
+      }
+
+      .txt_subtitle {
+        @include font(16px, 400, #999);
+
+        margin-top: 10px;
+      }
+    }
+  }
+}

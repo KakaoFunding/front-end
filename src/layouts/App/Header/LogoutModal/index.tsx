@@ -1,8 +1,15 @@
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 
-import { useAuthStore, useUserStore } from 'store/authStore';
+import { useSelectedFriendsStore } from 'store/useSelectedFriendsStore';
+import { useUserStore } from 'store/useUserStore';
 
-import { logout } from 'services/api/v1/oauth';
+import { clearLocalStorageItem } from 'services/api/v1/localStorage';
+import { logout, socialLogout } from 'services/api/v1/oauth';
+import {
+  clearSessionStorageItem,
+  getSessionStorageItem,
+} from 'utils/sessionStorage';
 
 import styles from './index.module.scss';
 
@@ -12,14 +19,25 @@ type LogoutModalProps = {
 };
 
 const LogoutModal = ({ modalState, userState }: LogoutModalProps) => {
+  const navigate = useNavigate();
+
   const clearUser = useUserStore((state) => state.clearUserInfo);
-  const clearAuth = useAuthStore((state) => state.clearAccessToken);
+  const clearSelectedFiends = useSelectedFriendsStore(
+    (state) => state.clearSelectedFriends,
+  );
+  const socialAccessToken = getSessionStorageItem('socialToken');
+  const { providerId } = useUserStore();
 
   const handleLogout = async () => {
     await logout();
+    await socialLogout({ providerId, socialAccessToken });
 
-    clearAuth();
     clearUser();
+    clearSelectedFiends();
+    clearSessionStorageItem();
+    clearLocalStorageItem('socialRefreshToken');
+
+    navigate('/');
   };
 
   return (

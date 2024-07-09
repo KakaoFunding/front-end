@@ -1,3 +1,5 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
@@ -11,17 +13,28 @@ import 'styles/hardreset.css';
 
 import App from 'pages/App';
 import Auth from 'pages/Auth';
-import Bill from 'pages/Bill';
+import Brand from 'pages/Brand';
+import Cart from 'pages/Cart';
 import CategoryResult from 'pages/CategoryResult';
-import Funding from 'pages/Funding';
-import GiftBox from 'pages/GiftBox';
+import FundingComplete from 'pages/FundingComplete';
+import FundingPayment from 'pages/FundingPayment';
+import GiftComplete from 'pages/GiftComplete';
+import GiftPayment from 'pages/GiftPayment';
 import Home from 'pages/Home';
 import MyPage from 'pages/MyPage';
+import Funding from 'pages/MyPage/Funding';
+import FundingBox from 'pages/MyPage/FundingBox';
+import FundingHistory from 'pages/MyPage/FundingHistory';
+import GiftBox from 'pages/MyPage/GiftBox';
+import OrderHistory from 'pages/MyPage/OrderHistory';
+import Wish from 'pages/MyPage/Wish';
 import NotFound from 'pages/NotFound';
+import PaymentError from 'pages/PaymentError';
+import PrivateRoute from 'pages/PrivateRoute';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
 import SearchResult from 'pages/SearchResult';
-import Wish from 'pages/Wish';
+import UnPrivateRoute from 'pages/UnPrivateRoute';
 
 // eslint-disable-next-line consistent-return
 const enableMocking = async () => {
@@ -30,6 +43,15 @@ const enableMocking = async () => {
     return worker.start();
   }
 };
+
+const queryClient = new QueryClient();
+
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Kakao: any;
+  }
+}
 
 const router = createBrowserRouter([
   {
@@ -40,24 +62,66 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/home', element: <Home /> },
       {
-        path: '/mypage',
-        element: <Navigate to="/mypage/giftbox" />,
+        element: <UnPrivateRoute />,
+        children: [{ path: '/auth', element: <Auth /> }],
       },
       {
-        path: '/mypage',
-        element: <MyPage />,
+        element: <PrivateRoute />,
         children: [
           {
-            path: 'wish',
-            element: <Wish />,
+            path: '/mypage',
+            element: <Navigate to="/mypage/giftbox" />,
           },
           {
-            path: 'funding',
-            element: <Funding />,
+            path: '/mypage',
+            element: <MyPage />,
+            children: [
+              {
+                path: 'giftbox',
+                element: <GiftBox />,
+              },
+              {
+                path: 'fundingbox',
+                element: <FundingBox />,
+              },
+
+              {
+                path: 'wish',
+                element: <Wish />,
+              },
+              {
+                path: 'funding',
+                element: <Funding />,
+              },
+              {
+                path: 'orderHistory',
+                element: <OrderHistory />,
+              },
+              {
+                path: 'fundingHistory',
+                element: <FundingHistory />,
+              },
+            ],
           },
           {
-            path: 'giftbox',
-            element: <GiftBox />,
+            path: '/bill/gift',
+            element: <GiftPayment />,
+          },
+          {
+            path: '/bill/funding',
+            element: <FundingPayment />,
+          },
+          {
+            path: '/gift/complete',
+            element: <GiftComplete />,
+          },
+          {
+            path: '/funding/complete',
+            element: <FundingComplete />,
+          },
+          {
+            path: '/payment/error',
+            element: <PaymentError />,
           },
         ],
       },
@@ -74,6 +138,10 @@ const router = createBrowserRouter([
         element: <CategoryResult />,
       },
       {
+        path: '/brand/:brandId',
+        element: <Brand />,
+      },
+      {
         path: '/search',
         element: <Search />,
       },
@@ -81,19 +149,25 @@ const router = createBrowserRouter([
         path: '/search/result',
         element: <SearchResult />,
       },
+    ],
+  },
+  {
+    element: <PrivateRoute />,
+    children: [
       {
-        path: '/bill/:type',
-        element: <Bill />,
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },
-  { path: '/auth', element: <Auth /> },
 ]);
 
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </React.StrictMode>,
   );
 });

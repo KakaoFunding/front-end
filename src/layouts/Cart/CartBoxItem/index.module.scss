@@ -1,0 +1,120 @@
+@import 'styles/mixins.module';
+
+.wrapper_item {
+  border-radius: 8px;
+  background-color: #fff;
+  min-height: 200px;
+  box-sizing: border-box;
+  padding: 16px;
+  margin-bottom: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2%);
+}
+
+.wrapper_icons {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+
+  .btn_input {
+    @include size(24px, 24px, 0, 0);
+
+    position: absolute;
+    z-index: -1;
+  }
+
+  .ico_input {
+    @include ico-gift4(-170px, -760px, 24px, 24px);
+
+    .btn_input:checked + .ico_input {
+      background-color: #007bff;
+
+      @include ico-gift4(-170px, -760px, 24px, 24px);
+    }
+
+    &.on {
+      @include ico-gift4(-170px, -790px, 24px, 24px);
+    }
+  }
+
+  .ico_delete {
+    @include ico-gift4(-205px, -745px, 14px, 14px);
+  }
+}
+
+.wrapper_prod {
+  display: flex;
+  line-height: 18px;
+  word-break: break-all;
+
+  .thumb_prod {
+    width: 86px;
+    height: 86px;
+    margin-right: 10px;
+  }
+
+  .txt_brand {
+    @include text-ellipsis(1);
+    @include font(13px, auto, #888);
+  }
+
+  .txt_prod {
+    @include text-ellipsis(2);
+    @include font(14px, 400, #222);
+
+    margin: 3px 0;
+    max-height: 36px;
+  }
+
+  .txt_option {
+    @include font(13px, auto, #888);
+
+    display: flex;
+    letter-spacing: -0.015em;
+
+    .ico_option {
+      @include ico-gift4(-175px, -740px, 28px, 18px);
+
+      margin-right: 6px;
+    }
+  }
+}
+
+.wrapper_pay {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 6px;
+  margin-top: 12px;
+
+  .wrapper_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 16px 8px;
+    background-color: #fafafa;
+  }
+
+  .txt_info {
+    @include font(13px, auto, #888);
+
+    display: flex;
+    justify-content: space-between;
+    padding: 2px;
+    line-height: 16px;
+    letter-spacing: -0.025em;
+  }
+
+  .txt_total {
+    @include font(13px, auto, #222);
+
+    display: flex;
+    justify-content: space-between;
+
+    .num_info {
+      @include font(15px, 700, #222);
+    }
+
+    .txt_unit {
+      font-size: 14px;
+    }
+  }
+}

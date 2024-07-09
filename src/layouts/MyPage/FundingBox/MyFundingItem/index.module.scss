@@ -1,0 +1,67 @@
+@import 'styles/mixins.module';
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  &.used {
+    @include img-badge(0, -55px, 50px, 50px);
+  }
+
+  &.canceled {
+    @include img-badge(-55px, -55px, 50px, 50px);
+  }
+}
+
+.d_day {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #888;
+  color: #fff;
+  font-size: 14px;
+  padding: 5px 8px;
+  letter-spacing: -0.03em;
+}
+
+.wrapper_funding {
+  $width: 196px;
+
+  width: $width;
+  position: relative;
+
+  .wrapper_thumb {
+    @include wrapper-prod-img($width, 0);
+
+    .img_unavailable {
+      opacity: 0.4;
+    }
+  }
+
+  .txt_brand {
+    display: block;
+    padding-top: 9px;
+    font-size: 13px;
+    color: #5990c7;
+
+    @include text-ellipsis(1);
+  }
+
+  .txt_prod {
+    display: block;
+    padding-top: 4px;
+    font-size: 15px;
+    color: #666;
+
+    @include text-ellipsis(1);
+  }
+}
+
+.txt_date {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #a0a0a0;
+  letter-spacing: -0.028em;
+}

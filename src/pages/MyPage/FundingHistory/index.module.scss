@@ -1,0 +1,9 @@
+@import 'styles/mixins.module';
+
+.title {
+  @include font(28px, 800);
+
+  margin: 40px 0 30px;
+  line-height: 38px;
+  white-space: pre-line;
+}

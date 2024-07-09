@@ -1,0 +1,32 @@
+@import 'styles/mixins.module';
+
+.area_detail {
+  padding: 16px;
+
+  .txt_title {
+    @include font(15px, 700);
+
+    display: block;
+    padding: 16px 0;
+  }
+
+  .wrapper_gift {
+    .wrapper_notice {
+      display: flex;
+      margin-bottom: 12px;
+      padding: 13px 12px;
+      border-radius: 4px;
+      background-color: #fffae2;
+
+      .ico_gift {
+        @include ico-gift4(-165px, -935px, 18px, 18px);
+
+        margin-right: 9px;
+      }
+
+      .cnt_item {
+        font-weight: 700;
+      }
+    }
+  }
+}

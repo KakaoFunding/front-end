@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
+import Profile from 'components/feature/Profile';
 import MainWrapper from 'components/ui/MainWrapper';
-import Profile from 'layouts/GiftBox/Profile';
-import Sidebar from 'layouts/GiftBox/Sidebar';
+import Sidebar from 'components/ui/Sidebar';
 
 import styles from './index.module.scss';
 
